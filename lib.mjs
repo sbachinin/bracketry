@@ -5,7 +5,7 @@ export const drawBrackets = (data, canvasEl) => {
         var ctx = canvasEl.getContext('2d');
         
         // draw rounds
-        ctx.font = '10px sans-serif';
+        ctx.font = '12px sans-serif';
         data.rounds.forEach((round, index) => {
             ctx.fillText(round.name, 150 * index, 50);
         })
@@ -22,8 +22,8 @@ export const drawBrackets = (data, canvasEl) => {
             matches.forEach((match, matchIndex) => {
                 const firstPlayer = getPlayerForMatch(match, 0, data)
                 const secondPlayer = getPlayerForMatch(match, 1, data)
-                const rivals = firstPlayer.short_name + ' : ' + secondPlayer.short_name
-                ctx.fillText(rivals, 150 * roundIndex, 100 + 50 * matchIndex)
+                ctx.fillText(firstPlayer.short_name, 150 * roundIndex, 100 + 50 * matchIndex)
+                ctx.fillText(secondPlayer.short_name, 150 * roundIndex, 120 + 50 * matchIndex)
             })
         })
     }
