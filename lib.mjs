@@ -19,9 +19,21 @@ export const drawBrackets = (data, canvasEl) => {
             ctx.fillText(matchData.secondPlayer.name, matchData.positionX, matchData.positionY + 20)
         }
 
+        const getRoundHighestY = (roundIndex) => {
+            const distanceFromFinal = data.rounds.length - roundIndex - 1
+            const numberOfMatches = Math.pow(2, distanceFromFinal)
+            const roundHeight = numberOfMatches * MATCH_HEIGHT
+            
+            // create an upper margin to center matches vertically in case they all fit the canvas
+            const roundVerticalMargin = Math.max(0, (canvasEl.height - roundHeight) / 2)
+            return ROUNDS_TITLE_HEIGHT + roundVerticalMargin
+        }
+
         data.matches
             .map(match => {
                 const roundIndex = data.rounds.findIndex(r => r.uuid.match(match.round_id))
+                
+                const roundHighestY = getRoundHighestY(roundIndex)
 
                 return {
                     firstPlayer: {
@@ -33,7 +45,7 @@ export const drawBrackets = (data, canvasEl) => {
                         score: match.teams[1].score.map(score => score.game)
                     },
                     positionX: ROUND_WIDTH * roundIndex,
-                    positionY: ROUNDS_TITLE_HEIGHT + MATCH_HEIGHT * match.order
+                    positionY: roundHighestY + MATCH_HEIGHT * (match.order - 1)
                 }
             })
             .forEach(drawMatch)
