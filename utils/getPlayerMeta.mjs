@@ -1,4 +1,4 @@
-export const getPlayerMeta = (match, playerIndex, data) => {
-    const playerId = data.teams.find(t => t.uuid.match(match.teams[playerIndex].team_id))?.players[0]
-    return data.players.find(p => p.uuid === playerId)
+export const getPlayerMeta = (match, playerIndex, allData) => {
+    const playerId = allData.teams.find(t => t.uuid.match(match.teams[playerIndex].team_id))?.players[0]
+    return allData.players.find(p => p.uuid === playerId)
 }
