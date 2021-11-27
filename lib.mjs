@@ -2,7 +2,12 @@ import { createMatchDrawingData } from './utils/createMatchDrawingData.mjs'
 import { drawMatch } from './utils/drawMatch.mjs'
 import * as sizes from './utils/sizes.mjs'
 
-export const drawBrackets = (data, canvasEl) => {
+export const drawBrackets = (data, canvasContainer) => {
+    const canvasEl = document.createElement('canvas');
+    canvasEl.setAttribute('width', canvasContainer.clientWidth + "px");
+    canvasEl.setAttribute('height', canvasContainer.clientHeight + "px");
+    canvasContainer.appendChild(canvasEl);
+
     if (canvasEl.getContext) {
         var ctx = canvasEl.getContext('2d');
 
