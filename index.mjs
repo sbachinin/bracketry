@@ -1,10 +1,10 @@
-import { drawBrackets } from './lib.mjs'
+import { createBrackets } from './lib.mjs'
 import { mockFetchData as fetch } from './mockFetchData.mjs'
 import { prepareMockData } from './prepareMockData.mjs'
 
 fetch()
 .then(prepareMockData)
-.then(data => drawBrackets(
+.then(data => createBrackets(
     data,
     document.getElementById('canvas-container')
 ))
