@@ -1,5 +1,16 @@
 import * as sizes from './sizes.mjs'
 
+const drawLineToFirstParentPair = (matchData, centerY, ctx) => {
+    const parentY = centerY
+    ctx.beginPath();
+    ctx.moveTo(
+        matchData.positionX + sizes.MATCH_HOR_MARGIN,
+        centerY);
+    ctx.lineTo(matchData.positionX - sizes.MATCH_HOR_MARGIN,
+        parentY);
+    ctx.stroke();
+}
+
 export const drawMatch = (matchData, ctx) => {
     const matchBodyWidth = sizes.ROUND_WIDTH - sizes.MATCH_HOR_MARGIN * 2
     const matchBodyHeight = Math.min(matchData.availableHeight, sizes.MATCH_MAX_HEIGHT) * 0.8
@@ -22,4 +33,6 @@ export const drawMatch = (matchData, ctx) => {
         matchData.secondPlayer.name,
         matchData.positionX + sizes.MATCH_HOR_MARGIN + sizes.MATCH_HOR_PADDING,
         centerY + sizes.FONT_SIZE + matchBodyHeight / 10)
+
+    drawLineToFirstParentPair(matchData, centerY, ctx)
 }
