@@ -1,5 +1,5 @@
+import { createCanvas } from './utils/createCanvas.mjs'
 import { createMatchDrawingData } from './utils/createMatchDrawingData.mjs'
-import { debounce } from './utils/utils.mjs'
 import { drawMatch } from './utils/drawMatch.mjs'
 import * as sizes from './utils/sizes.mjs'
 
@@ -19,21 +19,10 @@ const draw = (data, canvasEl) => {
 }
 
 export const drawBrackets = (data, canvasContainer) => {
-    // create canvas to fill a given element
-    const canvasEl = document.createElement('canvas');
-    canvasEl.width = canvasContainer.clientWidth;
-    canvasEl.height = canvasContainer.clientHeight;
-    canvasContainer.appendChild(canvasEl);
-
-    window.addEventListener(
-        'resize',
-        debounce(() => {
-            canvasEl.width = canvasContainer.clientWidth;
-            canvasEl.height = canvasContainer.clientHeight;
-            draw(data, canvasEl)
-        }),
-        false
-    );
+    const canvasEl = createCanvas(
+        canvasContainer,
+        el => draw(data, el)
+    )
 
     draw(data, canvasEl)
 }
