@@ -7,11 +7,16 @@ const draw = (data, canvasEl) => {
     if (!canvasEl.getContext) return
     const ctx = canvasEl.getContext('2d');
 
-    // draw rounds
-    ctx.font = sizes.FONT_SIZE + 'px sans-serif';
+    // draw round names
+    ctx.font = sizes.HEADING_FONT_SIZE + 'px sans-serif';
     data.rounds.forEach((round, index) => {
-        ctx.fillText(round.name, 150 * index, 50);
+        ctx.fillText(
+            round.name,
+            sizes.ROUND_WIDTH * index + sizes.MATCH_HOR_MARGIN + sizes.MATCH_HOR_PADDING,
+            50);
     })
+
+    ctx.font = sizes.FONT_SIZE + 'px sans-serif';
 
     data.matches
         .map(match => createMatchDrawingData(match, data, canvasEl))
