@@ -1,5 +1,6 @@
 import { createCanvas } from './utils/createCanvas.mjs'
 import { getMatchDrawingData } from './utils/getMatchDrawingData.mjs'
+import { drawConnectionToEarlierMatch } from './utils/draw_connection_to_earlier_match.mjs'
 import * as sizes from './utils/sizes.mjs'
 
 const drawMatchesForRound = (roundIndex, allRounds, ctx) => {
@@ -26,22 +27,36 @@ const drawMatchesForRound = (roundIndex, allRounds, ctx) => {
         ctx.moveTo(
             matchData.positionX + sizes.ROUND_WIDTH - sizes.MATCH_HOR_MARGIN,
             matchData.centerY);
-        ctx.lineTo(
+        const connectionPoint = [
             matchData.positionX + sizes.MATCH_HOR_MARGIN,
-            matchData.centerY)
+            matchData.centerY
+        ]
+        ctx.lineTo(...connectionPoint)
 
         if (roundIndex > 0) {
-            const drawLineToParent = parentIndex => {
-                const parentData = allRounds[roundIndex - 1].matchesToDraw[matchIndex * 2 + parentIndex]
-                ctx.lineTo(matchData.positionX - sizes.MATCH_HOR_MARGIN,
-                    parentData.centerY);
-            }
             
-            drawLineToParent(0)
+            const getEarlierConnectionPoint = (parentMatchIndex) => {
+                const previousRoundMatches = allRounds[roundIndex - 1].matchesToDraw
+                return [
+                    matchData.positionX - sizes.MATCH_HOR_MARGIN,
+                    previousRoundMatches[matchIndex * 2 + parentMatchIndex].centerY
+                ]
+            }
+
+            drawConnectionToEarlierMatch(
+                getEarlierConnectionPoint(0),
+                connectionPoint,
+                'diagonal',
+                ctx
+            )
             ctx.moveTo(
                 matchData.positionX + sizes.MATCH_HOR_MARGIN,
                 matchData.centerY);
-            drawLineToParent(1)
+            drawConnectionToEarlierMatch(
+                getEarlierConnectionPoint(1),
+                connectionPoint,
+                'diagonal',
+                ctx)
         }
 
         ctx.stroke();
