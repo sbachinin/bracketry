@@ -1,4 +1,5 @@
 export const ROUNDS_TITLE_HEIGHT = 100
+export const ROUNDS_TITLE_UPPER_MARGIN = 50
 
 export const ROUND_WIDTH = 200
 export const MATCH_HOR_MARGIN = 25
