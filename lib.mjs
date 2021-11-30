@@ -46,7 +46,7 @@ const drawMatchesForRound = (roundIndex, allRounds, ctx) => {
             drawConnectionToEarlierMatch(
                 getEarlierConnectionPoint(0),
                 connectionPoint,
-                'diagonal',
+                'curve',
                 ctx
             )
             ctx.moveTo(
@@ -55,7 +55,7 @@ const drawMatchesForRound = (roundIndex, allRounds, ctx) => {
             drawConnectionToEarlierMatch(
                 getEarlierConnectionPoint(1),
                 connectionPoint,
-                'diagonal',
+                'curve',
                 ctx)
         }
 
