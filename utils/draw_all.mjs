@@ -15,7 +15,7 @@ export const drawAll = (allData, state, canvasEl) => {
         return {
             ...roundData,
             matchesToDraw: roundData.matches.map(
-                match => getMatchDrawingData(match, freeHeightPerMatch, roundIndex))
+                match => getMatchDrawingData(match, freeHeightPerMatch, roundIndex, state))
         }
     })
 

@@ -1,8 +1,8 @@
 import * as sizes from './sizes.mjs'
 
-export const getMatchDrawingData = (matchData, freeHeightPerMatch, roundIndex) => {
+export const getMatchDrawingData = (matchData, freeHeightPerMatch, roundIndex, state) => {
     const score = matchData.teams[1].score.map(score => score.game)
-    const positionX = sizes.ROUND_WIDTH * roundIndex
+    const positionX = state.scrollX + sizes.ROUND_WIDTH * roundIndex
     const positionY = sizes.ROUNDS_TITLE_HEIGHT + freeHeightPerMatch * (matchData.order - 1)
 
     const matchBodyWidth = sizes.ROUND_WIDTH - sizes.MATCH_HOR_MARGIN * 2
