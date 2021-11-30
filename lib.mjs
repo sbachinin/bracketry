@@ -3,26 +3,15 @@ import { getMatchDrawingData } from './utils/getMatchDrawingData.mjs'
 import * as sizes from './utils/sizes.mjs'
 
 const drawMatchesForRound = (roundIndex, allRounds, ctx) => {
-    const drawLineToFirstParentPair = (positionX, centerY, ctx) => {
-        const parentY = centerY
-        ctx.beginPath();
-        ctx.moveTo(
-            positionX + sizes.MATCH_HOR_MARGIN,
-            centerY);
-        ctx.lineTo(positionX - sizes.MATCH_HOR_MARGIN,
-            parentY);
-        ctx.stroke();
-    }
-    
-    allRounds[roundIndex].matchesToDraw.forEach(matchData => {
+    allRounds[roundIndex].matchesToDraw.forEach((matchData, matchIndex) => {
     
         ctx.fillStyle = '#feefe3'
-        ctx.fillRect(
-            matchData.positionX + sizes.MATCH_HOR_MARGIN,
-            matchData.matchBodyY,
-            matchData.matchBodyWidth,
-            matchData.matchBodyHeight)
-    
+        // ctx.fillRect(
+        //     matchData.positionX + sizes.MATCH_HOR_MARGIN,
+        //     matchData.matchBodyY,
+        //     matchData.matchBodyWidth,
+        //     matchData.matchBodyHeight)
+        
         ctx.fillStyle = 'black'
         ctx.fillText(
             matchData.firstTeamTitle,
@@ -33,7 +22,29 @@ const drawMatchesForRound = (roundIndex, allRounds, ctx) => {
             matchData.positionX + sizes.MATCH_HOR_MARGIN + sizes.MATCH_HOR_PADDING,
             matchData.centerY + sizes.FONT_SIZE + matchData.matchBodyHeight / 10)
 
-        drawLineToFirstParentPair(matchData.positionX, matchData.centerY, ctx)
+        ctx.beginPath();
+        ctx.moveTo(
+            matchData.positionX + sizes.ROUND_WIDTH - sizes.MATCH_HOR_MARGIN,
+            matchData.centerY);
+        ctx.lineTo(
+            matchData.positionX + sizes.MATCH_HOR_MARGIN,
+            matchData.centerY)
+
+        if (roundIndex > 0) {
+            const drawLineToParent = parentIndex => {
+                const parentData = allRounds[roundIndex - 1].matchesToDraw[matchIndex * 2 + parentIndex]
+                ctx.lineTo(matchData.positionX - sizes.MATCH_HOR_MARGIN,
+                    parentData.centerY);
+            }
+            
+            drawLineToParent(0)
+            ctx.moveTo(
+                matchData.positionX + sizes.MATCH_HOR_MARGIN,
+                matchData.centerY);
+            drawLineToParent(1)
+        }
+
+        ctx.stroke();
     })
 }
 
