@@ -38,7 +38,10 @@ export const handleMouseMove = (allData, state, drawAll, canvasEl, e) => {
     scrollInitialized = true
     
     startAnimation(() => {
-        state.scrollX = getScrollXWithConstraints(state, scrollForce, widthDeficit);
-        drawAll(allData, state, canvasEl)
+        const newScrollX = getScrollXWithConstraints(state, scrollForce, widthDeficit);
+        if (newScrollX !== state.scrollX) {
+            state.scrollX = newScrollX
+            drawAll(allData, state, canvasEl)
+        }
     })
 }
