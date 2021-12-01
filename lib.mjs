@@ -2,7 +2,7 @@ import { createCanvas } from './utils/createCanvas.mjs'
 import { drawAll } from './utils/draw_all.mjs'
 import { installMouseEvents } from './utils/install_mouse_events.mjs'
 
-export const createBrackets = (allData, canvasContainer) => {
+export const createBrackets = (allData, canvasContainer, options) => {
     const state = {
         scrollY: 0,
         scrollX: 0
@@ -15,5 +15,5 @@ export const createBrackets = (allData, canvasContainer) => {
 
     drawAll(allData, state, canvasEl)
 
-    installMouseEvents(allData, state, drawAll, canvasEl)
+    installMouseEvents(allData, options, state, drawAll, canvasEl)
 }

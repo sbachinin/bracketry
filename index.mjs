@@ -6,5 +6,6 @@ fetch()
 .then(prepareMockData)
 .then(data => createBrackets(
     data,
-    document.getElementById('canvas-container')
+    document.getElementById('canvas-container'),
+    { scrollHorizontallyOnMouseMove: true }
 ))

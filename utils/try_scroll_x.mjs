@@ -25,9 +25,9 @@ const getScrollXWithConstraints = (state, scrollForce, widthDeficit) => {
     }
 }
 
-export const handleMouseMove = (allData, state, drawAll, canvasEl, e) => {
+export const tryScrollX = (allData, state, drawAll, canvasEl, e) => {
     const contentWidth = allData.rounds.length * sizes.ROUND_WIDTH
-    const widthDeficit = contentWidth - canvasEl.width  
+    const widthDeficit = contentWidth - canvasEl.width
 
     if (widthDeficit <= 0) return
 
