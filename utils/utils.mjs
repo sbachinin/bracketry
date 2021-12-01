@@ -23,12 +23,10 @@ export const throttle = (fn, limit) => {
 }
 
 
-export const startAnimation = (fn, shouldContinue) => {
+export const startAnimation = (fn) => {
     const step = () => {
-        if (shouldContinue()) {
-            fn()
-            window.requestAnimationFrame(step);
-        }
+        fn()
+        window.requestAnimationFrame(step);
     }
 
     window.requestAnimationFrame(step);

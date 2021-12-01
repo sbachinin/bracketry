@@ -11,3 +11,5 @@ export const MATCH_MAX_HEIGHT = 70
 
 export const HEADING_FONT_SIZE = 16
 export const FONT_SIZE = 14
+
+export const HORIZONAL_SCROLL_WIDTH_PERCENTAGE = 20

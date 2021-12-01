@@ -1,44 +1,44 @@
 import { startAnimation } from './utils.mjs'
 import * as sizes from './sizes.mjs'
 
-const scrolledToEndX = (state, canvasEl, roundsCount) => {
-    const widthDeficit = roundsCount * sizes.ROUND_WIDTH - canvasEl.width
-    return state.scrollX < -widthDeficit
+let scrollInitialized = false
+let scrollForce = 0
+
+const getScrollForce = (canvasEl, mouseEvent) => {
+    const percentFromLeft = mouseEvent.offsetX / canvasEl.width * 100
+    if (percentFromLeft < sizes.HORIZONAL_SCROLL_WIDTH_PERCENTAGE) {
+        return sizes.HORIZONAL_SCROLL_WIDTH_PERCENTAGE - percentFromLeft
+    }
+    if (percentFromLeft > (100 - sizes.HORIZONAL_SCROLL_WIDTH_PERCENTAGE)) {
+        return (100 - sizes.HORIZONAL_SCROLL_WIDTH_PERCENTAGE) - percentFromLeft
+    } else {
+        return 0
+    }
 }
 
-const getNewScrollStepLength = (canvasEl, mouseEvent) => {
-    const distanceFromRight = canvasEl.width - mouseEvent.offsetX
-    return Math.min(
-        canvasEl.width / 6.666 / (distanceFromRight || 1),
-        20
-    )
+const getScrollXWithConstraints = (state, scrollForce, widthDeficit) => {
+    let newScrollX = state.scrollX + scrollForce
+    if (newScrollX < -widthDeficit) {
+        return -widthDeficit // prevent right overscrolling
+    } else {
+        return Math.min(state.scrollX + scrollForce, 0) // prevent left
+    }
 }
-
-let animationInProgress = false
-let scrollStepLength = 0
 
 export const handleMouseMove = (allData, state, drawAll, canvasEl, e) => {
+    const contentWidth = allData.rounds.length * sizes.ROUND_WIDTH
+    const widthDeficit = contentWidth - canvasEl.width  
 
-    if (e.offsetX > canvasEl.width / 100 * 85) { // mouse moved over rightmost 15% of the canvas
-        scrollStepLength = getNewScrollStepLength(canvasEl, e)
-        
-        if (animationInProgress || scrolledToEndX(state, canvasEl, allData.rounds.length)) return
+    if (widthDeficit <= 0) return
 
-        animationInProgress = true
-        
-        startAnimation(
-            () => {
-                if (scrolledToEndX(state, canvasEl, allData.rounds.length)) {
-                    animationInProgress = false
-                    return
-                }
-                state.scrollX -= scrollStepLength;
-                drawAll(allData, state, canvasEl)
-            },
-            () => animationInProgress
-        )
+    scrollForce = getScrollForce(canvasEl, e)
 
-    } else { // mouse moved over left 85%
-        animationInProgress = false
-    }
+    if (scrollInitialized) return
+
+    scrollInitialized = true
+    
+    startAnimation(() => {
+        state.scrollX = getScrollXWithConstraints(state, scrollForce, widthDeficit);
+        drawAll(allData, state, canvasEl)
+    })
 }
