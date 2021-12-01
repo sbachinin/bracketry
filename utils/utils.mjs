@@ -21,13 +21,3 @@ export const throttle = (fn, limit) => {
         }
     }
 }
-
-
-export const startAnimation = (fn) => {
-    const step = () => {
-        fn()
-        window.requestAnimationFrame(step);
-    }
-
-    window.requestAnimationFrame(step);
-}

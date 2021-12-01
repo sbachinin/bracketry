@@ -1,7 +1,7 @@
-import { startAnimation } from './utils.mjs'
+import { startAnimation } from './animate.mjs'
 import * as sizes from './sizes.mjs'
 
-let scrollInitialized = false
+let makeScrollStep = () => {}
 let scrollForce = 0
 
 const getScrollForce = (canvasEl, mouseEvent) => {
@@ -16,7 +16,7 @@ const getScrollForce = (canvasEl, mouseEvent) => {
     }
 }
 
-const getScrollXWithConstraints = (state, scrollForce, contentWidth, canvasEl) => {
+const getScrollXWithConstraints = (state, contentWidth, canvasEl) => {
     const widthDeficit = contentWidth - canvasEl.width
     let newScrollX = state.scrollX + scrollForce
     if (newScrollX < -widthDeficit) {
@@ -33,15 +33,13 @@ export const tryScrollX = (allData, state, drawAll, canvasEl, e) => {
 
     scrollForce = getScrollForce(canvasEl, e)
 
-    if (scrollInitialized) return
-
-    scrollInitialized = true
-    
-    startAnimation(() => {
-        const newScrollX = getScrollXWithConstraints(state, scrollForce, contentWidth, canvasEl);
+    makeScrollStep = () => {
+        const newScrollX = getScrollXWithConstraints(state, contentWidth, canvasEl);
         if (newScrollX !== state.scrollX) {
             state.scrollX = newScrollX
             drawAll(allData, state, canvasEl)
         }
-    })
+    }
+
+    startAnimation(makeScrollStep)
 }
