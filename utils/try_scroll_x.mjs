@@ -16,7 +16,8 @@ const getScrollForce = (canvasEl, mouseEvent) => {
     }
 }
 
-const getScrollXWithConstraints = (state, scrollForce, widthDeficit) => {
+const getScrollXWithConstraints = (state, scrollForce, contentWidth, canvasEl) => {
+    const widthDeficit = contentWidth - canvasEl.width
     let newScrollX = state.scrollX + scrollForce
     if (newScrollX < -widthDeficit) {
         return -widthDeficit // prevent right overscrolling
@@ -27,9 +28,8 @@ const getScrollXWithConstraints = (state, scrollForce, widthDeficit) => {
 
 export const tryScrollX = (allData, state, drawAll, canvasEl, e) => {
     const contentWidth = allData.rounds.length * sizes.ROUND_WIDTH
-    const widthDeficit = contentWidth - canvasEl.width
 
-    if (widthDeficit <= 0) return
+    if (contentWidth - canvasEl.width <= 0) return
 
     scrollForce = getScrollForce(canvasEl, e)
 
@@ -38,7 +38,7 @@ export const tryScrollX = (allData, state, drawAll, canvasEl, e) => {
     scrollInitialized = true
     
     startAnimation(() => {
-        const newScrollX = getScrollXWithConstraints(state, scrollForce, widthDeficit);
+        const newScrollX = getScrollXWithConstraints(state, scrollForce, contentWidth, canvasEl);
         if (newScrollX !== state.scrollX) {
             state.scrollX = newScrollX
             drawAll(allData, state, canvasEl)
