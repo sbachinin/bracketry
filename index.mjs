@@ -7,5 +7,5 @@ fetch()
 .then(data => createBrackets(
     data,
     document.getElementById('canvas-container'),
-    { scrollHorizontallyOnMouseMove: true }
+    { horizontalScrollTriggeredBy: 'mousemove' }
 ))

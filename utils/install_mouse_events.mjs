@@ -1,12 +1,16 @@
 import { throttle } from './utils.mjs'
 import { tryScrollX } from './try_scroll_x.mjs'
 
-export const installMouseEvents = (allData, options, state, drawAll, canvasEl) => {
+const defaultOptions = {
+    horizontalScrollTriggeredBy: 'mousemove'
+}
+
+export const installMouseEvents = (allData, options = defaultOptions, state, drawAll, canvasEl) => {
     canvasEl.addEventListener(
         'mousemove',
         throttle(
             e => {
-                options.scrollHorizontallyOnMouseMove
+                options.horizontalScrollTriggeredBy === 'mousemove'
                 && tryScrollX(allData, state, drawAll, canvasEl, e)
             },
             50
