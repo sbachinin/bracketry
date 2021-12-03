@@ -1,9 +1,29 @@
-import { throttle } from './utils.mjs'
+import { throttle, debounce } from './utils.mjs'
 import { tryScrollX } from './try_scroll_x.mjs'
 import { stopAnimation } from './animate.mjs'
 
 const defaultOptions = {
     horizontalScrollTriggeredBy: 'mousemove'
+}
+
+const MOUSE_ACTIONS_DELAY_AFTER_WINDOW_SCROLL = 500
+let window_scrolled_recently = false
+
+const prevent_bracket_scroll_on_window_scroll = (options) => {
+    const try_forget_window_scroll = debounce(
+        () => { window_scrolled_recently = false },
+        MOUSE_ACTIONS_DELAY_AFTER_WINDOW_SCROLL
+    )
+
+    window.addEventListener(
+        'scroll',
+        () => {
+            if (options.horizontalScrollTriggeredBy === 'mousemove') {
+                window_scrolled_recently = true
+                try_forget_window_scroll()
+            }
+        }
+    )
 }
 
 export const installMouseEvents = (allData, options = defaultOptions, state, drawAll, canvasEl) => {
@@ -12,6 +32,7 @@ export const installMouseEvents = (allData, options = defaultOptions, state, dra
         throttle(
             e => {
                 options.horizontalScrollTriggeredBy === 'mousemove'
+                && !window_scrolled_recently
                 && tryScrollX(allData, state, drawAll, canvasEl, e)
             },
             50
@@ -29,4 +50,6 @@ export const installMouseEvents = (allData, options = defaultOptions, state, dra
             // and is still running when animation reaches the end
         }
     )
+
+    prevent_bracket_scroll_on_window_scroll(options)
 }
