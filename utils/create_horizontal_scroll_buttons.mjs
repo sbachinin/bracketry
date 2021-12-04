@@ -1,25 +1,25 @@
 import { create_unique_id } from './utils.mjs'
 import * as sizes from './sizes.mjs'
 
-const getButtonsStyle = (rootContainer, id, bgColor) => `
+const getButtonsStyle = (id, bgColor) => `
     .${id}.buttons-container {
         opacity: 0;
         display: block;
         width: 100%;
         height: 0;
         position: relative;
-        transition: all 0.3s;        
+        transition: all 0.3s;
     }
 
     .${id} .buttons-bg {
         position: absolute;
-        top: -${rootContainer.clientHeight}px;
+        top: 0;
         height: ${sizes.ROUNDS_TITLE_HEIGHT}px;
         width: 100%;
         background: linear-gradient(to right, ${bgColor} 2%, rgba(0,0,0,0%) 10%, rgba(0,0,0,0%) 90%, ${bgColor} 98%);
     }
 
-    canvas.sport-brackets-canvas:hover ~ .${id}, .${id}:hover {
+    .root_bracket_container:hover .${id}.buttons-container {
         opacity: 1;
     }
 
@@ -28,7 +28,7 @@ const getButtonsStyle = (rootContainer, id, bgColor) => `
         height: 50px;
         width: 50px;
         position: absolute;
-        top: -${rootContainer.clientHeight - 18}px;
+        top: 25px;
         font-size: 50px;
         font-family: arial;
         cursor: pointer;
@@ -91,7 +91,7 @@ const createButton = (state, side, handle_new_round_index) => {
         `scroll-rounds-button-${side}`,
     ].join(' ')
     button.innerHTML = side === 'left' ? '&#60;' : '&#62;'
-    button.addEventListener('click', () => {        
+    button.addEventListener('click', () => {
         handle_new_round_index(
             get_leftmost_index(state.scrollX)
             + (side === 'left' ? -1 : 1)
@@ -101,13 +101,13 @@ const createButton = (state, side, handle_new_round_index) => {
 }
 
 
-const get_invisible_rounds_count = (rootContainer, rounds_count) => {
-    const fully_visible_rounds_count = Math.floor(rootContainer.clientWidth / sizes.ROUND_WIDTH)
+const get_invisible_rounds_count = (root_bracket_container, rounds_count) => {
+    const fully_visible_rounds_count = Math.floor(root_bracket_container.clientWidth / sizes.ROUND_WIDTH)
     return rounds_count - fully_visible_rounds_count
 }
 
 export const create_horizontal_scroll_buttons = (
-    rootContainer,
+    root_bracket_container,
     options,
     rounds_count,
     state,
@@ -118,36 +118,36 @@ export const create_horizontal_scroll_buttons = (
     const id = create_unique_id()
     document.head.insertAdjacentHTML(
         'beforeend',
-        `<style>${getButtonsStyle(rootContainer, id, options.backgroundColor)}</style>`
+        `<style>${getButtonsStyle(id, options.backgroundColor)}</style>`
     )
 
     const handle_new_round_index = new_index => {
         update_buttons_visibility(
             new_index,
-            get_invisible_rounds_count(rootContainer, rounds_count),
+            get_invisible_rounds_count(root_bracket_container, rounds_count),
             leftButton, rightButton
         )
         change_round_index(new_index)
     }
 
-    const buttonsContainer = document.createElement('div')
-    buttonsContainer.className = `${id} buttons-container`
-    buttonsContainer.innerHTML = "<div class='buttons-bg'></div>"
+    const buttons_container = document.createElement('div')
+    buttons_container.className = `${id} buttons-container`
+    buttons_container.innerHTML = "<div class='buttons-bg'></div>"
     const leftButton = createButton(state, 'left', handle_new_round_index)
     const rightButton = createButton(state, 'right', handle_new_round_index)
     update_buttons_visibility(
         get_leftmost_index(state.scrollX),
-        get_invisible_rounds_count(rootContainer, rounds_count),
+        get_invisible_rounds_count(root_bracket_container, rounds_count),
         leftButton, rightButton
     )
-    buttonsContainer.append(leftButton, rightButton)
-    rootContainer.appendChild(buttonsContainer)
+    buttons_container.append(leftButton, rightButton)
+    root_bracket_container.append(buttons_container)
 
     return {
         update_buttons_on_resize: () => {
             update_buttons_visibility(
                 get_leftmost_index(state.scrollX),
-                get_invisible_rounds_count(rootContainer, rounds_count),
+                get_invisible_rounds_count(root_bracket_container, rounds_count),
                 leftButton, rightButton
             )
         }

@@ -6,6 +6,13 @@ import { installMouseEvents } from './utils/install_mouse_events.mjs'
 import * as sizes from './utils/sizes.mjs'
 
 export const createBrackets = (allData, rootContainer, options) => {
+    const root_bracket_container = document.createElement('div')
+    root_bracket_container.className = 'root_bracket_container'
+    root_bracket_container.style.overflow = 'hidden'
+    root_bracket_container.style.width = '100%'
+    root_bracket_container.style.height = '100%'
+    rootContainer.append(root_bracket_container)
+
     const state = {
         scrollY: 0,
         scrollX: 0
@@ -17,13 +24,13 @@ export const createBrackets = (allData, rootContainer, options) => {
     }
 
     const { update_buttons_on_resize } = create_horizontal_scroll_buttons(
-        rootContainer,
+        root_bracket_container,
         options,
         allData.rounds.length,
         state,
         change_round_index)
 
-    const canvasEl = createCanvas(rootContainer, options)
+    const canvasEl = createCanvas(root_bracket_container, options)
 
     new ResizeObserver(
         debounce(([{ contentRect: { width, height }}]) => {
