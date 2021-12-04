@@ -21,3 +21,7 @@ export const throttle = (fn, limit) => {
         }
     }
 }
+
+export const create_unique_id = () => {
+    return "id" + Math.random().toString(16).slice(2)
+}
