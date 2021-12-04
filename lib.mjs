@@ -1,10 +1,11 @@
+import { debounce } from './utils/utils.mjs'
 import { createCanvas } from './utils/createCanvas.mjs'
 import { drawAll } from './utils/draw_all.mjs'
 import { create_horizontal_scroll_buttons } from './utils/create_horizontal_scroll_buttons.mjs'
 import { installMouseEvents } from './utils/install_mouse_events.mjs'
 import * as sizes from './utils/sizes.mjs'
 
-export const createBrackets = (allData, canvasContainer, options) => {
+export const createBrackets = (allData, rootContainer, options) => {
     const state = {
         scrollY: 0,
         scrollX: 0
@@ -15,19 +16,23 @@ export const createBrackets = (allData, canvasContainer, options) => {
         drawAll(allData, state, canvasEl)
     }
 
-    options.horizontalScrollTriggeredBy === 'buttons'
-        && create_horizontal_scroll_buttons(
-            canvasContainer,
-            options.backgroundColor,
-            allData.rounds.length,
-            state,
-            change_round_index)
-
-    const canvasEl = createCanvas(
-        canvasContainer,
+    const { update_buttons_on_resize } = create_horizontal_scroll_buttons(
+        rootContainer,
         options,
-        el => drawAll(allData, state, el)
-    )
+        allData.rounds.length,
+        state,
+        change_round_index)
+
+    const canvasEl = createCanvas(rootContainer, options)
+
+    new ResizeObserver(
+        debounce(([{ contentRect: { width, height }}]) => {
+            canvasEl.width = width
+            canvasEl.height = height
+            drawAll(allData, state, canvasEl)
+            update_buttons_on_resize()
+        })
+    ).observe(rootContainer)
 
     drawAll(allData, state, canvasEl)
 

@@ -1,7 +1,7 @@
 import { create_unique_id } from './utils.mjs'
 import * as sizes from './sizes.mjs'
 
-const getButtonsStyle = (canvasContainer, id, bgColor) => `
+const getButtonsStyle = (rootContainer, id, bgColor) => `
     .${id}.buttons-container {
         opacity: 0;
         display: block;
@@ -13,7 +13,7 @@ const getButtonsStyle = (canvasContainer, id, bgColor) => `
 
     .${id} .buttons-bg {
         position: absolute;
-        top: -${canvasContainer.clientHeight}px;
+        top: -${rootContainer.clientHeight}px;
         height: ${sizes.ROUNDS_TITLE_HEIGHT}px;
         width: 100%;
         background: linear-gradient(to right, ${bgColor} 2%, rgba(0,0,0,0%) 10%, rgba(0,0,0,0%) 90%, ${bgColor} 98%);
@@ -28,7 +28,7 @@ const getButtonsStyle = (canvasContainer, id, bgColor) => `
         height: 50px;
         width: 50px;
         position: absolute;
-        top: -${canvasContainer.clientHeight - 18}px;
+        top: -${rootContainer.clientHeight - 18}px;
         font-size: 50px;
         font-family: arial;
         cursor: pointer;
@@ -101,28 +101,30 @@ const createButton = (state, side, handle_new_round_index) => {
 }
 
 
-
+const get_invisible_rounds_count = (rootContainer, rounds_count) => {
+    const fully_visible_rounds_count = Math.floor(rootContainer.clientWidth / sizes.ROUND_WIDTH)
+    return rounds_count - fully_visible_rounds_count
+}
 
 export const create_horizontal_scroll_buttons = (
-    canvasContainer,
-    bgColor,
+    rootContainer,
+    options,
     rounds_count,
     state,
     change_round_index
 ) => {
-    const fully_visible_rounds_count = Math.floor(canvasContainer.clientWidth / sizes.ROUND_WIDTH)
-    const invisible_rounds_count = rounds_count - fully_visible_rounds_count
+    if (options.horizontalScrollTriggeredBy !== 'buttons') return
 
     const id = create_unique_id()
     document.head.insertAdjacentHTML(
         'beforeend',
-        `<style>${getButtonsStyle(canvasContainer, id, bgColor)}</style>`
+        `<style>${getButtonsStyle(rootContainer, id, options.backgroundColor)}</style>`
     )
 
     const handle_new_round_index = new_index => {
         update_buttons_visibility(
             new_index,
-            invisible_rounds_count,
+            get_invisible_rounds_count(rootContainer, rounds_count),
             leftButton, rightButton
         )
         change_round_index(new_index)
@@ -135,9 +137,19 @@ export const create_horizontal_scroll_buttons = (
     const rightButton = createButton(state, 'right', handle_new_round_index)
     update_buttons_visibility(
         get_leftmost_index(state.scrollX),
-        invisible_rounds_count,
+        get_invisible_rounds_count(rootContainer, rounds_count),
         leftButton, rightButton
     )
     buttonsContainer.append(leftButton, rightButton)
-    canvasContainer.appendChild(buttonsContainer)
+    rootContainer.appendChild(buttonsContainer)
+
+    return {
+        update_buttons_on_resize: () => {
+            update_buttons_visibility(
+                get_leftmost_index(state.scrollX),
+                get_invisible_rounds_count(rootContainer, rounds_count),
+                leftButton, rightButton
+            )
+        }
+    }
 }
