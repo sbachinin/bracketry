@@ -1,17 +1,7 @@
-import { create_unique_id } from './utils.mjs'
 import * as sizes from './sizes.mjs'
 
-const getButtonsStyle = (id, bgColor) => `
-    .${id}.buttons-container {
-        opacity: 0;
-        display: block;
-        width: 100%;
-        height: 0;
-        position: relative;
-        transition: all 0.3s;
-    }
-
-    .${id} .buttons-bg {
+const getButtonsStyle = (root_id, bgColor) => `
+    .${root_id} .buttons-bg {
         position: absolute;
         top: 0;
         height: ${sizes.ROUNDS_TITLE_HEIGHT}px;
@@ -19,16 +9,16 @@ const getButtonsStyle = (id, bgColor) => `
         background: linear-gradient(to right, ${bgColor} 2%, rgba(0,0,0,0%) 10%, rgba(0,0,0,0%) 90%, ${bgColor} 98%);
     }
 
-    .root_bracket_container:hover .${id}.buttons-container {
-        opacity: 1;
+    .${root_id}:hover .scroll-rounds-button {
+        opacity: 0.5;
     }
 
-    .${id} .scroll-rounds-button {
+    .${root_id} .scroll-rounds-button {
         display: flex;
         height: 50px;
         width: 50px;
         position: absolute;
-        top: 25px;
+        top: 20px;
         font-size: 50px;
         font-family: arial;
         cursor: pointer;
@@ -38,28 +28,29 @@ const getButtonsStyle = (id, bgColor) => `
         align-items: center;
         box-sizing: border-box;
         transition: all 0.3s;
-        opacity: 0.5;
         padding-top: 2px;
         background-color: #2d2d2d;
         color: white;
+        opacity: 0;
         user-select: none;
     }
 
-    .${id} .scroll-rounds-button.hidden {
+    .${root_id} .scroll-rounds-button.hidden {
+        opacity: 0;
         visibility: hidden;
         pointer-events: none;
     }
     
-    .${id} .scroll-rounds-button:hover {
+    .${root_id} .scroll-rounds-button:hover {
         opacity: 1;
     }
 
-    .${id} .scroll-rounds-button-left  {
+    .${root_id} .scroll-rounds-button-left  {
         padding-right: 4px;
         left: 18px;
     }
     
-    .${id} .scroll-rounds-button-right  {
+    .${root_id} .scroll-rounds-button-right  {
         padding-left: 4px;
         right: 18px;
     }
@@ -111,14 +102,15 @@ export const create_horizontal_scroll_buttons = (
     options,
     rounds_count,
     state,
-    change_round_index
+    change_round_index,
+    root_id
 ) => {
     if (options.horizontalScrollTriggeredBy !== 'buttons') return
 
-    const id = create_unique_id()
+    
     document.head.insertAdjacentHTML(
         'beforeend',
-        `<style>${getButtonsStyle(id, options.backgroundColor)}</style>`
+        `<style>${getButtonsStyle(root_id, options.backgroundColor)}</style>`
     )
 
     const handle_new_round_index = new_index => {
@@ -130,9 +122,8 @@ export const create_horizontal_scroll_buttons = (
         change_round_index(new_index)
     }
 
-    const buttons_container = document.createElement('div')
-    buttons_container.className = `${id} buttons-container`
-    buttons_container.innerHTML = "<div class='buttons-bg'></div>"
+
+    // buttons_container.innerHTML = "<div class='buttons-bg'></div>"
     const leftButton = createButton(state, 'left', handle_new_round_index)
     const rightButton = createButton(state, 'right', handle_new_round_index)
     update_buttons_visibility(
@@ -140,8 +131,7 @@ export const create_horizontal_scroll_buttons = (
         get_invisible_rounds_count(root_bracket_container, rounds_count),
         leftButton, rightButton
     )
-    buttons_container.append(leftButton, rightButton)
-    root_bracket_container.append(buttons_container)
+    root_bracket_container.append(leftButton, rightButton)
 
     return {
         update_buttons_on_resize: () => {

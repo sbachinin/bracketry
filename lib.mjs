@@ -1,4 +1,4 @@
-import { debounce } from './utils/utils.mjs'
+import { debounce, create_unique_id } from './utils/utils.mjs'
 import { createCanvas } from './utils/createCanvas.mjs'
 import { drawAll } from './utils/draw_all.mjs'
 import { create_horizontal_scroll_buttons } from './utils/create_horizontal_scroll_buttons.mjs'
@@ -6,11 +6,14 @@ import { installMouseEvents } from './utils/install_mouse_events.mjs'
 import * as sizes from './utils/sizes.mjs'
 
 export const createBrackets = (allData, rootContainer, options) => {
+    const root_id = create_unique_id()
     const root_bracket_container = document.createElement('div')
-    root_bracket_container.className = 'root_bracket_container'
+    root_bracket_container.className = root_id + ' root_bracket_container'
     root_bracket_container.style.overflow = 'hidden'
     root_bracket_container.style.width = '100%'
     root_bracket_container.style.height = '100%'
+    root_bracket_container.style.position = 'relative'
+
     rootContainer.append(root_bracket_container)
 
     const state = {
@@ -28,7 +31,9 @@ export const createBrackets = (allData, rootContainer, options) => {
         options,
         allData.rounds.length,
         state,
-        change_round_index)
+        change_round_index,
+        root_id
+    )
 
     const canvasEl = createCanvas(root_bracket_container, options)
 
