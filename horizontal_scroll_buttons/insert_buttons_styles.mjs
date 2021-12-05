@@ -62,3 +62,10 @@ export const get_buttons_style = (root_id, bgColor) => `
         padding-left: 3px;
     }
 `
+
+export const insert_buttons_styles = (root_id, bgColor) => {
+    document.head.insertAdjacentHTML(
+        'beforeend',
+        `<style>${get_buttons_style(root_id, bgColor)}</style>`
+    )
+}

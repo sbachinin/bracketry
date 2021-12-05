@@ -1,12 +1,19 @@
-import * as sizes from '../utils/sizes.mjs'
-import { get_buttons_style } from './get_buttons_style.mjs'
+import { insert_buttons_styles } from './insert_buttons_styles.mjs'
 import { get_leftmost_index } from './get_leftmost_index.mjs'
 import { create_single_button } from './create_single_button.mjs'
-import { update_buttons_visibility } from './update_buttons_visibility.mjs'
 
-const get_invisible_rounds_count = (root_bracket_container, rounds_count) => {
-    const fully_visible_rounds_count = Math.floor(root_bracket_container.clientWidth / sizes.ROUND_WIDTH)
-    return rounds_count - fully_visible_rounds_count
+const create_buttons_elements = (
+    state,
+    handle_new_round_index,
+    root_bracket_container,
+    rounds_count
+) => {
+    return [
+        create_single_button(state, 'left', handle_new_round_index, root_bracket_container,
+    rounds_count),
+        create_single_button(state, 'right', handle_new_round_index, root_bracket_container,
+    rounds_count)
+    ]
 }
 
 export const create_horizontal_scroll_buttons = (
@@ -19,36 +26,29 @@ export const create_horizontal_scroll_buttons = (
 ) => {
     if (options.horizontalScrollTriggeredBy !== 'buttons') return
 
-    document.head.insertAdjacentHTML(
-        'beforeend',
-        `<style>${get_buttons_style(root_id, options.backgroundColor)}</style>`
-    )
+    insert_buttons_styles(root_id, options.backgroundColor)
 
     const handle_new_round_index = new_index => {
-        update_buttons_visibility(
-            new_index,
-            get_invisible_rounds_count(root_bracket_container, rounds_count),
-            leftButton, rightButton
-        )
+        leftButton.update_visibility(new_index)
+        rightButton.update_visibility(new_index)
         change_round_index(new_index)
     }
 
-    const leftButton = create_single_button(state, 'left', handle_new_round_index)
-    const rightButton = create_single_button(state, 'right', handle_new_round_index)
-    update_buttons_visibility(
-        get_leftmost_index(state.scrollX),
-        get_invisible_rounds_count(root_bracket_container, rounds_count),
-        leftButton, rightButton
-    )
-    root_bracket_container.append(leftButton, rightButton)
+    const [ leftButton, rightButton ] = create_buttons_elements(
+        state,
+        handle_new_round_index,
+        root_bracket_container,
+        rounds_count)
+
+    leftButton.update_visibility(0)
+    rightButton.update_visibility(0)
+
+    root_bracket_container.append(leftButton.element, rightButton.element)
 
     return {
         update_buttons_on_resize: () => {
-            update_buttons_visibility(
-                get_leftmost_index(state.scrollX),
-                get_invisible_rounds_count(root_bracket_container, rounds_count),
-                leftButton, rightButton
-            )
+            leftButton.update_visibility(get_leftmost_index(state.scrollX))
+            rightButton.update_visibility(get_leftmost_index(state.scrollX))
         }
     }
 }
