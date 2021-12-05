@@ -21,8 +21,11 @@ export const createBrackets = (allData, rootContainer, options) => {
         scrollX: 0
     }
 
+    const canvasEl = createCanvas(root_bracket_container, options)
+
     const change_round_index = new_leftmost_round_index => {
-        state.scrollX = -new_leftmost_round_index * sizes.ROUND_WIDTH
+        const width_deficit = allData.rounds.length * sizes.ROUND_WIDTH - canvasEl.width
+        state.scrollX = -Math.min(width_deficit, new_leftmost_round_index * sizes.ROUND_WIDTH)
         drawAll(allData, state, canvasEl)
     }
 
@@ -34,8 +37,6 @@ export const createBrackets = (allData, rootContainer, options) => {
         change_round_index,
         root_id
     )
-
-    const canvasEl = createCanvas(root_bracket_container, options)
 
     new ResizeObserver(
         debounce(([{ contentRect: { width, height }}]) => {
