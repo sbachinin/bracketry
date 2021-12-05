@@ -1,24 +1,25 @@
 import * as sizes from './sizes.mjs'
 
 const getButtonsStyle = (root_id, bgColor) => `
-    .${root_id} .buttons-bg {
+    .${root_id} .scroll-rounds-button {
+        opacity: 0;
+        display: flex;
+        justify-content: center;
         position: absolute;
-        top: 0;
-        height: ${sizes.ROUNDS_TITLE_HEIGHT}px;
-        width: 100%;
-        background: linear-gradient(to right, ${bgColor} 2%, rgba(0,0,0,0%) 10%, rgba(0,0,0,0%) 90%, ${bgColor} 98%);
+        height: 50px;
+        width: 86px;
+        top: 20px;
+        user-select: none;
     }
 
     .${root_id}:hover .scroll-rounds-button {
-        opacity: 0.5;
+        opacity: 1;
     }
 
-    .${root_id} .scroll-rounds-button {
+    .${root_id} .scroll-rounds-button .button-icon {
         display: flex;
         height: 50px;
         width: 50px;
-        position: absolute;
-        top: 20px;
         font-size: 50px;
         font-family: arial;
         cursor: pointer;
@@ -27,12 +28,10 @@ const getButtonsStyle = (root_id, bgColor) => `
         justify-content: center;
         align-items: center;
         box-sizing: border-box;
-        transition: all 0.3s;
         padding-top: 2px;
         background-color: #2d2d2d;
         color: white;
-        opacity: 0;
-        user-select: none;
+        opacity: 0.5;
     }
 
     .${root_id} .scroll-rounds-button.hidden {
@@ -41,18 +40,28 @@ const getButtonsStyle = (root_id, bgColor) => `
         pointer-events: none;
     }
     
-    .${root_id} .scroll-rounds-button:hover {
+    .${root_id} .scroll-rounds-button .button-icon:hover {
         opacity: 1;
     }
 
-    .${root_id} .scroll-rounds-button-left  {
-        padding-right: 4px;
-        left: 18px;
+    .${root_id} .scroll-rounds-button-left {
+        padding-right: 40px;
+        left: 0;
+        background: linear-gradient(to right, ${bgColor} 50%, rgba(0,0,0,0%) 100%);
     }
-    
+
+    .${root_id} .scroll-rounds-button-left .button-icon {
+        padding-right: 3px;
+    }
+
     .${root_id} .scroll-rounds-button-right  {
-        padding-left: 4px;
-        right: 18px;
+        padding-left: 40px;
+        right: 0;
+        background: linear-gradient(to left, ${bgColor} 50%, rgba(0,0,0,0%) 100%);
+    }
+
+    .${root_id} .scroll-rounds-button-right .button-icon {
+        padding-left: 3px;
     }
 `
 
@@ -81,7 +90,11 @@ const createButton = (state, side, handle_new_round_index) => {
         'scroll-rounds-button',
         `scroll-rounds-button-${side}`,
     ].join(' ')
-    button.innerHTML = side === 'left' ? '&#60;' : '&#62;'
+
+    button.innerHTML = `<div class="button-icon">${
+        side === 'left' ? '&#60;' : '&#62;'
+    }</div>`
+
     button.addEventListener('click', () => {
         handle_new_round_index(
             get_leftmost_index(state.scrollX)
@@ -122,8 +135,6 @@ export const create_horizontal_scroll_buttons = (
         change_round_index(new_index)
     }
 
-
-    // buttons_container.innerHTML = "<div class='buttons-bg'></div>"
     const leftButton = createButton(state, 'left', handle_new_round_index)
     const rightButton = createButton(state, 'right', handle_new_round_index)
     update_buttons_visibility(
