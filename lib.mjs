@@ -5,6 +5,15 @@ import { create_horizontal_scroll_buttons } from './horizontal_scroll_buttons/cr
 import { installMouseEvents } from './utils/install_mouse_events.mjs'
 import * as sizes from './utils/sizes.mjs'
 
+// if element gets WIDER on resize, right gap may appear
+// This free space may be used to scroll back to show more rounds on the left
+const try_adjust_scrollX_on_resize = (scrollX, roundsCount, root_container_width) => {
+    const maximum_visible_width = (roundsCount * sizes.ROUND_WIDTH) + scrollX
+    const right_gap_width = root_container_width - maximum_visible_width
+    if (right_gap_width <= 0) return scrollX
+    return Math.min(0, scrollX + right_gap_width)
+}
+
 export const createBrackets = (allData, rootContainer, options) => {
     const root_id = create_unique_id()
     const root_bracket_container = document.createElement('div')
@@ -39,10 +48,20 @@ export const createBrackets = (allData, rootContainer, options) => {
     )
 
     new ResizeObserver(
-        debounce(([{ contentRect: { width, height }}]) => {
-            canvasEl.width = width
-            canvasEl.height = height
+        debounce(resizeEntry => {
+            const root_container_width = resizeEntry[0].contentRect.width
+            const root_container_height = resizeEntry[0].contentRect.height
+
+            canvasEl.width = root_container_width
+            canvasEl.height = root_container_height
+            
+            state.scrollX = try_adjust_scrollX_on_resize(
+                state.scrollX,
+                allData.rounds.length,
+                root_container_width)
+            
             drawAll(allData, state, canvasEl)
+            
             update_buttons_on_resize()
         })
     ).observe(rootContainer)
