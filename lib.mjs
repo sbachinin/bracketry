@@ -1,7 +1,7 @@
 import { debounce, create_unique_id } from './utils/utils.mjs'
 import { createCanvas } from './utils/createCanvas.mjs'
 import { drawAll } from './utils/draw_all.mjs'
-import { create_horizontal_scroll_buttons } from './utils/create_horizontal_scroll_buttons.mjs'
+import { create_horizontal_scroll_buttons } from './horizontal_scroll_buttons/create_horizontal_scroll_buttons.mjs'
 import { installMouseEvents } from './utils/install_mouse_events.mjs'
 import * as sizes from './utils/sizes.mjs'
 
