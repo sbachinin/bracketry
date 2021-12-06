@@ -1,4 +1,4 @@
-import { get_leftmost_index } from './get_leftmost_index.mjs'
+import { get_leftmost_fully_visible_round_index } from './get_leftmost_fully_visible_round_index.mjs'
 import { update_button_visibility } from './update_button_visibility.mjs'
 import * as sizes from '../utils/sizes.mjs'
 
@@ -26,7 +26,7 @@ export const create_single_button = (
 
     button.addEventListener('click', () => {
         handle_new_round_index(
-            get_leftmost_index(state.scrollX)
+            get_leftmost_fully_visible_round_index(state.scrollX)
             + (side === 'left' ? -1 : 1)
         )
     })

@@ -1,5 +1,5 @@
 import { insert_buttons_styles } from './insert_buttons_styles.mjs'
-import { get_leftmost_index } from './get_leftmost_index.mjs'
+import { get_leftmost_fully_visible_round_index } from './get_leftmost_fully_visible_round_index.mjs'
 import { create_single_button } from './create_single_button.mjs'
 
 const create_buttons_elements = (
@@ -47,8 +47,8 @@ export const create_horizontal_scroll_buttons = (
 
     return {
         update_buttons_on_resize: () => {
-            leftButton.update_visibility(get_leftmost_index(state.scrollX))
-            rightButton.update_visibility(get_leftmost_index(state.scrollX))
+            leftButton.update_visibility(get_leftmost_fully_visible_round_index(state.scrollX))
+            rightButton.update_visibility(get_leftmost_fully_visible_round_index(state.scrollX))
         }
     }
 }
