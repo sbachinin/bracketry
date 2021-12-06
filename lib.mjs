@@ -14,6 +14,46 @@ const try_adjust_scrollX_on_resize = (scrollX, roundsCount, root_container_width
     return Math.min(0, scrollX + right_gap_width)
 }
 
+const easingFunctions = {
+    // no easing, no acceleration
+    linear: t => t,
+    // accelerating from zero velocity
+    easeInQuad: t => t*t,
+    // decelerating to zero velocity
+    easeOutQuad: t => t*(2-t),
+    // acceleration until halfway, then deceleration
+    easeInOutQuad: t => t<.5 ? 2*t*t : -1+(4-2*t)*t,
+    // accelerating from zero velocity 
+    easeInCubic: t => t*t*t,
+    // decelerating to zero velocity 
+    easeOutCubic: t => (--t)*t*t+1,
+    // acceleration until halfway, then deceleration 
+    easeInOutCubic: t => t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1,
+    // accelerating from zero velocity 
+    easeInQuart: t => t*t*t*t,
+    // decelerating to zero velocity 
+    easeOutQuart: t => 1-(--t)*t*t*t,
+    // acceleration until halfway, then deceleration
+    easeInOutQuart: t => t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t,
+    // accelerating from zero velocity
+    easeInQuint: t => t*t*t*t*t,
+    // decelerating to zero velocity
+    easeOutQuint: t => 1+(--t)*t*t*t*t,
+    // acceleration until halfway, then deceleration 
+    easeInOutQuint: t => t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t
+  }
+
+const animate_with_easing = (redraw, total_duration = 300) => {
+    let value = 0.00001
+    const make_animation_step = () => {
+        value = easingFunctions.easeOutCubic(value)
+        if (value > 0.99) value = 1 // because it may freeze at smth like 9.9999999... (in case of very small initial value)
+        redraw(value)
+        value < 1 && requestAnimationFrame(make_animation_step)
+    }
+    requestAnimationFrame(make_animation_step)
+}
+
 export const createBrackets = (allData, rootContainer, options) => {
     const root_id = create_unique_id()
     const root_bracket_container = document.createElement('div')
@@ -34,8 +74,15 @@ export const createBrackets = (allData, rootContainer, options) => {
 
     const change_round_index = new_leftmost_round_index => {
         const width_deficit = allData.rounds.length * sizes.ROUND_WIDTH - canvasEl.width
-        state.scrollX = -Math.min(width_deficit, new_leftmost_round_index * sizes.ROUND_WIDTH)
-        drawAll(allData, state, canvasEl)
+        const initial_scrollX = state.scrollX
+        const destination_scrollX = -Math.min(width_deficit, new_leftmost_round_index * sizes.ROUND_WIDTH)
+        const distance = destination_scrollX - initial_scrollX
+
+        animate_with_easing(easing_value => {
+            state.scrollX = initial_scrollX + (distance * easing_value)
+            console.log(state.scrollX)
+            drawAll(allData, state, canvasEl)
+        })
     }
 
     const { update_buttons_on_resize } = create_horizontal_scroll_buttons(
