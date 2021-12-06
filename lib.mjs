@@ -4,6 +4,7 @@ import { drawAll } from './utils/draw_all.mjs'
 import { create_horizontal_scroll_buttons } from './horizontal_scroll_buttons/create_horizontal_scroll_buttons.mjs'
 import { installMouseEvents } from './utils/install_mouse_events.mjs'
 import * as sizes from './utils/sizes.mjs'
+import { animate_with_ease } from './animate-with-easing.mjs'
 
 // if element gets WIDER on resize, right gap may appear
 // This free space may be used to scroll back to show more rounds on the left
@@ -78,11 +79,21 @@ export const createBrackets = (allData, rootContainer, options) => {
         const destination_scrollX = -Math.min(width_deficit, new_leftmost_round_index * sizes.ROUND_WIDTH)
         const distance = destination_scrollX - initial_scrollX
 
-        animate_with_easing(easing_value => {
-            state.scrollX = initial_scrollX + (distance * easing_value)
-            console.log(state.scrollX)
-            drawAll(allData, state, canvasEl)
-        })
+        // animate_with_easing(easing_value => {
+        //     state.scrollX = initial_scrollX + (distance * easing_value)
+        //     console.log(state.scrollX)
+        //     drawAll(allData, state, canvasEl)
+        // })
+
+        animate_with_ease(
+            initial_scrollX,
+            destination_scrollX,
+            easing_value => {
+                state.scrollX = initial_scrollX + easing_value
+                console.log(easing_value)
+                drawAll(allData, state, canvasEl)
+            }
+        )
     }
 
     const { update_buttons_on_resize } = create_horizontal_scroll_buttons(
