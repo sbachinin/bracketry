@@ -1,9 +1,9 @@
 import { get_leftmost_fully_visible_round_index } from './get_leftmost_fully_visible_round_index.mjs'
 import { update_button_visibility } from './update_button_visibility.mjs'
-import * as sizes from '../utils/sizes.mjs'
+import * as constants from '../utils/constants.mjs'
 
 const get_invisible_rounds_count = (root_bracket_container, rounds_count) => {
-    const fully_visible_rounds_count = Math.floor(root_bracket_container.clientWidth / sizes.ROUND_WIDTH)
+    const fully_visible_rounds_count = Math.floor(root_bracket_container.clientWidth / constants.ROUND_WIDTH)
     return rounds_count - fully_visible_rounds_count
 }
 

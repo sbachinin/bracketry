@@ -3,13 +3,13 @@ import { createCanvas } from './utils/createCanvas.mjs'
 import { drawAll } from './utils/draw_all.mjs'
 import { create_horizontal_scroll_buttons } from './horizontal_scroll_buttons/create_horizontal_scroll_buttons.mjs'
 import { installMouseEvents } from './utils/install_mouse_events.mjs'
-import * as sizes from './utils/sizes.mjs'
+import * as constants from './utils/constants.mjs'
 import { animate_with_easing } from './utils/animate-with-easing.mjs'
 
 // if element gets WIDER on resize, right gap may appear
 // This free space may be used to scroll back to show more rounds on the left
 const try_adjust_scrollX_on_resize = (scrollX, roundsCount, root_container_width) => {
-    const maximum_visible_width = (roundsCount * sizes.ROUND_WIDTH) + scrollX
+    const maximum_visible_width = (roundsCount * constants.ROUND_WIDTH) + scrollX
     const right_gap_width = root_container_width - maximum_visible_width
     if (right_gap_width <= 0) return scrollX
     return Math.min(0, scrollX + right_gap_width)
@@ -34,12 +34,12 @@ export const createBrackets = (allData, rootContainer, options) => {
     const canvasEl = createCanvas(root_bracket_container, options)
 
     const change_round_index = new_leftmost_round_index => {
-        const width_deficit = allData.rounds.length * sizes.ROUND_WIDTH - canvasEl.width
+        const width_deficit = allData.rounds.length * constants.ROUND_WIDTH - canvasEl.width
         const initial_scrollX = state.scrollX
-        const destination_scrollX = -Math.min(width_deficit, new_leftmost_round_index * sizes.ROUND_WIDTH)
+        const destination_scrollX = -Math.min(width_deficit, new_leftmost_round_index * constants.ROUND_WIDTH)
         const distance = destination_scrollX - initial_scrollX
 
-        animate_with_easing(            
+        animate_with_easing(
             easing_value => {
                 state.scrollX = initial_scrollX + distance * easing_value
                 drawAll(allData, state, canvasEl)

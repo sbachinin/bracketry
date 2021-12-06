@@ -1,4 +1,4 @@
-import * as sizes from './sizes.mjs'
+import * as constants from './constants.mjs'
 
 export const drawConnectionToEarlierMatch = (
     earlierConnectionPoint,
@@ -9,9 +9,9 @@ export const drawConnectionToEarlierMatch = (
    
     if (connectionType === 'curve') {
         ctx.bezierCurveTo(
-            laterConnectionPoint[0] - sizes.MATCH_HOR_MARGIN * 1.5,
+            laterConnectionPoint[0] - constants.MATCH_HOR_MARGIN * 1.5,
             laterConnectionPoint[1],
-            earlierConnectionPoint[0] + sizes.MATCH_HOR_MARGIN * 1.5,
+            earlierConnectionPoint[0] + constants.MATCH_HOR_MARGIN * 1.5,
             earlierConnectionPoint[1],
             earlierConnectionPoint[0],
             earlierConnectionPoint[1]

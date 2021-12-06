@@ -1,4 +1,4 @@
-import * as sizes from './sizes.mjs'
+import * as constants from './constants.mjs'
 
 // functions from https://gist.github.com/gre/1650294:
 const easingFunctions = {
@@ -30,7 +30,7 @@ const easingFunctions = {
     easeInOutQuint: t => t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t
 }
 
-export const animate_with_easing = (handle_new_value, duration = sizes.SCROLLX_DURATION) => {
+export const animate_with_easing = (handle_new_value, duration = constants.SCROLLX_DURATION) => {
     let initial_timestamp = null
     
     const start = raf_timestamp => {
