@@ -47,7 +47,7 @@ export const createBrackets = (allData, rootContainer, options) => {
         )
     }
 
-    const { update_buttons_on_resize } = create_horizontal_scroll_buttons(
+    create_horizontal_scroll_buttons(
         root_bracket_container,
         options,
         allData.rounds.length,
@@ -70,8 +70,6 @@ export const createBrackets = (allData, rootContainer, options) => {
                 root_container_width)
             
             drawAll(allData, state, canvasEl)
-            
-            update_buttons_on_resize()
         })
     ).observe(rootContainer)
 

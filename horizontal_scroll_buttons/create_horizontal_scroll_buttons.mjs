@@ -1,6 +1,7 @@
 import { insert_buttons_styles } from './insert_buttons_styles.mjs'
 import { get_leftmost_fully_visible_round_index } from './get_leftmost_fully_visible_round_index.mjs'
 import { create_single_button } from './create_single_button.mjs'
+import { debounce } from '../utils/utils.mjs'
 import * as constants from '../utils/constants.mjs'
 
 let leftmost_round_index = 0
@@ -58,11 +59,11 @@ export const create_horizontal_scroll_buttons = (
 
     root_bracket_container.append(leftButton.element, rightButton.element)
 
-    return {
-        update_buttons_on_resize: () => {
+    new ResizeObserver(
+        debounce(() => {
             leftmost_round_index = get_leftmost_fully_visible_round_index(state.scrollX)
             leftButton.update_visibility(leftmost_round_index)
             rightButton.update_visibility(leftmost_round_index)
-        }
-    }
+        })
+    ).observe(root_bracket_container)
 }
