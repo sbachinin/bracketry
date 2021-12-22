@@ -15,7 +15,13 @@ const try_adjust_scrollX_on_resize = (scrollX, roundsCount, root_container_width
     return Math.min(0, scrollX + right_gap_width)
 }
 
-export const createBrackets = (allData, rootContainer, options) => {
+export const createBrackets = (
+    allData,
+    rootContainer,
+    user_options
+) => {
+    const actual_options = { ...constants.DEFAULT_OPTIONS, ...user_options}
+
     const root_id = create_unique_id()
     const root_bracket_container = document.createElement('div')
     root_bracket_container.className = root_id + ' root_bracket_container'
@@ -31,7 +37,7 @@ export const createBrackets = (allData, rootContainer, options) => {
         scrollX: 0
     }
 
-    const canvasEl = createCanvas(root_bracket_container, options)
+    const canvasEl = createCanvas(root_bracket_container, actual_options)
 
     const change_round_index = new_leftmost_round_index => {
         const width_deficit = allData.rounds.length * constants.ROUND_WIDTH - canvasEl.width
@@ -49,7 +55,7 @@ export const createBrackets = (allData, rootContainer, options) => {
 
     create_horizontal_scroll_buttons(
         root_bracket_container,
-        options,
+        actual_options,
         allData.rounds.length,
         state,
         change_round_index,
@@ -75,5 +81,5 @@ export const createBrackets = (allData, rootContainer, options) => {
 
     drawAll(allData, state, canvasEl)
 
-    installMouseEvents(allData, options, state, drawAll, canvasEl)
+    installMouseEvents(allData, actual_options, state, drawAll, canvasEl)
 }

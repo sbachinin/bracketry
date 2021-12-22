@@ -32,7 +32,7 @@ export const create_horizontal_scroll_buttons = (
     change_round_index,
     root_id
 ) => {
-    if (options.horizontalScrollTriggeredBy !== 'buttons') return
+    if (options.horizontal_scroll_triggered_by !== 'buttons') return
 
     insert_buttons_styles(root_id, options.backgroundColor)
 

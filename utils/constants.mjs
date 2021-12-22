@@ -15,3 +15,8 @@ export const FONT_SIZE = 14
 export const HORIZONAL_SCROLL_WIDTH_PERCENTAGE = 20
 
 export const SCROLLX_DURATION = 300
+
+
+export const DEFAULT_OPTIONS = {
+    horizontal_scroll_triggered_by: 'mousemove'
+}

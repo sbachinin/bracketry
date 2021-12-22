@@ -2,14 +2,10 @@ import { throttle, debounce } from './utils.mjs'
 import { tryScrollX } from './try_scroll_x.mjs'
 import { stopAnimation } from './animate.mjs'
 
-const defaultOptions = {
-    horizontalScrollTriggeredBy: 'mousemove'
-}
-
 const MOUSE_ACTIONS_DELAY_AFTER_WINDOW_SCROLL = 500
 let window_scrolled_recently = false
 
-const prevent_bracket_scroll_on_window_scroll = (options) => {
+const prevent_bracket_scroll_on_window_scroll = options => {
     const try_forget_window_scroll = debounce(
         () => { window_scrolled_recently = false },
         MOUSE_ACTIONS_DELAY_AFTER_WINDOW_SCROLL
@@ -18,7 +14,7 @@ const prevent_bracket_scroll_on_window_scroll = (options) => {
     window.addEventListener(
         'scroll',
         () => {
-            if (options.horizontalScrollTriggeredBy === 'mousemove') {
+            if (options.horizontal_scroll_triggered_by === 'mousemove') {
                 window_scrolled_recently = true
                 try_forget_window_scroll()
             }
@@ -26,12 +22,12 @@ const prevent_bracket_scroll_on_window_scroll = (options) => {
     )
 }
 
-export const installMouseEvents = (allData, options = defaultOptions, state, drawAll, canvasEl) => {
+export const installMouseEvents = (allData, options, state, drawAll, canvasEl) => {
     canvasEl.addEventListener(
         'mousemove',
         throttle(
             e => {
-                options.horizontalScrollTriggeredBy === 'mousemove'
+                options.horizontal_scroll_triggered_by === 'mousemove'
                 && !window_scrolled_recently
                 && tryScrollX(allData, state, drawAll, canvasEl, e)
             },
@@ -42,7 +38,7 @@ export const installMouseEvents = (allData, options = defaultOptions, state, dra
     canvasEl.addEventListener(
         'mouseleave',
         e => {
-            options.horizontalScrollTriggeredBy === 'mousemove'
+            options.horizontal_scroll_triggered_by === 'mousemove'
             && stopAnimation()
             // * possible optimization here
             // currently requestAnimationF is stopped only here.
