@@ -2,17 +2,26 @@ import { insert_buttons_styles } from './insert_buttons_styles.mjs'
 import { get_leftmost_fully_visible_round_index } from './get_leftmost_fully_visible_round_index.mjs'
 import { create_single_button } from './create_single_button.mjs'
 
+let leftmost_round_index = 0
+
 const create_buttons_elements = (
-    state,
     handle_new_round_index,
     root_bracket_container,
     rounds_count
 ) => {
     return [
-        create_single_button(state, 'left', handle_new_round_index, root_bracket_container,
-    rounds_count),
-        create_single_button(state, 'right', handle_new_round_index, root_bracket_container,
-    rounds_count)
+        create_single_button(
+            'left',
+            () => handle_new_round_index(--leftmost_round_index),
+            root_bracket_container,
+            rounds_count
+        ),
+        create_single_button(
+            'right',
+            () => handle_new_round_index(++leftmost_round_index),
+            root_bracket_container,
+            rounds_count
+        )
     ]
 }
 
@@ -35,7 +44,6 @@ export const create_horizontal_scroll_buttons = (
     }
 
     const [ leftButton, rightButton ] = create_buttons_elements(
-        state,
         handle_new_round_index,
         root_bracket_container,
         rounds_count)
@@ -47,8 +55,9 @@ export const create_horizontal_scroll_buttons = (
 
     return {
         update_buttons_on_resize: () => {
-            leftButton.update_visibility(get_leftmost_fully_visible_round_index(state.scrollX))
-            rightButton.update_visibility(get_leftmost_fully_visible_round_index(state.scrollX))
+            leftmost_round_index = get_leftmost_fully_visible_round_index(state.scrollX)
+            leftButton.update_visibility(leftmost_round_index)
+            rightButton.update_visibility(leftmost_round_index)
         }
     }
 }
