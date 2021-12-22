@@ -35,7 +35,7 @@ export const create_horizontal_scroll_buttons = (
 ) => {
     if (options.horizontal_scroll_triggered_by !== 'buttons') return
 
-    insert_buttons_styles(root_id, options.backgroundColor)
+    insert_buttons_styles(root_id, options)
 
     const handle_new_round_index = new_index => {
         leftButton.update_visibility(new_index)

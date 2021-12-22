@@ -1,4 +1,4 @@
-export const get_buttons_style = (root_id, bgColor) => `
+export const get_buttons_style = (root_id, options) => `
     .${root_id} .scroll-rounds-button {
         opacity: 0;
         display: flex;
@@ -45,7 +45,7 @@ export const get_buttons_style = (root_id, bgColor) => `
     .${root_id} .scroll-rounds-button-left {
         padding-right: 40px;
         left: 0;
-        background: linear-gradient(to right, ${bgColor} 50%, rgba(0,0,0,0%) 100%);
+        background: linear-gradient(to right, ${options.bgColor} 50%, rgba(0,0,0,0%) 100%);
     }
 
     .${root_id} .scroll-rounds-button-left .button-icon {
@@ -55,7 +55,7 @@ export const get_buttons_style = (root_id, bgColor) => `
     .${root_id} .scroll-rounds-button-right  {
         padding-left: 40px;
         right: 0;
-        background: linear-gradient(to left, ${bgColor} 50%, rgba(0,0,0,0%) 100%);
+        background: linear-gradient(to left, ${options.bgColor} 50%, rgba(0,0,0,0%) 100%);
     }
 
     .${root_id} .scroll-rounds-button-right .button-icon {
@@ -63,9 +63,9 @@ export const get_buttons_style = (root_id, bgColor) => `
     }
 `
 
-export const insert_buttons_styles = (root_id, bgColor) => {
+export const insert_buttons_styles = (root_id, options) => {
     document.head.insertAdjacentHTML(
         'beforeend',
-        `<style>${get_buttons_style(root_id, bgColor)}</style>`
+        `<style>${get_buttons_style(root_id, options)}</style>`
     )
 }
