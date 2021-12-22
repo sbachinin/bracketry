@@ -9,8 +9,14 @@ export const drawAll = (allData, state, canvasEl) => {
     ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
 
     const roundsWithDrawingData = allData.rounds.map((roundData, roundIndex) => {
-        const visibleHeightPerMatch = (canvasEl.height - constants.ROUNDS_TITLE_HEIGHT) / roundData.matches.length
-        const freeHeightPerMatch = Math.max(visibleHeightPerMatch, constants.MATCH_MIN_HEIGHT)
+        const visibleHeightPerMatch = (
+            (canvasEl.height - constants.ROUNDS_TITLE_HEIGHT)
+            / roundData.matches.length
+        )
+        const freeHeightPerMatch = Math.max(
+            visibleHeightPerMatch,
+            constants.MATCH_MIN_HEIGHT
+        )
 
         return {
             ...roundData,
