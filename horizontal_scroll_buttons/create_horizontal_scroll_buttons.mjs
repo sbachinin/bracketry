@@ -72,9 +72,12 @@ export const create_horizontal_scroll_buttons = (
 
     new ResizeObserver(
         debounce(() => {
-            leftmost_round_index = get_leftmost_fully_visible_round_index(state.scrollX)
-            leftButton.update_visibility(leftmost_round_index)
-            rightButton.update_visibility(leftmost_round_index)
+            // timeout is to wait for the new scrollX
+            setTimeout(() => {
+                leftmost_round_index = get_leftmost_fully_visible_round_index(state.scrollX)
+                leftButton.update_visibility(leftmost_round_index)
+                rightButton.update_visibility(leftmost_round_index)
+            })
         })
     ).observe(root_bracket_container)
 }
