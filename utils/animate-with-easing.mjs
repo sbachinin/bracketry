@@ -1,4 +1,5 @@
 import * as constants from './constants.mjs'
+import { create_unique_id } from './utils.mjs'
 
 // functions from https://gist.github.com/gre/1650294:
 const easingFunctions = {
@@ -30,15 +31,23 @@ const easingFunctions = {
     easeInOutQuint: t => t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t
 }
 
+let ongoing_animation_id = null
+
+// this fn stops ongoing animation before starting a new one!
 export const animate_with_easing = (handle_new_value, duration = constants.SCROLLX_DURATION) => {
     let initial_timestamp = null
     
+    const this_animation_id = create_unique_id()
+    ongoing_animation_id = this_animation_id
+
     const start = raf_timestamp => {
         initial_timestamp = raf_timestamp
         move(raf_timestamp)
     }
 
     const move = raf_timestamp => {
+        if (ongoing_animation_id !== this_animation_id) return
+
         const elapsed_fraction_of_duration = (raf_timestamp - initial_timestamp) / duration
         
         if (elapsed_fraction_of_duration > 1) {
