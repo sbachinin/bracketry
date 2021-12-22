@@ -1,26 +1,24 @@
 import { insert_buttons_styles } from './insert_buttons_styles.mjs'
 import { get_leftmost_fully_visible_round_index } from './get_leftmost_fully_visible_round_index.mjs'
 import { create_single_button } from './create_single_button.mjs'
+import * as constants from '../utils/constants.mjs'
 
 let leftmost_round_index = 0
 
 const create_buttons_elements = (
     handle_new_round_index,
-    root_bracket_container,
-    rounds_count
+    get_invisible_rounds_count
 ) => {
     return [
         create_single_button(
             'left',
             () => handle_new_round_index(--leftmost_round_index),
-            root_bracket_container,
-            rounds_count
+            get_invisible_rounds_count
         ),
         create_single_button(
             'right',
             () => handle_new_round_index(++leftmost_round_index),
-            root_bracket_container,
-            rounds_count
+            get_invisible_rounds_count
         )
     ]
 }
@@ -43,10 +41,17 @@ export const create_horizontal_scroll_buttons = (
         change_round_index(new_index)
     }
 
+    const get_invisible_rounds_count = () => {
+        const fully_visible_rounds_count = Math.floor(
+            root_bracket_container.clientWidth / constants.ROUND_WIDTH
+        )
+        return rounds_count - fully_visible_rounds_count
+    }
+
     const [ leftButton, rightButton ] = create_buttons_elements(
         handle_new_round_index,
-        root_bracket_container,
-        rounds_count)
+        get_invisible_rounds_count
+    )
 
     leftButton.update_visibility(0)
     rightButton.update_visibility(0)
