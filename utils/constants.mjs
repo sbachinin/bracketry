@@ -18,5 +18,6 @@ export const SCROLLX_DURATION = 300
 
 
 export const DEFAULT_OPTIONS = {
-    horizontal_scroll_triggered_by: 'mousemove'
+    horizontal_scroll_triggered_by: 'mousemove',
+    horizontal_scroll_buttons_position: 'top',
 }

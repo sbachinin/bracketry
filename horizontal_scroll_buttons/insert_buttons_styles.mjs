@@ -1,3 +1,13 @@
+const get_top = position => {
+    if (position === 'top') {
+        return '20px'
+    }
+    if (position === 'bottom') {
+        return 'calc(100% - 70px)'
+    }
+    return 'calc(50% - 25px)'
+}
+
 export const get_buttons_style = (root_id, options) => `
     .${root_id} .scroll-rounds-button {
         opacity: 0;
@@ -6,7 +16,7 @@ export const get_buttons_style = (root_id, options) => `
         position: absolute;
         height: 50px;
         width: 86px;
-        top: 20px;
+        top: ${get_top(options.horizontal_scroll_buttons_position)};
         user-select: none;
     }
 
@@ -29,7 +39,7 @@ export const get_buttons_style = (root_id, options) => `
         padding-top: 2px;
         background-color: #2d2d2d;
         color: white;
-        opacity: 0.5;
+        opacity: 0.3;
     }
 
     .${root_id} .scroll-rounds-button.hidden {
