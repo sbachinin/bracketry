@@ -1,9 +1,7 @@
 import { createBrackets } from './lib.mjs'
 import { mockFetchData as fetch } from './mockFetchData.mjs'
 import { prepareMockData } from './prepareMockData.mjs'
-import { DEFAULT_OPTIONS } from './options.mjs'
-
-console.log(DEFAULT_OPTIONS)
+import { OPTIONS } from './options.mjs'
 
 fetch()
 .then(prepareMockData)

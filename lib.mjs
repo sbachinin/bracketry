@@ -4,7 +4,7 @@ import { drawAll } from './utils/draw_all.mjs'
 import { create_horizontal_scroll_buttons } from './horizontal_scroll_buttons/create_horizontal_scroll_buttons.mjs'
 import { installMouseEvents } from './utils/install_mouse_events.mjs'
 import * as constants from './utils/constants.mjs'
-import { DEFAULT_OPTIONS } from './options.mjs'
+import { get_default_options } from './options.mjs'
 
 // if element gets WIDER on resize, right gap may appear
 // This free space may be used to scroll back to show more rounds on the left
@@ -20,7 +20,10 @@ export const createBrackets = (
     rootContainer,
     user_options
 ) => {
-    const actual_options = { ...DEFAULT_OPTIONS, ...user_options}
+    const actual_options = {
+        ...get_default_options(),
+        ...user_options
+    }
 
     const root_id = create_unique_id()
     const root_bracket_container = document.createElement('div')
