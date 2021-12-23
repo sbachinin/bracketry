@@ -21,6 +21,7 @@ export const create_single_button = (
         `scroll-rounds-button-${side}`,
     ].join(' ')
 
+    // button-icon perhaps may be removed without damage
     button.innerHTML = `<div class="button-icon">${
         side === 'left' ? makeButton('left', size) : makeButton('right', size)
     }</div>`

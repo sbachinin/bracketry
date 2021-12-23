@@ -22,6 +22,10 @@ export const get_buttons_style = (root_id, options) => `
         background: radial-gradient(${options.backgroundColor}, rgba(0,0,0,0));
     }
 
+    .${root_id} .scroll-rounds-button svg {
+        fill: ${options.horizontal_scroll_buttons_color};
+    }
+
     .${root_id}:hover .scroll-rounds-button {
         opacity: 1;
     }
@@ -35,9 +39,6 @@ export const get_buttons_style = (root_id, options) => `
         cursor: pointer;
         justify-content: center;
         align-items: center;
-        box-sizing: border-box;
-        padding-top: 2px;
-        color: white;
     }
 
     .${root_id} .scroll-rounds-button.hidden {
