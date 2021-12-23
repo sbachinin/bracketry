@@ -1,6 +1,9 @@
 import { createBrackets } from './lib.mjs'
 import { mockFetchData as fetch } from './mockFetchData.mjs'
 import { prepareMockData } from './prepareMockData.mjs'
+import { DEFAULT_OPTIONS } from './options.mjs'
+
+console.log(DEFAULT_OPTIONS)
 
 fetch()
 .then(prepareMockData)
@@ -14,7 +17,7 @@ fetch()
         // horizontal_scroll_buttons_size: 100,
         // horizontal_scroll_buttons_icon_right: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm1 12l-6 3.999v-7.998l6 3.999zm0-3.999v7.998l6-3.999-6-3.999z"/></svg>`,
         // horizontal_scroll_buttons_color: 'red'
-        connection_lines_type: 'bended-1' // 'curve' | 'diagonal' | 'bended-1' | 'bended-2'
+        connection_lines_type: 'bended-2' // 'curve' | 'diagonal' | 'bended-1' | 'bended-2'
     }
 ))
 
