@@ -13,7 +13,7 @@ export const create_single_button = (
     side,
     onclick,
     get_invisible_rounds_count,
-    size
+    options
 ) => {
     const button = document.createElement('div')
     button.className = [
@@ -22,9 +22,23 @@ export const create_single_button = (
     ].join(' ')
 
     // button-icon perhaps may be removed without damage
-    button.innerHTML = `<div class="button-icon">${
-        side === 'left' ? makeButton('left', size) : makeButton('right', size)
-    }</div>`
+    button.innerHTML = `<div class="button-icon">
+        ${
+            side === 'left'
+            ? options.horizontal_scroll_buttons_icon_left
+            : options.horizontal_scroll_buttons_icon_right
+        }
+    </div>`
+    
+    button.querySelector('svg')?.setAttribute(
+        'height',
+        options.horizontal_scroll_buttons_size
+    )
+
+    button.querySelector('svg')?.setAttribute(
+        'width',
+        options.horizontal_scroll_buttons_size
+    )
 
     button.addEventListener('click', onclick)
     
