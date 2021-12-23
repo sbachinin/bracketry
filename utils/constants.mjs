@@ -21,4 +21,5 @@ export const DEFAULT_OPTIONS = {
     backgroundColor: '#ffffff',
     horizontal_scroll_triggered_by: 'mousemove',
     horizontal_scroll_buttons_position: 'top',
+    horizontal_scroll_buttons_size: 32
 }

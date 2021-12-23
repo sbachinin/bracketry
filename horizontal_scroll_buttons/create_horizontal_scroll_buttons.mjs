@@ -9,18 +9,21 @@ let leftmost_round_index = 0
 
 const create_buttons_elements = (
     handle_new_round_index,
-    get_invisible_rounds_count
+    get_invisible_rounds_count,
+    size
 ) => {
     return [
         create_single_button(
             'left',
             () => handle_new_round_index(--leftmost_round_index),
-            get_invisible_rounds_count
+            get_invisible_rounds_count,
+            size
         ),
         create_single_button(
             'right',
             () => handle_new_round_index(++leftmost_round_index),
-            get_invisible_rounds_count
+            get_invisible_rounds_count,
+            size
         )
     ]
 }
@@ -62,7 +65,8 @@ export const create_horizontal_scroll_buttons = (
 
     const [ leftButton, rightButton ] = create_buttons_elements(
         handle_new_round_index,
-        get_invisible_rounds_count
+        get_invisible_rounds_count,
+        options.horizontal_scroll_buttons_size
     )
 
     leftButton.update_visibility(0)
