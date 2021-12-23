@@ -26,7 +26,7 @@ const getScrollXWithConstraints = (state, contentWidth, canvasEl) => {
     }
 }
 
-export const tryScrollX = (allData, state, drawAll, canvasEl, e, options) => {
+export const tryScrollX = (allData, state, handle_new_scrollX, canvasEl, e) => {
     const contentWidth = allData.rounds.length * constants.ROUND_WIDTH
 
     if (contentWidth - canvasEl.width <= 0) return
@@ -34,10 +34,9 @@ export const tryScrollX = (allData, state, drawAll, canvasEl, e, options) => {
     scrollForce = getScrollForce(canvasEl, e)
 
     makeScrollStep = () => {
-        const newScrollX = getScrollXWithConstraints(state, contentWidth, canvasEl);
-        if (newScrollX !== state.scrollX) {
-            state.scrollX = newScrollX
-            drawAll(allData, state, canvasEl, options)
+        const new_scrollX = getScrollXWithConstraints(state, contentWidth, canvasEl);
+        if (new_scrollX !== state.scrollX) {
+            handle_new_scrollX(new_scrollX)
         }
     }
 

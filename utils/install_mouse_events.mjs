@@ -22,14 +22,14 @@ const prevent_bracket_scroll_on_window_scroll = options => {
     )
 }
 
-export const installMouseEvents = (allData, options, state, drawAll, canvasEl) => {
+export const installMouseEvents = (allData, options, state, handle_new_scrollX, canvasEl) => {
     canvasEl.addEventListener(
         'mousemove',
         throttle(
             e => {
                 options.horizontal_scroll_triggered_by === 'mousemove'
                 && !window_scrolled_recently
-                && tryScrollX(allData, state, drawAll, canvasEl, e, options)
+                && tryScrollX(allData, state, handle_new_scrollX, canvasEl, e)
             },
             50
         )

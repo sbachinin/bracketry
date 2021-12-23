@@ -71,5 +71,5 @@ export const createBrackets = (
 
     drawAll(allData, state, canvasEl, actual_options)
 
-    installMouseEvents(allData, actual_options, state, drawAll, canvasEl)
+    installMouseEvents(allData, actual_options, state, handle_new_scrollX, canvasEl)
 }
