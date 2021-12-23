@@ -1,7 +1,7 @@
 import { drawConnectionToEarlierMatch } from './draw_connection_to_earlier_match.mjs'
 import * as constants from './constants.mjs'
 
-export const drawMatchesForRound = (roundIndex, allRounds, ctx) => {
+export const drawMatchesForRound = (roundIndex, allRounds, ctx, options) => {
     allRounds[roundIndex].matchesToDraw.forEach((matchData, matchIndex) => {
     
         ctx.fillStyle = '#feefe3'
@@ -44,7 +44,7 @@ export const drawMatchesForRound = (roundIndex, allRounds, ctx) => {
             drawConnectionToEarlierMatch(
                 getEarlierConnectionPoint(0),
                 connectionPoint,
-                'curve',
+                options,
                 ctx
             )
             ctx.moveTo(
@@ -53,7 +53,7 @@ export const drawMatchesForRound = (roundIndex, allRounds, ctx) => {
             drawConnectionToEarlierMatch(
                 getEarlierConnectionPoint(1),
                 connectionPoint,
-                'curve',
+                options,
                 ctx)
         }
 

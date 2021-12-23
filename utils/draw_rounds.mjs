@@ -1,7 +1,7 @@
 import { drawMatchesForRound } from './draw_matches_for_round.mjs'
 import * as constants from './constants.mjs'
 
-export const drawRounds = (allRounds, state, ctx) => {
+export const drawRounds = (allRounds, state, ctx, options) => {
     allRounds.forEach((roundData, roundIndex) => {
         ctx.font = constants.HEADING_FONT_SIZE + 'px sans-serif'
         ctx.fillText(
@@ -10,6 +10,6 @@ export const drawRounds = (allRounds, state, ctx) => {
             constants.ROUNDS_TITLE_UPPER_MARGIN)
     
         ctx.font = constants.FONT_SIZE + 'px sans-serif'
-        drawMatchesForRound(roundIndex, allRounds, ctx)
+        drawMatchesForRound(roundIndex, allRounds, ctx, options)
     })
 }

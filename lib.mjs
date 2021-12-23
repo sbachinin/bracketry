@@ -40,7 +40,7 @@ export const createBrackets = (
 
     const handle_new_scrollX = new_scrollX => {
         state.scrollX = new_scrollX
-        drawAll(allData, state, canvasEl)
+        drawAll(allData, state, canvasEl, actual_options)
     }
 
     create_horizontal_scroll_buttons(
@@ -65,11 +65,11 @@ export const createBrackets = (
                 allData.rounds.length,
                 root_container_width)
             
-            drawAll(allData, state, canvasEl)
+            drawAll(allData, state, canvasEl, actual_options)
         })
     ).observe(rootContainer)
 
-    drawAll(allData, state, canvasEl)
+    drawAll(allData, state, canvasEl, actual_options)
 
     installMouseEvents(allData, actual_options, state, drawAll, canvasEl)
 }

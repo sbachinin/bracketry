@@ -2,7 +2,7 @@ import { drawRounds } from './draw_rounds.mjs'
 import { getMatchDrawingData } from './get_match_drawing_data.mjs'
 import * as constants from './constants.mjs'
 
-export const drawAll = (allData, state, canvasEl) => {
+export const drawAll = (allData, state, canvasEl, options) => {
     if (!canvasEl.getContext) return
     const ctx = canvasEl.getContext('2d');
 
@@ -25,5 +25,5 @@ export const drawAll = (allData, state, canvasEl) => {
         }
     })
 
-    drawRounds(roundsWithDrawingData, state, ctx)
+    drawRounds(roundsWithDrawingData, state, ctx, options)
 }

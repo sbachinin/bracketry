@@ -29,7 +29,7 @@ export const installMouseEvents = (allData, options, state, drawAll, canvasEl) =
             e => {
                 options.horizontal_scroll_triggered_by === 'mousemove'
                 && !window_scrolled_recently
-                && tryScrollX(allData, state, drawAll, canvasEl, e)
+                && tryScrollX(allData, state, drawAll, canvasEl, e, options)
             },
             50
         )
