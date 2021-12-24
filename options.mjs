@@ -1,3 +1,7 @@
+// nice to add options:
+// horizontal_scroll_buttons_horizontal_margin
+// horizontal_scroll_buttons_vertical_margin
+
 export const OPTIONS = {
     backgroundColor: {
         title: 'Canvas backgound color',
