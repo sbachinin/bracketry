@@ -6,17 +6,12 @@ const get_vert_align = position => {
 
 export const get_buttons_style = (root_id, options) => `
     .${root_id} .scroll-rounds-button {
-        opacity: ${options.always_show_horizontal_scroll_buttons ? 0.5 : 0};
+        visibility: ${options.always_show_horizontal_scroll_buttons ? 'visible' : 'hidden'};
         display: flex;
         justify-content: center;
         align-items: ${get_vert_align(
             options.horizontal_scroll_buttons_position,
         )};
-        padding: ${
-            options.horizontal_scroll_buttons_vert_padding
-        } ${
-            options.horizontal_scroll_buttons_hor_padding
-        };
         box-sizing: border-box;
         position: absolute;
         top: 0;
@@ -30,15 +25,27 @@ export const get_buttons_style = (root_id, options) => `
     }
 
     .${root_id}:hover .scroll-rounds-button {
+        visibility: visible;
+    }
+
+    .${root_id} .scroll-rounds-button svg {
         opacity: 0.5;
     }
 
-    .${root_id} .scroll-rounds-button:hover {
+    .${root_id} .scroll-rounds-button:hover svg {
         opacity: 1;
     }
 
+    .${root_id} .scroll-rounds-button .button-icon {
+        background: radial-gradient(${options.background_color}, rgba(0,0,0,0));
+        padding: ${
+            options.horizontal_scroll_buttons_vert_padding
+        } ${
+            options.horizontal_scroll_buttons_hor_padding
+        };
+    }
+
     .${root_id} .scroll-rounds-button.hidden {
-        opacity: 0;
         visibility: hidden;
         pointer-events: none;
     }
