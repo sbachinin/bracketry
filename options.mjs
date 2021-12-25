@@ -30,6 +30,16 @@ export const OPTIONS = {
         type: 'string',
         default_value:'#161616'
     },
+    horizontal_scroll_buttons_hor_margin: {
+        title: 'Horizontal scroll buttons horizontal margin',
+        type: 'number',
+        default_value: 29
+    },
+    horizontal_scroll_buttons_vert_margin: {
+        title: 'Horizontal scroll buttons vertical margin',
+        type: 'number',
+        default_value: 29
+    },
     horizontal_scroll_buttons_icon_left: {
         title: 'Icon for left horizontal scroll button',
         type: 'multiline_string',

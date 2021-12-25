@@ -21,15 +21,10 @@ export const create_single_button = (
         `scroll-rounds-button-${side}`,
     ].join(' ')
 
-    // button-icon perhaps may be removed without damage
-    button.innerHTML = `<div class="button-icon">
-        ${
-            side === 'left'
+    button.innerHTML = side === 'left'
             ? options.horizontal_scroll_buttons_icon_left
             : options.horizontal_scroll_buttons_icon_right
-        }
-    </div>`
-    
+
     button.querySelector('svg')?.setAttribute(
         'height',
         options.horizontal_scroll_buttons_size

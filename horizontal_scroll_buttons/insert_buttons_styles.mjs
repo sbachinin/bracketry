@@ -1,11 +1,7 @@
-const get_top = position => {
-    if (position === 'top') {
-        return '0'
-    }
-    if (position === 'bottom') {
-        return 'calc(100% - 86px)'
-    }
-    return 'calc(50% - 25px)'
+const get_vert_align = position => {
+    if (position === 'top') return 'flex-start'
+    if (position === 'middle') return 'center'
+    if (position === 'bottom') return 'flex-end'
 }
 
 export const get_buttons_style = (root_id, options) => `
@@ -13,13 +9,20 @@ export const get_buttons_style = (root_id, options) => `
         opacity: ${options.always_show_horizontal_scroll_buttons ? 1 : 0};
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: ${get_vert_align(
+            options.horizontal_scroll_buttons_position,
+        )};
+        padding: ${
+            options.horizontal_scroll_buttons_vert_margin
+        } ${
+            options.horizontal_scroll_buttons_hor_margin
+        };
+        box-sizing: border-box;
         position: absolute;
-        height: 86px;
-        width: 86px;
-        top: ${get_top(options.horizontal_scroll_buttons_position)};
+        top: 0;
+        height: 100%;
         user-select: none;
-        background: radial-gradient(${options.background_color}, rgba(0,0,0,0));
+        cursor: pointer;
     }
 
     .${root_id} .scroll-rounds-button svg {
@@ -30,41 +33,18 @@ export const get_buttons_style = (root_id, options) => `
         opacity: 1;
     }
 
-    .${root_id} .scroll-rounds-button .button-icon {
-        display: flex;
-        height: 50px;
-        width: 50px;
-        font-size: 50px;
-        font-family: arial;
-        cursor: pointer;
-        justify-content: center;
-        align-items: center;
-    }
-
     .${root_id} .scroll-rounds-button.hidden {
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
-    }
-    
-    .${root_id} .scroll-rounds-button .button-icon:hover {
-        opacity: 1;
     }
 
     .${root_id} .scroll-rounds-button-left {
         left: 0;
     }
 
-    .${root_id} .scroll-rounds-button-left .button-icon {
-        padding-right: 3px;
-    }
-
     .${root_id} .scroll-rounds-button-right  {
         right: 0;
-    }
-
-    .${root_id} .scroll-rounds-button-right .button-icon {
-        padding-left: 3px;
     }
 `
 
