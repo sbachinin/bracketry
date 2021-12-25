@@ -1,4 +1,4 @@
-import { createBrackets } from './lib.mjs'
+import { createBrackets } from './lib/lib.mjs'
 import { mockFetchData as fetch } from './mockFetchData.mjs'
 import { prepareMockData } from './prepareMockData.mjs'
 import { get_options_inputs } from './options-inputs/options-inputs.mjs'
