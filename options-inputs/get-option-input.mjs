@@ -46,10 +46,13 @@ export const get_option_input = (name, info, value, onchange) => {
     if(info.type === 'switch') {
         const el = createElementFromHTML(`
             <label class="switch">
-                <input type="checkbox">
+                <input type="checkbox" ${value ? 'checked' : ''}>
                 <span class="slider round"></span>
             </label>`
         )
+        el.addEventListener('click', _ => {
+            onchange(name, el.querySelector('input').checked)
+        })
         return el
     }
 }

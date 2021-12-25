@@ -10,7 +10,7 @@ const get_top = position => {
 
 export const get_buttons_style = (root_id, options) => `
     .${root_id} .scroll-rounds-button {
-        opacity: 0;
+        opacity: ${options.always_show_horizontal_scroll_buttons ? 1 : 0};
         display: flex;
         justify-content: center;
         align-items: center;

@@ -23,8 +23,8 @@ export const switchStyle = `
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: .2s;
+    transition: .2s;
     }
 
     .slider:before {
@@ -35,8 +35,8 @@ export const switchStyle = `
     left: 4px;
     bottom: 4px;
     background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: .2s;
+    transition: .2s;
     }
 
     input:checked + .slider {
