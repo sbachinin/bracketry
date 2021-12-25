@@ -16,6 +16,11 @@ export const get_buttons_style = (root_id, options) => `
         position: absolute;
         top: 0;
         height: 100%;
+        padding: ${
+            options.horizontal_scroll_buttons_vert_padding
+        } ${
+            options.horizontal_scroll_buttons_hor_padding
+        };
         user-select: none;
         cursor: pointer;
     }
@@ -38,11 +43,6 @@ export const get_buttons_style = (root_id, options) => `
 
     .${root_id} .scroll-rounds-button .button-icon {
         background: radial-gradient(${options.background_color}, rgba(0,0,0,0));
-        padding: ${
-            options.horizontal_scroll_buttons_vert_padding
-        } ${
-            options.horizontal_scroll_buttons_hor_padding
-        };
     }
 
     .${root_id} .scroll-rounds-button.hidden {
