@@ -32,6 +32,7 @@ export const createBrackets = (
     root_bracket_container.style.width = '100%'
     root_bracket_container.style.height = '100%'
     root_bracket_container.style.position = 'relative'
+    root_bracket_container.style.resize = 'both'
 
     rootContainer.append(root_bracket_container)
 
@@ -71,7 +72,7 @@ export const createBrackets = (
             
             drawAll(allData, state, canvasEl, actual_options)
         })
-    ).observe(rootContainer)
+    ).observe(root_bracket_container)
 
     drawAll(allData, state, canvasEl, actual_options)
 
