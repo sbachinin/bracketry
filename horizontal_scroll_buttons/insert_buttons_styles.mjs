@@ -19,7 +19,7 @@ export const get_buttons_style = (root_id, options) => `
         width: 86px;
         top: ${get_top(options.horizontal_scroll_buttons_position)};
         user-select: none;
-        background: radial-gradient(${options.backgroundColor}, rgba(0,0,0,0));
+        background: radial-gradient(${options.background_color}, rgba(0,0,0,0));
     }
 
     .${root_id} .scroll-rounds-button svg {

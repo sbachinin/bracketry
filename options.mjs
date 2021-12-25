@@ -3,7 +3,7 @@
 // horizontal_scroll_buttons_vertical_margin
 
 export const OPTIONS = {
-    backgroundColor: {
+    background_color: {
         title: 'Canvas backgound color',
         type: 'string',
         default_value: '#ffffff'

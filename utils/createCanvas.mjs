@@ -4,7 +4,7 @@ export const createCanvas = (root_bracket_container, options) => {
     canvasEl.className = 'sport-brackets-canvas'
     canvasEl.width = root_bracket_container.clientWidth
     canvasEl.height = root_bracket_container.clientHeight
-    canvasEl.style.backgroundColor = options.backgroundColor
+    canvasEl.style.backgroundColor = options.background_color
     canvasEl.style.border = 'none'
 
     // have to insert canvas before buttons 
