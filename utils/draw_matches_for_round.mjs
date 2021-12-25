@@ -21,9 +21,8 @@ export const drawMatchesForRound = (roundIndex, allRounds, ctx, options) => {
 
         ctx.beginPath();
         
-        // these 2 may be custom:
-        ctx.lineWidth = "2";
-        ctx.strokeStyle = "#bbbbbb";
+        ctx.lineWidth = options.connection_lines_width
+        ctx.strokeStyle = options.connection_lines_color;
         
         ctx.moveTo(
             matchData.positionX + constants.ROUND_WIDTH - constants.MATCH_HOR_MARGIN,

@@ -50,6 +50,16 @@ export const OPTIONS = {
         type: 'select',
         options: [ 'curve', 'diagonal', 'bended-1', 'bended-2' ],
         default_value: 'bended-2'
+    },
+    connection_lines_width: {
+        title: 'Connection lines width',
+        type: 'number',
+        default_value: 1
+    },
+    connection_lines_color: {
+        title: 'Connection lines color',
+        type: 'string',
+        default_value: '#bbbbbb'
     }
 }
 

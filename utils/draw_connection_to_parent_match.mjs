@@ -6,7 +6,6 @@ export const draw_connection_to_parent_match = (
     options,
     ctx
 ) => {
-   
     if (options.connection_lines_type === 'curve') {
         ctx.bezierCurveTo(
             later_connection_point[0] - constants.MATCH_HOR_MARGIN,
