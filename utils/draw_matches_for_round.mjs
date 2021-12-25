@@ -5,19 +5,31 @@ export const drawMatchesForRound = (roundIndex, allRounds, ctx, options) => {
     allRounds[roundIndex].matchesToDraw.forEach((matchData, matchIndex) => {
         // ctx.fillRect(
         //     matchData.positionX + constants.MATCH_HOR_MARGIN,
-        //     matchData.matchBodyY,
-        //     matchData.matchBodyWidth,
-        //     matchData.matchBodyHeight)
+        //     matchData.match_body_Y,
+        //     matchData.match_body_width,
+        //     matchData.match_body_height)
         
         ctx.fillStyle = 'black'
+
+        // DRAW TEAMS NAMES
         ctx.fillText(
-            matchData.firstTeamTitle,
+            matchData.first_team_title,
             matchData.positionX + constants.MATCH_HOR_MARGIN + constants.MATCH_HOR_PADDING,
-            matchData.centerY - matchData.matchBodyHeight / 10)
+            matchData.centerY - matchData.match_body_height / 10)
         ctx.fillText(
-            matchData.secondTeamTitle,
+            matchData.second_team_title,
             matchData.positionX + constants.MATCH_HOR_MARGIN + constants.MATCH_HOR_PADDING,
-            matchData.centerY + constants.FONT_SIZE + matchData.matchBodyHeight / 10)
+            matchData.centerY + constants.FONT_SIZE + matchData.match_body_height / 10)
+        
+        // DRAW SCORES
+        ctx.fillText(
+            matchData.first_team_score.join(' '),
+            matchData.positionX + constants.ROUND_WIDTH - 100,
+            matchData.centerY - matchData.match_body_height / 10)
+        ctx.fillText(
+            matchData.second_team_score.join(' '),
+            matchData.positionX + constants.ROUND_WIDTH - 100,
+            matchData.centerY + constants.FONT_SIZE + matchData.match_body_height / 10)
 
         ctx.beginPath();
         

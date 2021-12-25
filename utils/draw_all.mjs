@@ -1,5 +1,5 @@
 import { drawRounds } from './draw_rounds.mjs'
-import { getMatchDrawingData } from './get_match_drawing_data.mjs'
+import { get_match_drawing_data } from './get_match_drawing_data.mjs'
 import * as constants from './constants.mjs'
 
 export const drawAll = (allData, state, canvasEl, options) => {
@@ -21,7 +21,7 @@ export const drawAll = (allData, state, canvasEl, options) => {
         return {
             ...roundData,
             matchesToDraw: roundData.matches.map(
-                match => getMatchDrawingData(match, freeHeightPerMatch, roundIndex, state))
+                match => get_match_drawing_data(match, freeHeightPerMatch, roundIndex, state))
         }
     })
 
