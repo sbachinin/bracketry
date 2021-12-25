@@ -6,16 +6,16 @@ const get_vert_align = position => {
 
 export const get_buttons_style = (root_id, options) => `
     .${root_id} .scroll-rounds-button {
-        opacity: ${options.always_show_horizontal_scroll_buttons ? 1 : 0};
+        opacity: ${options.always_show_horizontal_scroll_buttons ? 0.5 : 0};
         display: flex;
         justify-content: center;
         align-items: ${get_vert_align(
             options.horizontal_scroll_buttons_position,
         )};
         padding: ${
-            options.horizontal_scroll_buttons_vert_margin
+            options.horizontal_scroll_buttons_vert_padding
         } ${
-            options.horizontal_scroll_buttons_hor_margin
+            options.horizontal_scroll_buttons_hor_padding
         };
         box-sizing: border-box;
         position: absolute;
@@ -30,6 +30,10 @@ export const get_buttons_style = (root_id, options) => `
     }
 
     .${root_id}:hover .scroll-rounds-button {
+        opacity: 0.5;
+    }
+
+    .${root_id} .scroll-rounds-button:hover {
         opacity: 1;
     }
 

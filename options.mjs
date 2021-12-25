@@ -30,13 +30,13 @@ export const OPTIONS = {
         type: 'string',
         default_value:'#161616'
     },
-    horizontal_scroll_buttons_hor_margin: {
-        title: 'Horizontal scroll buttons horizontal margin',
+    horizontal_scroll_buttons_hor_padding: {
+        title: 'Horizontal scroll buttons horizontal padding',
         type: 'number',
         default_value: 29
     },
-    horizontal_scroll_buttons_vert_margin: {
-        title: 'Horizontal scroll buttons vertical margin',
+    horizontal_scroll_buttons_vert_padding: {
+        title: 'Horizontal scroll buttons vertical padding',
         type: 'number',
         default_value: 29
     },
