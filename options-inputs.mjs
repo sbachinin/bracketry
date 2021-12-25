@@ -7,11 +7,21 @@ const createElementFromHTML = htmlString => {
     return div.firstElementChild; 
   }
 
+const escapeHtml = unsafe => {
+    return unsafe
+        ?.replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
 const get_option_input = (name, info, value, onchange) => {
     if (info.type === 'number' || info.type === 'string') {
         const input_type = info.type === 'string' ? 'text' : 'number'
+        const safeValue = info.type === 'string' ? escapeHtml(value) : value
         const el = createElementFromHTML(`
-            <input type='${input_type}' name='${name}' value=${value}></input>
+            <input type='${input_type}' name='${name}' value='${safeValue}'></input>
         `)
         el.addEventListener('input', e => {
             onchange(name, e.target.value)
