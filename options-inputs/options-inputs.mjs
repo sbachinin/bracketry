@@ -1,6 +1,6 @@
 import { OPTIONS, get_default_options } from '../options.mjs'
 import { switchStyle } from './switch-style.mjs'
-import { createElementFromHTML } from './utils.mjs'
+import { createElementFromHTML, escapeHtml } from './utils.mjs'
 import { get_option_input } from './get-option-input.mjs'
 
 export const get_options_inputs = (handle_options_change, user_options_to_values) => {
@@ -19,7 +19,7 @@ export const get_options_inputs = (handle_options_change, user_options_to_values
         .map(([option_name, option_info]) => {
             const option_wrapper_el = createElementFromHTML(
                 `<div style='margin: 5px; background: tomato; padding: 5px;'>
-                    <p style='margin: 3px'>${option_info.title}</p>
+                    <p style='margin: 3px'>${escapeHtml(option_info.title)}</p>
                 </div>`
             )
             const input = get_option_input(

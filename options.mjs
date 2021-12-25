@@ -41,7 +41,7 @@ export const OPTIONS = {
         default_value: 29
     },
     horizontal_scroll_buttons_icon_left: {
-        title: 'Icon for left horizontal scroll button',
+        title: 'Icon for left horizontal scroll button (HTML string with <svg> / <img> / ...)',
         type: 'multiline_string',
         default_value: `
             <div class="button-icon">
@@ -50,7 +50,7 @@ export const OPTIONS = {
         `
     },
     horizontal_scroll_buttons_icon_right: {
-        title: 'Icon for right horizontal scroll button',
+        title: 'Icon for right horizontal scroll button (HTML string with <svg> / <img> / ...)',
         type: 'multiline_string',
         default_value: `
             <div class="button-icon">
