@@ -17,11 +17,27 @@ const escapeHtml = unsafe => {
 }
 
 const get_option_input = (name, info, value, onchange) => {
-    if (info.type === 'number' || info.type === 'string') {
-        const input_type = info.type === 'string' ? 'text' : 'number'
-        const safeValue = info.type === 'string' ? escapeHtml(value) : value
+    if (info.type === 'number') {
         const el = createElementFromHTML(`
-            <input type='${input_type}' name='${name}' value='${safeValue}'></input>
+            <input type='number' value='${value}'></input>
+        `)
+        el.addEventListener('input', e => {
+            onchange(name, e.target.value)
+        })
+        return el
+    }
+    if (info.type === 'string') {
+        const el = createElementFromHTML(`
+            <input type='text' value='${escapeHtml(value)}'></input>
+        `)
+        el.addEventListener('input', e => {
+            onchange(name, e.target.value)
+        })
+        return el
+    }
+    if (info.type === 'multiline_string') {
+        const el = createElementFromHTML(`
+            <textarea style="width: 500px; height: 100px;">${value}</textarea>
         `)
         el.addEventListener('input', e => {
             onchange(name, e.target.value)
@@ -57,11 +73,11 @@ export const get_options_inputs = (handle_options_change, user_options_to_values
         handle_options_change(options_to_values)
     }
     
-    return Object.entries(OPTIONS)
+    const inputs = Object.entries(OPTIONS)
         .map(([option_name, option_info]) => {
             const option_wrapper_el = createElementFromHTML(
-                `<div style='margin: 20px'>
-                    ${option_info.title}
+                `<div style='margin: 5px; background: tomato; padding: 5px;'>
+                    <p style='margin: 3px'>${option_info.title}</p>
                 </div>`
             )
             const input = get_option_input(
@@ -73,4 +89,14 @@ export const get_options_inputs = (handle_options_change, user_options_to_values
             option_wrapper_el.append(input)
             return option_wrapper_el
         })
+
+    const wrapper_el = createElementFromHTML(
+        `<div style='
+            display: flex;
+            width: calc(100% - 20px);
+            flex-wrap: wrap;
+            align-items: center;
+        '></div>`)
+    wrapper_el.append(...inputs)
+    return wrapper_el
 }

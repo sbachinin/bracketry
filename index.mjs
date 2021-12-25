@@ -26,6 +26,6 @@ const renderAll = options => {
     ))
 }
 
-document.body.prepend(...get_options_inputs(renderAll, some_test_options))
+document.body.prepend(get_options_inputs(renderAll, some_test_options))
 
 renderAll(some_test_options)
