@@ -1,7 +1,7 @@
 import { createBrackets } from './lib.mjs'
 import { mockFetchData as fetch } from './mockFetchData.mjs'
 import { prepareMockData } from './prepareMockData.mjs'
-import { get_options_inputs } from './options-inputs.mjs'
+import { get_options_inputs } from './options-inputs/options-inputs.mjs'
 
 const some_test_options = {   
     // backgroundColor: '#8fd6b8',
