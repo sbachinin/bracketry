@@ -6,7 +6,7 @@ export const get_option_input = (name, info, value, onchange) => {
             <input type='number' value='${value}'></input>
         `)
         el.addEventListener('input', e => {
-            onchange(name, e.target.value)
+            onchange(name, Number(e.target.value))
         })
         return el
     }
