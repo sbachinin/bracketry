@@ -11,7 +11,7 @@ const some_test_options = {
     // horizontal_scroll_buttons_icon_right: `<svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="12"><path d="M12 0l8 9h-6v15h-4v-15h-6z"/></svg>`,
     // horizontal_scroll_buttons_color: 'red'
     // connection_lines_type: 'bended-2', // 'curve' | 'diagonal' | 'bended-1' | 'bended-2'
-    background_color: '#fbffc7'
+    // background_color: '#fbffc7'
 }
 
 const renderAll = options => {
