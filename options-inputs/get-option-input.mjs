@@ -21,7 +21,7 @@ export const get_option_input = (name, info, value, onchange) => {
     }
     if (info.type === 'multiline_string') {
         const el = createElementFromHTML(`
-            <textarea style="width: 500px; height: 100px;">${value}</textarea>
+            <textarea style="width: 100%; height: 100px;">${value}</textarea>
         `)
         el.addEventListener('input', e => {
             onchange(name, e.target.value)

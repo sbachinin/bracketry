@@ -34,10 +34,9 @@ export const get_options_inputs = (handle_options_change, user_options_to_values
 
     const wrapper_el = createElementFromHTML(
         `<div style='
-            display: flex;
-            width: calc(100% - 20px);
-            flex-wrap: wrap;
-            align-items: center;
+            width: 400px;
+            height: 98vh;
+            overflow: scroll;
         '></div>`)
     wrapper_el.append(...inputs)
 
