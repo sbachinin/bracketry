@@ -37,6 +37,7 @@ export const get_options_inputs = (handle_options_change, user_options_to_values
             width: 400px;
             height: 98vh;
             overflow: scroll;
+            flex-shrink: 0;
         '></div>`)
     wrapper_el.append(...inputs)
 
