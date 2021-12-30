@@ -1,4 +1,5 @@
-import { OPTIONS, get_default_options } from '../lib/options.mjs'
+import { OPTIONS } from '../lib/options.mjs'
+import { get_default_options } from '../lib/utils/get_default_options.mjs'
 import { switchStyle } from './switch-style.mjs'
 import { createElementFromHTML, escapeHtml } from './utils.mjs'
 import { get_option_input } from './get-option-input.mjs'
