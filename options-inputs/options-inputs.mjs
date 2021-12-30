@@ -1,5 +1,4 @@
-import { OPTIONS } from '../lib/options.mjs'
-import { get_default_options } from '../lib/utils/get_default_options.mjs'
+import { get_default_options, get_flattened_options } from '../lib/utils/get_default_options.mjs'
 import { switchStyle } from './switch-style.mjs'
 import { createElementFromHTML, escapeHtml } from './utils.mjs'
 import { get_option_input } from './get-option-input.mjs'
@@ -16,7 +15,7 @@ export const get_options_inputs = (handle_options_change, user_options_to_values
         handle_options_change(options_to_values)
     }
     
-    const inputs = Object.entries(OPTIONS)
+    const inputs = Object.entries(get_flattened_options())
         .map(([option_name, option_info]) => {
             const option_wrapper_el = createElementFromHTML(
                 `<div style='margin: 5px; background: tomato; padding: 5px;'>
