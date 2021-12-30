@@ -1694,7 +1694,7 @@ export default {
                     "score": [
                         {
                             "set": 1,
-                            "game": "6",
+                            "game": "62",
                             "winner": true
                         },
                         {
