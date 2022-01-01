@@ -53,10 +53,12 @@ export const get_options_inputs = (handle_options_change, user_options_to_values
 
     const wrapper_el = create_element_from_Html(
         `<div style='
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 400px;
-            height: 98vh;
+            height: 100vh;
             overflow: scroll;
-            flex-shrink: 0;
         '></div>`)
 
       
