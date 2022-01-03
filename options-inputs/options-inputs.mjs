@@ -20,7 +20,11 @@ const get_options_type_text_el = options_type_name => {
     `)
 }
 
-export const get_options_inputs = (handle_options_change, user_options_to_values) => {
+export const get_options_inputs = (
+    render_all,
+    data,
+    user_options_to_values
+) => {
     const default_options_to_values = get_default_options()
     const options_to_values = { ...default_options_to_values, ...user_options_to_values}
 
@@ -29,7 +33,7 @@ export const get_options_inputs = (handle_options_change, user_options_to_values
             options_to_values,
             { [option_name]: option_value }
         )
-        handle_options_change(options_to_values)
+        render_all(data, options_to_values)
     }
 
     const get_inputs_of_type = options => {
@@ -69,6 +73,14 @@ export const get_options_inputs = (handle_options_change, user_options_to_values
                 ...get_inputs_of_type(options_of_type)
             )
         })
+
+    const data_textarea = create_element_from_Html(`
+        <textarea style="width: 100%; height: 1000px;">${JSON.stringify(data, null, 2)}</textarea>
+    `)
+    data_textarea.addEventListener('input', e => {
+        render_all(JSON.parse(e.target.value), options_to_values)
+    })
+    wrapper_el.append(data_textarea)
 
     document.head.insertAdjacentHTML(
         'beforeend',
