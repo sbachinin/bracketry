@@ -1,36 +1,25 @@
-const getFullTeamsData = (matchTeams, allData) => {
+const get_sides_data = (match_teams, all_data) => {
     
-    return matchTeams.map(team => {
-        const teamMeta = allData.teams
+    return match_teams.map(team => {
+        const team_meta = all_data.teams
             .find(({uuid}) => uuid === team.team_id)
-
+        
+        const player_meta = all_data.players.find(player => player.uuid === team_meta.players[0])
         return {
-            ...team,
-            players: teamMeta.players
-                .map(playerId => {
-                    const playerMeta = allData.players.find(
-                        player => player.uuid === playerId
-                    )
-                    return {
-                        playerId,
-                        firstName: playerMeta.first_name,
-                        lastName: playerMeta.last_name,
-                        fullName: playerMeta.full_name,
-                        shortName: playerMeta.short_name,
-                        gender: playerMeta.gender,
-                        nationality: playerMeta.nationality,
-                    }
-                })
+            score: team.score.map(score => score.game),
+            isWinner: team.status === 'Winner',
+            title: player_meta.short_name,
+            nationality: player_meta.nationality.code,
         }
     })
 }
 
-const getMatchesForRound = (roundId, allData) => {
-    return allData.matches
+const getMatchesForRound = (roundId, all_data) => {
+    return all_data.matches
         .filter(match => match.round_id === roundId)
         .map(match => ({
-            ...match,
-            teams: getFullTeamsData(match.teams, allData)
+            order: match.order,
+            sides: get_sides_data(match.teams, all_data)
         }))
         .sort((a, b) => a.order - b.order)
 }
@@ -39,11 +28,11 @@ const getMatchesForRound = (roundId, allData) => {
 
 
 
-export const prepareMockData = allData => {
-    return Promise.resolve(allData.rounds.map(
+export const prepareMockData = all_data => {
+    return Promise.resolve(all_data.rounds.map(
         round => ({
-            ...round,
-            matches: getMatchesForRound(round.uuid, allData)
+            name: round.name,
+            matches: getMatchesForRound(round.uuid, all_data)
         })
     ))
 }
