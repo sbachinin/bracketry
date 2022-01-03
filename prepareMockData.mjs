@@ -40,15 +40,10 @@ const getMatchesForRound = (roundId, allData) => {
 
 
 export const prepareMockData = allData => {
-    const rounds = allData.rounds.map(
+    return Promise.resolve(allData.rounds.map(
         round => ({
             ...round,
             matches: getMatchesForRound(round.uuid, allData)
         })
-    )
-
-    return Promise.resolve({
-        ...allData,
-        rounds
-    })
+    ))
 }
