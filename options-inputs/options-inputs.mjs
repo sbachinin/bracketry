@@ -75,7 +75,7 @@ export const get_options_inputs = (
         })
 
     const data_textarea = create_element_from_Html(`
-        <textarea style="width: 100%; height: 1000px;">${JSON.stringify(data, null, 2)}</textarea>
+        <textarea disabled style="width: 100%; height: 1000px;">${JSON.stringify(data, null, 2)}</textarea>
     `)
     data_textarea.addEventListener('input', e => {
         render_all(JSON.parse(e.target.value), options_to_values)
