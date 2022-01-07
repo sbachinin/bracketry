@@ -11,7 +11,7 @@ const get_sides_data = (match_teams, all_data) => {
                 tie_break: score.tie_break && Number(score.tie_break)
             })),
             isWinner: team.status === 'Winner',
-            title: player_meta.short_name,
+            short_title: player_meta.short_name,
             nationality: player_meta.nationality.code,
         }
     })
