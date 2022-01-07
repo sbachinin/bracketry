@@ -13,6 +13,7 @@ const get_sides_data = (match_teams, all_data) => {
             isWinner: team.status === 'Winner',
             short_title: player_meta.short_name,
             nationality: player_meta.nationality.code,
+            seed: team_meta.seed
         }
     })
 }
