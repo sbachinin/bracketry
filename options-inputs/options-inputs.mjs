@@ -1,10 +1,10 @@
-import * as OPTIONS from '../lib/options.mjs'
+import { OPTIONS } from '../lib/options.mjs'
 import { get_default_options } from '../lib/utils/get_default_options.mjs'
 import { switchStyle } from './switch-style.mjs'
 import { create_element_from_Html, escape_Html } from './utils.mjs'
 import { get_option_input } from './get-option-input.mjs'
 
-const names_of_expanded_groups = ['GENERAL_OPTIONS']
+const names_of_expanded_groups = []
 
 const get_options_type_text_el = (options_type_name, insert_inputs) => {
     const text = options_type_name
