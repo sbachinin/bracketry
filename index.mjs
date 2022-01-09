@@ -13,7 +13,7 @@ const some_test_options = {
     // connection_lines_type: 'bended-2', // 'curve' | 'diagonal' | 'bended-1' | 'bended-2'
     // background_color: '#fbffc7'
     // auto_canvas_height: true
-    seed_width :300
+    // seed_width :300
 }
 
 const canvas_container = document.getElementById('canvas-container')
