@@ -32,7 +32,7 @@ export const get_option_input = (name, info, value, onchange) => {
         const el = create_element_from_Html(`
             <select name="..." id="...">
                 ${info.options.map(opt => `
-                    <option value=${opt} ${opt === value ? 'selected' : ''}>
+                    <option value="${opt}" ${opt === value ? 'selected' : ''}>
                         ${opt}
                     </option>
                 `).join('')}
