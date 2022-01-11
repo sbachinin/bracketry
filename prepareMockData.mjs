@@ -23,6 +23,7 @@ const getMatchesForRound = (roundId, all_data) => {
     return all_data.matches
         .filter(match => match.round_id === roundId)
         .map(match => ({
+            id: match.id,
             order: match.order,
             sides: get_sides_data(match.teams, all_data)
         }))
