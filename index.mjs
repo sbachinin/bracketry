@@ -6,9 +6,13 @@ import { get_options_inputs } from './options-inputs/options-inputs.mjs'
 const some_test_options = {   
     // backgroundColor: '#8fd6b8',
     // horizontal_scroll_triggered_by: 'mousemove', // 'buttons' | 'mousemove'
-    // horizontal_scroll_buttons_position: 'top', // 'top' | 'middle' | 'bottom' | { left: ..., top: ..., right: ..., bottom: ...}
+    horizontal_scroll_buttons_position: 'middle', // 'top' | 'middle' | 'bottom' | { left: ..., top: ..., right: ..., bottom: ...}
     // horizontal_scroll_buttons_size: 100,
-    // horizontal_scroll_buttons_icon_right: `<svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="12"><path d="M12 0l8 9h-6v15h-4v-15h-6z"/></svg>`,
+    /* horizontal_scroll_buttons_icon_right: `
+        <div style="padding: 100px">
+            <svg style="fill: red" xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="12"><path d="M12 0l8 9h-6v15h-4v-15h-6z"/></svg>
+        </div>
+    `, */
     // horizontal_scroll_buttons_color: 'red'
     // connection_lines_type: 'bended-2', // 'curve' | 'diagonal' | 'bended-1' | 'bended-2'
     // background_color: '#fbffc7'
