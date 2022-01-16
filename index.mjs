@@ -7,7 +7,8 @@ const some_test_options = {
     // backgroundColor: '#8fd6b8',
     // horizontal_scroll_triggered_by: 'mousemove', // 'buttons' | 'mousemove'
     horizontal_scroll_buttons_position: 'middle', // 'top' | 'middle' | 'bottom' | { left: ..., top: ..., right: ..., bottom: ...}
-    should_reduce_match_until_hovered: true
+    should_reduce_match_until_clicked: true,
+    team_title_max_width: 100,
     // horizontal_scroll_buttons_size: 100,
     /* horizontal_scroll_buttons_icon_right: `
         <div style="padding: 100px">
@@ -15,7 +16,7 @@ const some_test_options = {
         </div>
     `, */
     // horizontal_scroll_buttons_color: 'red'
-    // connection_lines_type: 'bended-2', // 'curve' | 'diagonal' | 'bended-1' | 'bended-2'
+    connection_lines_type: 'bended-2', // 'curve' | 'diagonal' | 'bended-1' | 'bended-2'
     // background_color: '#fbffc7'
     // auto_canvas_height: true
     // seed_width :300
