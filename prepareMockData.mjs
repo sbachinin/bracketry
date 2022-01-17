@@ -6,6 +6,7 @@ const get_sides_data = (match_teams, all_data) => {
         
         const player_meta = all_data.players.find(player => player.uuid === team_meta.players[0])
         return {
+            id: team.team_id,
             score: team.score.map(score => ({
                 main_score: Number(score.game),
                 tie_break: score.tie_break && Number(score.tie_break)
