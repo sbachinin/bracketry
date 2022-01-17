@@ -6,9 +6,9 @@ import { get_options_inputs } from './options-inputs/options-inputs.mjs'
 const some_test_options = {   
     // backgroundColor: '#8fd6b8',
     // horizontal_scroll_triggered_by: 'mousemove', // 'buttons' | 'mousemove'
-    horizontal_scroll_buttons_position: 'middle', // 'top' | 'middle' | 'bottom' | { left: ..., top: ..., right: ..., bottom: ...}
-    should_reduce_match_until_hovered: true,
-    team_title_max_width: 100,
+    // horizontal_scroll_buttons_position: 'middle', // 'top' | 'middle' | 'bottom' | { left: ..., top: ..., right: ..., bottom: ...}
+    // should_reduce_match_until_hovered: true,
+    // team_title_max_width: 100,
     // horizontal_scroll_buttons_size: 100,
     /* horizontal_scroll_buttons_icon_right: `
         <div style="padding: 100px">
