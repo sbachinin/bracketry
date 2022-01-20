@@ -18,7 +18,6 @@ const some_test_options = {
     // horizontal_scroll_buttons_color: 'red'
     connection_lines_type: 'bended-1', // 'curve' | 'diagonal' | 'bended-1' | 'bended-2'
     // connection_lines_width: 4,
-    highlighted_connection_lines_width: 4,
     highlight_team_history_on_click: true,
     // background_color: '#fbffc7'
     // auto_canvas_height: true
