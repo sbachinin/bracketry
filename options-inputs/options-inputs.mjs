@@ -6,7 +6,7 @@ import { get_option_input } from './get-option-input.mjs'
 
 const names_of_expanded_groups = []
 
-const get_options_group_heading = (options_type_name, insert_inputs) => {
+const get_options_group_heading = (options_type_name, render_inputs) => {
     const text = options_type_name
         .split('_')
         .filter(word => word !== 'OPTIONS')
@@ -45,13 +45,13 @@ const get_options_group_heading = (options_type_name, insert_inputs) => {
         } else {
             names_of_expanded_groups.push(options_type_name)
         }
-        insert_inputs()
+        render_inputs()
     })
 
     return el
 }
 
-const insert_inputs = (data, user_options_to_values, wrapper_el, render_all) => {
+const render_inputs = (data, user_options_to_values, wrapper_el, render_all) => {
     wrapper_el.innerHTML = ''
 
     const default_options_to_values = get_default_options()
@@ -72,7 +72,7 @@ const insert_inputs = (data, user_options_to_values, wrapper_el, render_all) => 
             })
         }
 
-        insert_inputs()
+        render_inputs(data, options_to_values, wrapper_el, render_all)
         render_all(data, options_to_values)
     }
 
@@ -106,7 +106,7 @@ const insert_inputs = (data, user_options_to_values, wrapper_el, render_all) => 
             wrapper_el.append(
                 get_options_group_heading(
                     options_type_name,
-                    () => insert_inputs(data, options_to_values, wrapper_el, render_all)
+                    () => render_inputs(data, options_to_values, wrapper_el, render_all)
                 ),
                 ...inputs_of_type
             )
@@ -114,7 +114,7 @@ const insert_inputs = (data, user_options_to_values, wrapper_el, render_all) => 
 
     wrapper_el.append(get_options_group_heading(
         'DATA_TEXTAREA',
-        () => insert_inputs(data, options_to_values, wrapper_el, render_all)
+        () => render_inputs(data, options_to_values, wrapper_el, render_all)
     ))
 
     if (names_of_expanded_groups.includes('DATA_TEXTAREA')) {
@@ -143,7 +143,7 @@ export const get_options_inputs = (
             overflow: scroll;
         '></div>`)
 
-    insert_inputs(data, user_options_to_values, wrapper_el, render_all)
+    render_inputs(data, user_options_to_values, wrapper_el, render_all)
 
     document.head.insertAdjacentHTML(
         'beforeend',
