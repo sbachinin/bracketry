@@ -6,7 +6,7 @@ import { get_option_input } from './get-option-input.mjs'
 
 const names_of_expanded_groups = []
 
-const get_options_type_text_el = (options_type_name, insert_inputs) => {
+const get_options_group_heading = (options_type_name, insert_inputs) => {
     const text = options_type_name
         .split('_')
         .filter(word => word !== 'OPTIONS')
@@ -72,6 +72,7 @@ const insert_inputs = (data, user_options_to_values, wrapper_el, render_all) => 
             })
         }
 
+        insert_inputs()
         render_all(data, options_to_values)
     }
 
@@ -103,7 +104,7 @@ const insert_inputs = (data, user_options_to_values, wrapper_el, render_all) => 
             )
 
             wrapper_el.append(
-                get_options_type_text_el(
+                get_options_group_heading(
                     options_type_name,
                     () => insert_inputs(data, options_to_values, wrapper_el, render_all)
                 ),
@@ -111,7 +112,7 @@ const insert_inputs = (data, user_options_to_values, wrapper_el, render_all) => 
             )
         })
 
-    wrapper_el.append(get_options_type_text_el(
+    wrapper_el.append(get_options_group_heading(
         'DATA_TEXTAREA',
         () => insert_inputs(data, options_to_values, wrapper_el, render_all)
     ))
