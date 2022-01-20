@@ -19,7 +19,7 @@ const some_test_options = {
     connection_lines_type: 'bended-1', // 'curve' | 'diagonal' | 'bended-1' | 'bended-2'
     connection_lines_width: 4,
     highlighted_connection_lines_width: 4,
-    highlight_team_history_on_hover: true,
+    // highlight_team_history_on_hover: true,
     // background_color: '#fbffc7'
     // auto_canvas_height: true
     // seed_width :300
