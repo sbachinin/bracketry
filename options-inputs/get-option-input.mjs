@@ -50,8 +50,8 @@ export const get_option_input = (name, info, value, onchange) => {
                 <span class="slider round"></span>
             </label>`
         )
-        el.addEventListener('click', _ => {
-            onchange(name, el.querySelector('input').checked)
+        el.querySelector('span.slider').addEventListener('click', _ => {
+            onchange(name, !el.querySelector('input').checked)
         })
         return el
     }
