@@ -5,7 +5,7 @@ import { get_options_inputs } from './options-inputs/options-inputs.mjs'
 
 const some_test_options = {   
     // backgroundColor: '#8fd6b8',
-    horizontal_scroll_triggered_by: 'mousemove', // 'buttons' | 'mousemove'
+    // horizontal_scroll_triggered_by: 'mousemove', // 'buttons' | 'mousemove'
     // horizontal_scroll_buttons_position: 'middle', // 'top' | 'middle' | 'bottom' | { left: ..., top: ..., right: ..., bottom: ...}
     // reduce_match_until_hovered: true,
     // team_title_max_width: 100,
@@ -18,7 +18,8 @@ const some_test_options = {
     // horizontal_scroll_buttons_color: 'red'
     connection_lines_type: 'bended-1', // 'curve' | 'diagonal' | 'bended-1' | 'bended-2'
     connection_lines_width: 4,
-    highlighted_connection_lines_width: 4
+    highlighted_connection_lines_width: 4,
+    highlight_team_history_on_hover: true,
     // background_color: '#fbffc7'
     // auto_canvas_height: true
     // seed_width :300
