@@ -1,5 +1,5 @@
 import { OPTIONS } from '../lib/options.mjs'
-import { get_default_options } from '../lib/utils/get_default_options.mjs'
+import { get_default_options, get_flattened_options } from '../lib/utils/get_default_options.mjs'
 import { switchStyle } from './switch-style.mjs'
 import { create_element_from_Html, escape_Html } from './utils.mjs'
 import { get_option_input } from './get-option-input.mjs'
@@ -62,6 +62,16 @@ const insert_inputs = (data, user_options_to_values, wrapper_el, render_all) => 
             options_to_values,
             { [option_name]: option_value }
         )
+        if (option_value === true) {
+            const flattened_options = get_flattened_options()
+            flattened_options[option_name]?.incompatible_with.forEach(incompat_option_name => {
+                Object.assign(
+                    options_to_values,
+                    { [incompat_option_name]: false }
+                )
+            })
+        }
+
         render_all(data, options_to_values)
     }
 
