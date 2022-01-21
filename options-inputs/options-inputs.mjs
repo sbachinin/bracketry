@@ -64,7 +64,7 @@ const render_inputs = (data, user_options_to_values, wrapper_el, render_all) => 
         )
         if (option_value === true) {
             const flattened_options = get_flattened_options()
-            flattened_options[option_name]?.incompatible_with.forEach(incompat_option_name => {
+            flattened_options[option_name]?.incompatible_with?.forEach(incompat_option_name => {
                 Object.assign(
                     options_to_values,
                     { [incompat_option_name]: false }
