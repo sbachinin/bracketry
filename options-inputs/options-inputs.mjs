@@ -27,7 +27,7 @@ const get_options_group_heading = (options_type_name, render_inputs) => {
             margin-top: 20px;
         '>
             ${text}
-            <span style='
+            <span class='${options_type_name}-arrow' style='
                 display: inline-block;
                 line-height: 0;
                 font-size: 32px;
@@ -51,6 +51,17 @@ const get_options_group_heading = (options_type_name, render_inputs) => {
     return el
 }
 
+const update_inputs = () => {
+    Object.keys(OPTIONS).forEach(options_type_name => {
+        document.querySelector(`.${options_type_name}-arrow`).style.transform = (
+            names_of_expanded_groups.includes(options_type_name) ? 'rotate(180deg)' : 'none'
+        )
+        document.querySelector(`.${options_type_name}`).style.height = (
+            names_of_expanded_groups.includes(options_type_name) ? 'auto' : 0
+        )
+    })
+}
+
 const render_inputs = (data, user_options_to_values, wrapper_el, render_all) => {
     wrapper_el.innerHTML = ''
 
@@ -72,12 +83,12 @@ const render_inputs = (data, user_options_to_values, wrapper_el, render_all) => 
             })
         }
 
-        render_inputs(data, options_to_values, wrapper_el, render_all)
+        update_inputs()
         render_all(data, options_to_values)
     }
 
-    const get_inputs_of_type = options => {
-        return Object.entries(options)
+    const get_inputs_of_type = (options, options_type_name) => {
+        const inputs = Object.entries(options)
             .map(([option_name, option_info]) => {
                 const option_wrapper_el = create_element_from_Html(
                     `<div style='background: #ddff9b; padding: 7px;'>
@@ -93,22 +104,27 @@ const render_inputs = (data, user_options_to_values, wrapper_el, render_all) => 
                 option_wrapper_el.append(input)
                 return option_wrapper_el
             })
+
+        const wrapper = create_element_from_Html(`
+            <div class='${options_type_name}' style='overflow: hidden; height: ${
+                names_of_expanded_groups.includes(options_type_name)
+                ? 'auto'
+                : 0
+            }'></div>`)
+
+        wrapper.append(...inputs)
+
+        return wrapper
     }
 
     Object.entries(OPTIONS)
         .forEach(([options_type_name, options_of_type]) => {
-            const inputs_of_type = (
-                names_of_expanded_groups.includes(options_type_name)
-                ? get_inputs_of_type(options_of_type)
-                : []
-            )
-
             wrapper_el.append(
                 get_options_group_heading(
                     options_type_name,
-                    () => render_inputs(data, options_to_values, wrapper_el, render_all)
+                    update_inputs
                 ),
-                ...inputs_of_type
+                get_inputs_of_type(options_of_type, options_type_name)
             )
         })
 
