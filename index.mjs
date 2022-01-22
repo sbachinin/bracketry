@@ -26,22 +26,18 @@ const some_test_options = {
 
 const canvas_container = document.getElementById('canvas-container')
 
-const render_all = (data, options) => {
-    canvas_container.innerHTML = ''
-    createBrackets(
-        data,
-        canvas_container,
-        options
-    )
-}
-
 fetch()
     .then(prepareMockData)
     .then(data => {
+        const update_brackets = createBrackets(
+            data,
+            canvas_container,
+            some_test_options
+        )
+        
         document.body.prepend(get_options_inputs(
-            render_all,
+            update_brackets,
             data,
             some_test_options)
         )
-        render_all(data, some_test_options)
     })

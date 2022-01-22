@@ -62,7 +62,7 @@ const update_inputs = () => {
     })
 }
 
-const render_inputs = (data, user_options_to_values, wrapper_el, render_all) => {
+const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets) => {
     wrapper_el.innerHTML = ''
 
     const default_options_to_values = get_default_options()
@@ -84,7 +84,7 @@ const render_inputs = (data, user_options_to_values, wrapper_el, render_all) => 
         }
 
         update_inputs()
-        render_all(data, options_to_values)
+        update_brackets(data, options_to_values)
     }
 
     const get_inputs_of_type = (options, options_type_name) => {
@@ -130,7 +130,7 @@ const render_inputs = (data, user_options_to_values, wrapper_el, render_all) => 
 
     wrapper_el.append(get_options_group_heading(
         'DATA_TEXTAREA',
-        () => render_inputs(data, options_to_values, wrapper_el, render_all)
+        () => render_inputs(data, options_to_values, wrapper_el, update_brackets)
     ))
 
     if (names_of_expanded_groups.includes('DATA_TEXTAREA')) {
@@ -138,14 +138,14 @@ const render_inputs = (data, user_options_to_values, wrapper_el, render_all) => 
             <textarea disabled style="width: 100%; height: 1000px;">${JSON.stringify(data, null, 2)}</textarea>
         `)
         data_textarea.addEventListener('input', e => {
-            render_all(JSON.parse(e.target.value), options_to_values)
+            update_brackets(JSON.parse(e.target.value), options_to_values)
         })
         wrapper_el.append(data_textarea)
     }
 }
 
 export const get_options_inputs = (
-    render_all,
+    update_brackets,
     data,
     user_options_to_values
 ) => {   
@@ -159,7 +159,7 @@ export const get_options_inputs = (
             overflow: scroll;
         '></div>`)
 
-    render_inputs(data, user_options_to_values, wrapper_el, render_all)
+    render_inputs(data, user_options_to_values, wrapper_el, update_brackets)
 
     document.head.insertAdjacentHTML(
         'beforeend',
