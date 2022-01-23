@@ -55,7 +55,6 @@ const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets
     const get_inputs_of_type = (options, options_type_name) => {
         const group_inputs = Object.entries(options)
             .map(([option_name, option_info]) => {
-                const option_wrapper_el = elements.option_wrapper_el(option_name, option_info)
                 const input = get_option_input(
                     option_name,
                     option_info,
@@ -63,8 +62,7 @@ const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets
                     onchange
                 )
                 all_inputs.push(input)
-                option_wrapper_el.append(input.el)
-                return option_wrapper_el
+                return input.el
             })
 
         const group_wrapper_el = elements.grouped_inputs_wrapper(options_type_name, names_of_expanded_groups)
