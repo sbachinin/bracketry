@@ -63,11 +63,23 @@ export const get_option_input = (name, info, value, onchange) => {
     return {
         el: wrapper_el,
         update: _options_to_values => {
+            // change value
             const input_to_change = wrapper_el.querySelector('input, select, textarea')
             input_to_change.value = _options_to_values[name]
             if (input_to_change.type === 'checkbox') {
                 const should_change = _options_to_values[name] !== input_to_change.checked
                 if (should_change) input_to_change.click()
+            }
+
+            // change disabled state
+            if (info.disable_if?.(_options_to_values)) {
+                wrapper_el.style.color = 'rgba(0,0,0,.35)'
+                input_to_change.style.filter = 'blur(1px)'
+                input_to_change.disabled = true
+            } else {
+                wrapper_el.style.color = 'black'
+                input_to_change.style.filter = 'none'
+                input_to_change.disabled = false
             }
         }
     }

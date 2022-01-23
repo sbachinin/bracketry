@@ -3,6 +3,7 @@ import { get_default_options, get_flattened_options } from '../lib/utils/get_def
 import { get_option_input } from './get-option-input.mjs'
 import * as elements from './elements.mjs'
 import { get_options_group_heading } from './get_options_group_heading.mjs'
+import { switchStyle } from './switch-style.mjs'
 
 const names_of_expanded_groups = []
 const all_inputs = []
@@ -15,14 +16,6 @@ const update_inputs = (options_to_values) => {
         document.querySelector(`.${options_type_name}`).style.height = (
             names_of_expanded_groups.includes(options_type_name) ? 'auto' : 0
         )
-        Object.entries(OPTIONS[options_type_name]).forEach(([option_name, option_info]) => {
-            const wrapper_el = document.querySelector(`.${option_name}-input-wrapper`)
-            if (option_info.disable_if?.(options_to_values)) {
-                wrapper_el?.classList.add('disabled')
-            } else {
-                wrapper_el?.classList.remove('disabled')
-            }
-        })
     })
     all_inputs.forEach(i => i.update(options_to_values))
 }
@@ -106,6 +99,6 @@ export const get_options_inputs = (
 ) => {   
     const wrapper_el = elements.inputs_root_wrapper()
     render_inputs(data, user_options_to_values, wrapper_el, update_brackets)
-    document.head.insertAdjacentHTML('beforeend', elements.styles())
+    document.head.insertAdjacentHTML('beforeend', `<style>${switchStyle}</style>`)
     return wrapper_el
 }
