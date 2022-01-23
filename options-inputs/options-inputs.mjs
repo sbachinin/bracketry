@@ -5,7 +5,7 @@ import * as elements from './elements.mjs'
 import { get_options_group_heading } from './get_options_group_heading.mjs'
 
 const names_of_expanded_groups = []
-
+const all_inputs = []
 
 const update_inputs = (options_to_values) => {
     Object.keys(OPTIONS).forEach(options_type_name => {
@@ -24,6 +24,7 @@ const update_inputs = (options_to_values) => {
             }
         })
     })
+    all_inputs.forEach(i => i.update(options_to_values))
 }
 
 const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets) => {
@@ -52,7 +53,7 @@ const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets
     }
 
     const get_inputs_of_type = (options, options_type_name) => {
-        const inputs = Object.entries(options)
+        const group_inputs = Object.entries(options)
             .map(([option_name, option_info]) => {
                 const option_wrapper_el = elements.option_wrapper_el(option_name, option_info)
                 const input = get_option_input(
@@ -61,13 +62,14 @@ const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets
                     options_to_values[option_name],
                     onchange
                 )
-                option_wrapper_el.append(input)
+                all_inputs.push(input)
+                option_wrapper_el.append(input.el)
                 return option_wrapper_el
             })
 
-        const group_wrapper = elements.grouped_inputs_wrapper(options_type_name, names_of_expanded_groups)
-        group_wrapper.append(...inputs)
-        return group_wrapper
+        const group_wrapper_el = elements.grouped_inputs_wrapper(options_type_name, names_of_expanded_groups)
+        group_wrapper_el.append(...group_inputs)
+        return group_wrapper_el
     }
 
     Object.entries(OPTIONS)
