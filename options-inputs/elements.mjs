@@ -43,8 +43,15 @@ export const options_group_heading = (
 `)
 
 export const option_wrapper_el = (option_name, option_info) => create_element_from_Html(
-    `<div style='background: #ddff9b; padding: 7px;'>
-        <p style='margin: 3px'>${escape_Html(option_info.title)}</p>
+    `<div style='
+        background: #ddff9b;
+        padding: 7px 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #66c7c3;
+    '>
+        <p style='margin: 0 10px 0 0; max-width: 70%'>${escape_Html(option_info.title)}</p>
     </div>`
 )
 

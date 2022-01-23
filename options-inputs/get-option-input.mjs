@@ -31,7 +31,7 @@ export const get_option_input = (name, info, value, onchange) => {
             break
         case 'select':
             input = create_element_from_Html(`
-                <select name="..." id="...">
+                <select style="max-width: 60%">
                     ${info.options.map(opt => `
                         <option value="${opt}" ${opt === value ? 'selected' : ''}>
                             ${opt}
