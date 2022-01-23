@@ -2,32 +2,10 @@ import { OPTIONS } from '../lib/options.mjs'
 import { get_default_options, get_flattened_options } from '../lib/utils/get_default_options.mjs'
 import { get_option_input } from './get-option-input.mjs'
 import * as elements from './elements.mjs'
+import { get_options_group_heading } from './get_options_group_heading.mjs'
 
 const names_of_expanded_groups = []
 
-const get_options_group_heading = (options_type_name, update_inputs) => {
-    const text = options_type_name
-        .split('_')
-        .filter(word => word !== 'OPTIONS')
-        .map(word => word[0].toUpperCase() + word.slice(-word.length + 1).toLowerCase())
-        .join(' ')
-    
-    const el = elements.options_group_heading(text,
-        options_type_name,
-        names_of_expanded_groups)
-
-    el.addEventListener('click', e => {
-        const index = names_of_expanded_groups.indexOf(options_type_name)
-        if (index > -1) {
-            names_of_expanded_groups.splice(index, 1);
-        } else {
-            names_of_expanded_groups.push(options_type_name)
-        }
-        update_inputs()
-    })
-
-    return el
-}
 
 const update_inputs = (options_to_values) => {
     Object.keys(OPTIONS).forEach(options_type_name => {
@@ -97,7 +75,8 @@ const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets
             wrapper_el.append(
                 get_options_group_heading(
                     options_type_name,
-                    () => update_inputs(options_to_values)
+                    () => update_inputs(options_to_values),
+                    names_of_expanded_groups
                 ),
                 get_inputs_of_type(options_of_type, options_type_name)
             )
@@ -105,7 +84,8 @@ const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets
 /* 
     wrapper_el.append(get_options_group_heading(
         'DATA_TEXTAREA',
-        () => render_inputs(data, options_to_values, wrapper_el, update_brackets)
+        () => render_inputs(data, options_to_values, wrapper_el, update_brackets),
+        names_of_expanded_groups
     ))
 
     if (names_of_expanded_groups.includes('DATA_TEXTAREA')) {
