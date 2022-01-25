@@ -16,8 +16,10 @@ const some_test_options = {
         </div>
     `, */
     // horizontal_scroll_buttons_color: 'red'
-    connection_lines_type: 'bended-1', // 'curve' | 'diagonal' | 'bended-1' | 'bended-2'
-    // connection_lines_width: 4,
+    connection_lines_type: 'curve', // 'curve' | 'diagonal' | 'bended-1' | 'bended-2'
+    distance_between_rounds: 90,
+    connection_lines_width: 2,
+    connection_lines_color: '#ccc',
     highlight_team_history_on_click: true,
     // background_color: '#fbffc7'
     // auto_canvas_height: true
