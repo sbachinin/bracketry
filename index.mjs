@@ -20,7 +20,6 @@ const some_test_options = {
     distance_between_rounds: 90,
     connection_lines_width: 2,
     connection_lines_color: '#ccc',
-    highlight_team_history_on_click: true,
     // background_color: '#fbffc7'
     // auto_canvas_height: true
     // seed_width :300
