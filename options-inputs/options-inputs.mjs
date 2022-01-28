@@ -1,5 +1,5 @@
 import { OPTIONS } from '../lib/options.mjs'
-import { get_default_options, get_flattened_options } from '../lib/utils/get_default_options.mjs'
+import { get_default_options, get_option_meta } from '../lib/utils/get_default_options.mjs'
 import { get_option_input } from './get-option-input.mjs'
 import * as elements from './elements.mjs'
 import { get_options_group_heading } from './get_options_group_heading.mjs'
@@ -29,17 +29,9 @@ const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets
     const onchange = (option_name, option_value) => {
         Object.assign(
             options_to_values,
-            { [option_name]: option_value }
+            { [option_name]: option_value },
+            get_option_meta(option_name).modify_other_options?.(option_value)
         )
-        if (option_value === true) {
-            const flattened_options = get_flattened_options()
-            flattened_options[option_name]?.incompatible_with?.forEach(incompat_option_name => {
-                Object.assign(
-                    options_to_values,
-                    { [incompat_option_name]: false }
-                )
-            })
-        }
 
         update_inputs(options_to_values)
         update_brackets(data, options_to_values)
