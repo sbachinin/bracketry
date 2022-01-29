@@ -5,7 +5,7 @@ import { get_options_inputs } from './options-inputs/options-inputs.mjs'
 
 const some_test_options = {   
     // backgroundColor: '#8fd6b8',
-    // horizontal_scroll_triggered_by: 'drag', // 'buttons' | 'mousemove' | 'drag'
+    horizontal_scroll_triggered_by: 'buttons', // 'buttons' | 'mousemove' | 'drag'
     vertical_scroll_triggered_by: 'drag', // 'buttons' | 'wheel' | 'drag'
     // horizontal_scroll_buttons_position: 'middle', // 'top' | 'middle' | 'bottom' | { left: ..., top: ..., right: ..., bottom: ...}
     // reduce_match_until_clicked: true,
