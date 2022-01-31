@@ -8,7 +8,7 @@ const some_test_options = {
     // horizontal_scroll_triggered_by: 'buttons', // 'buttons' | 'mousemove' | 'drag'
     // vertical_scroll_triggered_by: 'drag', // 'buttons' | 'wheel' | 'drag'
     // horizontal_scroll_buttons_position: 'middle', // 'top' | 'middle' | 'bottom' | { left: ..., top: ..., right: ..., bottom: ...}
-    reduce_match_until_clicked: true,
+    // reduce_match_until_clicked: true,
     // highlight_team_history_on_click: false,
     // team_title_max_width: 100,
     // horizontal_scroll_buttons_size: 100,
