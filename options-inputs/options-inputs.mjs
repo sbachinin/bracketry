@@ -1,5 +1,5 @@
 import { OPTIONS } from '../lib/options.mjs'
-import { get_default_options, get_option_meta } from '../lib/utils/get_default_options.mjs'
+import { get_default_options, get_option_meta } from '../lib/options/get_default_options.mjs'
 import { get_option_input } from './get-option-input.mjs'
 import * as elements from './elements.mjs'
 import { get_options_group_heading } from './get_options_group_heading.mjs'
