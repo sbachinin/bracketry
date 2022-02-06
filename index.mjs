@@ -9,8 +9,9 @@ const some_test_options = {
     // vertical_scroll_triggered_by: 'drag', // 'buttons' | 'wheel' | 'drag'
     // horizontal_scroll_buttons_position: 'middle', // 'top' | 'middle' | 'bottom' | { left: ..., top: ..., right: ..., bottom: ...}
     reduce_match_until_clicked: true,
+    // show_full_title_tooltip: true,
     highlight_team_history_on_click: false,
-    // team_title_max_width: 100,
+    team_title_max_width: 100,
     // horizontal_scroll_buttons_size: 100,
     /* horizontal_scroll_buttons_icon_right: `
         <div style="padding: 100px">
