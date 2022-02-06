@@ -6,7 +6,7 @@ export const create_element_from_Html = htmlString => {
   }
 
 export const escape_Html = unsafe => {
-    return unsafe
+    return String(unsafe)
         ?.replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
