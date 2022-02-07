@@ -74,11 +74,11 @@ export const get_option_input = (name, info, value, onchange) => {
             // change disabled state
             if (info.disable_if?.(_options_to_values)) {
                 wrapper_el.style.color = 'rgba(0,0,0,.35)'
-                input_to_change.style.filter = 'blur(1px)'
+                wrapper_el.style.filter = 'blur(1px)'
                 input_to_change.disabled = true
             } else {
                 wrapper_el.style.color = 'black'
-                input_to_change.style.filter = 'none'
+                wrapper_el.style.filter = 'none'
                 input_to_change.disabled = false
             }
         }
