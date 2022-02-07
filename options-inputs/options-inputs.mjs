@@ -4,6 +4,7 @@ import { get_option_input } from './get-option-input.mjs'
 import * as elements from './elements.mjs'
 import { get_options_group_heading } from './get_options_group_heading.mjs'
 import { switchStyle } from './switch-style.mjs'
+import { throttle } from '../lib/utils/utils.mjs'
 
 const names_of_expanded_groups = []
 const all_inputs = []
@@ -26,7 +27,7 @@ const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets
     const default_options_to_values = get_default_options()
     const options_to_values = { ...default_options_to_values, ...user_options_to_values}
 
-    const onchange = (option_name, option_value) => {
+    const onchange = throttle((option_name, option_value) => {
         Object.assign(
             options_to_values,
             { [option_name]: option_value },
@@ -35,7 +36,7 @@ const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets
 
         update_inputs(options_to_values)
         update_brackets(data, options_to_values)
-    }
+    }, 300)
 
     const get_inputs_of_type = (options, options_type_name) => {
         const group_inputs = Object.entries(options)
