@@ -43,7 +43,7 @@ export const get_option_input = (name, info, value, onchange) => {
                 onchange(name, e.target.value)
             })
             break
-        case 'switch':
+        case 'boolean':
             input = create_element_from_Html(`
                 <label class="switch">
                     <input type="checkbox" ${value ? 'checked' : ''}>
