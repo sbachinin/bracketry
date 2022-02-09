@@ -4,6 +4,7 @@ import { prepareMockData } from './prepareMockData.mjs'
 import { get_options_inputs } from './options-inputs/options-inputs.mjs'
 
 const some_test_options = {
+    // horizontal_scroll_triggered_by: 'drag',
     // reduce_match_until_clicked: true,
     /* horizontal_scroll_buttons_icon_right: `
         <div style="padding: 100px">
