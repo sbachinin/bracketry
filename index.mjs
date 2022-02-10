@@ -4,12 +4,13 @@ import { prepareMockData } from './prepareMockData.mjs'
 import { get_options_inputs } from './options-inputs/options-inputs.mjs'
 
 const some_test_options = {
-    // horizontal_scroll_triggered_by: 'drag',
-    horizontal_scroll_buttons_position: 'In the gutters',
-    horizontal_scroll_buttons_alignment: 'middle',
+    horizontal_scroll_triggered_by: 'drag',
+    vertical_scroll_triggered_by: 'buttons',
+    // horizontal_scroll_buttons_position: 'In the gutters',
+    // horizontal_scroll_buttons_alignment: 'middle',
 
     // reduce_match_until_clicked: true,
-    /* horizontal_scroll_buttons_icon_right: `
+    /* right_scroll_button_icon: `
         <div style="padding: 100px">
             <svg style="fill: red" xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="12"><path d="M12 0l8 9h-6v15h-4v-15h-6z"/></svg>
         </div>
