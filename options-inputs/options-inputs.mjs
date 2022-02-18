@@ -5,6 +5,7 @@ import * as elements from './elements.mjs'
 import { get_options_group_heading } from './get_options_group_heading.mjs'
 import { switchStyle } from './switch-style.mjs'
 import { throttle_with_trailing } from '../lib/utils/utils.mjs'
+import { create_user_options_text } from './user_options_text.mjs'
 
 const names_of_expanded_groups = []
 const all_inputs = []
@@ -24,8 +25,7 @@ const update_inputs = (options_to_values) => {
 const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets) => {
     wrapper_el.innerHTML = ''
 
-    const default_options_to_values = get_default_options()
-    const options_to_values = { ...default_options_to_values, ...user_options_to_values}
+    const options_to_values = { ...get_default_options(), ...user_options_to_values}
 
     const onchange = throttle_with_trailing((option_name, option_value) => {
         Object.assign(
@@ -34,6 +34,7 @@ const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets
             get_option_meta(option_name).modify_other_options?.(option_value)
         )
 
+        update_user_options_text(options_to_values)
         update_inputs(options_to_values)
         update_brackets(data, options_to_values)
     }, 300)
@@ -67,6 +68,13 @@ const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets
                 get_inputs_of_type(options_of_type, options_type_name)
             )
         })
+
+    
+    const {
+        user_options_text_el, update_user_options_text
+    } = create_user_options_text(user_options_to_values)
+    wrapper_el.append(user_options_text_el)
+    
 /* 
     wrapper_el.append(get_options_group_heading(
         'DATA_TEXTAREA',
