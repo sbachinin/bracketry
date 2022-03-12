@@ -2,22 +2,12 @@ import { createBrackets } from './lib/lib.mjs'
 import { mockFetchData as fetch } from './mockFetchData.mjs'
 import { prepareMockData } from './prepareMockData.mjs'
 import { get_options_inputs } from './options-inputs/options-inputs.mjs'
+import { visibility_options } from './lib/constants.mjs'
 
 const some_test_options = {
-    horizontal_scroll_triggered_by: 'drag',
-    vertical_scroll_triggered_by: 'buttons',
-    // horizontal_scroll_buttons_position: 'In the gutters',
-    // horizontal_scroll_buttons_alignment: 'middle',
-
+    entry_status_visibility: visibility_options.ALL_ROUNDS
     // reduce_match_until_clicked: true,
-    /* right_scroll_button_icon: `
-        <div style="padding: 100px">
-            <svg style="fill: red" xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" height="12"><path d="M12 0l8 9h-6v15h-4v-15h-6z"/></svg>
-        </div>
-    `, */
-    // show_full_title_tooltip: true,
-    // team_title_max_width: 100,
-    highlighted_connection_lines_width: 4,
+    // highlight_team_history_on_click: false,
 }
 
 const canvas_container = document.getElementById('canvas-container')
