@@ -1,5 +1,6 @@
 import { create_element_from_Html } from '../lib/utils/utils.mjs'
 import { escape_Html } from './utils.mjs'
+import { is_object } from '../lib/utils/utils.mjs'
 import * as elements from './elements.mjs'
 
 export const get_option_input = (name, info, value, onchange) => {
@@ -33,11 +34,13 @@ export const get_option_input = (name, info, value, onchange) => {
         case 'select':
             input = create_element_from_Html(`
                 <select style="max-width: 60%">
-                    ${info.options.map(opt => `
-                        <option value="${opt}" ${opt === value ? 'selected' : ''}>
-                            ${opt}
-                        </option>
-                    `).join('')}
+                    ${info.options.map(option => {
+                        const v = is_object(option) ? option.value : option
+                        const title = is_object(option) ? option.title : option
+                        return `<option value="${v}" ${v === value ? 'selected' : ''}>
+                            ${title}
+                        </option>`
+                    }).join('')}
                 </select>
             `)
             input.addEventListener('change', e => {
