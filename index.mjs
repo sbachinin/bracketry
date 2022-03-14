@@ -5,8 +5,8 @@ import { get_options_inputs } from './options-inputs/options-inputs.mjs'
 import { visibility_options } from './lib/constants.mjs'
 
 const some_test_options = {
-    entry_status_visibility: visibility_options.ALL_ROUNDS
-    // reduce_match_until_clicked: true,
+    entry_status_visibility: visibility_options.ALL_ROUNDS,
+    reduce_match_until_clicked: true,
     // highlight_team_history_on_click: false,
 }
 
