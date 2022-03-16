@@ -12,7 +12,7 @@ const get_sides_data = (match_teams, all_data) => {
                 tie_break: score.tie_break && Number(score.tie_break)
             })),
             isWinner: team.status === 'Winner',
-            short_title: player_meta.short_name,
+            title: player_meta.short_name,
             nationality_code: player_meta.nationality.code,
             entry_status: team_meta.seed ? String(team_meta.seed) : team_meta.entry_status?.abbr
         }
