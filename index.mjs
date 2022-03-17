@@ -5,6 +5,7 @@ import { get_options_inputs } from './options-inputs/options-inputs.mjs'
 
 const some_test_options = {
     // highlight_team_history_on_click: false,
+    team_title_max_width: 80
 }
 
 const canvas_container = document.getElementById('canvas-container')
