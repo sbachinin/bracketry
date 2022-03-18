@@ -1,3 +1,5 @@
+import { iso3_to_iso2 } from './country_codes_iso3_to_iso2.mjs'
+
 const get_sides_data = (match_teams, all_data) => {
     
     return match_teams.map(team => {
@@ -5,6 +7,9 @@ const get_sides_data = (match_teams, all_data) => {
             .find(({uuid}) => uuid === team.team_id)
         
         const player_meta = all_data.players.find(player => player.uuid === team_meta.players[0])
+        
+        const code = iso3_to_iso2[player_meta.nationality.code]
+
         return {
             id: team.team_id,
             score: team.score.map(score => ({
@@ -14,7 +19,7 @@ const get_sides_data = (match_teams, all_data) => {
             isWinner: team.status === 'Winner',
             title: player_meta.short_name,
             nationality_code: player_meta.nationality.code,
-            flag_url: 'https://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg',
+            flag_url: code && `https://purecatamphetamine.github.io/country-flag-icons/3x2/${code}.svg`,
             entry_status: team_meta.seed ? String(team_meta.seed) : team_meta.entry_status?.abbr
         }
     })
