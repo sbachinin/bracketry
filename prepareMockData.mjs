@@ -14,6 +14,7 @@ const get_sides_data = (match_teams, all_data) => {
             isWinner: team.status === 'Winner',
             title: player_meta.short_name,
             nationality_code: player_meta.nationality.code,
+            flag_url: 'https://purecatamphetamine.github.io/country-flag-icons/3x2/US.svg',
             entry_status: team_meta.seed ? String(team_meta.seed) : team_meta.entry_status?.abbr
         }
     })
