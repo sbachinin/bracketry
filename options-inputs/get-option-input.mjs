@@ -15,13 +15,16 @@ export const get_option_input = (name, info, value, onchange) => {
                 onchange(name, Number(e.target.value))
             })
             break
-        case 'string' :
+        case 'string':
             input = create_element_from_Html(`
                 <input type='text' value='${escape_Html(value)}'></input>
             `)
             input.addEventListener('input', e => {
                 onchange(name, e.target.value)
             })
+            break
+        case 'function_or_null':
+            input = ''
             break
         case 'multiline_string':
             input = create_element_from_Html(`
@@ -69,6 +72,8 @@ export const get_option_input = (name, info, value, onchange) => {
         update: _options_to_values => {
             // change value
             const input_to_change = wrapper_el.querySelector('input, select, textarea')
+            if (input_to_change === null) return
+
             input_to_change.value = _options_to_values[name]
             if (input_to_change.type === 'checkbox') {
                 const should_change = _options_to_values[name] !== input_to_change.checked
