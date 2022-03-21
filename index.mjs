@@ -19,7 +19,6 @@ const canvas_container = document.getElementById('canvas-container')
 fetch()
     .then(prepareMockData)
     .then(data => {
-        console.log(data)
         const update_brackets = createBrackets(
             data,
             canvas_container,
