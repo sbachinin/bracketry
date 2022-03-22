@@ -41,8 +41,6 @@ const get_sides_data = (match_teams, all_data) => {
                 tie_break: score.tie_break && Number(score.tie_break)
             })),
             isWinner: team.status === 'Winner',
-            title: player_meta.short_name,
-            flag_url: `https://purecatamphetamine.github.io/country-flag-icons/3x2/${code}.svg`,
         }
     })
 }
