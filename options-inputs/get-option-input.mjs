@@ -24,7 +24,9 @@ export const get_option_input = (name, info, value, onchange) => {
             })
             break
         case 'function_or_null':
-            input = ''
+            input = create_element_from_Html(
+                `<i style="color: #929292">Sorry, no input</i>`
+            )
             break
         case 'multiline_string':
             input = create_element_from_Html(`
@@ -66,6 +68,7 @@ export const get_option_input = (name, info, value, onchange) => {
 
     const wrapper_el = elements.option_wrapper_el(name, info)
     wrapper_el.append(input)
+    info.explanation && wrapper_el.append(elements.info_icon(info.explanation))
 
     return {
         el: wrapper_el,

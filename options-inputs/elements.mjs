@@ -1,5 +1,7 @@
 import { create_element_from_Html } from '../lib/utils/utils.mjs'
 import { escape_Html } from './utils.mjs'
+export { tooltip } from './tooltip.mjs'
+export { info_icon } from './info_icon.mjs'
 
 export const inputs_root_wrapper = () => create_element_from_Html(
     `<div style='
