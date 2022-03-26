@@ -20,6 +20,7 @@ export const create_user_options_text = (initial_options_to_values) => {
             margin-top: 5px;
             background: #fff;
             color: #757575;
+            overflow: auto;
         '>${get_text(initial_options_to_values)}</div>`
     )
 
