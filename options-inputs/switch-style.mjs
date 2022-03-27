@@ -1,10 +1,11 @@
 export const switchStyle = `
     /* The switch - the box around the slider */
     .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
+        position: relative;
+        display: inline-block;
+        height: 34px;
+        margin: 0 20px;
+        flex: 0 0 60px;
     }
 
     /* Hide default HTML checkbox */
@@ -25,6 +26,7 @@ export const switchStyle = `
     background-color: #ccc;
     -webkit-transition: .2s;
     transition: .2s;
+    width: 60px;
     }
 
     .slider:before {
