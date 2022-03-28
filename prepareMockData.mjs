@@ -25,15 +25,8 @@ const get_teams = all_data => {
     return teams
 }
 
-const get_sides_data = (match_teams, all_data) => {
+const get_sides_data = (match_teams) => {
     return match_teams.map(team => {
-        const team_meta = all_data.teams
-            .find(({ uuid }) => uuid === team.team_id)
-
-        const player_meta = all_data.players.find(player => player.uuid === team_meta.players[0])
-
-        const code = iso3_to_iso2[player_meta.nationality.code] || player_meta.nationality.code
-
         return {
             id: team.team_id,
             score: team.score.map(score => ({
@@ -51,7 +44,7 @@ const getMatchesForRound = (roundId, all_data) => {
         .map(match => ({
             id: match.id,
             order: match.order,
-            sides: get_sides_data(match.teams, all_data)
+            sides: get_sides_data(match.teams)
         }))
         .sort((a, b) => a.order - b.order)
 }
