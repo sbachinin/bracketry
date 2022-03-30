@@ -14,17 +14,18 @@ const some_test_options = {
         })
     } */
     matches_padding_top: 20,
+    use_classical_layout: true,
     round_titles_padding_top: 25,
     round_title_font_size: 27,
     round_title_margin_bottom: 10,
     horizontal_scroll_buttons_alignment: "middle",
     horizontal_scroll_buttons_position: "In the gutters",
     horizontal_scroll_buttons_clickable_width: 35,
-    use_classical_layout: true
-    // vertical_scroll_buttons_position: "In the gutters",
-    // vertical_scroll_buttons_alignment: "center",
-    // vertical_scroll_buttons_clickable_height: 35,
-    // auto_canvas_size: true
+    vertical_scroll_triggered_by: "buttons",
+    vertical_scroll_buttons_position: "In the gutters",
+    vertical_scroll_buttons_alignment: "center",
+    vertical_scroll_buttons_clickable_height: 35,
+    scroll_gutter_background_color: "#f9f9f9",
 }
 
 const canvas_container = document.getElementById('canvas-container')
