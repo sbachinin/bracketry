@@ -6,7 +6,7 @@ import { get_options_group_heading } from './get_options_group_heading.mjs'
 import { switchStyle } from './switch-style.mjs'
 import { throttle_with_trailing } from '../lib/utils/utils.mjs'
 import { create_user_options_text } from './user_options_text.mjs'
-import { try_change_other_options } from '../lib/options/reconcile_options.mjs'
+import { get_reconciled_options, try_change_other_options } from '../lib/options/reconcile_options.mjs'
 
 const names_of_expanded_groups = []
 const all_inputs = []
@@ -98,9 +98,16 @@ export const create_options_sidebar = (
     update_brackets,
     data,
     user_options_to_values
-) => {   
+) => {
     const wrapper_el = elements.inputs_root_wrapper()
-    render_inputs(data, user_options_to_values, wrapper_el, update_brackets)
+
+
+    render_inputs(
+        data,
+        get_reconciled_options(user_options_to_values),
+        wrapper_el,
+        update_brackets
+    )
     document.head.insertAdjacentHTML('beforeend', `<style>${switchStyle}</style>`)
     return wrapper_el
 }
