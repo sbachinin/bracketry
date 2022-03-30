@@ -1,7 +1,8 @@
 import { createBrackets } from './lib/lib.mjs'
 import { mockFetchData as fetch } from './mockFetchData.mjs'
 import { prepareMockData } from './prepareMockData.mjs'
-import { get_options_inputs } from './options-inputs/options-inputs.mjs'
+import { create_options_sidebar } from './options-inputs/options-inputs.mjs'
+import { sidebar_expand_button } from './options-inputs/elements.mjs'
 
 const some_test_options = {
     /* get_flag_image_source: nationality_code => {
@@ -12,8 +13,18 @@ const some_test_options = {
             img.src = `https://purecatamphetamine.github.io/country-flag-icons/3x2/${nationality_code}.svg`
         })
     } */
-    auto_canvas_height: true,
-    horizontal_scroll_duration: 0
+    matches_padding_top: 20,
+    round_titles_padding_top: 25,
+    round_title_font_size: 27,
+    round_title_margin_bottom: 10,
+    horizontal_scroll_buttons_alignment: "middle",
+    horizontal_scroll_buttons_position: "In the gutters",
+    horizontal_scroll_buttons_clickable_width: 35,
+    use_classical_layout: true
+    // vertical_scroll_buttons_position: "In the gutters",
+    // vertical_scroll_buttons_alignment: "center",
+    // vertical_scroll_buttons_clickable_height: 35,
+    // auto_canvas_size: true
 }
 
 const canvas_container = document.getElementById('canvas-container')
@@ -27,9 +38,17 @@ fetch()
             some_test_options
         )
         
-        document.body.prepend(get_options_inputs(
-            update_brackets,
-            data,
-            some_test_options)
-        )
+
+
+        const options_sidebar = create_options_sidebar(update_brackets, data, some_test_options)
+        document.body.prepend(options_sidebar)
+        const sidebar_button = sidebar_expand_button()
+        document.body.append(sidebar_button)
+        sidebar_button.addEventListener('click', () => {
+            if (parseInt(options_sidebar.style.width) === 0) {
+                options_sidebar.style.width = '400px'
+            } else {
+                options_sidebar.style.width = '0'
+            }
+        })
     })

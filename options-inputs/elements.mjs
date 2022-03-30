@@ -8,12 +8,35 @@ export const inputs_root_wrapper = () => create_element_from_Html(
         position: fixed;
         top: 0;
         left: 0;
-        width: 400px;
+        width: 0;
         height: 100vh;
-        overflow: scroll;
+        overflow-y: scroll;
+        overflow-x: visible;
         font-family: sans-serif;
         font-size: 15px;
+        z-index: 30;
+        background: #ffe9e5;
+        padding-bottom: 50px;
+        box-sizing: border-box;
     '></div>`
+)
+
+
+export const sidebar_expand_button = () => create_element_from_Html(
+    `<div style='
+        position: fixed;
+        bottom: 5px;
+        left: 5px;
+        font-size: 26px;
+        border: 1px solid;
+        padding: 2px 4px;
+        font-family: arial;
+        cursor: pointer;
+        z-index: 31;
+        user-select: none;
+        background: #000000;
+        color: white;
+    '>options</div>`
 )
 
 

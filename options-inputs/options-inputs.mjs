@@ -94,7 +94,7 @@ const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets
     } */
 }
 
-export const get_options_inputs = (
+export const create_options_sidebar = (
     update_brackets,
     data,
     user_options_to_values
