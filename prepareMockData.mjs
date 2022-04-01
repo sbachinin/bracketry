@@ -38,13 +38,14 @@ const get_sides_data = (match_teams) => {
     })
 }
 
-const getMatchesForRound = (roundId, all_data) => {
+const getMatchesForRound = (roundId, all_data, teams) => {
     return all_data.matches
         .filter(match => match.round_id === roundId)
         .map(match => ({
             id: match.id,
+            dev_match_title: match.teams.map(t => teams[t.team_id].title).join('/'),
             order: match.order,
-            sides: get_sides_data(match.teams)
+            sides: get_sides_data(match.teams, teams)
         }))
         .sort((a, b) => a.order - b.order)
 }
@@ -54,13 +55,14 @@ const getMatchesForRound = (roundId, all_data) => {
 
 
 export const prepareMockData = all_data => {
+    const teams = get_teams(all_data)
     return Promise.resolve({
         rounds: all_data.rounds.map(
             round => ({
                 name: round.name,
-                matches: getMatchesForRound(round.uuid, all_data)
+                matches: getMatchesForRound(round.uuid, all_data, teams)
             })
         ),
-        teams: get_teams(all_data)
+        teams
     })
 }
