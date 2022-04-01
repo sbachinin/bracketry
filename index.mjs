@@ -13,6 +13,7 @@ const some_test_options = {
             img.src = `https://purecatamphetamine.github.io/country-flag-icons/3x2/${nationality_code}.svg`
         })
     } */
+    horizontal_scroll_duration: 3000,
     main_vertical_padding: 20,
     use_classical_layout: true,
     round_titles_padding_top: 25,
