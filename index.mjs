@@ -23,7 +23,7 @@ const some_test_options = {
     horizontal_scroll_buttons_clickable_width: 35,
     vertical_scroll_buttons_position: "In the gutters",
     vertical_scroll_buttons_clickable_height: 35,
-    scroll_gutter_background_color: "#f9f9f9",
+    scroll_gutter_background_color: "transparent",
 }
 
 const canvas_container = document.getElementById('canvas-container')
