@@ -29,7 +29,7 @@ const get_sides_data = (match_teams) => {
     return match_teams.map(team => {
         return {
             id: team.team_id,
-            score: team.score.map(score => ({
+            score: !team.score.length ? undefined : team.score.map(score => ({
                 main_score: Number(score.game),
                 tie_break: score.tie_break && Number(score.tie_break)
             })),
