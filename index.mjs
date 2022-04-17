@@ -24,7 +24,9 @@ const some_test_options = {
     vertical_scroll_buttons_position: "In the gutters",
     vertical_scroll_buttons_clickable_height: 35,
     scroll_gutter_background_color: "rgba(0,0,0,.02)",
-    scroll_gutter_border_color: "rgba(0,0,0,.04)"
+    scroll_gutter_border_color: "rgba(0,0,0,.04)",
+    connection_lines_type: 'bended-2',
+    match_hor_margin: 10,
 }
 
 const canvas_container = document.getElementById('canvas-container')
