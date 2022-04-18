@@ -36,7 +36,7 @@ const get_sides_data = (match_teams) => {
                 main_score: score.game,
                 tie_break: score.tie_break && Number(score.tie_break)
             })),
-            isWinner: team.status === 'Winner',
+            result: team.status === 'Winner' ? 'winner' : undefined,
         }
     })
 }

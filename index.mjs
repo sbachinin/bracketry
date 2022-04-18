@@ -1,8 +1,7 @@
 import { createBrackets } from './lib/lib.mjs'
-import { mockFetchData as fetch } from './mockFetchData.mjs'
-import { prepareMockData } from './prepareMockData.mjs'
 import { create_options_sidebar } from './options-inputs/options-inputs.mjs'
 import { sidebar_expand_button } from './options-inputs/elements.mjs'
+import { get_some_data } from './get_some_data.mjs'
 
 const some_test_options = {
     /* get_flag_image_source: nationality_code => {
@@ -31,26 +30,24 @@ const some_test_options = {
 
 const canvas_container = document.getElementById('canvas-container')
 
-fetch()
-    .then(prepareMockData)
-    .then(data => {
-        const update_brackets = createBrackets(
-            data,
-            canvas_container,
-            some_test_options
-        )
-        
+get_some_data().then(data => {
+    const update_brackets = createBrackets(
+        data,
+        canvas_container,
+        some_test_options
+    )
+    
 
 
-        const options_sidebar = create_options_sidebar(update_brackets, data, some_test_options)
-        document.body.prepend(options_sidebar)
-        const sidebar_button = sidebar_expand_button()
-        document.body.append(sidebar_button)
-        sidebar_button.addEventListener('click', () => {
-            if (parseInt(options_sidebar.style.width) === 0) {
-                options_sidebar.style.width = '400px'
-            } else {
-                options_sidebar.style.width = '0'
-            }
-        })
+    const options_sidebar = create_options_sidebar(update_brackets, data, some_test_options)
+    document.body.prepend(options_sidebar)
+    const sidebar_button = sidebar_expand_button()
+    document.body.append(sidebar_button)
+    sidebar_button.addEventListener('click', () => {
+        if (parseInt(options_sidebar.style.width) === 0) {
+            options_sidebar.style.width = '400px'
+        } else {
+            options_sidebar.style.width = '0'
+        }
     })
+})
