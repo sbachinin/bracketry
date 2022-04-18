@@ -1,4 +1,5 @@
 import { iso3_to_iso2 } from './country_codes_iso3_to_iso2.mjs'
+import { is_object } from './lib/utils/utils.mjs'
 
 const get_teams = all_data => {
     const teams = {}
@@ -42,6 +43,7 @@ const get_sides_data = (match_teams) => {
 
 const getMatchesForRound = (roundId, all_data, teams) => {
     return all_data.matches
+        .filter(match => match.teams.find(is_object))
         .filter(match => match.round_id === roundId)
         .map(match => ({
             id: match.id,
