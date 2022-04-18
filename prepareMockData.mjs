@@ -5,6 +5,8 @@ const get_teams = all_data => {
 
     all_data.matches.forEach(match => {
         match.teams.forEach(side => {
+            if (side === null) return
+            
             const team_meta = all_data.teams
                 .find(({ uuid }) => uuid === side.team_id)
 
@@ -26,11 +28,11 @@ const get_teams = all_data => {
 }
 
 const get_sides_data = (match_teams) => {
-    return match_teams.map(team => {
+    return match_teams.filter(Boolean).map(team => {
         return {
             id: team.team_id,
             score: !team.score.length ? undefined : team.score.map(score => ({
-                main_score: Number(score.game),
+                main_score: score.game,
                 tie_break: score.tie_break && Number(score.tie_break)
             })),
             isWinner: team.status === 'Winner',
@@ -43,7 +45,9 @@ const getMatchesForRound = (roundId, all_data, teams) => {
         .filter(match => match.round_id === roundId)
         .map(match => ({
             id: match.id,
-            dev_match_title: match.teams.map(t => teams[t.team_id].title).join('/'),
+            dev_match_title: match.teams
+                .filter(Boolean)
+                .map(t => teams[t.team_id].title).join('/'),
             order: match.order,
             sides: get_sides_data(match.teams, teams)
         }))

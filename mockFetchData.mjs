@@ -1,5 +1,6 @@
-import data from './ausopen-dot-com-data-2021.mjs'
+import data1 from './ausopen-2022-live-data.mjs'
+import data2 from './ausopen-dot-com-data-2021.mjs'
 
-window.mockData = data
+window.mockData = data1
 
-export const mockFetchData = () => Promise.resolve(data)
+export const mockFetchData = () => Promise.resolve(data1)
