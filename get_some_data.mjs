@@ -6,5 +6,5 @@ import { prepareMockData } from './prepareMockData.mjs'
 
 export const get_some_data = () => {
     // return Promise.resolve(data4)
-    return prepareMockData(data3)
+    return prepareMockData(data2)
 }
