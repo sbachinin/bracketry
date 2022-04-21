@@ -12,16 +12,13 @@ const some_test_options = {
             img.src = `https://purecatamphetamine.github.io/country-flag-icons/3x2/${nationality_code}.svg`
         })
     } */
-    horizontal_scroll_duration: 3000,
     main_vertical_padding: 20,
-    use_classical_layout: true,
     round_titles_padding_top: 25,
     round_title_font_size: 27,
     round_title_margin_bottom: 10,
     horizontal_scroll_buttons_position: "In the gutters",
     horizontal_scroll_buttons_clickable_width: 35,
-    vertical_scroll_buttons_position: "In the gutters",
-    vertical_scroll_buttons_clickable_height: 35,
+    horizontal_scroll_icon_size: 100,
     scroll_gutter_background_color: "rgba(0,0,0,.02)",
     scroll_gutter_border_color: "rgba(0,0,0,.04)",
     connection_lines_type: 'bended-2',
