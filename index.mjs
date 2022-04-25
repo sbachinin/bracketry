@@ -21,7 +21,6 @@ const some_test_options = {
     horizontal_scroll_buttons_position: "In the gutters",
     horizontal_scroll_buttons_clickable_width: 35,
     horizontal_scroll_icon_size: 100,
-    scroll_gutter_border_color: "black",
     connection_lines_type: 'bended-2',
     match_hor_margin: 10,
 }
