@@ -15,9 +15,6 @@ const some_test_options = {
         })
     } */
     main_vertical_padding: 20,
-    round_titles_padding_top: 25,
-    round_title_font_size: 27,
-    round_title_margin_bottom: 10,
     horizontal_scroll_buttons_position: "In the gutters",
     horizontal_scroll_buttons_clickable_width: 35,
     horizontal_scroll_icon_size: 100,
