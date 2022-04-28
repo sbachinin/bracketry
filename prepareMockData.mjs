@@ -45,14 +45,13 @@ const getMatchesForRound = (roundId, all_data, teams) => {
     return all_data.matches
         .filter(match => match.teams.find(is_object))
         .filter(match => match.round_id === roundId)
-        .sort((a, b) => a.order - b.order)
-        .map((match, match_index) => ({
+        .map((match) => ({
             id: match.id,
             dev_match_title: match.teams
                 .filter(Boolean)
                 .map(t => teams[t.team_id].title).join('/'),
             sides: get_sides_data(match.teams, teams),
-            order: match_index
+            order: match.order - 1
         }))
         .sort(() => 0.5 - Math.random()) // order of matches in this array should have no effect; order of rendering should be defined by 'order' property of a match
 }
