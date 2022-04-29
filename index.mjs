@@ -2,7 +2,7 @@ import { createBrackets } from './lib/lib.mjs'
 import { create_options_sidebar } from './options-inputs/options-inputs.mjs'
 import { sidebar_expand_button } from './options-inputs/elements.mjs'
 import { get_some_data } from './get_some_data.mjs'
-// import { create_element_from_Html } from './lib/utils/utils.mjs'
+import { create_element_from_Html } from './lib/utils/utils.mjs'
 
 
 const some_test_options = {
@@ -44,12 +44,12 @@ get_some_data().then(data => {
     })
 
 // example of using scroll_left and scroll_right
-/* 
+
     const left_button = create_element_from_Html(`<div style="font-size: 100px">&#x3c;</div>`)
     const right_button = create_element_from_Html(`<div style="font-size: 100px">&#x3e;</div>`)
     left_button.addEventListener('mouseup', scroll_left)
     right_button.addEventListener('mouseup', scroll_right)
     document.body.insertBefore(left_button, canvas_container)
     document.body.insertBefore(right_button, canvas_container)
- */
+
 })
