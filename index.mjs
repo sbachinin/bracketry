@@ -17,7 +17,6 @@ const some_test_options = {
     connection_lines_type: 'bended-2',
     match_hor_margin: 10,
     show_winner_mark: true,
-    min_vertical_distance_btw_matches: 100
     // horizontal_scroll_buttons_position: 'Hidden'
 }
 
