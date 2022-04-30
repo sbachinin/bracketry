@@ -1,9 +1,8 @@
 import { createBrackets } from './lib/lib.mjs'
 import { create_options_sidebar } from './options-inputs/options-inputs.mjs'
 import { sidebar_expand_button } from './options-inputs/elements.mjs'
-import { get_some_data } from './get_some_data.mjs'
-import { create_element_from_Html } from './lib/utils/utils.mjs'
-
+import { get_some_data } from './test_data/get_some_data.mjs'
+// import { create_external_buttons } from './external_hor_buttons_example.mjs'
 
 const some_test_options = {
     /* get_flag_image_source: nationality_code => {
@@ -17,13 +16,14 @@ const some_test_options = {
     main_vertical_padding: 20,
     connection_lines_type: 'bended-2',
     match_hor_margin: 10,
-    show_winner_mark: true
+    show_winner_mark: true,
+    // horizontal_scroll_buttons_position: 'Hidden'
 }
 
 const canvas_container = document.getElementById('canvas-container')
 
 get_some_data().then(data => {
-    const { full_update, scroll_left, scroll_right } = createBrackets(
+    const { runFullUpdate, scrollLeft, scrollRight, getScrollState } = createBrackets(
         data,
         canvas_container,
         some_test_options
@@ -31,7 +31,7 @@ get_some_data().then(data => {
     
 
 
-    const options_sidebar = create_options_sidebar(full_update, data, some_test_options)
+    const options_sidebar = create_options_sidebar(runFullUpdate, data, some_test_options)
     document.body.prepend(options_sidebar)
     const sidebar_button = sidebar_expand_button()
     document.body.append(sidebar_button)
@@ -43,13 +43,5 @@ get_some_data().then(data => {
         }
     })
 
-// example of using scroll_left and scroll_right
-
-    const left_button = create_element_from_Html(`<div style="font-size: 100px">&#x3c;</div>`)
-    const right_button = create_element_from_Html(`<div style="font-size: 100px">&#x3e;</div>`)
-    left_button.addEventListener('mouseup', scroll_left)
-    right_button.addEventListener('mouseup', scroll_right)
-    document.body.insertBefore(left_button, canvas_container)
-    document.body.insertBefore(right_button, canvas_container)
-
+    // create_external_buttons(getScrollState, scrollLeft, scrollRight)
 })

@@ -1,5 +1,5 @@
 import { iso3_to_iso2 } from './country_codes_iso3_to_iso2.mjs'
-import { is_object } from './lib/utils/utils.mjs'
+import { is_object } from '../lib/utils/utils.mjs'
 
 const get_teams = all_data => {
     const teams = {}
