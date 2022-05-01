@@ -13,7 +13,7 @@ export const tooltip = create_element_from_Html(`
             transform: translate(-50%, -50%);
             max-height: 60%;
             z-index: 100;
-            padding: 20px;
+            padding: 40px;
             overflow-y: scroll;
             font-size: 16px;
             font-family: verdana;

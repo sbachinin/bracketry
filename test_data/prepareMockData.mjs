@@ -46,6 +46,7 @@ const getMatchesForRound = (roundId, all_data, teams) => {
         .filter(match => match.teams.find(is_object))
         .filter(match => match.round_id === roundId)
         .map((match) => ({
+            ...match,
             id: match.id,
             dev_match_title: match.teams
                 .filter(Boolean)
