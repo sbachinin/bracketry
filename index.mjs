@@ -16,10 +16,6 @@ const some_test_options = {
     main_vertical_padding: 20,
     connection_lines_type: 'bended-2',
     show_winner_mark: true,
-    onMatchClick: (match, round, round_index) => {
-        console.log('clicked on match ', match, round, round_index)
-    }
-    // horizontal_scroll_buttons_position: 'Hidden'
 }
 
 const canvas_container = document.getElementById('canvas-container')
