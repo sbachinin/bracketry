@@ -22,7 +22,7 @@ const update_inputs = (options_to_values) => {
     all_inputs.forEach(i => i.update(options_to_values))
 }
 
-const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets) => {
+const render_inputs = (data, user_options_to_values, wrapper_el, apply_new_options) => {
     wrapper_el.innerHTML = ''
 
     const options_to_values = { ...get_default_options(), ...user_options_to_values}
@@ -35,7 +35,7 @@ const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets
 
         update_user_options_text(options_to_values)
         update_inputs(options_to_values)
-        update_brackets(data, options_to_values)
+        apply_new_options(options_to_values)
     }, 300)
 
     const get_inputs_of_type = (options, options_type_name) => {
@@ -93,7 +93,7 @@ const render_inputs = (data, user_options_to_values, wrapper_el, update_brackets
 }
 
 export const create_options_sidebar = (
-    update_brackets,
+    apply_new_options,
     data,
     user_options_to_values
 ) => {
@@ -104,7 +104,7 @@ export const create_options_sidebar = (
         data,
         user_options_to_values,
         wrapper_el,
-        update_brackets
+        apply_new_options
     )
     document.head.insertAdjacentHTML('beforeend', `<style>${switchStyle}</style>`)
     return wrapper_el

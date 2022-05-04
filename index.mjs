@@ -11,7 +11,7 @@ const some_test_options = {
 const canvas_container = document.getElementById('canvas-container')
 
 get_some_data().then(data => {
-    const { runFullUpdate, scrollLeft, scrollRight, getScrollState } = createBrackets(
+    const { applyNewOptions, scrollLeft, scrollRight, getScrollState } = createBrackets(
         data,
         canvas_container,
         some_test_options
@@ -19,7 +19,7 @@ get_some_data().then(data => {
     
 
 
-    const options_sidebar = create_options_sidebar(runFullUpdate, data, some_test_options)
+    const options_sidebar = create_options_sidebar(applyNewOptions, data, some_test_options)
     document.body.prepend(options_sidebar)
     const sidebar_button = sidebar_expand_button()
     document.body.append(sidebar_button)
