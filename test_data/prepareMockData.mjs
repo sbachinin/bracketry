@@ -1,27 +1,31 @@
 import { iso3_to_iso2 } from './country_codes_iso3_to_iso2.mjs'
 import { is_object } from '../lib/utils/utils.mjs'
 
+const prepare_single_player = (all_data, player_id, contestant_orig_meta) => {
+    const player_meta = all_data.players.find(player => player.uuid === player_id)
+    const code = iso3_to_iso2[player_meta.nationality.code] || player_meta.nationality.code
+    return {
+        title: player_meta.short_name,
+        nationality_code: code,
+        flag_url: `https://purecatamphetamine.github.io/country-flag-icons/3x2/${code}.svg`,
+        entry_status: contestant_orig_meta.seed ? String(contestant_orig_meta.seed) : contestant_orig_meta.entry_status?.abbr
+    }
+}
+
 const get_contestants = all_data => {
     const contestants = {}
 
     all_data.matches.forEach(match => {
         match.teams.forEach(side => {
             if (side === null) return
-            
-            const team_meta = all_data.teams
-                .find(({ uuid }) => uuid === side.team_id)
 
-            const first_player_meta = all_data.players.find(player => player.uuid === team_meta.players[0])
+            if (!contestants[side.team_id]) {
+                const contestant_orig_meta = all_data.teams
+                    .find(team_meta => team_meta.uuid === side.team_id)
 
-            const code = iso3_to_iso2[first_player_meta.nationality.code] || first_player_meta.nationality.code
-
-            contestants[side.team_id] = contestants[side.team_id]
-                || {
-                    title: first_player_meta.short_name,
-                    nationality_code: code,
-                    flag_url: `https://purecatamphetamine.github.io/country-flag-icons/3x2/${code}.svg`,
-                    entry_status: team_meta.seed ? String(team_meta.seed) : team_meta.entry_status?.abbr
-                }
+                contestants[side.team_id] = contestant_orig_meta.players
+                    .map(player_id => prepare_single_player(all_data, player_id, contestant_orig_meta))
+            }
         })
     })
 
