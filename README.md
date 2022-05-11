@@ -1,6 +1,6 @@
-## data.teams[team_id].title can be actually an HTML string, for example a link
+## data.contestants[team_id].title can be actually an HTML string, for example a link
 
-teams: {
+contestants: {
         a: {
             title: '<a href="http://google.com" style="text-decoration: none">link to google</a>',
             .....

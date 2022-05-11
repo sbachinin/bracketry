@@ -68,7 +68,7 @@ export default {
         }
     ],
 
-    teams: {
+    contestants: {
         a: {
             title: '<a href="http://google.com" style="text-decoration: none">link to google</a>',
             nationality_code: 'ALB',

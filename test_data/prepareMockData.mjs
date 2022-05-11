@@ -1,8 +1,8 @@
 import { iso3_to_iso2 } from './country_codes_iso3_to_iso2.mjs'
 import { is_object } from '../lib/utils/utils.mjs'
 
-const get_teams = all_data => {
-    const teams = {}
+const get_contestants = all_data => {
+    const contestants = {}
 
     all_data.matches.forEach(match => {
         match.teams.forEach(side => {
@@ -15,7 +15,7 @@ const get_teams = all_data => {
 
             const code = iso3_to_iso2[first_player_meta.nationality.code] || first_player_meta.nationality.code
 
-            teams[side.team_id] = teams[side.team_id]
+            contestants[side.team_id] = contestants[side.team_id]
                 || {
                     title: first_player_meta.short_name,
                     nationality_code: code,
@@ -25,7 +25,7 @@ const get_teams = all_data => {
         })
     })
 
-    return teams
+    return contestants
 }
 
 const get_sides_data = (match_teams) => {
@@ -42,8 +42,8 @@ const get_sides_data = (match_teams) => {
     })
 }
 
-const getMatchesForRound = (roundId, all_data, teams) => {
-    return all_data.matches
+const getMatchesForRound = (roundId, orig_data, contestants) => {
+    return orig_data.matches
         .filter(match => match.teams.find(is_object))
         .filter(match => match.round_id === roundId)
         .map((match) => ({
@@ -51,8 +51,8 @@ const getMatchesForRound = (roundId, all_data, teams) => {
             id: match.id,
             dev_match_title: match.teams
                 .filter(Boolean)
-                .map(t => teams[t.team_id].title).join('/'),
-            sides: get_sides_data(match.teams, teams),
+                .map(t => contestants[t.team_id].title).join('/'),
+            sides: get_sides_data(match.teams),
             order: match.order - 1
         }))
         .sort(() => 0.5 - Math.random()) // order of matches in this array should have no effect; order of rendering should be defined by 'order' property of a match
@@ -62,15 +62,15 @@ const getMatchesForRound = (roundId, all_data, teams) => {
 
 
 
-export const prepareMockData = all_data => {
-    const teams = get_teams(all_data)
+export const prepareMockData = orig_data => {
+    const contestants = get_contestants(orig_data)
     return Promise.resolve({
-        rounds: all_data.rounds.map(
+        rounds: orig_data.rounds.map(
             round => ({
                 name: round.name,
-                matches: getMatchesForRound(round.uuid, all_data, teams)
+                matches: getMatchesForRound(round.uuid, orig_data, contestants)
             })
         ),
-        teams
+        contestants
     })
 }
