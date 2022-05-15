@@ -2,7 +2,7 @@ const match1 = {
     order: 0,
     sides: [
         {
-            id: 'a',
+            contestant_id: 'a',
             score: [
                 {
                     main_score: 0,
@@ -15,7 +15,7 @@ const match1 = {
             result: 'winner'
         },
         {
-            id: 'b',
+            contestant_id: 'b',
             score: [
                 {
                     main_score: 0,
@@ -41,12 +41,12 @@ const match2 = {
     order: 1,
     sides: [
         {
-            id: 'c',
+            contestant_id: 'c',
             score: [],
             result: 'winner'
         },
         {
-            id: 'd',
+            contestant_id: 'd',
             score: [],
             result: 'Ret'
         }
