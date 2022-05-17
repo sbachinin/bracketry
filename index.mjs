@@ -6,7 +6,6 @@ import { get_some_data } from './test_data/get_some_data.mjs'
 
 const some_test_options = {
     show_winner_mark: true,
-    // onTeamTitleClick: console.log
 }
 
 const canvas_container = document.getElementById('canvas-container')
