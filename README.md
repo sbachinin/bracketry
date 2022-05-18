@@ -1,4 +1,4 @@
-## data.contestants[team_id].title can be actually an HTML string, for example a link
+## data.contestants[contestant_id].title can be actually an HTML string, for example a link
 
 contestants: {
         a: {
