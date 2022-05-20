@@ -59,7 +59,8 @@ const getMatchesForRound = (roundId, orig_data, contestants) => {
                 .filter(Boolean)
                 .map(t => contestants[t.team_id].title).join('/'),
             sides: get_sides_data(match.teams),
-            order: match.order - 1
+            order: match.order - 1,
+            is_live: match.match_status !== null && match.match_status.name === 'Live'
         }))
         .sort(() => 0.5 - Math.random()) // order of matches in this array should have no effect; order of rendering should be defined by 'order' property of a match
 }
