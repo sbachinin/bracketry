@@ -5,7 +5,7 @@ import { get_some_data } from './test_data/get_some_data.mjs'
 // import { create_external_buttons } from './external_hor_buttons_example.mjs'
 
 const some_test_options = {
-    show_winner_mark: true,
+
 }
 
 const canvas_container = document.getElementById('canvas-container')
