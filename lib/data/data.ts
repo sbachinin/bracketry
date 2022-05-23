@@ -18,7 +18,7 @@ type Match = {
     sides?: Side[]
 }
 
-// Side is a match-specific data for contestant: his id, his score, his final result in a match ...
+// Side is a match-specific data for contestant: his id, his score ...
 type Side = {
     contestant_id: string,
     score?: [
@@ -30,10 +30,7 @@ type Side = {
 
     subscore?: number | string, // e.g., points within a game in tennis: this number is drawn after 'score', is surrounded by border and is higlighted with green if match 'is_live'
     is_serving?: boolean, // if this one is 'true', a tennis ball icon will be drawn before a side's score
-
-    // if 'result' is 'winner', it's replaced with a default check icon;
-    // any other string provided for 'result' will be rendered as it is
-    result?: string // ('winner' | 'Rt' | 'W/O' | [any string, any html])
+    is_winnner?: boolean
 }
 
 // Contestant is an individual player OR an array of individual players (e.g., single tennis player or double tennis team)

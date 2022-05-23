@@ -12,7 +12,7 @@ const match1 = {
                     main_score: 6
                 }
             ],
-            result: 'winner'
+            is_winner: true
         },
         {
             contestant_id: 'b',
@@ -25,14 +25,6 @@ const match1 = {
                     main_score: 3
                 }
             ],
-            result: `<div style="
-                border: 1px solid;
-                background: tomato;
-                padding: 2px 4px;
-                font-size: 14px;
-                line-height: 12px;
-                border-radius: 4px;
-            ">W/O</div>`
         }
     ]
 }
@@ -43,12 +35,11 @@ const match2 = {
         {
             contestant_id: 'c',
             score: [],
-            result: 'winner'
+            is_winner: true
         },
         {
             contestant_id: 'd',
-            score: [],
-            result: 'Ret'
+            score: []
         }
     ]
 }
