@@ -43,7 +43,7 @@ const get_sides_data = (match_teams) => {
                 main_score: score.game,
                 tie_break: score.tie_break && Number(score.tie_break)
             })),
-            subscore: '12',
+            subscore: team.point,
             is_serving: team.is_serving,
             result: team.status === 'Winner' ? 'winner' : undefined // '<img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" />',
         }

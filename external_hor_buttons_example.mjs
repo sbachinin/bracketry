@@ -31,7 +31,7 @@ export const create_external_buttons = (getScrollState, scrollLeft, scrollRight)
         update_buttons()
     })
 
-    document.body.insertBefore(left_button, document.querySelector('#canvas-container'))
-    document.body.insertBefore(right_button, document.querySelector('#canvas-container'))
+    document.body.insertBefore(left_button, document.querySelector('#user-container'))
+    document.body.insertBefore(right_button, document.querySelector('#user-container'))
 }
 
