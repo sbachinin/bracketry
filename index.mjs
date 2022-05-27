@@ -7,6 +7,9 @@ import { get_some_data } from './test_data/get_some_data.mjs'
 const some_test_options = {
     // onMatchClick: (match, round) => {
     //     location.href = `/matches/${match.id}`
+    // },
+    // onMatchSideClick: (contestant, contestant_id, match, round) => {
+    //     location.href = `/teams/${contestant_id}`
     // }
 }
 
