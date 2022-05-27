@@ -39,7 +39,7 @@ type Contestant = {
     players: Player[]
 }
 
-// Player is an individual player - one of the guys/teams which constitute a Competitor
+// Player is an individual player - one of the guys/teams which constitute a Contestant
 // (e.g., single tennis player or a member of tennis' double team)
 type Player = {
     title: string,
