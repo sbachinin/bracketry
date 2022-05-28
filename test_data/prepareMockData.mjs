@@ -38,7 +38,7 @@ const get_sides_data = (match_teams) => {
     return match_teams.filter(Boolean).map(team => {
         return {
             contestant_id: team.team_id,
-            score: !team.score.length ? undefined : team.score.map(score => ({
+            score: team.score === undefined ? [] : team.score.map(score => ({
                 main_score: score.game,
                 tie_break: score.tie_break && Number(score.tie_break)
             })),

@@ -3,6 +3,7 @@ import { create_options_sidebar } from './options-inputs/options-inputs.mjs'
 import { sidebar_expand_button } from './options-inputs/elements.mjs'
 import { get_some_data } from './test_data/get_some_data.mjs'
 // import { create_external_buttons } from './external_hor_buttons_example.mjs'
+import { start_stupid_live_updates } from './start_stupid_live_updates.mjs'
 
 const some_test_options = {
     // onMatchClick: (match) => {
@@ -40,17 +41,7 @@ get_some_data().then(data => {
 
 
 
-        
-    setInterval(() => {
-        applyMatchUpdates([
-            {
-                match_id: 'fsafd325',
-                round_id: '23423432gdfg',
-                order: 3,
-                sides: []
-            }
-        ])
-    }, 3000)
+    start_stupid_live_updates(applyMatchUpdates)
 
 })
 

@@ -8,5 +8,5 @@ import { prepareMockData } from './prepareMockData.mjs'
 
 export const get_some_data = () => {
     // return Promise.resolve(testdata1)
-    return prepareMockData(data3)
+    return prepareMockData(data1)
 }
