@@ -1,7 +1,8 @@
 // SHAPE OF ALL DATA DESCRIBED IN TS FOR READABILITY:
 
 type Data = {
-    rounds: Round[] // you have to provide an object for each round, including the upcoming rounds
+    rounds: Round[], // you have to provide an object for each round, including the upcoming rounds
+    matches: Match[],
     contestants: {
         [contestant_id: string]: Contestant
     }
@@ -10,14 +11,13 @@ type Data = {
 type Round = {
     id: string,
     name?: string,
-    matches?: Match[]
 }
 
 type Match = {
     match_id: string,
     round_id: string,
     order: number, // 0-based!
-    sides?: Side[]
+    sides: Side[]
 }
 
 // Side is a match-specific data for contestant: his id, his score ...

@@ -1,5 +1,4 @@
 import { iso3_to_iso2 } from './country_codes_iso3_to_iso2.mjs'
-import { is_object } from '../lib/utils/utils.mjs'
 
 const prepare_single_player = (all_data, player_id) => {
     const player_meta = all_data.players.find(player => player.uuid === player_id)
@@ -21,7 +20,7 @@ const get_contestants = all_data => {
             if (!contestants[side.team_id]) {
                 const contestant_orig_meta = all_data.teams
                     .find(team_meta => team_meta.uuid === side.team_id)
-                
+
                 contestants[side.team_id] = {
                     ...contestant_orig_meta,
                     entry_status: contestant_orig_meta.seed ? String(contestant_orig_meta.seed) : contestant_orig_meta.entry_status?.abbr,
@@ -50,36 +49,21 @@ const get_sides_data = (match_teams) => {
     })
 }
 
-const getMatchesForRound = (roundId, orig_data, contestants) => {
-    return orig_data.matches
-        .filter(match => match.teams.find(is_object))
-        .filter(match => match.round_id === roundId)
-        .map((match) => ({
-            ...match,
-            dev_match_title: match.teams
-                .filter(Boolean)
-                .map(t => contestants[t.team_id].title).join('/'),
-            sides: get_sides_data(match.teams),
-            order: match.order - 1,
-            is_live: match.match_status !== null && match.match_status.name === 'Live'
-        }))
-        .sort(() => 0.5 - Math.random()) // order of matches in this array should have no effect; order of rendering should be defined by 'order' property of a match
-}
-
-
-
-
 
 export const prepareMockData = orig_data => {
     const contestants = get_contestants(orig_data)
     return Promise.resolve({
         rounds: orig_data.rounds.map(
-            round => ({
-                id: round.uuid,
-                name: round.name,
-                matches: getMatchesForRound(round.uuid, orig_data, contestants)
-            })
+            round => ({ id: round.uuid, name: round.name })
         ),
+
+        matches: orig_data.matches.map((match) => ({
+            ...match,
+            sides: get_sides_data(match.teams),
+            order: match.order - 1,
+            is_live: match.match_status !== null && match.match_status.name === 'Live'
+        })),
+
         contestants
     })
 }
