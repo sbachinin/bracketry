@@ -76,6 +76,7 @@ export const prepareMockData = orig_data => {
     return Promise.resolve({
         rounds: orig_data.rounds.map(
             round => ({
+                id: round.uuid,
                 name: round.name,
                 matches: getMatchesForRound(round.uuid, orig_data, contestants)
             })

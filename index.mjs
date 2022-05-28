@@ -16,7 +16,7 @@ const some_test_options = {
 const user_container = document.getElementById('user-container')
 
 get_some_data().then(data => {
-    const { applyNewOptions, scrollLeft, scrollRight, getScrollState } = createBrackets(
+    const { applyNewOptions, applyMatchUpdates } = createBrackets(
         data,
         user_container,
         some_test_options
@@ -37,4 +37,22 @@ get_some_data().then(data => {
     })
 
     // create_external_buttons(getScrollState, scrollLeft, scrollRight)
+
+
+
+        
+    setInterval(() => {
+        applyMatchUpdates([
+            {
+                id: 'fsafd325', // should be 'match_id'
+                round_id: '23423432gdfg',
+                order: 3,
+                sides: []
+            }
+        ])
+    }, 3000)
+
 })
+
+
+

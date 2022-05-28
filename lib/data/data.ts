@@ -8,6 +8,7 @@ type Data = {
 }
 
 type Round = {
+    id: string,
     name?: string,
     matches?: Match[]
 }
@@ -45,4 +46,18 @@ type Player = {
     title: string,
     nationality_code?: string,
     flag_url?: string,
+}
+
+
+
+
+
+
+
+
+
+type MatchUpdate = {
+    id: string, // unlike Match, id is necessary
+    order: number, // 0-based!
+    sides?: Side[]
 }
