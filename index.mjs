@@ -8,7 +8,7 @@ const some_test_options = {
     // onMatchClick: (match) => {
     //     location.href = `/matches/${match.match_id}`
     // },
-    // onMatchSideClick: (contestant, contestant_id, match, round) => {
+    // onMatchSideClick: (contestant, contestant_id, match) => {
     //     location.href = `/teams/${contestant_id}`
     // }
 }
