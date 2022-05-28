@@ -14,7 +14,8 @@ type Round = {
 }
 
 type Match = {
-    id?: string,
+    match_id: string,
+    round_id: string,
     order: number, // 0-based!
     sides?: Side[]
 }
@@ -52,12 +53,3 @@ type Player = {
 
 
 
-
-
-
-
-type MatchUpdate = {
-    id: string, // unlike Match, id is necessary
-    order: number, // 0-based!
-    sides?: Side[]
-}

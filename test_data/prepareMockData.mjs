@@ -56,7 +56,6 @@ const getMatchesForRound = (roundId, orig_data, contestants) => {
         .filter(match => match.round_id === roundId)
         .map((match) => ({
             ...match,
-            id: match.id,
             dev_match_title: match.teams
                 .filter(Boolean)
                 .map(t => contestants[t.team_id].title).join('/'),

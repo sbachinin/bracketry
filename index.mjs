@@ -6,7 +6,7 @@ import { get_some_data } from './test_data/get_some_data.mjs'
 
 const some_test_options = {
     // onMatchClick: (match, round) => {
-    //     location.href = `/matches/${match.id}`
+    //     location.href = `/matches/${match.match_id}`
     // },
     // onMatchSideClick: (contestant, contestant_id, match, round) => {
     //     location.href = `/teams/${contestant_id}`
@@ -44,7 +44,7 @@ get_some_data().then(data => {
     setInterval(() => {
         applyMatchUpdates([
             {
-                id: 'fsafd325', // should be 'match_id'
+                match_id: 'fsafd325',
                 round_id: '23423432gdfg',
                 order: 3,
                 sides: []
