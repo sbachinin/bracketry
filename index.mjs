@@ -3,7 +3,8 @@ import { create_options_sidebar } from './options-inputs/options-inputs.mjs'
 import { sidebar_expand_button } from './options-inputs/elements.mjs'
 import { get_some_data } from './test_data/get_some_data.mjs'
 // import { create_external_buttons } from './external_hor_buttons_example.mjs'
-import { start_stupid_live_updates } from './start_stupid_live_updates.mjs'
+import { start_mock_matches_updates } from './start_mock_matches_updates.mjs'
+import { start_mock_full_data_updates } from './mock_full_data_updates.mjs'
 
 const some_test_options = {
     // onMatchClick: (match) => {
@@ -17,7 +18,7 @@ const some_test_options = {
 const user_container = document.getElementById('user-container')
 
 get_some_data().then(data => {
-    const { applyNewOptions, applyMatchUpdates } = createBrackets(
+    const { applyNewOptions, applyFullDataUpdate, applyMatchUpdates } = createBrackets(
         data,
         user_container,
         some_test_options
@@ -41,8 +42,9 @@ get_some_data().then(data => {
 
 
 
-    start_stupid_live_updates(applyMatchUpdates)
+    start_mock_matches_updates(applyMatchUpdates)
 
+    start_mock_full_data_updates(applyFullDataUpdate)
 })
 
 
