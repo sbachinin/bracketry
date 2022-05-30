@@ -41,7 +41,7 @@ const live_match2 = {
 const items = ['15', '30', '40', 'A']
 
 export const start_mock_matches_updates = (applyMatchUpdates) => {
-    return
+    if (true) return
     setInterval(() => {
         live_match.sides[1].subscore = live_match.sides[1].subscore === '40' ? 'A' : '40'
         live_match2.sides[0].score[0].main_score = items[Math.floor(Math.random()*items.length)]

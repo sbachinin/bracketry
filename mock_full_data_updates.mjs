@@ -3,7 +3,7 @@ import { prepareMockData } from './test_data/prepareMockData.mjs'
 
 
 export const start_mock_full_data_updates = (applyFullDataUpdate) => {
-    return
+    if (true) return
     let counter = 0
 
     setInterval(() => {
