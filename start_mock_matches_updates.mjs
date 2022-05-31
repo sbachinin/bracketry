@@ -38,15 +38,34 @@ const live_match2 = {
 }
 
 
+const live_match3 = {
+    match_id: "MS288uhoih20",
+    order: 0,
+    round_id: "249f66ca-6969-4757-b271-1fa812e183da",
+    sides: [{
+        contestant_id: "199971",
+        score: [ {
+            main_score: "", tie_break: undefined
+        } ],
+        subscore: ""
+    }, {
+        contestant_id: "199146",
+        score: [ {
+            main_score: "", tie_break: undefined
+        } ],
+        subscore: ""
+    }]
+}
+
 const items = ['15', '30', '40', 'A']
 
 export const start_mock_matches_updates = (applyMatchUpdates) => {
-    // if (true) return
+    if (true) return
     setInterval(() => {
         live_match.sides[1].subscore = live_match.sides[1].subscore === '40' ? 'A' : '40'
         live_match2.sides[0].score[0].main_score = items[Math.floor(Math.random()*items.length)]
         live_match2.sides[1].score[0].main_score = items[Math.floor(Math.random()*items.length)]
-        applyMatchUpdates([ live_match, live_match2 ])
+        applyMatchUpdates([ live_match, live_match2, live_match3 ])
     }, 3000)
 }
 
