@@ -38,10 +38,12 @@ const get_sides_data = (match_teams) => {
     return match_teams.filter(Boolean).map(team => {
         return {
             contestant_id: team.team_id,
-            score: team.score === undefined ? [] : team.score.map(score => ({
-                main_score: score.game,
-                tie_break: score.tie_break && Number(score.tie_break)
-            })),
+            score: team.score === undefined ? [] : team.score
+                .filter(score => score.game !== '')
+                .map(score => ({
+                    main_score: score.game,
+                    tie_break: score.tie_break && Number(score.tie_break)
+                })),
             subscore: team.point,
             is_serving: team.is_serving,
             is_winner: team.status === 'Winner'
