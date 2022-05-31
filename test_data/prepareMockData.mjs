@@ -61,7 +61,8 @@ export const prepareMockData = orig_data => {
             ...match,
             sides: get_sides_data(match.teams),
             order: match.order - 1,
-            is_live: match.match_status !== null && match.match_status.name === 'Live'
+            is_live: match.match_status !== null && match.match_status.name === 'Live',
+            match_status: match.match_status?.name || '05.04.2020'
         })).filter(m => m.sides.find(Boolean)),
 
         contestants
