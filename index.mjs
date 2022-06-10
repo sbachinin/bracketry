@@ -8,13 +8,14 @@ import { start_mock_full_data_updates } from './mock_full_data_updates.mjs'
 import { BUTTONS_POSITIONS } from './lib/constants.mjs'
 
 const some_test_options = {
-    horizontal_scroll_buttons_position: BUTTONS_POSITIONS.gutters
+    horizontal_scroll_buttons_position: BUTTONS_POSITIONS.gutters,
     // onMatchClick: (match) => {
     //     location.href = `/matches/${match.match_id}`
     // },
     // onMatchSideClick: (contestant, contestant_id, match) => {
     //     location.href = `/teams/${contestant_id}`
     // }
+    // use_mobile_layout: true
 }
 
 const user_container = document.getElementById('user-container')
