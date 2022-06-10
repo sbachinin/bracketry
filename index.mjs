@@ -15,7 +15,7 @@ const some_test_options = {
     // onMatchSideClick: (contestant, contestant_id, match) => {
     //     location.href = `/teams/${contestant_id}`
     // }
-    // use_mobile_layout: true
+    use_mobile_layout: true
 }
 
 const user_container = document.getElementById('user-container')
