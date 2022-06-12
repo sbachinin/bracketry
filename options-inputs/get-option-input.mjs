@@ -67,8 +67,10 @@ export const get_option_input = (name, info, value, onchange) => {
     }
 
     const wrapper_el = elements.option_wrapper_el(name, info)
-    wrapper_el.append(input)
-    info.explanation && wrapper_el.append(elements.info_icon(info.explanation))
+    wrapper_el.querySelector('.input-placeholder').replaceWith(input)
+    wrapper_el.querySelector('.explanation-placeholder').replaceWith(
+        info.explanation ? elements.info_icon(info.explanation) : ''
+    )
 
     return {
         el: wrapper_el,

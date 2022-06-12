@@ -54,7 +54,7 @@ export const create_user_options_text = (initial_options_to_values) => {
 
     const wrapper = create_element_from_Html(`
         <div style='
-            margin: 20px 10px 0;
+            margin: 70px 10px 0;
             background: #cfffe9;
             padding: 10px;
         '>

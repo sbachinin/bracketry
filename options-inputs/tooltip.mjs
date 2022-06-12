@@ -12,12 +12,14 @@ export const tooltip = create_element_from_Html(`
             left: 50%;
             transform: translate(-50%, -50%);
             max-height: 60%;
+            max-width: 95vw;
             z-index: 100;
             padding: 40px;
             overflow-y: scroll;
             font-size: 16px;
             font-family: verdana;
             line-height: 26px;
+            box-sizing: border-box;
         "
     >
         <svg style="

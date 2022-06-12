@@ -32,13 +32,9 @@ get_some_data().then(data => {
     const options_sidebar = create_options_sidebar(applyNewOptions, data, some_test_options)
     document.body.prepend(options_sidebar)
     const sidebar_button = sidebar_expand_button()
-    document.body.append(sidebar_button)
-    sidebar_button.addEventListener('click', () => {
-        if (parseInt(options_sidebar.style.width) === 0) {
-            options_sidebar.style.width = '400px'
-        } else {
-            options_sidebar.style.width = '0'
-        }
+    document.body.prepend(sidebar_button)
+    sidebar_button.addEventListener('mouseenter', () => {
+        options_sidebar.style.left = '0'
     })
 
     // create_external_buttons(getScrollState, scrollLeft, scrollRight)

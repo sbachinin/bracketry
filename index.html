@@ -1,6 +1,33 @@
 <!DOCTYPE html>
 <!-- <link rel="stylesheet" href="styles.css"> -->
-<body style="height: 100vh; margin: 0">
+<style>
+    .options-group-heading {
+        font-size: 20px;
+        padding: 6px 20px 6px 10px;
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #ddff9b;
+    }
+    .options-group-heading:not(:first-child) {
+        border-top: 5px solid #4a4a4a;
+    }
+    .single-option-wrapper {
+        display: flex;
+        align-items: center;
+        border-top: 2px solid #4a4a4a;
+    }
+    .single-option {
+        padding: 15px 12px;
+    }
+    .single-option input, .single-option textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
+</style>
+<body style="height: 100vh; margin: 0; display: flex;">
     
     <!-- <div class="shit" style="height: 1000px; width: 100px; background: gainsboro"></div> -->
     <div id="user-container" style="
