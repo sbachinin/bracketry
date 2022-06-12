@@ -32,7 +32,7 @@ export const sidebar_expand_button = () => create_element_from_Html(
     `<div style='
         width: 15px;
         height: 200px;
-        font-size: 20px;
+        font-size: 16px;
         font-family: arial;
         cursor: pointer;
         z-index: 31;
