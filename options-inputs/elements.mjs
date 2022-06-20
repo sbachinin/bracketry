@@ -42,6 +42,8 @@ export const sidebar_expand_button = () => create_element_from_Html(
         writing-mode: vertical-rl;
         text-orientation: upright;
         text-align: center;
+        position: fixed;
+        left: 0;
     '>options</div>`
 )
 

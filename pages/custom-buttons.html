@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- <link rel="stylesheet" href="styles.css"> -->
+<style>html{visibility: hidden;opacity:0;}</style>
+<body>
+    <script type="module">
+        import * as html_partials from './html_partials.mjs'
+        import { insert_styles } from '../lib/utils/utils.mjs'
+        import { examples_common_styles } from './examples_common_styles.mjs'
+        import { createPlayoffs } from '../lib/lib.mjs'
+        import { get_some_data } from '../test_data/get_some_data.mjs'
+        import { create_options_sidebar } from '../options-inputs/options-inputs.mjs'
+
+        insert_styles('', 'common-styles', examples_common_styles)
+
+        document.body.innerHTML = `
+
+
+            ${html_partials.home_link}
+            <h1>Custom navigation buttons</h1>
+            <h4>You can replace default "scroll buttons" with any other elements or text</h4>
+            <!-- <div class="shit" style="height: 1000px; width: 100px; background: gainsboro"></div> -->
+            <div id="common-playoffs-wrapper" style="
+                box-sizing: border-box;
+                margin: 0 auto;
+                border: 10px solid orange;
+                height: 90%;
+                width: 95%;
+            "></div>
+
+
+
+
+        `
+
+        const options = {
+            left_scroll_button_icon: '<h1 style="transform: scale(-1)">&#9992;</h1>',
+            right_scroll_button_icon: '<h1>&#9992;</h1>'
+        }
+
+        get_some_data().then(data => {
+            const { applyNewOptions, applyFullDataUpdate, applyMatchUpdates } = createPlayoffs(
+                data,
+                document.getElementById('common-playoffs-wrapper'),
+                options
+            )
+            
+
+            create_options_sidebar(applyNewOptions, data, options)
+        })
+
+    </script>
+
+</body>

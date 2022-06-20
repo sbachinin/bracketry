@@ -22,8 +22,8 @@ const update_inputs = (options_to_values) => {
     all_inputs.forEach(i => i.update(options_to_values))
 }
 
-const render_inputs = (data, user_options_to_values, wrapper_el, apply_new_options) => {
-    wrapper_el.innerHTML = ''
+const render_inputs = (data, user_options_to_values, sidebar_el, apply_new_options) => {
+    sidebar_el.innerHTML = ''
 
     const options_to_values = { ...get_default_options(), ...user_options_to_values}
 
@@ -58,7 +58,7 @@ const render_inputs = (data, user_options_to_values, wrapper_el, apply_new_optio
 
     Object.entries(OPTIONS)
         .forEach(([options_type_name, options_of_type]) => {
-            wrapper_el.append(
+            sidebar_el.append(
                 get_options_group_heading(
                     options_type_name,
                     () => update_inputs(options_to_values),
@@ -72,12 +72,12 @@ const render_inputs = (data, user_options_to_values, wrapper_el, apply_new_optio
     const {
         user_options_text_el, update_user_options_text
     } = create_user_options_text(user_options_to_values)
-    wrapper_el.append(user_options_text_el)
+    sidebar_el.append(user_options_text_el)
     
 /* 
-    wrapper_el.append(get_options_group_heading(
+    sidebar_el.append(get_options_group_heading(
         'DATA_TEXTAREA',
-        () => render_inputs(data, options_to_values, wrapper_el, update_brackets),
+        () => render_inputs(data, options_to_values, sidebar_el, update_brackets),
         names_of_expanded_groups
     ))
 
@@ -88,7 +88,7 @@ const render_inputs = (data, user_options_to_values, wrapper_el, apply_new_optio
         data_textarea.addEventListener('input', e => {
             update_brackets(JSON.parse(e.target.value), options_to_values)
         })
-        wrapper_el.append(data_textarea)
+        sidebar_el.append(data_textarea)
     } */
 }
 
@@ -97,15 +97,23 @@ export const create_options_sidebar = (
     data,
     user_options_to_values
 ) => {
-    const wrapper_el = elements.inputs_root_wrapper()
+    const sidebar_el = elements.inputs_root_wrapper()
 
 
     render_inputs(
         data,
         user_options_to_values,
-        wrapper_el,
+        sidebar_el,
         apply_new_options
     )
     document.head.insertAdjacentHTML('beforeend', `<style>${switchStyle}</style>`)
-    return wrapper_el
+
+    document.body.prepend(sidebar_el)
+    const sidebar_button = elements.sidebar_expand_button()
+    document.body.prepend(sidebar_button)
+    sidebar_button.addEventListener('mouseenter', () => {
+        sidebar_el.style.left = '0'
+    })
+
+    return sidebar_el
 }
