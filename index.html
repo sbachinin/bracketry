@@ -1,21 +1,56 @@
 <!DOCTYPE html>
 <head>
-    <link crossorigin="anonymous" rel="stylesheet" id="tonal-font-css" href="https://fonts.googleapis.com/css?family=Oxygen:400,300,700" media="all">
     <style>
     
         html{visibility: hidden;opacity:0;}
-        
+
+        .diagram-img {
+            height: 172px;
+            display: block;
+            margin-top: 36px;
+            margin-bottom: 36px;
+            margin-left: 136px;
+        }
+
         .default-playoffs {
             margin-bottom: 24px;
         }
+        .default-playoffs-data-picker {
+            margin-top: 20px;
+        }
     
+
+        h3 {
+            margin: 50px 0 10px 0;
+        }
+
     </style>
 </head>
 <body>
-    <h1>examples</h1>
+    <h1 style="font-size: 50px;
+    color: #d72f2f;
+    margin: 26px 0px;">EASY-PLAYOFFS</h1>
 
-    <h3><a href="/pages/basic-stuff.html">Basic stuff</a></h3>
-    Just provide your <a href="/pages/data.html">data</a> and get this default (desktop) view
+    <hr />
+    <h2 style="margin-top: 33px;
+    font-size: 34px;
+    color: #83a50d;"><i>WHAT YOU CAN DO WITH IT?</i></h2>
+    Create a diagram that represents the "draws" of a knockout tournament:
+    <img class="diagram-img" src="/pages/diagram.jpg" />
+    But first you have to convert your data to a <a href="/pages/data.html"><b>proper format</b></a>
+    <br/>
+    <br/>
+    You can also make a lot of visual <a href="#options"><b>adjustments</b></a> to your diagram
+    <br/>
+    <br/>
+    And it supports live updates
+    <br/>
+    <br/>
+    And it has a special mobile layout but it's up to you to decide if mobile layout should be used on a particular screen
+    <hr style="margin: 50px 0 70px;" />
+
+    <h2><a href="/pages/basic-stuff.html">BASIC USAGE</a></h2>
+    You just provide your data and get this default (desktop) view
     <div class="data-picker default-playoffs-data-picker"></div>
     <div class="default-playoffs common-playoffs-wrapper"></div>
 

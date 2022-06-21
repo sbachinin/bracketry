@@ -2,7 +2,7 @@ import { datas } from './get_some_data.mjs'
 
 const icons = {
     empty: '&#128453;',
-    tennis: '&#127934;',
+    tennis: '<img width=24 height=24 src="/pages/tennis-ball.jpg" />',
 }
 
 const create_data_button = (data, cb) => {

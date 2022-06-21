@@ -12,11 +12,8 @@ export const examples_common_styles = `
     }
 
     h1, h2, h3, h4 {
-        font-family: Oxygen, open sans, Roboto, sans-serif;
-    }
-
-    h3 {
-        margin: 50px 0 10px 0;
+        font-family: open sans, Roboto, sans-serif;
+        font-weight: normal;
     }
 
     .common-playoffs-wrapper {
