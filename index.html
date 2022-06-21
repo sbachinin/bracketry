@@ -27,7 +27,7 @@
 
         insert_styles('', 'common-styles', examples_common_styles)
 
-        get_some_data().then(data => {
+        get_some_data(3).then(data => {
             createPlayoffs(
                 data,
                 document.querySelector('.default-playoffs'),
