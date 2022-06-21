@@ -20,7 +20,6 @@ export const examples_common_styles = `
     }
 
     .common-playoffs-wrapper {
-        margin: 24px 0;
         height: 600px;
         border: 3px solid tomato;
     }
@@ -54,6 +53,21 @@ export const examples_common_styles = `
 
 
 
+
+
+    .data-picker {
+        display: flex;
+    }
+    .data-picker-button {
+        margin: 5px 10px;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0.5;
+        user-select: none;
+    }
+    .data-picker-button:hover {
+        opacity: 1;
+    }
 
 
 

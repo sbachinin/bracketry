@@ -6,6 +6,45 @@ import data4 from './ausopen-2022-mens-singles-finished.mjs'
 import data5 from './ausopen-2022-live-mens-doubles.mjs'
 import { prepareMockData } from './prepareMockData.mjs'
 
+
+export const datas = [
+    {
+        type: 'empty',
+        title: 'Empty (upcoming) 3-round tournament',
+        resolver: () => Promise.resolve(emptydata)
+    },
+    {
+        type: 'tennis',
+        title: '2-round tennis tournament',
+        resolver: () => Promise.resolve(testdata1)
+    },
+    {
+        type: 'tennis',
+        title: '...',
+        resolver: () => prepareMockData(data1)
+    },
+    {
+        type: 'tennis',
+        resolver: () => prepareMockData(data2)
+    },
+    {
+        type: 'tennis',
+        resolver: () => prepareMockData({
+            ...data2,
+            rounds: data2.rounds.slice(data2.rounds.length - 4)
+        })
+    },
+    {
+        type: 'tennis',
+        resolver: () => prepareMockData(data4)
+    },
+    {
+        type: 'tennis',
+        resolver: () => prepareMockData(data5)
+    },
+]
+
+
 export const get_some_data = (index) => {
     // return Promise.resolve(testdata1)
     switch (index) {
