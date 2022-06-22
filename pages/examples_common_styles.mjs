@@ -50,12 +50,25 @@ export const examples_common_styles = `
 
 
 
+    .mobile-switcher {
+        display: flex;
+        align-items: center;
+        opacity: 0.6;
+        cursor: pointer;
+        width: max-content;
+    }
+    .mobile-switcher:hover {
+        opacity: 1;
+    }
+
 
 
 
 
     .data-picker {
         display: flex;
+        align-items: center;
+        flex-wrap: wrap;
     }
     .data-picker-button {
         margin: 5px 10px;
@@ -104,4 +117,23 @@ export const examples_common_styles = `
 
     html{visibility: visible;opacity:1;}
 
+
+
+
+
+    .crossed {
+        background: 
+            linear-gradient(to top left,
+                rgba(0,0,0,0) 0%,
+                rgba(0,0,0,0) calc(50% - 0.8px),
+                rgba(0,0,0,1) 50%,
+                rgba(0,0,0,0) calc(50% + 0.8px),
+                rgba(0,0,0,0) 100%),
+            linear-gradient(to top right,
+                rgba(0,0,0,0) 0%,
+                rgba(0,0,0,0) calc(50% - 0.8px),
+                rgba(0,0,0,1) 50%,
+                rgba(0,0,0,0) calc(50% + 0.8px),
+                rgba(0,0,0,0) 100%);
+   }
 `
