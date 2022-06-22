@@ -5,3 +5,11 @@ export const home_link = `
         Easy playoffs
     </a>
 `
+
+export const footer = `
+    <div style="
+        height: 252px;
+        background: repeating-linear-gradient(0deg, white 0, white 30px, black 31px, black 33px);
+        margin-top: 30px;
+    "></div>
+`

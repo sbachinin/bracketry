@@ -38,14 +38,14 @@ createPlayoffs(
 
 
 
-
+            ${html_partials.footer}
         `
 
 
 
 
 
-        get_some_data().then(data => {
+        get_some_data(1).then(data => {
             const { applyNewOptions } = createPlayoffs(
                 data,
                 document.querySelector('.common-playoffs-wrapper'),

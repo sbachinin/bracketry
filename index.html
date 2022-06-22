@@ -92,8 +92,10 @@
         import { create_mobile_switcher } from './test_data/create_mobile_switcher.mjs'
         import { insert_styles } from './lib/utils/utils.mjs'
         import { examples_common_styles } from './pages/examples_common_styles.mjs'
+        import { footer } from './pages/html_partials.mjs'
 
         insert_styles('', 'common-styles', examples_common_styles)
+        document.body.innerHTML += footer
 
         const default_playoffs_wrapper = document.querySelector('.default-playoffs')
 
