@@ -11,14 +11,16 @@ export const examples_common_styles = `
         color: #2c2c2c;
     }
 
-    h1, h2, h3, h4 {
-        font-family: open sans, Roboto, sans-serif;
+    .normal-heading {
+        font-size: 34px;
+        font-style: italic;
         font-weight: normal;
+        text-transform: uppercase;
     }
 
     .common-playoffs-wrapper {
         height: 600px;
-        border: 3px solid tomato;
+        border: 3px solid;
     }
 
     .home-link {

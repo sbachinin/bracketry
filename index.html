@@ -4,12 +4,29 @@
     
         html{visibility: hidden;opacity:0;}
 
+        .title {
+            font-size: 99px;
+            margin-top: 50px;
+            letter-spacing: 0.11em;
+            font-family: tahoma;
+            font-weight: bold;
+            line-height: 0.85;
+            word-wrap: break-word;
+        }
+
+        .logo {
+            width: 222px;
+            float: left;
+            padding-right: 32px;
+        }
+
         .diagram-img {
             height: 172px;
             display: block;
             margin-top: 36px;
             margin-bottom: 36px;
-            margin-left: 136px;
+            margin-left: 8%;
+            max-width: 70vw;
         }
 
         .default-playoffs {
@@ -27,15 +44,14 @@
     </style>
 </head>
 <body>
-    <h1 style="font-size: 50px;
-    color: #d72f2f;
-    margin: 26px 0px;">EASY-PLAYOFFS</h1>
+    <img class="logo" src="/pages/logo1.jpg"/>
+    <h1 class="title">EASY<br/>-PLAYOFFS</h1>
 
-    <hr />
-    <h2 style="margin-top: 33px;
-    font-size: 34px;
-    color: #83a50d;"><i>WHAT YOU CAN DO WITH IT?</i></h2>
-    Create a diagram that represents the "draws" of a knockout tournament:
+    <div class="normal-heading" style="margin: 80px 0 3px; font-size: 34px;"><i>WHAT YOU CAN DO WITH IT?</i></div>
+    <div style="display: flex; align-items: center; font-size: 20px;">
+        <span style="font-size: 37px; padding-right: 24px;">&#11116;</span>
+        Create diagrams that represent the "draws" of a knockout tournament:
+    </div>
     <img class="diagram-img" src="/pages/diagram.jpg" />
     But first you have to convert your data to a <a href="/pages/data.html"><b>proper format</b></a>
     <br/>
@@ -46,18 +62,20 @@
     And it supports live updates
     <br/>
     <br/>
-    And it has a special mobile layout but it's up to you to decide if mobile layout should be used on a particular screen
+    And it has a special mobile layout
+    <br />
+    <i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(but it's your job to measure screens and decide if mobile layout should be used on a particular screen)</i>
     <hr style="margin: 50px 0 70px;" />
 
-    <h2><a href="/pages/basic-stuff.html">BASIC USAGE</a></h2>
+    <div class="normal-heading" style="margin-bottom: 27px;"><a href="/pages/basic-stuff.html">BASIC USAGE</a></div>
     You just provide your data and get this default (desktop) view
     <div class="data-picker default-playoffs-data-picker"></div>
     <div class="default-playoffs common-playoffs-wrapper"></div>
 
-    <h3><a href="/pages/custom-buttons.html">Custom navigation buttons</a></h3>
+    <div class="normal-heading"><a href="/pages/custom-buttons.html">Custom navigation buttons</a></div>
     You can replace default "scroll buttons" with any other elements or text
 
-    <h3><a href="/pages/external-buttons.html">"External" navigation buttons</a></h3>
+    <div class="normal-heading"><a href="/pages/external-buttons.html">"External" navigation buttons</a></div>
     You may override the default navigation behaviour altogether.
     Use any elements positioned anywhere on your page and call special methods to switch round.
 
