@@ -99,7 +99,7 @@
 
         const default_playoffs_wrapper = document.querySelector('.default-playoffs')
 
-        get_some_data(2).then(data => {
+        get_some_data().then(data => {
             let playoffs = createPlayoffs(data, default_playoffs_wrapper, {})
 
             create_data_picker(

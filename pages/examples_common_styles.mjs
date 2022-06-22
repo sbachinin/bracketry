@@ -32,6 +32,11 @@ export const examples_common_styles = `
         font-family: georgia;
         padding: 0 19px;
         font-size: 20px;
+        width: max-content;
+        opacity: 0.7;
+    }
+    .home-link:hover {
+        opacity: 1;
     }
     .home-link svg {
         height: 20px;
@@ -71,16 +76,40 @@ export const examples_common_styles = `
         flex-wrap: wrap;
     }
     .data-picker-button {
+        display: flex;
+        align-items: center;
         margin: 5px 10px;
         font-size: 20px;
         cursor: pointer;
         opacity: 0.5;
         user-select: none;
+        position: relative;
+        border: 1px solid transparent;
+        padding: 5px;
     }
     .data-picker-button:hover {
         opacity: 1;
     }
-
+    .data-picker-button.selected {
+        border-color: #ccc;
+    }
+    .data-picker-button-tooltip {
+        position: absolute;
+        left: 100%;
+        bottom: 100%;
+        background: white;
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        font-size: 16px;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 100;
+        transition: all 0.1s ease-out;
+    }
+    .data-picker-button-tooltip.visible {
+        opacity: 1;
+    }
+    
 
 
 

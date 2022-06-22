@@ -6,6 +6,7 @@ import data4 from './ausopen-2022-mens-singles-finished.mjs'
 import data5 from './ausopen-2022-live-mens-doubles.mjs'
 import { prepareMockData } from './prepareMockData.mjs'
 
+export const INITIAL_TEST_DATA_INDEX = 6
 
 export const datas = [
     {
@@ -49,6 +50,6 @@ export const datas = [
 ]
 
 
-export const get_some_data = (index) => {
-    return datas[index].resolver()
+export const get_some_data = () => {
+    return datas[INITIAL_TEST_DATA_INDEX].resolver()
 }

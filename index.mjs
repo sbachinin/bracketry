@@ -20,7 +20,7 @@ const some_test_options = {
 
 const user_container = document.getElementById('user-container')
 
-get_some_data(1).then(data => {
+get_some_data().then(data => {
     const { applyNewOptions, applyFullDataUpdate, applyMatchUpdates } = createPlayoffs(
         data,
         user_container,
