@@ -9,10 +9,7 @@ const create_data_button = (data, cb) => {
     const button = document.createElement('div')
     button.className = 'data-picker-button'
     button.innerHTML = icons[data.type]
-    button.addEventListener('click', () => {
-        console.log('button clicked', data)
-        data.resolver().then(cb)
-    })
+    button.addEventListener('click', () => data.resolver().then(cb))
     return button
 }
 

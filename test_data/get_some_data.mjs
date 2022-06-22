@@ -20,15 +20,17 @@ export const datas = [
     },
     {
         type: 'tennis',
-        title: '...',
+        title: 'Tennis ongoing tournament',
         resolver: () => prepareMockData(data1)
     },
     {
         type: 'tennis',
+        title: 'Tennis finished tournament',
         resolver: () => prepareMockData(data2)
     },
     {
         type: 'tennis',
+        title: 'Tennis finished tournament (shortened)',
         resolver: () => prepareMockData({
             ...data2,
             rounds: data2.rounds.slice(data2.rounds.length - 4)
@@ -36,31 +38,17 @@ export const datas = [
     },
     {
         type: 'tennis',
+        title: 'Another tennis singles finished tournament',
         resolver: () => prepareMockData(data4)
     },
     {
         type: 'tennis',
+        title: 'Tennis DOUBLES unfinished tournament',
         resolver: () => prepareMockData(data5)
     },
 ]
 
 
 export const get_some_data = (index) => {
-    // return Promise.resolve(testdata1)
-    switch (index) {
-        case -1: return Promise.resolve(emptydata)
-        case 0: return Promise.resolve(testdata1)
-        case 1: return prepareMockData(data1)
-        case 2: return prepareMockData(data2)
-        case 3: return prepareMockData(data2).then(data => {
-            return {
-                ...data,
-                rounds: data.rounds.slice(data.rounds.length - 4)
-            }
-        })
-        case 4: return prepareMockData(data4)
-        case 5:
-        default:
-            return prepareMockData(data5)
-    }
+    return datas[index].resolver()
 }
