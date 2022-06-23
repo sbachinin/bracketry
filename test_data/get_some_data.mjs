@@ -6,7 +6,7 @@ import data4 from './ausopen-2022-mens-singles-finished.mjs'
 import data5 from './ausopen-2022-live-mens-doubles.mjs'
 import { prepareMockData } from './prepareMockData.mjs'
 
-export const INITIAL_TEST_DATA_INDEX = 6
+export const INITIAL_TEST_DATA_INDEX = 4
 
 export const datas = [
     {

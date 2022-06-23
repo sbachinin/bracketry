@@ -9,38 +9,66 @@
         import { createPlayoffs } from '../lib/lib.mjs'
         import { get_some_data } from '../test_data/get_some_data.mjs'
         import { create_options_sidebar } from '../options-inputs/options-inputs.mjs'
+        import { escape_Html } from './escape_html.mjs'
+
 
         insert_styles('', 'common-styles', examples_common_styles)
+
+        const left_scroll_button_html = `<svg
+            style="padding: 10px; box-sizing: content-box;"
+            width="40px" height="40px"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm-4.828 11.5l4.608 3.763-.679.737-6.101-5 6.112-5 .666.753-4.604 3.747h11.826v1h-11.828z" style="width: 100%;height: 100%;"></path></svg>`
+
+        const right_scroll_button_html = `<svg
+            style="padding: 10px; box-sizing: content-box;"
+            width="40px" height="40px"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c-6.623 0-12 5.377-12 12s5.377 12 12 12 12-5.377 12-12-5.377-12-12-12zm0 1c-6.071 0-11 4.929-11 11s4.929 11 11 11 11-4.929 11-11-4.929-11-11-11zm4.828 11.5l-4.608 3.763.679.737 6.101-5-6.112-5-.666.753 4.604 3.747h-11.826v1h11.828z"/></svg>`
 
         document.body.innerHTML = `
 
 
             ${html_partials.home_link}
-            <h1>Custom navigation buttons</h1>
-            <h4>You can replace default "scroll buttons" with any other elements or text</h4>
-            <!-- <div class="shit" style="height: 1000px; width: 100px; background: gainsboro"></div> -->
-            <div id="common-playoffs-wrapper" style="
-                box-sizing: border-box;
-                margin: 0 auto;
-                border: 10px solid orange;
-                height: 90%;
-                width: 95%;
-            "></div>
+            <h1>CUSTOM NAVIGATION BUTTONS</h1>
+            <h3 style="font-style: italic;
+color: #9d9d9d;">(options.left_scroll_button_html, options.right_scroll_button_html)</h3>
+            <h4>You can replace default "naviagation buttons" (those that switch rounds) with any other elements or text</h4>
+            
+            <hr />
+            <h2>HOW</h2>
+            <div class="code">import { createPlayoffs } from 'easy-playoffs'
+
+createPlayoffs(
+    data,
+    document.querySelector('.playoffs-wrapper'),
+    <span class="bleak_code">// options object:</span>
+    <span class="highlighted_code">{
+        left_scroll_button_html: "${escape_Html(left_scroll_button_html)}",
+
+        right_scroll_button_html: "${escape_Html(right_scroll_button_html)}"
+    }</span>
+)</div>
+
+            <br />
+            <hr />
+            <h2>RESULT</h2>
+            <div class="common-playoffs-wrapper"></div>
 
 
-
+            ${html_partials.footer}
 
         `
 
         const options = {
-            left_scroll_button_icon: '<h1 style="transform: scale(-1)">&#9992;</h1>',
-            right_scroll_button_icon: '<h1>&#9992;</h1>'
+            left_scroll_button_html,
+            right_scroll_button_html
         }
 
         get_some_data().then(data => {
             const { applyNewOptions, applyFullDataUpdate, applyMatchUpdates } = createPlayoffs(
                 data,
-                document.getElementById('common-playoffs-wrapper'),
+                document.querySelector('.common-playoffs-wrapper'),
                 options
             )
             

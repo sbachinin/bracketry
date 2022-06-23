@@ -51,9 +51,14 @@ export const examples_common_styles = `
         line-height: 22px;
         letter-spacing: 0.02em;
         padding: 10px 20px;
+        overflow: scroll;
     }
-
-
+    .bleak_code {
+        color: #9e9e9e;
+    }
+    .highlighted_code {
+        text-shadow: 0px 0px 6px #f9ff4c;
+    }
 
     .mobile-switcher {
         display: flex;

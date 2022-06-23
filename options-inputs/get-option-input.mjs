@@ -1,5 +1,5 @@
 import { create_element_from_Html } from '../lib/utils/utils.mjs'
-import { escape_Html } from './utils.mjs'
+import { escape_Html } from '../pages/escape_html.mjs'
 import { is_object } from '../lib/utils/utils.mjs'
 import * as elements from './elements.mjs'
 
