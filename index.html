@@ -59,15 +59,18 @@
     But first you have to convert your data to a <a href="/pages/data.html"><b>proper format</b></a>
     <br/>
     <br/>
-    You can also make a lot of visual <a href="#options"><b>adjustments</b></a> to your diagram
+    You can also make a lot of visual <a href="#options-header"><b>adjustments</b></a> to your diagram
     <br/>
     <br/>
-    And it supports live updates
+    And it supports <a href="#live-updates-header">live updates</a>
     <br/>
     <br/>
     And it has a special mobile layout
     <br />
     <i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(but it's your job to measure screens and decide if mobile layout should be used on a particular screen)</i>
+    <br/>
+    <br/>
+    Note that if you want to display countries' <a href="#flags-header">flags</a>, you have to provide your own flag urls
     <hr style="margin: 50px 0 70px;" />
 
     <div class="normal-heading" style="margin-bottom: 27px;"><a href="/pages/basic-stuff.html">BASIC USAGE</a></div>
@@ -76,6 +79,8 @@
     <div class="data-picker default-playoffs-data-picker">try different data: </div>
     <div class="mobile-switcher default-playoffs-mobile-switcher"></div>
 
+    <h2 id="options-header" style="margin-top: 90px; font-size: 61px;">OPTIONS</h2>
+
     <div class="normal-heading" style="margin-top: 50px;"><a href="/pages/custom-buttons.html">Custom navigation buttons</a></div>
     You can replace default "scroll buttons" with any other elements or text
 
@@ -83,7 +88,21 @@
     You may override the default navigation behaviour altogether.
     Use any elements positioned anywhere on your page and call special methods to switch round.
 
-    live updates
+    <h2 id="live-updates-header" style="margin-top: 90px; font-size: 45px;">ABOUT LIVE UPDATES</h2>
+
+    <h2 id="flags-header" style="margin-top: 90px; font-size: 45px;">ABOUT FLAGS</h2>
+    Easy-brackets by default doesn't display images for countries' flags.
+    <br />
+    But it allows you to use your own flag images (for that you have to provide a <i>flag_url</i> property for a <a href="/pages/data.html">Player</a>).
+    <br/>
+    But it's optional.
+    <br/>
+    <br/>
+    If you don't have flag images, you may at least have a nationality code displayed instead of a flag (<i>nationality_code</i> of a <a href="/pages/data.html">Player</a>)
+    <img src="/pages/images/nationality_codes.jpg" />
+
+
+
 
     <script type="module">
         import { createPlayoffs } from './lib/lib.mjs'
