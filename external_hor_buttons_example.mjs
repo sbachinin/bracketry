@@ -1,14 +1,14 @@
 import { create_element_from_Html } from './lib/utils/utils.mjs'
 
-export const create_external_buttons = (getScrollState, scrollLeft, scrollRight) => {
+export const create_external_buttons = (getNavigationState, moveToPreviousRound, moveToNextRound) => {
     const left_button = create_element_from_Html(`<div style="font-size: 50px; display: inline-block; user-select: none">&#x3c;</div>`)
     const right_button = create_element_from_Html(`<div style="font-size: 50px; display: inline-block; user-select: none">&#x3e;</div>`)
 
     const update_buttons = () => {
-        const state = getScrollState()
+        const state = getNavigationState()
         right_button.style.opacity = 1
         left_button.style.opacity = 1
-        if (!state.contentIsWider) {
+        if (state.allRoundsAreVisible) {
             left_button.style.display = 'none'
             right_button.style.display = 'none'
         }
@@ -23,11 +23,11 @@ export const create_external_buttons = (getScrollState, scrollLeft, scrollRight)
     update_buttons()
 
     left_button.addEventListener('mouseup', () => {
-        scrollLeft()
+        moveToPreviousRound()
         update_buttons()
     })
     right_button.addEventListener('mouseup', () => {
-        scrollRight()
+        moveToNextRound()
         update_buttons()
     })
 

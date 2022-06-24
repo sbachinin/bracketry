@@ -50,6 +50,6 @@ export const datas = [
 ]
 
 
-export const get_some_data = () => {
-    return datas[INITIAL_TEST_DATA_INDEX].resolver()
+export const get_some_data = (i = INITIAL_TEST_DATA_INDEX) => {
+    return datas[i].resolver()
 }
