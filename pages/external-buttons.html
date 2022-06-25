@@ -4,7 +4,7 @@
     html{visibility: hidden;opacity:0;}
     .playoffs-navbar {
         display: flex;
-        width: 453px;
+        width: 600px;
         max-width: calc(100vw - 51px);
         flex-wrap: wrap;
     }
@@ -26,7 +26,7 @@
         import { examples_common_styles } from './examples_common_styles.mjs'
         import { createPlayoffs } from '../lib/lib.mjs'
         import { get_some_data } from '../test_data/get_some_data.mjs'
-        import { create_options_sidebar } from '../options-inputs/options-inputs.mjs'
+        import { add_options_manager } from '../options-manager/options-manager.mjs'
         import { escape_Html } from './escape_html.mjs'
         import { BUTTONS_POSITIONS } from '../lib/constants.mjs'
 
@@ -85,23 +85,22 @@
             Let's build a top navigation bar with a button for each round
             <br />
             I guess it will make more sense with a mobile layout. But it will work with a normal layout just as well.
-            <div class="code" style="margin-top: 15px;">import { createPlayoffs } from 'easy-playoffs'
+            <div class="code" style="margin-top: 15px;">
+import { createPlayoffs } from 'easy-playoffs'
 
-const {
-    <span class="highlighted_code">moveToNRound</span>
-} = createPlayoffs(
+const { <span class="highlighted_code">moveToNRound</span> } = createPlayoffs(
     your_data,
     your_playoffs_wrapper,
-    <span class="bleak_code">// options object:</span>
-    <span class="highlighted_code">{
-        nav_buttons_position: "${BUTTONS_POSITIONS.hidden}",
-        use_mobile_layout: true
-    }</span>
+    <span class="bleak_code">// options  object:</span>
+    {
+        <span class="highlighted_code">nav_buttons_position: "${BUTTONS_POSITIONS.hidden}",
+        use_mobile_layout: true</span>
+    }
 )
 
 <span class="bleak_code">// populate your nav element with buttons for each round;
-// call moveToNRound with an index of a button which was clicked</span><span class="highlighted_code">
-your_data.rounds.forEach((r, r_i) => {
+// call moveToNRound with an index of a button that was clicked</span>
+<span class="highlighted_code">your_data.rounds.forEach((r, r_i) => {
     const button = document.createElement('div')
     button.innerHTML = r.name
     button.addEventListener('click', (e) => {
@@ -117,8 +116,8 @@ your_data.rounds.forEach((r, r_i) => {
             <h2>RESULT</h2>
 
             <div class="playoffs-navbar first"></div>
-            <div class="common-playoffs-wrapper first" style="width: 453px; max-width: calc(100vw - 51px);"></div>
-
+            <div class="common-playoffs-wrapper first" style="width: 600px; max-width: calc(100vw - 51px);"></div>
+            <div class="options-manager-opener">manage options</div>
 
 
             <hr style="margin-top: 30px;" />
@@ -129,14 +128,22 @@ your_data.rounds.forEach((r, r_i) => {
             Let's now highlight a navigation button which corresponds to a round currently displayed in the center
             <br /><br />
             You can manually keep track of the currently displayed round after any of the buttons were clicked;
-            the question is which button to highlight <i>from the start</i>.
+            the question is which button to highlight <i>from the start</i> (before clicks).
             <br /><br />
             Easy-brackets in the beginning will try to navigate to the last 'contentful' round (last round which is finished or at least contains matches with known participants).
             <br /><br />
             So the initial 'central' round is a variable thing. To get its index use <i><b>centralRoundIndex</b></i> which is part of an object returned by <i><b>getNavigationState</b></i>
 
 
-            <div class="code" style="margin-top: 15px;">import { createPlayoffs } from 'easy-playoffs'
+
+
+
+
+
+
+
+<div class="code" style="margin-top: 15px;">
+import { createPlayoffs } from 'easy-playoffs'
 
 const {
     moveToNRound,
@@ -144,28 +151,25 @@ const {
 } = createPlayoffs(
     your_data,
     your_playoffs_wrapper,
-    <span class="bleak_code">// options object:</span>
     {
         nav_buttons_position: "${BUTTONS_POSITIONS.hidden}",
         use_mobile_layout: true
     }
 )
 
-const buttons = your_data.rounds.forEach((r, r_i) => {
+const buttons = your_data.rounds.map((r, r_i) => {
     const button = document.createElement('div')
     button.innerHTML = r.name
     <span class="highlighted_code">if (getNavigationState().centralRoundIndex === r_i) {
         button.classList.add('selected')
-    }
-    </span
+    }</span>
     button.addEventListener('click', (e) => {
-        <span class="highlighted_code">const allButtons = [...e.target.parentElement.children]
-        allButtons.forEach(c => c.classList.remove('selected'))
-        e.target.classList.add('selected')
-        </span>
+        <span class="highlighted_code">buttons.forEach(c => c.classList.remove('selected'))
+        e.target.classList.add('selected')</span>
         moveToNRound(r_i)
     })
     your_nav_element.append(button)
+    return button
 })
 
 </div>
@@ -175,9 +179,7 @@ const buttons = your_data.rounds.forEach((r, r_i) => {
             <h2>RESULT</h2>
 
             <div class="playoffs-navbar second"></div>
-            <div class="common-playoffs-wrapper second" style="width: 453px; max-width: calc(100vw - 51px);"></div>
-
-            
+            <div class="common-playoffs-wrapper second" style="width: 600px; max-width: calc(100vw - 51px);"></div>
 
             ${html_partials.footer}
 
@@ -197,16 +199,21 @@ const buttons = your_data.rounds.forEach((r, r_i) => {
                 options
             )
             
-            data.rounds.forEach((r, r_i) => {
+            const buttons = data.rounds.map((r, r_i) => {
                 const button = document.createElement('div')
                 button.innerHTML = r.name
                 button.addEventListener('click', (e) => {
                     moveToNRound(r_i)
                 })
                 document.querySelector('.playoffs-navbar.first').append(button)
+                return button
             })
 
-            create_options_sidebar(applyNewOptions, data, options)
+            add_options_manager(
+                document.querySelector('.options-manager-opener'),
+                applyNewOptions,
+                options
+            )
         })
 
         get_some_data(3).then(data => {
@@ -222,7 +229,7 @@ const buttons = your_data.rounds.forEach((r, r_i) => {
                 options
             )
 
-            data.rounds.forEach((r, r_i) => {
+            const buttons = data.rounds.map((r, r_i) => {
                 const button = document.createElement('div')
                 button.innerHTML = r.name
                 if (getNavigationState().centralRoundIndex === r_i) {
@@ -230,15 +237,13 @@ const buttons = your_data.rounds.forEach((r, r_i) => {
                     }
                 
                 button.addEventListener('click', (e) => {
-                    const allButtons = [...e.target.parentElement.children]
-                    allButtons.forEach(c => c.classList.remove('selected'))
+                    buttons.forEach(c => c.classList.remove('selected'))
                     e.target.classList.add('selected')
                     moveToNRound(r_i)
                 })
                 document.querySelector('.playoffs-navbar.second').append(button)
+                return button
             })
-
-            // create_options_sidebar(applyNewOptions, data, options)
         })
 
 

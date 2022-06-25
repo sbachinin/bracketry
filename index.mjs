@@ -1,6 +1,4 @@
 import { createPlayoffs } from './lib/lib.mjs'
-import { create_options_sidebar } from './options-inputs/options-inputs.mjs'
-import { sidebar_expand_button } from './options-inputs/elements.mjs'
 import { get_some_data } from './test_data/get_some_data.mjs'
 import { start_mock_matches_updates } from './start_mock_matches_updates.mjs'
 import { start_mock_full_data_updates } from './mock_full_data_updates.mjs'
@@ -28,14 +26,7 @@ get_some_data().then(data => {
     
 
 
-    const options_sidebar = create_options_sidebar(applyNewOptions, data, some_test_options)
     document.body.prepend(options_sidebar)
-    const sidebar_button = sidebar_expand_button()
-    document.body.prepend(sidebar_button)
-    sidebar_button.addEventListener('mouseenter', () => {
-        options_sidebar.style.left = '0'
-    })
-
 
 
 

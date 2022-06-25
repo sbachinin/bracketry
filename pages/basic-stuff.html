@@ -9,7 +9,7 @@
         import { examples_common_styles } from './examples_common_styles.mjs'
         import { createPlayoffs } from '../lib/lib.mjs'
         import { get_some_data } from '../test_data/get_some_data.mjs'
-        import { create_options_sidebar } from '../options-inputs/options-inputs.mjs'
+        import { add_options_manager } from '../options-manager/options-manager.mjs'
 
         insert_styles('', 'common-styles', examples_common_styles)
 
@@ -35,7 +35,7 @@ createPlayoffs(
             <h2>RESULT</h2>
 
             <div class="common-playoffs-wrapper"></div>
-
+            <div class="options-manager-opener">manage options</div>
 
 
             ${html_partials.footer}
@@ -51,7 +51,11 @@ createPlayoffs(
                 document.querySelector('.common-playoffs-wrapper'),
                 {}
             )
-            create_options_sidebar(applyNewOptions, data, {})
+            add_options_manager(
+                document.querySelector('.options-manager-opener'),
+                applyNewOptions,
+                {}
+            )
         })
 
 

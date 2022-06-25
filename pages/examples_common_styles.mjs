@@ -5,7 +5,6 @@ export const examples_common_styles = `
         letter-spacing: 0.05em;
         width: 1200px;
         max-width: 100vw;
-        margin: 0 auto;
         padding: 0 30px;
         box-sizing: border-box;
         color: #2c2c2c;
@@ -43,21 +42,40 @@ export const examples_common_styles = `
     }
 
 
+    .options-manager-opener {
+        font-size: 16px;
+        font-family: arial;
+        cursor: pointer;
+        user-select: none;
+        background: #4a4a4a;
+        color: white;
+        margin: 10px;
+        width: max-content;
+        padding: 4px 8px 2px 8px;
+        text-transform: uppercase;
+    }
+
+
+
     .code {
         white-space: pre;
-        background: #e2e2e2;
+        background: #373737;
+        color: #fff;
         font-family: monospace;
         font-size: 16px;
         line-height: 22px;
         letter-spacing: 0.02em;
-        padding: 10px 20px;
+        padding: 10px 30px;
         overflow: scroll;
+        width: max-content;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     .bleak_code {
         color: #9e9e9e;
     }
     .highlighted_code {
-        text-shadow: 0px 0px 6px #f9ff4c;
+        color: #80ea00;
     }
 
     .mobile-switcher {
@@ -130,6 +148,7 @@ export const examples_common_styles = `
         align-items: center;
         justify-content: space-between;
         background: #ddff9b;
+        clear: both;
     }
     .options-group-heading:not(:first-child) {
         border-top: 2px solid #4a4a4a;
@@ -143,10 +162,22 @@ export const examples_common_styles = `
         padding: 15px 12px;
         max-width: 100%;
         box-sizing: border-box;
+        width: 100%;
     }
     .single-option input, .single-option textarea {
         width: 100%;
         box-sizing: border-box;
+    }
+    .single-option.boolean {
+        display: flex;
+        justify-content: space-between;
+    }
+    .single-option.boolean > input {
+        width: 30px;
+        cursor: pointer;
+        flex-basis: 30px;
+        flex-grow: 0;
+        flex-shrink: 0;
     }
 
     html{visibility: visible;opacity:1;}

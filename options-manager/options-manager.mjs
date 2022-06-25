@@ -3,7 +3,6 @@ import { get_default_options } from '../lib/options/get_default_options.mjs'
 import { get_option_input } from './get-option-input.mjs'
 import * as elements from './elements.mjs'
 import { get_options_group_heading } from './get_options_group_heading.mjs'
-import { switchStyle } from './switch-style.mjs'
 import { throttle_with_trailing } from '../lib/utils/utils.mjs'
 import { create_user_options_text } from './user_options_text.mjs'
 
@@ -22,7 +21,7 @@ const update_inputs = (options_to_values) => {
     all_inputs.forEach(i => i.update(options_to_values))
 }
 
-const render_inputs = (data, user_options_to_values, sidebar_el, apply_new_options) => {
+const create_inputs = (user_options_to_values, sidebar_el, apply_new_options) => {
     sidebar_el.innerHTML = ''
 
     const options_to_values = { ...get_default_options(), ...user_options_to_values}
@@ -74,45 +73,27 @@ const render_inputs = (data, user_options_to_values, sidebar_el, apply_new_optio
     } = create_user_options_text(user_options_to_values)
     sidebar_el.append(user_options_text_el)
     
-/* 
-    sidebar_el.append(get_options_group_heading(
-        'DATA_TEXTAREA',
-        () => render_inputs(data, options_to_values, sidebar_el, update_brackets),
-        names_of_expanded_groups
-    ))
-
-    if (names_of_expanded_groups.includes('DATA_TEXTAREA')) {
-        const data_textarea = create_element_from_Html(`
-            <textarea disabled style="width: 100%; height: 1000px;">${JSON.stringify(data, null, 2)}</textarea>
-        `)
-        data_textarea.addEventListener('input', e => {
-            update_brackets(JSON.parse(e.target.value), options_to_values)
-        })
-        sidebar_el.append(data_textarea)
-    } */
 }
 
-export const create_options_sidebar = (
+export const add_options_manager = (
+    opener_el,
     apply_new_options,
-    data,
     user_options_to_values
 ) => {
     const sidebar_el = elements.inputs_root_wrapper()
 
-
-    render_inputs(
-        data,
+    create_inputs(
         user_options_to_values,
         sidebar_el,
         apply_new_options
     )
-    document.head.insertAdjacentHTML('beforeend', `<style>${switchStyle}</style>`)
+
+    sidebar_el.prepend(elements.sidebar_close_button())
 
     document.body.prepend(sidebar_el)
-    const sidebar_button = elements.sidebar_expand_button()
-    document.body.prepend(sidebar_button)
-    sidebar_button.addEventListener('mouseenter', () => {
-        sidebar_el.style.left = '0'
+
+    opener_el.addEventListener('click', () => {
+        sidebar_el.style.right = '0'
     })
 
     return sidebar_el

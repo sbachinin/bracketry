@@ -54,15 +54,9 @@ export const get_option_input = (name, info, value, onchange) => {
             break
         case 'boolean':
             input = create_element_from_Html(`
-                <label class="switch">
-                    <input type="checkbox" ${value ? 'checked' : ''}>
-                    <span class="slider round"></span>
-                </label>`
-            )
-            input.querySelector('span.slider').addEventListener('click', e => {
-                e.preventDefault() // el.click() will be called on update_inputs()
-                onchange(name, !input.querySelector('input').checked)
-            })
+                <input type="checkbox" ${value ? 'checked' : ''}>
+            `)
+            input.addEventListener('change', () => { onchange(name, !input.checked) })
             break
     }
 

@@ -5,47 +5,51 @@ export { info_icon } from './info_icon.mjs'
 
 export const inputs_root_wrapper = () => create_element_from_Html(
     `<div
+        class="options-manager-wrapper"
         style='
             position: fixed;
-            top: 0;
-            left: -265px;
+            top: 0px;
+            right: -1000px;
             width: 265px;
             height: 100vh;
-            overflow-y: scroll;
-            overflow-x: visible;
+            overflow: visible scroll;
             font-family: sans-serif;
             font-size: 15px;
             z-index: 30;
-            background: white;
-            border-right: 1px solid #4a4a4a;
-            border-left: 15px solid #4a4a4a;
             padding-bottom: 50px;
             box-sizing: border-box;
-            transition: left 0.05s ease-out;
+            background: #e7e7e7;
         '
-        onmouseleave="this.style.left='-265px'"
     ></div>`
 )
 
-
-export const sidebar_expand_button = () => create_element_from_Html(
-    `<div style='
-        width: 15px;
-        height: 200px;
-        font-size: 16px;
-        font-family: arial;
-        cursor: pointer;
-        z-index: 31;
-        user-select: none;
-        background: #4a4a4a;
-        color: white;
-        writing-mode: vertical-rl;
-        text-orientation: upright;
-        text-align: center;
-        position: fixed;
-        left: 0;
-    '>options</div>`
-)
+export const sidebar_close_button = () => {
+    const button = create_element_from_Html(
+        `<div
+            class="sidebar-close-button"
+            style='
+                font-size: 45px;
+                box-sizing: border-box;
+                cursor: pointer;
+                float: right;
+                border: 1px solid;
+                margin: 2px;
+                margin-right: 10px;
+                width: 35px;
+                height: 35px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                user-select: none;
+            '
+        >&#215;</div>`
+    )
+    button.addEventListener('click', (e) => {
+        e.preventDefault()
+        button.parentElement.style.right = '-1000px'
+    })
+    return button
+}
 
 
 export const options_group_heading = (
@@ -68,11 +72,11 @@ export const options_group_heading = (
 
 export const option_wrapper_el = (option_name, option_info) => create_element_from_Html(
     `<div class="single-option-wrapper">
-        <div class="single-option">
+        <div class="single-option ${option_info.type}">
             <p class="option-info" style='margin: 0 0 8px 0'>
                 <span style="display: block;
                     color: #8e8e8e;
-                    word-wrap: break-word;
+                    word-wrap: anywhere;
                     font-style: italic;
                     margin-bottom: 5px;">${option_name}</span>
                 ${escape_Html(option_info.title)}
