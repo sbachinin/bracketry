@@ -1,6 +1,6 @@
 import { create_element_from_Html } from '../lib/utils/utils.mjs'
 import { escape_Html } from '../pages/escape_html.mjs'
-export { tooltip } from './tooltip.mjs'
+export { create_tooltip } from './tooltip.mjs'
 export { info_icon } from './info_icon.mjs'
 
 export const inputs_root_wrapper = () => create_element_from_Html(
@@ -18,7 +18,7 @@ export const inputs_root_wrapper = () => create_element_from_Html(
             z-index: 30;
             padding-bottom: 50px;
             box-sizing: border-box;
-            background: #e7e7e7;
+            background: rgb(243, 243, 243);
         '
     ></div>`
 )
@@ -33,8 +33,7 @@ export const sidebar_close_button = () => {
                 cursor: pointer;
                 float: right;
                 border: 1px solid;
-                margin: 2px;
-                margin-right: 10px;
+                margin: 8px;
                 width: 35px;
                 height: 35px;
                 display: flex;

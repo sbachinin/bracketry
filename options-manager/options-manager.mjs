@@ -93,8 +93,10 @@ export const add_options_manager = (
     document.body.prepend(sidebar_el)
 
     opener_el.addEventListener('click', () => {
-        sidebar_el.style.right = '0'
+        sidebar_el.style.right = sidebar_el.style.right === '0px' ? '-1000px' : '0px'
     })
+
+    elements.create_tooltip()
 
     return sidebar_el
 }

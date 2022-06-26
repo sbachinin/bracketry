@@ -140,24 +140,29 @@ export const examples_common_styles = `
 
 /* OPTIONS */
     .options-group-heading {
-        font-size: 20px;
+        font-size: 16px;
         padding: 6px 20px 6px 10px;
         cursor: pointer;
         user-select: none;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: #ddff9b;
+        background: #373737;
         clear: both;
+        color: white;
+        text-transform: uppercase;
     }
-    .options-group-heading:not(:first-child) {
-        border-top: 2px solid #4a4a4a;
+    .options-group-heading {
+        margin: 5px 0;
     }
     .single-option-wrapper {
         display: flex;
         align-items: center;
-        border-top: 2px solid #4a4a4a;
     }
+    .single-option-wrapper:not(:first-child) {
+        border-top: 1px solid #4a4a4a;
+    }
+
     .single-option {
         padding: 15px 12px;
         max-width: 100%;
@@ -171,6 +176,7 @@ export const examples_common_styles = `
     .single-option.boolean {
         display: flex;
         justify-content: space-between;
+        align-items: center;
     }
     .single-option.boolean > input {
         width: 30px;

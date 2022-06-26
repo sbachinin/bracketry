@@ -1,5 +1,4 @@
 import { create_element_from_Html } from '../lib/utils/utils.mjs'
-import { tooltip } from './tooltip.mjs'
 
 export const info_icon = (explanation) => {
     const el = create_element_from_Html(`
@@ -11,6 +10,7 @@ export const info_icon = (explanation) => {
         </div>
     `)
     el.addEventListener('click', () => {
+        const tooltip = document.querySelector('#option-input-tooltip')
         tooltip.style.display = 'block'
         tooltip.querySelector('div').innerHTML = explanation
     })
