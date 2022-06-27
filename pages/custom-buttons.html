@@ -11,7 +11,6 @@
         import { add_options_manager } from '../options-manager/options-manager.mjs'
         import { escape_Html } from './escape_html.mjs'
 
-
         insert_styles('', 'common-styles', examples_common_styles)
 
         const left_navigation_button_html = `<svg
@@ -36,7 +35,7 @@ color: #9d9d9d;">(options.left_navigation_button_html, options.right_navigation_
             <h4>You can replace default "naviagation buttons" (those that switch rounds) with any other elements or text</h4>
             
             <hr />
-            <h2>HOW</h2>
+            <h2>HOW: DIFFERENT SVGs</h2>
             <div class="code">import { createPlayoffs } from 'easy-playoffs'
 
 createPlayoffs(
@@ -53,8 +52,55 @@ createPlayoffs(
             <br />
             <hr />
             <h2>RESULT</h2>
-            <div class="common-playoffs-wrapper"></div>
+            <div class="common-playoffs-wrapper first"></div>
             <div class="options-manager-opener">manage options</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <hr style="margin-top: 150px;" />
+            <h2>HOW: TEXT INSTEAD OF ICONS</h2>
+            <div class="code">import { createPlayoffs } from 'easy-playoffs'
+
+createPlayoffs(
+    data,
+    document.querySelector('.playoffs-wrapper'),
+    <span class="bleak_code">// options object:</span>
+    {
+        <span class="highlighted_code">left_navigation_button_html: "${escape_Html("<div style='padding: 10px 20px;'>PREVIOUS ROUND</div>")}",
+        right_navigation_button_html: "${escape_Html("<div style='padding: 10px 20px;'>NEXT ROUND</div>")}",
+        nav_buttons_position: "beforeTitles"</span>
+    }
+)</div>
+
+            <br />
+            <hr />
+            <h2>RESULT</h2>
+            <div class="common-playoffs-wrapper second"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             ${html_partials.footer}
 
@@ -66,9 +112,9 @@ createPlayoffs(
         }
 
         get_some_data().then(data => {
-            const { applyNewOptions, applyFullDataUpdate, applyMatchUpdates } = createPlayoffs(
+            const { applyNewOptions } = createPlayoffs(
                 data,
-                document.querySelector('.common-playoffs-wrapper'),
+                document.querySelector('.common-playoffs-wrapper.first'),
                 options
             )
             
@@ -79,6 +125,25 @@ createPlayoffs(
                 options
             )
         })
+
+
+
+
+
+
+
+        get_some_data().then(data => {
+            const { applyNewOptions } = createPlayoffs(
+                data,
+                document.querySelector('.common-playoffs-wrapper.second'),
+                {
+                    left_navigation_button_html: "<div style='padding: 10px 20px;'>PREVIOUS ROUND</div>",
+                    right_navigation_button_html: "<div style='padding: 10px 20px;'>NEXT ROUND</div>",
+                    nav_buttons_position: "beforeTitles"
+                }
+            )
+        })
+
 
     </script>
 

@@ -28,7 +28,6 @@
         import { get_some_data } from '../test_data/get_some_data.mjs'
         import { add_options_manager } from '../options-manager/options-manager.mjs'
         import { escape_Html } from './escape_html.mjs'
-        import { BUTTONS_POSITIONS } from '../lib/constants.mjs'
 
         insert_styles('', 'common-styles', examples_common_styles)
 
@@ -93,7 +92,7 @@ const { <span class="highlighted_code">moveToNRound</span> } = createPlayoffs(
     your_playoffs_wrapper,
     <span class="bleak_code">// options  object:</span>
     {
-        <span class="highlighted_code">nav_buttons_position: "${BUTTONS_POSITIONS.hidden}",
+        <span class="highlighted_code">nav_buttons_position: "hidden",
         use_mobile_layout: true</span>
     }
 )
@@ -152,7 +151,7 @@ const {
     your_data,
     your_playoffs_wrapper,
     {
-        nav_buttons_position: "${BUTTONS_POSITIONS.hidden}",
+        nav_buttons_position: "hidden",
         use_mobile_layout: true
     }
 )
@@ -189,7 +188,7 @@ const buttons = your_data.rounds.map((r, r_i) => {
         get_some_data(3).then(data => {
 
             const options = {
-                nav_buttons_position: BUTTONS_POSITIONS.hidden,
+                nav_buttons_position: 'hidden',
                 use_mobile_layout: true
             }
 
@@ -219,7 +218,7 @@ const buttons = your_data.rounds.map((r, r_i) => {
         get_some_data(3).then(data => {
 
             const options = {
-                nav_buttons_position: BUTTONS_POSITIONS.hidden,
+                nav_buttons_position: 'hidden',
                 use_mobile_layout: true
             }
 
