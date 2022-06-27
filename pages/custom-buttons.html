@@ -13,13 +13,13 @@
 
         insert_styles('', 'common-styles', examples_common_styles)
 
-        const left_navigation_button_html = `<svg
+        const leftNavigationButtonHTML = `<svg
             style="padding: 10px; box-sizing: content-box;"
             width="40px" height="40px"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm-4.828 11.5l4.608 3.763-.679.737-6.101-5 6.112-5 .666.753-4.604 3.747h11.826v1h-11.828z" style="width: 100%;height: 100%;"></path></svg>`
 
-        const right_navigation_button_html = `<svg
+        const rightNavigationButtonHTML = `<svg
             style="padding: 10px; box-sizing: content-box;"
             width="40px" height="40px"
             viewBox="0 0 24 24"
@@ -31,7 +31,7 @@
             ${html_partials.home_link}
             <h1>CUSTOM NAVIGATION BUTTONS</h1>
             <h3 style="font-style: italic;
-color: #9d9d9d;">(options.left_navigation_button_html, options.right_navigation_button_html)</h3>
+color: #9d9d9d;">(options.leftNavigationButtonHTML, options.rightNavigationButtonHTML)</h3>
             <h4>You can replace default "naviagation buttons" (those that switch rounds) with any other elements or text</h4>
             
             <hr />
@@ -43,9 +43,9 @@ createPlayoffs(
     document.querySelector('.playoffs-wrapper'),
     <span class="bleak_code">// options object:</span>
     {
-        <span class="highlighted_code">left_navigation_button_html: "${escape_Html(left_navigation_button_html)}",
+        <span class="highlighted_code">leftNavigationButtonHTML: "${escape_Html(leftNavigationButtonHTML)}",
         
-        right_navigation_button_html: "${escape_Html(right_navigation_button_html)}"</span>
+        rightNavigationButtonHTML: "${escape_Html(rightNavigationButtonHTML)}"</span>
     }
 )</div>
 
@@ -77,9 +77,9 @@ createPlayoffs(
     document.querySelector('.playoffs-wrapper'),
     <span class="bleak_code">// options object:</span>
     {
-        <span class="highlighted_code">left_navigation_button_html: "${escape_Html("<div style='padding: 10px 20px;'>PREVIOUS ROUND</div>")}",
-        right_navigation_button_html: "${escape_Html("<div style='padding: 10px 20px;'>NEXT ROUND</div>")}",
-        nav_buttons_position: "beforeTitles"</span>
+        <span class="highlighted_code">leftNavigationButtonHTML: "${escape_Html("<div style='padding: 10px 20px;'>PREVIOUS ROUND</div>")}",
+        rightNavigationButtonHTML: "${escape_Html("<div style='padding: 10px 20px;'>NEXT ROUND</div>")}",
+        navButtonsPosition: "beforeTitles"</span>
     }
 )</div>
 
@@ -107,8 +107,8 @@ createPlayoffs(
         `
 
         const options = {
-            left_navigation_button_html,
-            right_navigation_button_html
+            leftNavigationButtonHTML,
+            rightNavigationButtonHTML
         }
 
         get_some_data().then(data => {
@@ -137,9 +137,9 @@ createPlayoffs(
                 data,
                 document.querySelector('.common-playoffs-wrapper.second'),
                 {
-                    left_navigation_button_html: "<div style='padding: 10px 20px;'>PREVIOUS ROUND</div>",
-                    right_navigation_button_html: "<div style='padding: 10px 20px;'>NEXT ROUND</div>",
-                    nav_buttons_position: "beforeTitles"
+                    leftNavigationButtonHTML: "<div style='padding: 10px 20px;'>PREVIOUS ROUND</div>",
+                    rightNavigationButtonHTML: "<div style='padding: 10px 20px;'>NEXT ROUND</div>",
+                    navButtonsPosition: "beforeTitles"
                 }
             )
         })
