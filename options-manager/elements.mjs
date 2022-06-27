@@ -19,6 +19,7 @@ export const inputs_root_wrapper = () => create_element_from_Html(
             padding-bottom: 50px;
             box-sizing: border-box;
             background: rgb(243, 243, 243);
+            padding-left: 5px;
         '
     ></div>`
 )

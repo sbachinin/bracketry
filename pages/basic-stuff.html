@@ -10,6 +10,7 @@
         import { createPlayoffs } from '../lib/lib.mjs'
         import { get_some_data } from '../test_data/get_some_data.mjs'
         import { add_options_manager } from '../options-manager/options-manager.mjs'
+        import { create_data_picker } from '../test_data/create_data_picker.mjs'
 
         insert_styles('', 'common-styles', examples_common_styles)
 
@@ -36,7 +37,7 @@ createPlayoffs(
 
             <div class="common-playoffs-wrapper"></div>
             <div class="options-manager-opener">manage options</div>
-
+            <div class="data-picker default-playoffs-data-picker">try different data: </div>
 
             ${html_partials.footer}
         `
@@ -46,15 +47,22 @@ createPlayoffs(
 
 
         get_some_data().then(data => {
-            const { applyNewOptions } = createPlayoffs(
+            const playoffs_wrapper = document.querySelector('.common-playoffs-wrapper')
+            let playoffs = createPlayoffs(
                 data,
-                document.querySelector('.common-playoffs-wrapper'),
+                playoffs_wrapper,
                 {}
             )
             add_options_manager(
                 document.querySelector('.options-manager-opener'),
-                applyNewOptions,
+                (o) => playoffs.applyNewOptions(o),
                 {}
+            )
+            create_data_picker(
+                document.querySelector('.default-playoffs-data-picker'),
+                (new_data) => {
+                    playoffs = createPlayoffs(new_data, playoffs_wrapper, playoffs.getOptions())
+                }
             )
         })
 
