@@ -66,7 +66,7 @@ export const examples_common_styles = `
         line-height: 22px;
         letter-spacing: 0.02em;
         padding: 10px 30px;
-        overflow: scroll;
+        overflow: auto;
         width: max-content;
         max-width: 100%;
         box-sizing: border-box;
@@ -101,7 +101,7 @@ export const examples_common_styles = `
     .data-picker-button {
         display: flex;
         align-items: center;
-        margin: 5px 10px;
+        margin: 5px;
         font-size: 20px;
         cursor: pointer;
         opacity: 0.5;
@@ -118,8 +118,8 @@ export const examples_common_styles = `
     }
     .data-picker-button-tooltip {
         position: absolute;
-        left: 100%;
-        bottom: 100%;
+        left: 50%;
+        bottom: 112%;
         background: white;
         border: 1px solid #ccc;
         padding: 5px 10px;
@@ -128,6 +128,7 @@ export const examples_common_styles = `
         pointer-events: none;
         z-index: 100;
         transition: all 0.1s ease-out;
+        transform: translateX(-50%);
     }
     .data-picker-button-tooltip.visible {
         opacity: 1;

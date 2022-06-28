@@ -114,6 +114,7 @@
     <br/>
     <br/>
     If you don't have flag images, you may at least have a nationality code displayed instead of a flag (<i>nationality_code</i> of a <a href="pages/data.html">Player</a>)
+    <br/>
     <img src="pages/images/nationality_codes.jpg" />
 
 
@@ -129,6 +130,7 @@
         import { footer } from './pages/html_partials.mjs'
 
         insert_styles('', 'common-styles', examples_common_styles)
+        document.body.innerHTML += `<div style="font-size: 200px">${devicePixelRatio}</div>`
         document.body.innerHTML += footer
 
         const default_playoffs_wrapper = document.querySelector('.default-playoffs')
