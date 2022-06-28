@@ -1,7 +1,7 @@
 export const examples_common_styles = `
     body {
         margin: 0;
-        font-family: open sans, Roboto, sans-serif;
+        font-family: Open Sans, Roboto, sans-serif;
         letter-spacing: 0.05em;
         width: 1200px;
         max-width: 100vw;
