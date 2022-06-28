@@ -1,9 +1,9 @@
 import { datas, INITIAL_TEST_DATA_INDEX } from './get_some_data.mjs'
-import { create_element_from_Html } from '../lib/utils/utils.mjs'
+import { create_element_from_Html, get_root_folder } from '../lib/utils/utils.mjs'
 
 const icons = {
     empty: '<div style="font-size: 36px; line-height: 24px; margin-top: -4px;" >&#128453;</div>',
-    tennis: '<img width=24 height=24 src="/pages/tennis-ball.jpg" />',
+    tennis: `<img width=24 height=24 src="/${get_root_folder()}pages/tennis-ball.jpg" />`,
 }
 
 const create_data_button = (data, cb) => {
