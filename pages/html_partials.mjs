@@ -11,7 +11,6 @@ export const home_link = `
 export const footer = `
     <div style="
         height: 252px;
-        background: repeating-linear-gradient(90deg, white 0, white 30px, black 31px, black 31px);
         margin-top: 50px;
     "></div>
 `
