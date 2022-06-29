@@ -1,7 +1,7 @@
 import { create_element_from_Html } from '../lib/utils/utils.mjs'
 import { escape_Html } from '../pages/escape_html.mjs'
 export { create_tooltip } from './tooltip.mjs'
-export { info_icon } from './info_icon.mjs'
+export { option_explanation_button } from './option_explanation_button.mjs'
 
 export const inputs_root_wrapper = () => create_element_from_Html(
     `<div
@@ -72,18 +72,15 @@ export const options_group_heading = (
 
 export const option_wrapper_el = (option_name, option_info) => create_element_from_Html(
     `<div class="single-option-wrapper">
+        <span class="option-name">${option_name}</span>
+            
         <div class="single-option ${option_info.type}">
             <p class="option-info" style='margin: 0 0 8px 0'>
-                <span style="display: block;
-                    color: #8e8e8e;
-                    word-wrap: anywhere;
-                    font-style: italic;
-                    margin-bottom: 5px;">${option_name}</span>
-                ${escape_Html(option_info.title)}
+                <span class="option-title">${escape_Html(option_info.title)}</span>
+                <span class="explanation-placeholder"></span>
             </p>
             <span class="input-placeholder"></span>
         </div>
-        <span class="explanation-placeholder"></span>
     </div>`
 )
 

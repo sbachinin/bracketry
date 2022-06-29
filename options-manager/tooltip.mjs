@@ -16,7 +16,7 @@ export const create_tooltip = () => {
                 max-width: 95vw;
                 z-index: 100;
                 padding: 40px;
-                overflow-y: scroll;
+                overflow: auto;
                 font-size: 16px;
                 font-family: verdana;
                 line-height: 26px;

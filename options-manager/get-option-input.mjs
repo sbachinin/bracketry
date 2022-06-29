@@ -69,7 +69,7 @@ export const get_option_input = (name, info, value, onchange) => {
     const wrapper_el = elements.option_wrapper_el(name, info)
     wrapper_el.querySelector('.input-placeholder').replaceWith(input)
     wrapper_el.querySelector('.explanation-placeholder').replaceWith(
-        info.explanation ? elements.info_icon(info.explanation) : ''
+        info.explanation ? elements.option_explanation_button(info.explanation) : ''
     )
 
     return {
@@ -85,16 +85,12 @@ export const get_option_input = (name, info, value, onchange) => {
                 if (should_change) input_to_change.click()
             }
 
-            const single_option_el = wrapper_el.querySelector('.single-option')
-
             // change disabled state
             if (info.disable_if?.(_options_to_values)) {
-                single_option_el.style.color = 'rgba(0,0,0,.35)'
-                single_option_el.style.filter = 'blur(1px)'
+                wrapper_el.classList.add('disabled')
                 input_to_change.disabled = true
             } else {
-                single_option_el.style.color = 'black'
-                single_option_el.style.filter = 'none'
+                wrapper_el.classList.remove('disabled')
                 input_to_change.disabled = false
             }
         }
