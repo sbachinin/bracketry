@@ -1,3 +1,5 @@
+import { almost_black } from './constants.mjs'
+
 export const examples_common_styles = `
     body {
         margin: 0;
@@ -19,7 +21,7 @@ export const examples_common_styles = `
 
     .common-playoffs-wrapper {
         height: 600px;
-        border: 3px solid;
+        border: 3px solid ${almost_black};
     }
 
     .home-link {
@@ -47,7 +49,7 @@ export const examples_common_styles = `
         font-family: arial;
         cursor: pointer;
         user-select: none;
-        background: #4a4a4a;
+        background: ${almost_black};
         color: white;
         margin: 10px;
         width: max-content;
@@ -59,7 +61,7 @@ export const examples_common_styles = `
 
     .code {
         white-space: pre;
-        background: #373737;
+        background: ${almost_black};
         color: #fff;
         font-family: monospace;
         font-size: 16px;
@@ -148,7 +150,7 @@ export const examples_common_styles = `
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: #373737;
+        background: ${almost_black};
         clear: both;
         color: white;
         text-transform: uppercase;

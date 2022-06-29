@@ -1,0 +1,1 @@
+export const almost_black = '#373737'
