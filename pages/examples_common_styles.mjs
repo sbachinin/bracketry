@@ -212,6 +212,11 @@ export const examples_common_styles = `
         align-items: center;
     }
 
+    .single-option:not(.boolean) .option-info {
+        margin: 0 0 8px 0;
+    }
+    
+
     .option-explanation-button {
         padding: 10px;
         margin: 0 10px 0 20px;

@@ -75,10 +75,10 @@ export const option_wrapper_el = (option_name, option_info) => create_element_fr
         <span class="option-name">${option_name}</span>
             
         <div class="single-option ${option_info.type}">
-            <p class="option-info" style='margin: 0 0 8px 0'>
+            <div class="option-info">
                 <span class="option-title">${escape_Html(option_info.title)}</span>
                 <span class="explanation-placeholder"></span>
-            </p>
+            </div>
             <span class="input-placeholder"></span>
         </div>
     </div>`
