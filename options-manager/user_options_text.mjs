@@ -1,5 +1,5 @@
 import { create_element_from_Html } from '../lib/utils/utils.mjs'
-import { get_default_options } from '../lib/options/get_default_options.mjs'
+import { get_default_options } from '../lib/options/options_meta_getter.mjs'
 
 const get_text = (options_to_values) => {
     const default_options = get_default_options()

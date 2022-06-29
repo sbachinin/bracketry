@@ -85,14 +85,16 @@ export const get_option_input = (name, info, value, onchange) => {
                 if (should_change) input_to_change.click()
             }
 
+            const single_option_el = wrapper_el.querySelector('.single-option')
+
             // change disabled state
             if (info.disable_if?.(_options_to_values)) {
-                wrapper_el.style.color = 'rgba(0,0,0,.35)'
-                wrapper_el.style.filter = 'blur(1px)'
+                single_option_el.style.color = 'rgba(0,0,0,.35)'
+                single_option_el.style.filter = 'blur(1px)'
                 input_to_change.disabled = true
             } else {
-                wrapper_el.style.color = 'black'
-                wrapper_el.style.filter = 'none'
+                single_option_el.style.color = 'black'
+                single_option_el.style.filter = 'none'
                 input_to_change.disabled = false
             }
         }

@@ -61,7 +61,7 @@ createPlayoffs(
             create_data_picker(
                 document.querySelector('.default-playoffs-data-picker'),
                 (new_data) => {
-                    playoffs = createPlayoffs(new_data, playoffs_wrapper, playoffs.getOptions())
+                    playoffs = createPlayoffs(new_data, playoffs_wrapper, playoffs.getUserOptions())
                 }
             )
         })

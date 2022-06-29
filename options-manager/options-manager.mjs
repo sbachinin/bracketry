@@ -1,5 +1,5 @@
 import { OPTIONS } from '../lib/options/options_meta.mjs'
-import { get_default_options } from '../lib/options/get_default_options.mjs'
+import { get_default_options } from '../lib/options/options_meta_getter.mjs'
 import { get_option_input } from './get-option-input.mjs'
 import * as elements from './elements.mjs'
 import { get_options_group_heading } from './get_options_group_heading.mjs'
@@ -34,7 +34,7 @@ const create_inputs = (user_options_to_values, sidebar_el, apply_new_options) =>
 
         update_user_options_text(options_to_values)
         update_inputs(options_to_values)
-        apply_new_options(options_to_values)
+        apply_new_options({ [option_name]: option_value })
     }, 300)
 
     const get_inputs_of_type = (options, options_type_name) => {

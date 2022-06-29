@@ -129,7 +129,7 @@
         import { footer } from './pages/html_partials.mjs'
 
         insert_styles('', 'common-styles', examples_common_styles)
-        
+
         document.body.innerHTML += footer
 
         const default_playoffs_wrapper = document.querySelector('.default-playoffs')
@@ -140,7 +140,7 @@
             create_data_picker(
                 document.querySelector('.default-playoffs-data-picker'),
                 (new_data) => {
-                    playoffs = createPlayoffs(new_data, default_playoffs_wrapper, playoffs.getOptions())
+                    playoffs = createPlayoffs(new_data, default_playoffs_wrapper, playoffs.getUserOptions())
                 }
             )
 
