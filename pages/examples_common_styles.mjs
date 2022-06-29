@@ -10,6 +10,11 @@ export const examples_common_styles = `
         padding: 0 30px;
         box-sizing: border-box;
         color: #2c2c2c;
+        line-height: 1.6em;
+    }
+
+    .indent {
+        padding-left: 30px;
     }
 
     .normal-heading {
@@ -42,6 +47,17 @@ export const examples_common_styles = `
     .home-link svg {
         height: 20px;
     }
+
+
+    .more-link {
+        border: 3px solid ${almost_black};
+        font-size: 20px;
+        padding: 4px 8px;
+        display: inline-block;
+        text-decoration: none;
+        margin: 5px;
+    }
+
 
 
     .options-manager-opener {
@@ -172,7 +188,7 @@ export const examples_common_styles = `
     .single-option-wrapper.disabled input,
     .single-option-wrapper.disabled textarea {
         color: transparent;
-        filter: blur(0.8px)
+        filter: blur(0.8px);
     }
 
     .single-option-wrapper:not(:first-child) {
@@ -220,8 +236,8 @@ export const examples_common_styles = `
     
 
     .option-explanation-button {
-        padding: 10px;
-        margin: 0 10px 0 20px;
+        padding: 7px;
+        margin: 0 10px;
         cursor: pointer;
     }
 

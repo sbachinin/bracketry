@@ -40,45 +40,52 @@
                 <i>(In case you aren't happy with the built-in navigation behaviour)</i>
                 <br />
                 <br />
-                <i><b>createPlayoffs()</b></i> returns some navigation-related methods which may be called from anywhere in your code
+                <i>createPlayoffs()</i> returns some navigation-related methods which may be called from anywhere in your code:
                 
-                <br /><br />
-                <i><b>moveToPreviousRound()</b></i>
-                <br />
-                (self-explanatory)
+                <div class="indent">
+                    <br />
+                    <i><b>moveToPreviousRound()</b></i>
+                    <br />
+                    (self-explanatory)
 
-                <br /><br />
-                <i><b>moveToNextRound()</b></i>
-                <br />
-                (self-explanatory)
+                    <br /><br />
+                    <i><b>moveToNextRound()</b></i>
+                    <br />
+                    (self-explanatory)
 
-                <br /><br />
-                <i><b>moveToNRound(</b>roundIndex<b>)</b></i>
-                <br />
-                Make the nth round appear in the center
+                    <br /><br />
+                    <i><b>moveToNRound(</b>roundIndex<b>)</b></i>
+                    <br />
+                    Make the nth round appear in the center
+                    
+                    <br /><br />
+                    <i><b>getNavigationState()</b></i>
+                    <br />
+                    This one may help you decide if your buttons should be hidden or disabled in a particular situation.
+                    <br />
+                    It returns an object:
+                    <br />
+                    {
+                    <div class="indent">
+                        <i><b>reachedLeftEdge</b></i>, <span class="bleak_code">// Boolean. If true, then perhaps you should disable your left button </span>
+                        <br />
+                        <i><b>reachedRightEdge</b></i>, <span class="bleak_code">// Boolean. If true, then perhaps you should disable your right button </span>
+                        <br />
+                        <i><b>allRoundsAreVisible</b></i> <span class="bleak_code">// Boolean. If true, then perhaps you should hide your navigation stuff </span>
+                        <br />
+                        <i><b>centralRoundIndex</b></i> <span class="bleak_code">// Number. Which round is displayed in the center? </span>
+                        <br />
+                    </div>
+                    }
+                </div>
                 
-                <br /><br />
-                <i><b>getNavigationState()</b></i>
-                <br />
-                This one may help you decide if your buttons should be hidden or disabled in a particular situation.
-                <br />
-                It returns an object:
-                <br />
-                {
-                <br />
-                    &nbsp;&nbsp;&nbsp;&nbsp; <i><b>reachedLeftEdge</b></i>, <span class="bleak_code">// Boolean. If true, then perhaps you should disable your left button </span>
-                <br />
-                    &nbsp;&nbsp;&nbsp;&nbsp; <i><b>reachedRightEdge</b></i>, <span class="bleak_code">// Boolean. If true, then perhaps you should disable your right button </span>
-                <br />
-                    &nbsp;&nbsp;&nbsp;&nbsp; <i><b>allRoundsAreVisible</b></i> <span class="bleak_code">// Boolean. If true, then perhaps you should hide your navigation stuff </span>
-                <br />
-                    &nbsp;&nbsp;&nbsp;&nbsp; <i><b>centralRoundIndex</b></i> <span class="bleak_code">// Number. Which round is displayed in the center? </span>
-                <br />
-                }
                 
             </div>
-            
+            <br />
+            <br />
             <hr />
+            <br />
+            <br />
             <h2>1. HOW: CREATE TOP NAVIGATION BAR</h2>
             Let's build a top navigation bar with a button for each round
             <br />
@@ -110,15 +117,14 @@ const { <span class="highlighted_code">moveToNRound</span> } = createPlayoffs(
 </div>
 
             <br />
-            <hr />
-            <h2>RESULT</h2>
+            <h2 style="margin-bottom: 30px;">RESULT</h2>
 
             <div class="playoffs-navbar first"></div>
             <div class="common-playoffs-wrapper first" style="width: 600px; max-width: calc(100vw - 51px);"></div>
             <div class="options-manager-opener">manage options</div>
 
 
-            <hr style="margin-top: 30px;" />
+            <hr style="margin: 70px 0;" />
             <h2 style="margin-bottom: 5px">2. HOW: HIGHLIGHT BUTTONS OF A NAVIGATION BAR</h2>
             <i>(extension of first example)</i>
             <br />

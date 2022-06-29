@@ -11,10 +11,7 @@ export const get_option_input = (name, info, value, onchange) => {
             input = create_element_from_Html(`
                 <div style="display:flex">
                     <input style="margin-right: 10px" type='number' value='${value}'></input>
-                    <span style="background: black;
-                        padding: 2px 4px;
-                        color: white;
-                        font-weight: bold;">pixels</span>
+                    <span style="font-weight: bold;">pixels</span>
                 </div>
             `)
             input.addEventListener('input', e => {
