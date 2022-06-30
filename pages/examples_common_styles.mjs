@@ -11,6 +11,7 @@ export const examples_common_styles = `
         box-sizing: border-box;
         color: #2c2c2c;
         line-height: 1.6em;
+        font-size: 16px;
     }
 
     .indent {
@@ -26,7 +27,6 @@ export const examples_common_styles = `
 
     .common-playoffs-wrapper {
         height: 600px;
-        border: 3px solid ${almost_black};
     }
 
     .home-link {
