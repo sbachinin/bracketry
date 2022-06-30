@@ -47,9 +47,9 @@
 </head>
 <body>
     <img class="logo" src="pages/logo1.jpg"/>
-    <h1 class="title">EASY<br/>-PLAYOFFS</h1>
+    <h1 class="title" style="margin-bottom: 80px;">EASY<br/>-PLAYOFFS</h1>
 
-    <div class="normal-heading" style="margin: 80px 0 3px; font-size: 34px;"><i>WHAT YOU CAN DO WITH IT?</i></div>
+    <div style="font-size: 34px; font-style: italic;">WHAT YOU CAN DO WITH IT?</div>
     <div style="display: flex; align-items: center; font-size: 20px;">
         <span style="font-size: 37px; padding-right: 24px;">&#11116;</span>
         Create diagrams that represent the "draws" of a knockout tournament:
@@ -70,15 +70,15 @@
     Note that if you want to display countries' <a href="#flags-header">flags</a>, you have to provide your own flag urls
     <hr style="margin: 50px 0 70px;" />
 
-    <div class="normal-heading" style="margin-bottom: 27px;"><a href="pages/basic-stuff.html">BASIC USAGE</a></div>
+    <div class="heading-2"><a href="pages/basic-stuff.html">BASIC USAGE</a></div>
     You just provide your data and get this default (desktop) view
     <div class="default-playoffs common-playoffs-wrapper"></div>
     <div class="data-picker default-playoffs-data-picker">try different data: </div>
     <div class="mobile-switcher default-playoffs-mobile-switcher"></div>
 
-    <h2 id="options-header" style="margin-top: 90px; font-size: 61px;">OPTIONS</h2>
+    <div class="heading-2" id="options-header">OPTIONS</div>
 
-    <div class="normal-heading" style="margin-top: 50px;"><a href="pages/custom-buttons.html">Custom navigation buttons</a></div>
+    <div class="heading-3"><a href="pages/custom-buttons.html">CUSTOM NAVIGATION BUTTONS</a></div>
     You can replace default "navigation buttons" with any other elements or text
     <img
     src="pages/images/custom_navigation_button_1.jpg"
@@ -94,15 +94,17 @@
     border: 2px dashed;"
     />
 
-    <div class="normal-heading" style="margin-top: 50px;"><a href="pages/external-buttons.html">"External" navigation</a></div>
+    <div class="heading-2" style="margin-top: 50px;">"EXTERNAL" NAVIGATION</div>
     You may override the default navigation behaviour altogether.
     <br />
     For this easy-brackets gives you 3 methods: <i><b>moveToPreviousRound</b></i>, <i><b>moveToNextRound</b></i>, <i><b>moveToNRound</b></i>.
+    <br />
+    <a class="more-link" href="pages/external-buttons.html">More</a>
     
 
-    <h2 id="live-updates-header" style="margin-top: 90px; font-size: 45px;">ABOUT LIVE UPDATES</h2>
+    <div id="live-updates-header" class="heading-2" style="margin-top: 90px">ABOUT LIVE UPDATES</div>
 
-    <h2 id="flags-header" style="margin-top: 90px; font-size: 45px;">ABOUT FLAGS</h2>
+    <div id="flags-header" class="heading-2" style="margin-top: 90px">ABOUT FLAGS</div>
     Easy-brackets by default doesn't display images for countries' flags.
     <br />
     But it allows you to use your own flag images (for that you have to provide a <i>flag_url</i> property for a <a href="pages/data.html">Player</a>).

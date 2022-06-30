@@ -10,8 +10,6 @@ export const examples_common_styles = `
         padding: 0 30px;
         box-sizing: border-box;
         color: #2c2c2c;
-        line-height: 1.6em;
-        font-size: 16px;
     }
 
     .common-playoffs-wrapper {
@@ -289,6 +287,15 @@ export const examples_common_styles = `
         line-height: 1.5;
     }
 
+    .heading-2 {
+        font-size: 45px;
+        font-weight: bold;
+        margin: 60px 0 30px;
+    }
+    .heading-3 {
+        font-size: 32px;
+        margin: 30px 0;
+    }
     .heading-4 {
         font-size: 24px;
         margin: 10px 0;
@@ -302,12 +309,6 @@ export const examples_common_styles = `
         padding-left: 30px;
     }
 
-    .normal-heading {
-        font-size: 34px;
-        font-style: italic;
-        font-weight: normal;
-        text-transform: uppercase;
-    }
 
 
 
