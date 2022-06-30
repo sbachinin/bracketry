@@ -4,6 +4,7 @@
         html{visibility: hidden;opacity:0;}
         .common-playoffs-wrapper {
             width: 550px;
+            max-width: 85vw;
         }
     </style>
 </head>
@@ -47,6 +48,38 @@ createPlayoffs(
             <div class="common-playoffs-wrapper"></div>
             <div class="options-manager-opener">manage options</div>
 
+
+
+
+
+            <br />
+            <br />
+            <div class="note">
+                <div class="heading-4">Device Pixel Ratio</div>
+                If you want easy-playoffs to work on mobile devices, mind the devices with high pixel density.
+                    <br />
+                On such devices you may find that your elements look 2 or 3 times smaller than on desktop.
+                    <br />
+                Thus for instance a text with font-size of 16px may look very small and hardly readable on high-density displays.
+                    <br />
+                By default easy-playoffs tries to prevent this scaling effect and instead provide more or less similar physical sizes across all devices.
+                    <br />
+                It does this by multiplying all pixel values by Window.devicePixelRatio.
+                    <br />
+                In case you don't like this optimization, set <b>applyDevicePixelRatio</b> option to false.
+
+                <div class="small-text italic indent">
+                    <br />
+                    Boring note: devicePixelRatio <b>will not be applied in desktop browsers</b> even with applyDevicePixelRatio set to true.
+                    <br />Thus easy-playoffs tries to avoid <i>double zoom</i>.
+                    <br />The problem is that in desktop browsers devicePixelRatio reflects the zoom level. (On a page with 150% zoom devicePixelRatio will be 1.5).
+                    <br />Thus applying devicePixelRatio on desktop will magnify elements which are already magnified by zoom.
+                    <br /><br />
+                </div>
+            </div> <!-- end note -->
+
+
+
             ${html_partials.footer}
         `
 
@@ -86,11 +119,4 @@ createPlayoffs(
 
 
 
-
-
-
-
-Mind DevicePixelRatio when dealing with mobile devices. By default easy-playoffs multiplies all sizes by Window.devicePixelRatio, thus trying to achieve more consistent physical sizes across various devices.
-    
-    You may get more consistent physical sizes within easy-playoffs by setting <b>applyDevicePixelRatio</b>
 

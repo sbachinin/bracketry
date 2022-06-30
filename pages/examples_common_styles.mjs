@@ -14,17 +14,6 @@ export const examples_common_styles = `
         font-size: 16px;
     }
 
-    .indent {
-        padding-left: 30px;
-    }
-
-    .normal-heading {
-        font-size: 34px;
-        font-style: italic;
-        font-weight: normal;
-        text-transform: uppercase;
-    }
-
     .common-playoffs-wrapper {
         height: 600px;
     }
@@ -241,7 +230,6 @@ export const examples_common_styles = `
         cursor: pointer;
     }
 
-    html{visibility: visible;opacity:1;}
 
 
 
@@ -262,4 +250,80 @@ export const examples_common_styles = `
                 rgba(0,0,0,0) calc(50% + 0.8px),
                 rgba(0,0,0,0) 100%);
    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* AUXILIARY STUFF */
+
+   .note {
+        background: #f0fffe;
+        padding: 5px 10px;
+    }
+
+    .small-text {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .heading-4 {
+        font-size: 24px;
+        margin: 10px 0;
+    }
+
+    .italic {
+        font-style: italic;
+    }
+
+    .indent {
+        padding-left: 30px;
+    }
+
+    .normal-heading {
+        font-size: 34px;
+        font-style: italic;
+        font-weight: normal;
+        text-transform: uppercase;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* HAS TO BE IN THE END */
+    html{visibility: visible;opacity:1;}
 `
