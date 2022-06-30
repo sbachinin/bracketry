@@ -76,9 +76,20 @@
     <div class="data-picker default-playoffs-data-picker">try different data: </div>
     <div class="mobile-switcher default-playoffs-mobile-switcher"></div>
 
+
+
+
+
+
+
+
+
+
+
     <div class="heading-2" id="options-header">OPTIONS</div>
 
-    <div class="heading-3"><a href="pages/custom-buttons.html">CUSTOM NAVIGATION BUTTONS</a></div>
+    <div class="heading-3" style="margin-bottom: 0;"><a href="pages/custom-buttons.html">CUSTOM NAVIGATION BUTTONS</a></div>
+    <div class="note italic" style="margin-bottom: 20px;">(options.leftNavigationButtonHTML, options.rightNavigationButtonHTML)</div>
     You can replace default "navigation buttons" with any other elements or text
     <img
     src="pages/images/custom_navigation_button_1.jpg"
@@ -94,6 +105,33 @@
     border: 2px dashed;"
     />
 
+
+    <div class="heading-3" style="margin-top: 60px; margin-bottom: 0;">HANDLING CLICKS ON A MATCH / PLAYER</div>
+    <div class="note italic" style="margin-bottom: 20px;">(options.onMatchClick, options.onMatchSideClick)</div>
+    You can do whatever you want when a match or its side (competitor) is clicked.
+    <br/>By default, when a side is clicked, its match history gets highlighted.
+    <br/>Instead you may want to navigate to a competitor's dedicated web page. For that you can specify <b>onMatchSideClick</b> callback in which you can change the window.location.
+    <br/>Similarly <b>onMatchClick</b> can be used to navigate to a page of a match. Or open a popup window. Or anything.
+    <br/>Setting either onMatchClick or onMatchSideClick will automatically discard the default "highlight" behaviour.
+    <a href="pages/onclicks.html" class="more-link">EXAMPLE</a>
+
+<!-- end options -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="heading-2" style="margin-top: 50px;">"EXTERNAL" NAVIGATION</div>
     You may override the default navigation behaviour altogether.
     <br />
@@ -102,7 +140,7 @@
     <a class="more-link" href="pages/external-buttons.html">More</a>
     
 
-    <div id="live-updates-header" class="heading-2" style="margin-top: 90px">ABOUT LIVE UPDATES</div>
+    <div id="live-updates-header" class="heading-2">ABOUT LIVE UPDATES</div>
 
     <div id="flags-header" class="heading-2" style="margin-top: 90px">ABOUT FLAGS</div>
     Easy-brackets by default doesn't display images for countries' flags.

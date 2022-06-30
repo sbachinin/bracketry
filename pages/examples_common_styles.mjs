@@ -280,6 +280,7 @@ export const examples_common_styles = `
    .note {
         background: #f0fffe;
         padding: 5px 10px;
+        width: max-content;
     }
 
     .small-text {
