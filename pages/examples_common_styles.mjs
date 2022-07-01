@@ -60,6 +60,23 @@ export const examples_common_styles = `
         text-transform: uppercase;
     }
 
+    .checkbox {
+        border: 1px solid black;
+        color: transparent;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        user-select: none;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+    .checkbox.checked {
+        color: #1c5dd9;
+    }
+
 
 
     .code {
@@ -226,6 +243,8 @@ export const examples_common_styles = `
         padding: 7px;
         margin: 0 10px;
         cursor: pointer;
+        display: flex;
+        align-items: center;
     }
 
 

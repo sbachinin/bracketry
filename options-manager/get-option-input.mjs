@@ -56,10 +56,11 @@ export const get_option_input = (name, info, value, onchange) => {
             })
             break
         case 'boolean':
+            let checked = value
             input = create_element_from_Html(`
-                <input type="checkbox" ${value ? 'checked' : ''}>
+                <div class="checkbox ${checked ? 'checked' : ''}">V</div>
             `)
-            input.addEventListener('change', () => { onchange(name, !input.checked) })
+            input.addEventListener('click', () => { checked = !checked; onchange(name, checked ) })
             break
     }
 
@@ -73,13 +74,13 @@ export const get_option_input = (name, info, value, onchange) => {
         el: wrapper_el,
         update: _options_to_values => {
             // change value
-            const input_to_change = wrapper_el.querySelector('input, select, textarea')
+            const input_to_change = wrapper_el.querySelector('input, select, textarea, div.checkbox')
             if (input_to_change === null) return
 
             input_to_change.value = _options_to_values[name]
-            if (input_to_change.type === 'checkbox') {
-                const should_change = _options_to_values[name] !== input_to_change.checked
-                if (should_change) input_to_change.click()
+            
+            if (info.type === 'boolean') {
+                _options_to_values[name] ? input_to_change.classList.add('checked') : input_to_change.classList.remove('checked')
             }
 
             // change disabled state
