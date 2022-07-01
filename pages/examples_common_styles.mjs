@@ -277,7 +277,14 @@ export const examples_common_styles = `
 
 /* AUXILIARY STUFF */
 
-   .note {
+
+
+    p {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+    .note {
         background: #f0fffe;
         padding: 5px 10px;
         width: max-content;
