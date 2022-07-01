@@ -14,6 +14,7 @@ export const examples_common_styles = `
 
     .common-playoffs-wrapper {
         height: 600px;
+        max-width: calc(100vw - 60px);
     }
 
     .home-link {
@@ -306,7 +307,7 @@ export const examples_common_styles = `
     .note {
         background: #f0fffe;
         padding: 5px 10px;
-        width: max-content;
+        display: inline-block;
     }
 
     .small-text {
