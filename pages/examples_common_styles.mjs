@@ -94,7 +94,7 @@ export const examples_common_styles = `
         max-width: 100%;
         box-sizing: border-box;
     }
-    .bleak_code {
+    .bleak-code {
         color: #9e9e9e;
     }
     .highlighted_code {

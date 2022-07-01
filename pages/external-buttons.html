@@ -67,13 +67,13 @@
                     <br />
                     {
                     <div class="indent">
-                        <i><b>reachedLeftEdge</b></i>, <span class="bleak_code">// Boolean. If true, then perhaps you should disable your left button </span>
+                        <i><b>reachedLeftEdge</b></i>, <span class="bleak-code">// Boolean. If true, then perhaps you should disable your left button </span>
                         <br />
-                        <i><b>reachedRightEdge</b></i>, <span class="bleak_code">// Boolean. If true, then perhaps you should disable your right button </span>
+                        <i><b>reachedRightEdge</b></i>, <span class="bleak-code">// Boolean. If true, then perhaps you should disable your right button </span>
                         <br />
-                        <i><b>allRoundsAreVisible</b></i> <span class="bleak_code">// Boolean. If true, then perhaps you should hide your navigation stuff </span>
+                        <i><b>allRoundsAreVisible</b></i> <span class="bleak-code">// Boolean. If true, then perhaps you should hide your navigation stuff </span>
                         <br />
-                        <i><b>centralRoundIndex</b></i> <span class="bleak_code">// Number. Which round is displayed in the center? </span>
+                        <i><b>centralRoundIndex</b></i> <span class="bleak-code">// Number. Which round is displayed in the center? </span>
                         <br />
                     </div>
                     }
@@ -96,14 +96,14 @@ import { createPlayoffs } from 'easy-playoffs'
 const { <span class="highlighted_code">moveToNRound</span> } = createPlayoffs(
     your_data,
     your_playoffs_wrapper,
-    <span class="bleak_code">// options  object:</span>
+    <span class="bleak-code">// options  object:</span>
     {
         <span class="highlighted_code">navButtonsPosition: "hidden",
         useMobileLayout: true</span>
     }
 )
 
-<span class="bleak_code">// populate your nav element with buttons for each round;
+<span class="bleak-code">// populate your nav element with buttons for each round;
 // call moveToNRound with an index of a button that was clicked</span>
 <span class="highlighted_code">your_data.rounds.forEach((r, r_i) => {
     const button = document.createElement('div')

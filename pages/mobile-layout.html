@@ -3,8 +3,12 @@
     <style>
         html{visibility: hidden;opacity:0;}
         .common-playoffs-wrapper {
-            width: 550px;
-            max-width: 85vw;
+            resize: horizontal;
+            overflow: auto hidden;
+        }
+
+        .common-playoffs-wrapper.first {
+            width: 600px;
         }
     </style>
 </head>
@@ -26,13 +30,38 @@
             ${html_partials.home_link}
             <div class="heading-2">MOBILE LAYOUT</div>
             <hr />
+            <div class="heading-3">Default</div>
+            <div class="code">import { createPlayoffs } from 'easy-playoffs'
+
+<span class="bleak-code">// just default stuff: </span>
+createPlayoffs(
+    data,
+    document.querySelector('.playoffs-wrapper'),
+    {}<span class="bleak-code">// no options necessary </span>
+)</div>
+
             <p>
-                With <b>useMobileLayout</b> option set to true, you get
-                <div class="indent">
-                    1) only one round displayed at a time;
-                    <br />
-                    2) navigation buttons are put on top of round titles <i>(unless buttons are hidden by an option <b>{ navButtonsPosition: 'hidden' }</b>. + With mobile layout you are still free to implement <a href="external-buttons.html">'external' navigation buttons)</a></i>
-                </div>
+                Easy-brackets tries to be mobile-friendly by default. On narrow screens it fully displays 1 round, shrinking the player title if necessary.
+                (resize the parent to see what happens on smaller screens)
+            </p>
+            <div class="common-playoffs-wrapper first"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+            </p>
+                Though you can face a situation when you see for instance 1.2 rounds on mobile device and that could be a bit ugly:
+                <img src="images/ugly-mobile.mjs" />
+                You may try to avoid this by forcing mobile layout on certain screens.
+                It's your job to detect a mobile device and switch <b>useMobileLayout</b> to true when necessary.
             </p>
             <hr />
             <div class="heading-3">HOW</div>
@@ -41,14 +70,17 @@
 createPlayoffs(
     data,
     document.querySelector('.playoffs-wrapper'),
-    { <span class="highlighted_code">useMobileLayout: true</span> }
+    {<span class="highlighted_code">
+        useMobileLayout: true,
+        navButtonsPosition: 'overTitles'</span><span class="bleak-code">// not necessary but desirable</span>
+    }
 )</div>
 
             <br />
             <hr />
             <div class="heading-3">RESULT</div>
-
-            <div class="common-playoffs-wrapper"></div>
+            <div class="note">(Mobile layout is forced despite having enough space for multiple rounds)</div>
+            <div class="common-playoffs-wrapper second"></div>
             <div class="options-manager-opener">manage options</div>
 
 
@@ -91,18 +123,18 @@ createPlayoffs(
 
 
         get_some_data().then(data => {
-            const playoffs_wrapper = document.querySelector('.common-playoffs-wrapper')
-            const options = { useMobileLayout: true }
-            let playoffs = createPlayoffs(
+            createPlayoffs(
                 data,
-                playoffs_wrapper,
-                options
+                document.querySelector('.common-playoffs-wrapper.first'),
+                {}
             )
-            add_options_manager(
-                document.querySelector('.options-manager-opener'),
-                (o) => playoffs.applyNewOptions(o),
-                options
+
+            createPlayoffs(
+                data,
+                document.querySelector('.common-playoffs-wrapper.second'),
+                { useMobileLayout: true }
             )
+            
         })
 
 

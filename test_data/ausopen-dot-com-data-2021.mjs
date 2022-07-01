@@ -11255,7 +11255,7 @@ export default {
             "first_name": "Novak",
             "last_name": "Djokovic",
             "full_name": "Novak Djokovic",
-            "short_name": "N. DjokovicDjokovicDjokovic",
+            "short_name": "N. Djokovic",
             "gender": "M",
             "nationality": {
                 "uuid": "99da9b29-eade-4ac3-a7b0-b0b8c2192df7",
