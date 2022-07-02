@@ -2,13 +2,11 @@
 <head>
     <style>
         html{visibility: hidden;opacity:0;}
-        .common-playoffs-wrapper {
+        
+        .common-playoffs-wrapper.first {
+            width: 800px;
             resize: horizontal;
             overflow: auto hidden;
-        }
-
-        .common-playoffs-wrapper.first {
-            width: 500px;
         }
     </style>
 </head>
@@ -43,7 +41,7 @@ createPlayoffs(
 )</div>
 
             <p>
-                Easy-brackets tries to be mobile-friendly by default. On narrow screens it adjusts layout to display only 1 round. (Long player titles will be cut)
+                Easy-brackets tries to be mobile-friendly by default. On narrow screens it adjusts the layout to display only 1 round. (Long player titles will be trimmed)
                 <br />
                 Resize the parent (or window) to see what happens on smaller screens
             </p>
@@ -59,15 +57,18 @@ createPlayoffs(
 
 
 
-
+            <hr class="huge-margin-top" />
+            <p>
+                Though you can face a situation when you see for instance 1.2 rounds on mobile device and that can be a bit ugly:
+                <br />
+                <img src="images/ugly-mobile.jpg" />
+                <br />
+                That's because easy-playoffs actually doesn't try to detect a mobile device. It only adjusts the layout when the width of the visible area becomes too narrow to dispaly one round.
+                <br />
+                You may change this behaviour with <b>useMobileLayout</b> option.
+                <br />
+                When set to true, it forces mobile layout regardless of screen size.
             </p>
-                Though you can face a situation when you see for instance 1.2 rounds on mobile device and that could be a bit ugly:
-                <img src="images/ugly-mobile.mjs" />
-                You may try to avoid this by forcing mobile layout on certain screens.
-                It's your job to detect a mobile device and switch <b>useMobileLayout</b> to true when necessary.
-            </p>
-            <hr />
-            <div class="heading-3">HOW</div>
             <div class="code">import { createPlayoffs } from 'easy-playoffs'
 
 createPlayoffs(
@@ -80,18 +81,49 @@ createPlayoffs(
 )</div>
 
             <br />
-            <hr />
-            <div class="heading-3">RESULT</div>
-            <div class="note">(Mobile layout is forced despite having enough space for multiple rounds)</div>
+            
+            <div class="heading-5 note">Result: mobile layout is forced despite having enough space for multiple rounds:</div>
             <div class="common-playoffs-wrapper second"></div>
 
 
 
 
 
+
+
+
+
+            <p>
+                So you can measure your device and decide if you need a mobile layout in particular case.
+                It makes sense to do this check every time on resize, like this:
+            </p>
+            <div class="code">import { createPlayoffs } from 'easy-playoffs'
+
+const { <span class="highlighted_code">applyNewOptions</span> } = createPlayoffs(
+    data,
+    document.querySelector('.playoffs-wrapper'),
+    {}
+)
+<span class="highlighted_code">
+const mediaQuery = window.matchMedia('(max-width: 768px)')
+mediaQuery.addListener(e => applyNewOptions({ useMobileLayout: e.matches }))
+</span>
+</div>
+
+<div class="heading-5 note medium-margin-top">
+    Now mobile layout will be forced every time the window (not the element) gets narrower than 768px.
+    <br />
+    <small>(But of course there are many other ways to detect mobile, you are free to use any of them)</small>
+</div>
+
+
+<div class="common-playoffs-wrapper third"></div>
+
+
+
             <br />
             <br />
-            <div class="note">
+            <div class="note huge-margin-top">
                 <div class="heading-4" id="device-pixel-ratio">Device Pixel Ratio</div>
                 If you want easy-playoffs to work on mobile devices, mind the devices with high pixel density.
                     <br />
@@ -143,6 +175,18 @@ createPlayoffs(
                 { useMobileLayout: true,
                     navButtonsPosition: 'overTitles' }
             )
+
+
+            const third_playoffs = createPlayoffs(
+                data,
+                document.querySelector('.common-playoffs-wrapper.third'),
+                {}
+            )
+
+            const mediaQuery = window.matchMedia('(max-width: 768px)')
+            mediaQuery.addListener(e => third_playoffs.applyNewOptions({ useMobileLayout: e.matches }))
+
+
             
         })
 

@@ -329,6 +329,11 @@ export const examples_common_styles = `
         margin: 10px 0;
     }
 
+    .heading-5 {
+        font-size: 20px;
+        margin: 10px 0;
+    }
+
     .italic {
         font-style: italic;
     }
@@ -337,9 +342,19 @@ export const examples_common_styles = `
         padding-left: 30px;
     }
 
+    .medium-margin-top {
+        margin-top: 50px;
+    }
 
+    .huge-margin-top {
+        margin-top: 120px;
+    }
 
-
+    img {
+        display: block;
+        max-width: 85vw;
+        margin: 15px 0;
+    }
 
 
 
