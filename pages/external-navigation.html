@@ -83,6 +83,8 @@
                         <br />
                         <i><b>centralRoundIndex</b></i> <span class="bleak-code">// Number. Which round is displayed in the center? </span>
                         <br />
+                        <i><b>baseRoundIndex</b></i> <span class="bleak-code">// Number. Which round is the leftmost visible one? </span>
+                        <br />
                     </div>
                     }
                 </div>
@@ -227,6 +229,10 @@ const buttons = your_data.rounds.map((r, r_i) => {
                 <br />
                 But you may want to start from the last "contentful" round for example.
                 <br />
+                Use <b>setCentralRoundIndex</b> or <b>setAnchorRoundIndex</b>
+                (Finding this round is your job.)
+                <br />
+
             </p>
 
             <div class="common-playoffs-wrapper third"></div>
