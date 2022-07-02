@@ -1,6 +1,10 @@
 import { almost_black } from './constants.mjs'
 
 export const examples_common_styles = `
+    html {
+        overflow-x: hidden;
+    }
+
     body {
         margin: 0;
         font-family: Open Sans, Roboto, sans-serif;
@@ -97,7 +101,7 @@ export const examples_common_styles = `
     .bleak-code {
         color: #9e9e9e;
     }
-    .highlighted_code {
+    .highlighted-code {
         color: #80ea00;
     }
 

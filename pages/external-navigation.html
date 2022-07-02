@@ -45,7 +45,7 @@
                 <i>(In case you aren't happy with the built-in navigation behaviour)</i>
                 <br />
                 <br />
-                <div class="note">The following stuff seems more relevant for <b>mobile</b> layout</div>
+                <div class="note">The following stuff seems more relevant for <b>mobile</b> layout (though it will work nicely on desktop too)</div>
                 <br />
                 <br />
                 <i>createPlayoffs()</i> returns some navigation-related methods which may be called from anywhere in your code:
@@ -54,36 +54,48 @@
                     <br />
                     <i><b>moveToPreviousRound()</b></i>
                     <br />
-                    (self-explanatory)
+                    "Scroll" the visible area by one round width to the left
 
                     <br /><br />
                     <i><b>moveToNextRound()</b></i>
                     <br />
-                    (self-explanatory)
+                    "Scroll" the visible area by one round width to the right
 
                     <br /><br />
-                    <i><b>setCentralRoundIndex(</b>roundIndex<b>)</b></i>
+                    <i><b id="scri">setCentralRoundIndex(</b>roundIndex<b>)</b></i>
                     <br />
                     Make the nth round appear in the center. The index you pass here is zero-based.
+                    <br />
+                    On mobile layout this method is effectively the same as setBaseRoundIndex
+
+                    <br /><br />
+                    <i><b id="sbri">setBaseRoundIndex(</b>roundIndex<b>)</b></i>
+                    <br />
+                    The "base" round is the leftmost visible one. Thus calling this method will make nth round appear on the left. (Its left edge tied to the left edge of the visible area).
+                    <br />
+                    The index you pass here is zero-based.
+                    <br />
+                    On mobile layout this method is effectively the same as setCentralRoundIndex
                     
+
                     <br /><br />
                     <i><b>getNavigationState()</b></i>
                     <br />
-                    This one may help you decide if your buttons should be hidden or disabled in a particular situation.
+                    This one may help you decide if your buttons should be hidden or disabled.
                     <br />
                     It returns an object:
                     <br />
                     {
                     <div class="indent">
-                        <i><b>reachedLeftEdge</b></i>, <span class="bleak-code">// Boolean. If true, then perhaps you should disable your left button </span>
+                        <i><b>reachedLeftEdge</b></i>, <span class="bleak-code">// Boolean. May be used to disable your left button </span>
                         <br />
-                        <i><b>reachedRightEdge</b></i>, <span class="bleak-code">// Boolean. If true, then perhaps you should disable your right button </span>
+                        <i><b>reachedRightEdge</b></i>, <span class="bleak-code">// Boolean. May be used to disable your right button </span>
                         <br />
-                        <i><b>allRoundsAreVisible</b></i> <span class="bleak-code">// Boolean. If true, then perhaps you should hide your navigation stuff </span>
+                        <i><b>allRoundsAreVisible</b></i> <span class="bleak-code">// Boolean. May be used to hide all navigation </span>
                         <br />
-                        <i><b>centralRoundIndex</b></i> <span class="bleak-code">// Number. Which round is displayed in the center? </span>
+                        <i><b id="cri">centralRoundIndex</b></i> <span class="bleak-code">// Number. Which round is displayed in the center? (Though not always accurately aligned to the center)</span>
                         <br />
-                        <i><b>baseRoundIndex</b></i> <span class="bleak-code">// Number. Which round is the leftmost visible one? </span>
+                        <i><b id="bri">baseRoundIndex</b></i> <span class="bleak-code">// Number. Which round is the leftmost visible one? </span>
                         <br />
                     </div>
                     }
@@ -97,29 +109,28 @@
             <br />
             <br />
             <div class="heading-3">1. CREATE TOP NAVIGATION BAR</div>
-            Let's build a top navigation bar with a button for each round
-            <br />
-            I guess it will make more sense with a mobile layout. But it will work with a normal layout just as well.
+            <p>
+                Let's build a top navigation bar with a button for each round
+            </p>
             <div class="code" style="margin-top: 15px;">
 import { createPlayoffs } from 'easy-playoffs'
 
-const { <span class="highlighted_code">setCentralRoundIndex</span> } = createPlayoffs(
+const { <span class="highlighted-code">setCentralRoundIndex</span> } = createPlayoffs(
     your_data,
     your_playoffs_wrapper,
-    <span class="bleak-code">// options  object:</span>
     {
-        <span class="highlighted_code">navButtonsPosition: "hidden",
-        useMobileLayout: true</span>
+        <span class="highlighted-code">navButtonsPosition: "hidden",
+        useMobileLayout: true</span><span class="bleak-code"> // not necessary but sensible</span>
     }
 )
 
 <span class="bleak-code">// populate your nav element with buttons for each round;
 // call setCentralRoundIndex with an index of a button that was clicked</span>
-<span class="highlighted_code">your_data.rounds.forEach((r, r_i) => {
+<span class="highlighted-code">your_data.rounds.forEach((r, r_i) => {
     const button = document.createElement('div')
     button.innerHTML = r.name
     button.addEventListener('click', (e) => {
-        setCentralRoundIndex(r_i)
+        setCentralRoundIndex(r_i) <span class="bleak-code">// setBaseRoundIndex could do the same job on mobile</span>
     })
     your_nav_element.append(button)
 })
@@ -153,15 +164,15 @@ const { <span class="highlighted_code">setCentralRoundIndex</span> } = createPla
             <p>
                 Here is a small extension of first example.
                 <br />
-                Let's now highlight a navigation button which corresponds to a round currently displayed in the center
+                Let's now highlight a navigation button which corresponds to a round currently displayed in the center.
                 <br />
-                For that you need an index of a round which is currently "central".
+                For that you may need an index of a round which is currently "central".
                 <br />
                 You can keep it in your own variable but (just in case) easy-playoffs can also tell you this index.
                 <br />
-                In an object returned by <i><b>getNavigationState</b></i> you will find a <i><b>centralRoundIndex</b></i>. It indicates which round is actually in the center (though it doesn't necessarily mean that it's <i>accurately</i> aligned to the center)
+                Use <a href="#cri"><i><b>centralRoundIndex</b></i></a> or <a href="#bri"><i><b>baseRoundIndex</b></i></a> returned by <b>getNavigationState</b>.
                 <br />
-                It can be especially useful on non-mobile layout when there are several rounds visible so finding the "central" one is harder.
+                (These indexes are effectively the same on mobile layout but may vary on wide screens)
             </p>
 
 
@@ -176,7 +187,7 @@ import { createPlayoffs } from 'easy-playoffs'
 
 const {
     setCentralRoundIndex,
-    <span class="highlighted_code">getNavigationState</span>
+    <span class="highlighted-code">getNavigationState</span>
 } = createPlayoffs(
     your_data,
     your_playoffs_wrapper,
@@ -192,11 +203,11 @@ const buttons = your_data.rounds.map((r, r_i) => {
     <span class="bleak-code">
     // Well, in mobile layout this index will surely be 0 in the beginning...
     // but on wider screens it may vary</span>
-    <span class="highlighted_code">if (getNavigationState().centralRoundIndex === r_i) {
+    <span class="highlighted-code">if (getNavigationState().centralRoundIndex === r_i) {
         button.classList.add('selected')
     }</span>
     button.addEventListener('click', (e) => {
-        <span class="highlighted_code">buttons.forEach(c => c.classList.remove('selected'))
+        <span class="highlighted-code">buttons.forEach(c => c.classList.remove('selected'))
         e.target.classList.add('selected')</span>
         setCentralRoundIndex(r_i)
     })
@@ -223,18 +234,32 @@ const buttons = your_data.rounds.map((r, r_i) => {
 
 
             <hr style="margin: 70px 0;" />
-            <div class="heading-3">3. NAVIGATE TO NTH ROUND IN THE VERY BEGINNING</div>
+            <div class="heading-3">3. NAVIGATE TO NTH ROUND ON INITIALIZATION</div>
             <p>
-                By default easy-playoffs starts in the beginning of the tournament.
+                On initialization easy-playoffs by default shows the very first rounds of a tournament.
                 <br />
-                But you may want to start from the last "contentful" round for example.
+                But you may want to start from the last "contentful" round for example. (E.g., final round of a finished tournament)
                 <br />
-                Use <b>setCentralRoundIndex</b> or <b>setAnchorRoundIndex</b>
-                (Finding this round is your job.)
+                Call <a href="#scri"><b>setCentralRoundIndex</b><a> or <a href="#sbri"><b>setBaseRoundIndex</b></a> with a desired index.
+                <br />
+                (Deducing this index from your data is your job.)
                 <br />
 
             </p>
 
+            <div class="code">
+import { createPlayoffs } from 'easy-playoffs'
+
+const { <span class="highlighted-code">setCentralRoundIndex</span> } = createPlayoffs(
+    your_data,
+    your_playoffs_wrapper,
+    { useMobileLayout: true }
+)
+
+<span class="highlighted-code">setCentralRoundIndex(5)</span>
+            </div>
+
+            <br />
             <div class="common-playoffs-wrapper third"></div>
 
 

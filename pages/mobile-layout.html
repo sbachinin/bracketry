@@ -74,7 +74,7 @@ createPlayoffs(
 createPlayoffs(
     data,
     document.querySelector('.playoffs-wrapper'),
-    {<span class="highlighted_code">
+    {<span class="highlighted-code">
         useMobileLayout: true,</span>
         navButtonsPosition: 'overTitles' <span class="bleak-code"> // not necessary but seems a good idea for mobile </span>
     }
@@ -99,12 +99,12 @@ createPlayoffs(
             </p>
             <div class="code">import { createPlayoffs } from 'easy-playoffs'
 
-const { <span class="highlighted_code">applyNewOptions</span> } = createPlayoffs(
+const { <span class="highlighted-code">applyNewOptions</span> } = createPlayoffs(
     data,
     document.querySelector('.playoffs-wrapper'),
     {}
 )
-<span class="highlighted_code">
+<span class="highlighted-code">
 const mediaQuery = window.matchMedia('(max-width: 768px)')
 mediaQuery.addListener(e => applyNewOptions({ useMobileLayout: e.matches }))
 </span>
