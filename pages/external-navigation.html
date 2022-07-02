@@ -7,6 +7,11 @@
         max-width: calc(100vw - 51px);
         flex-wrap: wrap;
     }
+
+    .common-playoffs-wrapper {
+        width: 550px;
+    }
+
     .playoffs-navbar > div {
         padding: 5px 7px;
         border: 1px solid #ccc;
@@ -40,6 +45,9 @@
                 <i>(In case you aren't happy with the built-in navigation behaviour)</i>
                 <br />
                 <br />
+                <div class="note">The following stuff seems more relevant for <b>mobile</b> layout</div>
+                <br />
+                <br />
                 <i>createPlayoffs()</i> returns some navigation-related methods which may be called from anywhere in your code:
                 
                 <div class="indent">
@@ -54,9 +62,9 @@
                     (self-explanatory)
 
                     <br /><br />
-                    <i><b>moveToNRound(</b>roundIndex<b>)</b></i>
+                    <i><b>setCentralRoundIndex(</b>roundIndex<b>)</b></i>
                     <br />
-                    Make the nth round appear in the center
+                    Make the nth round appear in the center. The index you pass here is zero-based.
                     
                     <br /><br />
                     <i><b>getNavigationState()</b></i>
@@ -86,14 +94,14 @@
             <hr />
             <br />
             <br />
-            <div class="heading-3">1. HOW: CREATE TOP NAVIGATION BAR</div>
+            <div class="heading-3">1. CREATE TOP NAVIGATION BAR</div>
             Let's build a top navigation bar with a button for each round
             <br />
             I guess it will make more sense with a mobile layout. But it will work with a normal layout just as well.
             <div class="code" style="margin-top: 15px;">
 import { createPlayoffs } from 'easy-playoffs'
 
-const { <span class="highlighted_code">moveToNRound</span> } = createPlayoffs(
+const { <span class="highlighted_code">setCentralRoundIndex</span> } = createPlayoffs(
     your_data,
     your_playoffs_wrapper,
     <span class="bleak-code">// options  object:</span>
@@ -104,12 +112,12 @@ const { <span class="highlighted_code">moveToNRound</span> } = createPlayoffs(
 )
 
 <span class="bleak-code">// populate your nav element with buttons for each round;
-// call moveToNRound with an index of a button that was clicked</span>
+// call setCentralRoundIndex with an index of a button that was clicked</span>
 <span class="highlighted_code">your_data.rounds.forEach((r, r_i) => {
     const button = document.createElement('div')
     button.innerHTML = r.name
     button.addEventListener('click', (e) => {
-        moveToNRound(r_i)
+        setCentralRoundIndex(r_i)
     })
     your_nav_element.append(button)
 })
@@ -120,24 +128,39 @@ const { <span class="highlighted_code">moveToNRound</span> } = createPlayoffs(
             <h2 style="margin-bottom: 30px;">RESULT</h2>
 
             <div class="playoffs-navbar first"></div>
-            <div class="common-playoffs-wrapper first" style="width: 600px; max-width: calc(100vw - 51px);"></div>
+            <div class="common-playoffs-wrapper first"></div>
             <div class="options-manager-opener">manage options</div>
 
 
-            <hr style="margin: 70px 0;" />
-            <div class="heading-3">2. HOW: HIGHLIGHT BUTTONS OF A NAVIGATION BAR</div>
-            <i>(extension of first example)</i>
-            <br />
-            <br />
-            Let's now highlight a navigation button which corresponds to a round currently displayed in the center
-            <br /><br />
-            You can manually keep track of the currently displayed round after any of the buttons were clicked;
-            the question is which button to highlight <i>from the start</i> (before clicks).
-            <br /><br />
-            Easy-brackets in the beginning will try to navigate to the last 'contentful' round (last round which is finished or at least contains matches with known participants).
-            <br /><br />
-            So the initial 'central' round is a variable thing. To get its index use <i><b>centralRoundIndex</b></i> which is part of an object returned by <i><b>getNavigationState</b></i>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <hr style="margin: 70px 0;" />
+            <div class="heading-3">2. HIGHLIGHT BUTTONS OF A NAVIGATION BAR</div>
+            <p>
+                Here is a small extension of first example.
+                <br />
+                Let's now highlight a navigation button which corresponds to a round currently displayed in the center
+                <br />
+                For that you need an index of a round which is currently "central".
+                <br />
+                You can keep it in your own variable but (just in case) easy-playoffs can also tell you this index.
+                <br />
+                In an object returned by <i><b>getNavigationState</b></i> you will find a <i><b>centralRoundIndex</b></i>. It indicates which round is actually in the center (though it doesn't necessarily mean that it's <i>accurately</i> aligned to the center)
+                <br />
+                It can be especially useful on non-mobile layout when there are several rounds visible so finding the "central" one is harder.
+            </p>
 
 
 
@@ -150,7 +173,7 @@ const { <span class="highlighted_code">moveToNRound</span> } = createPlayoffs(
 import { createPlayoffs } from 'easy-playoffs'
 
 const {
-    moveToNRound,
+    setCentralRoundIndex,
     <span class="highlighted_code">getNavigationState</span>
 } = createPlayoffs(
     your_data,
@@ -164,13 +187,16 @@ const {
 const buttons = your_data.rounds.map((r, r_i) => {
     const button = document.createElement('div')
     button.innerHTML = r.name
+    <span class="bleak-code">
+    // Well, in mobile layout this index will surely be 0 in the beginning...
+    // but on wider screens it may vary</span>
     <span class="highlighted_code">if (getNavigationState().centralRoundIndex === r_i) {
         button.classList.add('selected')
     }</span>
     button.addEventListener('click', (e) => {
         <span class="highlighted_code">buttons.forEach(c => c.classList.remove('selected'))
         e.target.classList.add('selected')</span>
-        moveToNRound(r_i)
+        setCentralRoundIndex(r_i)
     })
     your_nav_element.append(button)
     return button
@@ -183,7 +209,30 @@ const buttons = your_data.rounds.map((r, r_i) => {
             <h2>RESULT</h2>
 
             <div class="playoffs-navbar second"></div>
-            <div class="common-playoffs-wrapper second" style="width: 600px; max-width: calc(100vw - 51px);"></div>
+            <div class="common-playoffs-wrapper second"></div>
+
+
+
+
+
+
+
+
+
+
+            <hr style="margin: 70px 0;" />
+            <div class="heading-3">3. NAVIGATE TO NTH ROUND IN THE VERY BEGINNING</div>
+            <p>
+                By default easy-playoffs starts in the beginning of the tournament.
+                <br />
+                But you may want to start from the last "contentful" round for example.
+                <br />
+            </p>
+
+            <div class="common-playoffs-wrapper third"></div>
+
+
+
 
             ${html_partials.footer}
 
@@ -197,7 +246,7 @@ const buttons = your_data.rounds.map((r, r_i) => {
                 useMobileLayout: true
             }
 
-            const { applyNewOptions, moveToNRound } = createPlayoffs(
+            const { applyNewOptions, setCentralRoundIndex } = createPlayoffs(
                 data,
                 document.querySelector('.common-playoffs-wrapper.first'),
                 options
@@ -207,7 +256,7 @@ const buttons = your_data.rounds.map((r, r_i) => {
                 const button = document.createElement('div')
                 button.innerHTML = r.name
                 button.addEventListener('click', (e) => {
-                    moveToNRound(r_i)
+                    setCentralRoundIndex(r_i)
                 })
                 document.querySelector('.playoffs-navbar.first').append(button)
                 return button
@@ -220,6 +269,14 @@ const buttons = your_data.rounds.map((r, r_i) => {
             )
         })
 
+
+
+
+
+
+
+
+
         get_some_data(3).then(data => {
 
             const options = {
@@ -227,7 +284,7 @@ const buttons = your_data.rounds.map((r, r_i) => {
                 useMobileLayout: true
             }
 
-            const { applyNewOptions, getNavigationState, moveToNRound } = createPlayoffs(
+            const { applyNewOptions, getNavigationState, setCentralRoundIndex } = createPlayoffs(
                 data,
                 document.querySelector('.common-playoffs-wrapper.second'),
                 options
@@ -237,18 +294,37 @@ const buttons = your_data.rounds.map((r, r_i) => {
                 const button = document.createElement('div')
                 button.innerHTML = r.name
                 if (getNavigationState().centralRoundIndex === r_i) {
-                        button.classList.add('selected')
-                    }
+                    button.classList.add('selected')
+                }
                 
                 button.addEventListener('click', (e) => {
                     buttons.forEach(c => c.classList.remove('selected'))
                     e.target.classList.add('selected')
-                    moveToNRound(r_i)
+                    setCentralRoundIndex(r_i)
                 })
                 document.querySelector('.playoffs-navbar.second').append(button)
                 return button
             })
         })
+
+
+
+
+
+
+
+
+        get_some_data(3).then(data => {
+            const { setCentralRoundIndex } = createPlayoffs(
+                data,
+                document.querySelector('.common-playoffs-wrapper.third'),
+                { useMobileLayout: true }
+            )
+            setCentralRoundIndex(5)
+        })
+
+
+
 
 
     </script>
