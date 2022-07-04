@@ -82,13 +82,9 @@
                     <br />
                     {
                     <div class="indent">
-                        <i><b>reachedLeftEdge</b></i>, <span class="bleak-code">// Boolean. May be used to disable your left button </span>
-                        <br />
                         <i><b>reachedRightEdge</b></i>, <span class="bleak-code">// Boolean. May be used to disable your right button </span>
                         <br />
                         <i><b>allRoundsAreVisible</b></i> <span class="bleak-code">// Boolean. May be used to hide all navigation </span>
-                        <br />
-                        <i><b id="cri">centralRoundIndex</b></i> <span class="bleak-code">// Number. Which round is displayed in the center? (Though not always accurately aligned to the center)</span>
                         <br />
                         <i><b id="bri">baseRoundIndex</b></i> <span class="bleak-code">// Number. Which round is the leftmost visible one? </span>
                         <br />
@@ -159,15 +155,9 @@ const { <span class="highlighted-code">setBaseRoundIndex</span> } = createPlayof
             <p>
                 Here is a small extension of first example.
                 <br />
-                Let's now highlight a navigation button which corresponds to a round currently displayed in the center.
+                Let's now highlight a navigation button which corresponds to a currently displayed round.
                 <br />
-                For that you may need an index of a round which is currently "central".
-                <br />
-                You can keep it in your own variable but (just in case) easy-playoffs can also tell you this index.
-                <br />
-                Use <a href="#cri"><i><b>centralRoundIndex</b></i></a> or <a href="#bri"><i><b>baseRoundIndex</b></i></a> returned by <b>getNavigationState</b>.
-                <br />
-                (These indexes are effectively the same on mobile layout but may vary on wide screens)
+                You can keep this 'current index' it in your own variable but (just in case) instead you can use <a href="#bri"><i><b>baseRoundIndex</b></i></a> returned by <b>getNavigationState</b>.
             </p>
 
 
@@ -182,7 +172,6 @@ import { createPlayoffs } from 'easy-playoffs'
 
 const {
     setBaseRoundIndex,
-    <span class="highlighted-code">getNavigationState</span>
 } = createPlayoffs(
     your_data,
     your_playoffs_wrapper,
@@ -196,9 +185,7 @@ const buttons = your_data.rounds.map((r, r_i) => {
     const button = document.createElement('div')
     button.innerHTML = r.name
     <span class="bleak-code">
-    // Well, in mobile layout this index will surely be 0 in the beginning...
-    // but on wider screens it may vary</span>
-    <span class="highlighted-code">if (getNavigationState().centralRoundIndex === r_i) {
+    <span class="highlighted-code">if (r_i === 0) {
         button.classList.add('selected')
     }</span>
     button.addEventListener('click', (e) => {
@@ -310,7 +297,7 @@ const { <span class="highlighted-code">setBaseRoundIndex</span> } = createPlayof
                 useMobileLayout: true
             }
 
-            const { applyNewOptions, getNavigationState, setBaseRoundIndex } = createPlayoffs(
+            const { applyNewOptions, setBaseRoundIndex } = createPlayoffs(
                 data,
                 document.querySelector('.common-playoffs-wrapper.second'),
                 options
@@ -319,7 +306,7 @@ const { <span class="highlighted-code">setBaseRoundIndex</span> } = createPlayof
             const buttons = data.rounds.map((r, r_i) => {
                 const button = document.createElement('div')
                 button.innerHTML = r.name
-                if (getNavigationState().centralRoundIndex === r_i) {
+                if (r_i === 0) {
                     button.classList.add('selected')
                 }
                 
