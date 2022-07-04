@@ -62,20 +62,15 @@
                     "Scroll" the visible area by one round width to the right
 
                     <br /><br />
-                    <i><b id="scri">setCentralRoundIndex(</b>roundIndex<b>)</b></i>
-                    <br />
-                    Make the nth round appear in the center. The index you pass here is zero-based.
-                    <br />
-                    On mobile layout this method is effectively the same as setBaseRoundIndex
-
-                    <br /><br />
                     <i><b id="sbri">setBaseRoundIndex(</b>roundIndex<b>)</b></i>
                     <br />
-                    The "base" round is the leftmost visible one. Thus calling this method will make nth round appear on the left. (Its left edge tied to the left edge of the visible area).
+                    'Scroll' to a round with a given index
+                    <br />
+                    The "base" round is the leftmost visible one (or the only visible one).
+                    <br />
+                    Thus calling this method will make nth round appear on the left. (Its left edge tied to the left edge of the visible area).
                     <br />
                     The index you pass here is zero-based.
-                    <br />
-                    On mobile layout this method is effectively the same as setCentralRoundIndex
                     
 
                     <br /><br />
@@ -115,7 +110,7 @@
             <div class="code" style="margin-top: 15px;">
 import { createPlayoffs } from 'easy-playoffs'
 
-const { <span class="highlighted-code">setCentralRoundIndex</span> } = createPlayoffs(
+const { <span class="highlighted-code">setBaseRoundIndex</span> } = createPlayoffs(
     your_data,
     your_playoffs_wrapper,
     {
@@ -125,12 +120,12 @@ const { <span class="highlighted-code">setCentralRoundIndex</span> } = createPla
 )
 
 <span class="bleak-code">// populate your nav element with buttons for each round;
-// call setCentralRoundIndex with an index of a button that was clicked</span>
+// call setBaseRoundIndex with an index of a button that was clicked</span>
 <span class="highlighted-code">your_data.rounds.forEach((r, r_i) => {
     const button = document.createElement('div')
     button.innerHTML = r.name
     button.addEventListener('click', (e) => {
-        setCentralRoundIndex(r_i) <span class="bleak-code">// setBaseRoundIndex could do the same job on mobile</span>
+        setBaseRoundIndex(r_i) <span class="bleak-code">
     })
     your_nav_element.append(button)
 })
@@ -186,7 +181,7 @@ const { <span class="highlighted-code">setCentralRoundIndex</span> } = createPla
 import { createPlayoffs } from 'easy-playoffs'
 
 const {
-    setCentralRoundIndex,
+    setBaseRoundIndex,
     <span class="highlighted-code">getNavigationState</span>
 } = createPlayoffs(
     your_data,
@@ -209,7 +204,7 @@ const buttons = your_data.rounds.map((r, r_i) => {
     button.addEventListener('click', (e) => {
         <span class="highlighted-code">buttons.forEach(c => c.classList.remove('selected'))
         e.target.classList.add('selected')</span>
-        setCentralRoundIndex(r_i)
+        setBaseRoundIndex(r_i)
     })
     your_nav_element.append(button)
     return button
@@ -240,7 +235,7 @@ const buttons = your_data.rounds.map((r, r_i) => {
                 <br />
                 But you may want to start from the last "contentful" round for example. (E.g., final round of a finished tournament)
                 <br />
-                Call <a href="#scri"><b>setCentralRoundIndex</b><a> or <a href="#sbri"><b>setBaseRoundIndex</b></a> with a desired index.
+                Call <a href="#sbri"><b>setBaseRoundIndex</b></a> with a desired index.
                 <br />
                 (Deducing this index from your data is your job.)
                 <br />
@@ -250,13 +245,13 @@ const buttons = your_data.rounds.map((r, r_i) => {
             <div class="code">
 import { createPlayoffs } from 'easy-playoffs'
 
-const { <span class="highlighted-code">setCentralRoundIndex</span> } = createPlayoffs(
+const { <span class="highlighted-code">setBaseRoundIndex</span> } = createPlayoffs(
     your_data,
     your_playoffs_wrapper,
     { useMobileLayout: true }
 )
 
-<span class="highlighted-code">setCentralRoundIndex(5)</span>
+<span class="highlighted-code">setBaseRoundIndex(5)</span>
             </div>
 
             <br />
@@ -277,7 +272,7 @@ const { <span class="highlighted-code">setCentralRoundIndex</span> } = createPla
                 useMobileLayout: true
             }
 
-            const { applyNewOptions, setCentralRoundIndex } = createPlayoffs(
+            const { applyNewOptions, setBaseRoundIndex } = createPlayoffs(
                 data,
                 document.querySelector('.common-playoffs-wrapper.first'),
                 options
@@ -287,7 +282,7 @@ const { <span class="highlighted-code">setCentralRoundIndex</span> } = createPla
                 const button = document.createElement('div')
                 button.innerHTML = r.name
                 button.addEventListener('click', (e) => {
-                    setCentralRoundIndex(r_i)
+                    setBaseRoundIndex(r_i)
                 })
                 document.querySelector('.playoffs-navbar.first').append(button)
                 return button
@@ -315,7 +310,7 @@ const { <span class="highlighted-code">setCentralRoundIndex</span> } = createPla
                 useMobileLayout: true
             }
 
-            const { applyNewOptions, getNavigationState, setCentralRoundIndex } = createPlayoffs(
+            const { applyNewOptions, getNavigationState, setBaseRoundIndex } = createPlayoffs(
                 data,
                 document.querySelector('.common-playoffs-wrapper.second'),
                 options
@@ -331,7 +326,7 @@ const { <span class="highlighted-code">setCentralRoundIndex</span> } = createPla
                 button.addEventListener('click', (e) => {
                     buttons.forEach(c => c.classList.remove('selected'))
                     e.target.classList.add('selected')
-                    setCentralRoundIndex(r_i)
+                    setBaseRoundIndex(r_i)
                 })
                 document.querySelector('.playoffs-navbar.second').append(button)
                 return button
@@ -346,12 +341,12 @@ const { <span class="highlighted-code">setCentralRoundIndex</span> } = createPla
 
 
         get_some_data(3).then(data => {
-            const { setCentralRoundIndex } = createPlayoffs(
+            const { setBaseRoundIndex } = createPlayoffs(
                 data,
                 document.querySelector('.common-playoffs-wrapper.third'),
                 { useMobileLayout: true }
             )
-            setCentralRoundIndex(5)
+            setBaseRoundIndex(5)
         })
 
 
