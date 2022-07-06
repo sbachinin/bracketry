@@ -11,7 +11,7 @@ export const examples_common_styles = `
         letter-spacing: 0.05em;
         width: 1200px;
         max-width: 100vw;
-        padding: 0 30px;
+        padding: 0 3vw;
         box-sizing: border-box;
         color: #2c2c2c;
     }

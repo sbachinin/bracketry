@@ -1,8 +1,13 @@
 <!DOCTYPE html>
+
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
-    
-        html{visibility: hidden;opacity:0;}
+        html {
+            visibility: hidden;
+            opacity: 0;
+        }
 
         .title {
             font-size: 99px;
@@ -31,6 +36,7 @@
         .default-playoffs {
             margin: 20px 0 0 0;
         }
+
         .default-playoffs-data-picker {
             margin-top: 10px;
         }
@@ -42,12 +48,12 @@
         h3 {
             margin: 50px 0 10px 0;
         }
-
     </style>
 </head>
+
 <body>
-    <img class="logo" src="pages/logo1.jpg"/>
-    <h1 class="title" style="margin-bottom: 80px;">EASY<br/>-PLAYOFFS</h1>
+    <img class="logo" src="pages/logo1.jpg" />
+    <h1 class="title" style="margin-bottom: 80px;">EASY<br />-PLAYOFFS</h1>
 
     <div style="font-size: 45px; font-style: italic;">WHAT YOU CAN DO WITH IT?</div>
     <div style="display: flex; align-items: center; font-size: 20px;">
@@ -58,18 +64,20 @@
 
     <p style="line-height: 2.2;">
         But first you have to convert your data to a <a href="pages/data.html"><b>proper format</b></a>
-        <br/>
+        <br />
         You can also make a lot of visual <a href="#options-header"><b>adjustments</b></a> to your diagram
-        <br/>
-        You automatically get the most compact layout for a given data. (All rounds will be as wide as the widest actual match).
-        <br/>
+        <br />
+        You automatically get the most compact layout for a given data. (All rounds will be as wide as the widest actual
+        match).
+        <br />
         And it supports <a href="#live-updates-header">live updates</a>
-        <br/>
+        <br />
         And it has a special <a href="#mobile">mobile layout</a>
-        <br/>
-        Note that if you want to display countries' <a href="#flags-header">flags</a>, you have to provide your own flag urls
+        <br />
+        Note that if you want to display countries' <a href="#flags-header">flags</a>, you have to provide your own flag
+        urls
     </p>
-    
+
     <hr style="margin: 50px 0 70px;" />
 
     <div class="heading-2"><a href="pages/basic-stuff.html">BASIC USAGE</a></div>
@@ -90,35 +98,34 @@
 
     <div class="heading-2" id="options-header">OPTIONS</div>
 
-    <div class="heading-3" style="margin-bottom: 0;"><a href="pages/custom-buttons.html">CUSTOM NAVIGATION BUTTONS</a></div>
-    <div class="note italic" style="margin-bottom: 20px;">(options.leftNavigationButtonHTML, options.rightNavigationButtonHTML)</div>
+    <div class="heading-3" style="margin-bottom: 0;"><a href="pages/custom-buttons.html">CUSTOM NAVIGATION BUTTONS</a>
+    </div>
+    <div class="note italic" style="margin-bottom: 20px;">(options.leftNavigationButtonHTML,
+        options.rightNavigationButtonHTML)</div>
     <p>You can replace default "navigation buttons" with any other elements or text</p>
-    <img
-        src="pages/images/custom_navigation_button_1.jpg"
-        style="display: block;
+    <img src="pages/images/custom_navigation_button_1.jpg" style="display: block;
         margin: 10px 0;
-        border: 2px dashed;"
-    />
+        border: 2px dashed;" />
     or
-    <img
-        src="pages/images/custom_navigation_button_2.jpg"
-        style="display: block;
+    <img src="pages/images/custom_navigation_button_2.jpg" style="display: block;
         margin: 10px 0;
-        border: 2px dashed;"
-    />
+        border: 2px dashed;" />
 
 
     <div class="heading-3" style="margin-top: 60px; margin-bottom: 0;">HANDLING CLICKS ON A MATCH / PLAYER</div>
     <div class="note italic" style="margin-bottom: 20px;">(options.onMatchClick, options.onMatchSideClick)</div>
     <p>
         You can do whatever you want when a match or its side (competitor) is clicked.
-        <br/>By default, when a side is clicked, its match history gets highlighted.
-        <br/>Instead you may want to navigate to a competitor's dedicated web page. For that you can specify <b>onMatchSideClick</b> callback in which you can change the window.location.
-        <br/>Similarly <b>onMatchClick</b> can be used to navigate to a page of a match. Or open a popup window. Or anything.
-        <br/>Setting either onMatchClick or onMatchSideClick will automatically discard the default "highlight" behaviour.
+        <br />By default, when a side is clicked, its match history gets highlighted.
+        <br />Instead you may want to navigate to a competitor's dedicated web page. For that you can specify
+        <b>onMatchSideClick</b> callback in which you can change the window.location.
+        <br />Similarly <b>onMatchClick</b> can be used to navigate to a page of a match. Or open a popup window. Or
+        anything.
+        <br />Setting either onMatchClick or onMatchSideClick will automatically discard the default "highlight"
+        behaviour.
     </p>
     <a href="pages/onclicks.html" class="more-link">EXAMPLE</a>
-<!-- end options -->
+    <!-- end options -->
 
 
 
@@ -150,7 +157,7 @@
         3) switch to nth round
     </div>
     <a class="more-link" href="pages/external-navigation.html">More</a>
-    
+
 
     <div id="live-updates-header" class="heading-2">ABOUT LIVE UPDATES</div>
 
@@ -158,18 +165,21 @@
     <p>
         Easy-brackets by default doesn't display images for countries' flags.
         <br />
-        But it allows you to use your own flag images (for that you have to provide a <i>flag_url</i> property for a <a href="pages/data.html">Player</a>).
-        <br/>
+        But it allows you to use your own flag images (for that you have to provide a <i>flag_url</i> property for a <a
+            href="pages/data.html">Player</a>).
+        <br />
         But it's optional.
-        <br/>
-        If you don't have flag images, you may at least have a nationality code displayed instead of a flag (<i>nationality_code</i> of a <a href="pages/data.html">Player</a>)
-        <br/>
+        <br />
+        If you don't have flag images, you may at least have a nationality code displayed instead of a flag
+        (<i>nationality_code</i> of a <a href="pages/data.html">Player</a>)
+        <br />
     </p>
     <img src="pages/images/nationality_codes.jpg" />
 
     <h2 id="mobile" style="margin-top: 90px; font-size: 45px;">MOBILE LAYOUT</h2>
     <p>
-        Easy-playoffs' layout is mobile-friendly by default. (But please make sure that your wrapper element is fluid, i.e. shrinks with the viewport).
+        Easy-playoffs' layout is mobile-friendly by default. (But please make sure that your wrapper element is fluid,
+        i.e. shrinks with the viewport).
         <br />
         Though on some mobile screens you will see a fractional number of rounds which might be not what you need.
         <br />
