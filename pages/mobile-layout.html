@@ -32,7 +32,25 @@
 
 
             ${html_partials.home_link}
-            <div class="heading-2">MOBILE LAYOUT</div>
+
+        Easy-playoffs has a flexible layout, meaning that it always tries to display the maximum information for given data and available space on a page.
+        (Actual width of a container element that you pass to createPlayoffs)
+        Rounds are as narrow as possible with a given data.
+
+
+        make sure to include a viewport meta tag
+        make sure to make your container element (wich you pass to createPlayoffs) flexible, for example by setting { max-width: 100vw }
+
+        When your wrapper element can contain only 1 round, easy- 
+
+        it makes sense to fix buttons on smaller screens but it's your choice and your job to implement this. Example:
+
+        want rigid? visibleRoundsCount
+            matchMaxWidth
+            matchMinWidth
+
+
+            <div class="heading-2">LAYOUT CASES</div>
             <hr />
             <div class="heading-3">Default</div>
             <div class="code">import { createPlayoffs } from 'easy-playoffs'
