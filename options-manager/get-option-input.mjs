@@ -7,6 +7,14 @@ export const get_option_input = (name, info, value, onchange) => {
     let input
 
     switch (info.type) {
+        case 'number':
+            input = create_element_from_Html(`
+                    <input type='number' value='${value}'></input>
+            `)
+            input.addEventListener('input', e => {
+                onchange(name, Number(e.target.value))
+            })
+            break
         case 'pixels':
             input = create_element_from_Html(`
                 <div style="display:flex">
