@@ -7,6 +7,7 @@
         html {
             visibility: hidden;
             opacity: 0;
+            overflow-x: hidden;
         }
 
         .title {
@@ -25,11 +26,11 @@
         }
 
         .diagram-img {
-            height: 172px;
+            height: 225px;
             display: block;
-            margin-top: 36px;
-            margin-bottom: 36px;
-            margin-left: 8%;
+            margin-top: 21px;
+            margin-bottom: 25px;
+            margin-left: 6%;
             max-width: 70vw;
         }
 
@@ -55,24 +56,22 @@
     <img class="logo" src="pages/logo1.jpg" />
     <h1 class="title" style="margin-bottom: 80px;">EASY<br />-PLAYOFFS</h1>
 
-    <div style="font-size: 45px; font-style: italic;">WHAT YOU CAN DO WITH IT?</div>
-    <div style="display: flex; align-items: center; font-size: 20px;">
-        <span style="font-size: 37px; padding-right: 24px;">&#11116;</span>
-        Create diagrams that represent the "draws" of a knockout tournament:
+    <div style="font-size: 24px;
+    font-style: italic;">
+        It creates diagrams that represent the "draws" of a knockout tournament:
     </div>
-    <img class="diagram-img" src="pages/diagram.jpg" />
+    <img class="diagram-img" src="pages/images/diagram.jpg" />
 
     <p style="line-height: 2.2;">
         But first you have to convert your data to a <a href="pages/data.html"><b>proper format</b></a>
         <br />
         You can also make a lot of visual <a href="#options-header"><b>adjustments</b></a> to your diagram
         <br />
-        You automatically get the most compact layout for a given data. (All rounds will be as wide as the widest actual
-        match).
+        It tries to display as much rounds as possible with a given data and available space.
+        <br />
+        It's mobile-friendly by default.
         <br />
         And it supports <a href="#live-updates-header">live updates</a>
-        <br />
-        And it has a special <a href="#mobile">mobile layout</a>
         <br />
         Note that if you want to display countries' <a href="#flags-header">flags</a>, you have to provide your own flag
         urls
