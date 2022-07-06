@@ -1,15 +1,21 @@
 <!DOCTYPE html>
+
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
-        html{visibility: hidden;opacity:0;}
-        
+        html {
+            visibility: hidden;
+            opacity: 0;
+        }
+
         .common-playoffs-wrapper.first {
-            width: 800px;
             resize: horizontal;
             overflow: auto hidden;
         }
     </style>
 </head>
+
 <body>
     <script type="module">
         import * as html_partials from './html_partials.mjs'
@@ -171,42 +177,30 @@ mediaQuery.addListener(e => applyNewOptions({ useMobileLayout: e.matches }))
                 first_options
             )
 
-            createPlayoffs(
-                data,
-                document.querySelector('.common-playoffs-wrapper.second'),
-                { useMobileLayout: true,
-                    navButtonsPosition: 'overTitles' }
-            )
-
-
-            const third_playoffs = createPlayoffs(
-                data,
-                document.querySelector('.common-playoffs-wrapper.third'),
-                {}
-            )
-
-            const mediaQuery = window.matchMedia('(max-width: 768px)')
-            mediaQuery.addListener(e => third_playoffs.applyNewOptions({ useMobileLayout: e.matches }))
-
-
+            /* 
+                        createPlayoffs(
+                            data,
+                            document.querySelector('.common-playoffs-wrapper.second'),
+                            { useMobileLayout: true,
+                                navButtonsPosition: 'overTitles' }
+                        )
             
+            
+                        const third_playoffs = createPlayoffs(
+                            data,
+                            document.querySelector('.common-playoffs-wrapper.third'),
+                            {}
+                        )
+            
+                        const mediaQuery = window.matchMedia('(max-width: 768px)')
+                        mediaQuery.addListener(e => third_playoffs.applyNewOptions({ useMobileLayout: e.matches }))
+            */
+
+
+
         })
 
 
     </script>
 
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
