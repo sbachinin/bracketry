@@ -55,12 +55,12 @@ createPlayoffs(
     data,
     document.querySelector('.playoffs-wrapper'),
     {
-        navButtonsPosition: 'overTitles' <span class="bleak-code"> // not necessary but seems a good idea for mobile </span>
+        navButtonsPosition: 'overTitles' <span class="bleak-code"> // not necessary but seems a good idea for narrow screen </span>
     }
 )</div>
 
             <p>
-                Easy-brackets tries to be mobile-friendly by default. On narrow screens it adjusts the layout to display only 1 round. (Long player titles will be trimmed)
+                Easy-brackets tries to be mobile-friendly by default.
                 <br />
                 Resize the parent (or window) to see what happens on smaller screens
             </p>
@@ -71,38 +71,6 @@ createPlayoffs(
 
 
 
-
-
-
-
-
-            <hr class="huge-margin-top" />
-            <p>
-                Though you can face a situation when you see for instance 1.2 rounds on mobile device and that can be a bit ugly:
-                <br />
-                <img src="images/ugly-mobile.jpg" />
-                <br />
-                That's because easy-playoffs actually doesn't try to detect a mobile device. It only adjusts the layout when the width of the visible area becomes too narrow to dispaly one round.
-                <br />
-                You may change this behaviour with <b>useMobileLayout</b> option.
-                <br />
-                When set to true, it forces mobile layout regardless of screen size.
-            </p>
-            <div class="code">import { createPlayoffs } from 'easy-playoffs'
-
-createPlayoffs(
-    data,
-    document.querySelector('.playoffs-wrapper'),
-    {<span class="highlighted-code">
-        useMobileLayout: true,</span>
-        navButtonsPosition: 'overTitles' <span class="bleak-code"> // not necessary but seems a good idea for mobile </span>
-    }
-)</div>
-
-            <br />
-            
-            <div class="heading-5 note">Result: mobile layout is forced despite having enough space for multiple rounds:</div>
-            <div class="common-playoffs-wrapper second"></div>
 
 
 
@@ -191,13 +159,7 @@ mediaQuery.addListener(e => applyNewOptions({ useMobileLayout: e.matches }))
             )
 
             /* 
-                        createPlayoffs(
-                            data,
-                            document.querySelector('.common-playoffs-wrapper.second'),
-                            { useMobileLayout: true,
-                                navButtonsPosition: 'overTitles' }
-                        )
-            
+
             
                         const third_playoffs = createPlayoffs(
                             data,

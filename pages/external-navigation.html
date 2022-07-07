@@ -45,7 +45,7 @@
                 <i>(In case you aren't happy with the built-in navigation behaviour)</i>
                 <br />
                 <br />
-                <div class="note">The following stuff seems more relevant for <b>mobile</b> layout (though it will work nicely on desktop too)</div>
+                <div class="note">The following stuff seems more relevant for narrow screens where only 1 round is displayed at a time</div>
                 <br />
                 <br />
                 <i>createPlayoffs()</i> returns some navigation-related methods which may be called from anywhere in your code:
@@ -111,7 +111,6 @@ const { <span class="highlighted-code">setBaseRoundIndex</span> } = createPlayof
     your_playoffs_wrapper,
     {
         <span class="highlighted-code">navButtonsPosition: "hidden",
-        useMobileLayout: true</span><span class="bleak-code"> // not necessary but sensible</span>
     }
 )
 
@@ -177,7 +176,6 @@ const {
     your_playoffs_wrapper,
     {
         navButtonsPosition: "hidden",
-        useMobileLayout: true
     }
 )
 
@@ -235,7 +233,7 @@ import { createPlayoffs } from 'easy-playoffs'
 const { <span class="highlighted-code">setBaseRoundIndex</span> } = createPlayoffs(
     your_data,
     your_playoffs_wrapper,
-    { useMobileLayout: true }
+    {}
 )
 
 <span class="highlighted-code">setBaseRoundIndex(5)</span>
@@ -256,7 +254,6 @@ const { <span class="highlighted-code">setBaseRoundIndex</span> } = createPlayof
 
             const options = {
                 navButtonsPosition: 'hidden',
-                useMobileLayout: true
             }
 
             const { applyNewOptions, setBaseRoundIndex } = createPlayoffs(
@@ -294,7 +291,6 @@ const { <span class="highlighted-code">setBaseRoundIndex</span> } = createPlayof
 
             const options = {
                 navButtonsPosition: 'hidden',
-                useMobileLayout: true
             }
 
             const { applyNewOptions, setBaseRoundIndex } = createPlayoffs(
@@ -331,7 +327,7 @@ const { <span class="highlighted-code">setBaseRoundIndex</span> } = createPlayof
             const { setBaseRoundIndex } = createPlayoffs(
                 data,
                 document.querySelector('.common-playoffs-wrapper.third'),
-                { useMobileLayout: true }
+                {}
             )
             setBaseRoundIndex(5)
         })

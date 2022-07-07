@@ -107,16 +107,6 @@ export const examples_common_styles = `
         color: #80ea00;
     }
 
-    .mobile-switcher {
-        display: flex;
-        align-items: center;
-        opacity: 0.6;
-        cursor: pointer;
-        width: max-content;
-    }
-    .mobile-switcher:hover {
-        opacity: 1;
-    }
 
 
 
