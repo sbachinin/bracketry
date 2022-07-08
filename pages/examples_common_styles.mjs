@@ -18,7 +18,6 @@ export const examples_common_styles = `
 
     .common-playoffs-wrapper {
         height: 600px;
-        max-width: calc(100vw - 60px);
         resize: horizontal;
         overflow: auto hidden;
     }
