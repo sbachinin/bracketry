@@ -81,6 +81,7 @@ createPlayoffs(
 
 
             <p>
+                (Obsolete case of useMobileLayout; could be rewritten to show an example of 'responsive' buttons)
                 So you can measure your device and decide if you need a mobile layout in particular case.
                 It makes sense to do this check every time on resize. This can be achieved for example via window.matchMedia:
             </p>
@@ -165,13 +166,6 @@ mediaQuery.addListener(e => applyNewOptions({ useMobileLayout: e.matches }))
                 document.querySelector('.common-playoffs-wrapper.third'),
                 {}
             )
-            /* 
-
-                        const mediaQuery = window.matchMedia('(max-width: 768px)')
-                        mediaQuery.addListener(e => third_playoffs.applyNewOptions({ useMobileLayout: e.matches }))
-            */
-
-
 
         })
 
