@@ -1,0 +1,30 @@
+{
+    "name": "easy-playoffs",
+    "version": "1.0.0",
+    "description": "Low-pain tool to visualize the 'draws' of a knockout tournament",
+    "type": "module",
+    "exports": "./lib/lib.mjs",
+    "directories": {
+        "lib": "lib"
+    },
+    "files": [
+        "/lib"
+    ],
+    "types": "./index.d.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sbachinin/easy-playoffs.git"
+    },
+    "author": "sbachinin",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/sbachinin/easy-playoffs/issues"
+    },
+    "homepage": "https://github.com/sbachinin/easy-playoffs#readme",
+    "engines": {
+        "node": " >=14.13.1 || >=16.0.0"
+    }
+}
