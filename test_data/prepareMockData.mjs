@@ -42,7 +42,8 @@ const get_sides_data = (match_teams) => {
                 .filter(score => score.game !== '')
                 .map(score => ({
                     main_score: score.game,
-                    tie_break: score.tie_break && Number(score.tie_break)
+                    tie_break: score.tie_break && Number(score.tie_break),
+                    is_winner: score.winner
                 })),
             subscore: team.point,
             is_serving: team.is_serving,
