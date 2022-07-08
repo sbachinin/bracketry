@@ -1,5 +1,5 @@
 import { datas, INITIAL_TEST_DATA_INDEX } from './get_some_data.mjs'
-import { create_element_from_Html, get_root_folder } from '../lib/utils/utils.mjs'
+import { create_element_from_Html, get_root_folder, user_agent_is_mobile } from '../lib/utils/utils.mjs'
 
 const icons = {
     empty: '<div style="font-size: 36px; line-height: 24px; margin-top: -7px;" >&#128453;</div>',
@@ -7,6 +7,8 @@ const icons = {
 }
 
 const create_data_button = (data, cb) => {
+    const is_mobile = user_agent_is_mobile()
+
     const button = create_element_from_Html(`
         <div class="data-picker-button ${datas.indexOf(data) === INITIAL_TEST_DATA_INDEX ? 'selected' : ''}">
             ${icons[data.type]}
@@ -21,7 +23,7 @@ const create_data_button = (data, cb) => {
 
     let should_show_tooltip = false
     button.addEventListener('mousemove', () => {
-        should_show_tooltip = true
+        should_show_tooltip = !is_mobile
         setTimeout(() => {
             should_show_tooltip && button.querySelector('.data-picker-button-tooltip').classList.add('visible')
         }, 100)
