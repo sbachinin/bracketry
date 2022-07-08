@@ -107,7 +107,7 @@ mediaQuery.addListener(e => applyNewOptions({ useMobileLayout: e.matches }))
 <div class="common-playoffs-wrapper third"></div>
 
 
-
+<!--
             <br />
             <br />
             <div class="note huge-margin-top">
@@ -134,7 +134,8 @@ mediaQuery.addListener(e => applyNewOptions({ useMobileLayout: e.matches }))
                         <br /><br />
                     </div>
                 </p>
-            </div> <!-- end note -->
+            </div>
+            -->
 
 
 
@@ -158,15 +159,14 @@ mediaQuery.addListener(e => applyNewOptions({ useMobileLayout: e.matches }))
                 first_options
             )
 
+            
+            const third_playoffs = createPlayoffs(
+                data,
+                document.querySelector('.common-playoffs-wrapper.third'),
+                {}
+            )
             /* 
 
-            
-                        const third_playoffs = createPlayoffs(
-                            data,
-                            document.querySelector('.common-playoffs-wrapper.third'),
-                            {}
-                        )
-            
                         const mediaQuery = window.matchMedia('(max-width: 768px)')
                         mediaQuery.addListener(e => third_playoffs.applyNewOptions({ useMobileLayout: e.matches }))
             */
