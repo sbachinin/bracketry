@@ -348,7 +348,6 @@ export const examples_common_styles = `
     img {
         display: block;
         max-width: 85vw;
-        margin: 15px 0;
     }
 
 
