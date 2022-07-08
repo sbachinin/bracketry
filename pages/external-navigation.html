@@ -1,28 +1,41 @@
 <!DOCTYPE html>
-<style>
-    html{visibility: hidden;opacity:0;}
-    .playoffs-navbar {
-        display: flex;
-        width: 600px;
-        max-width: calc(100vw - 51px);
-        flex-wrap: wrap;
-    }
 
-    .common-playoffs-wrapper {
-        width: 550px;
-    }
+<head>
 
-    .playoffs-navbar > div {
-        padding: 5px 7px;
-        border: 1px solid #ccc;
-        margin: 0 8px 10px;
-        cursor: pointer;
-    }
-    .playoffs-navbar > div.selected {
-        border-color: black;
-        outline: 1px solid;
-    }
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        html {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .playoffs-navbar {
+            display: flex;
+            width: 600px;
+            max-width: calc(100vw - 51px);
+            flex-wrap: wrap;
+        }
+
+        .common-playoffs-wrapper {
+            width: 550px;
+        }
+
+        .playoffs-navbar>div {
+            padding: 5px 7px;
+            border: 1px solid #ccc;
+            margin: 0 8px 10px;
+            cursor: pointer;
+        }
+
+        .playoffs-navbar>div.selected {
+            border-color: black;
+            outline: 1px solid;
+        }
+    </style>
+
+</head>
+
 <body>
     <script type="module">
         import * as html_partials from './html_partials.mjs'
@@ -249,7 +262,7 @@ const { <span class="highlighted-code">setBaseRoundIndex</span> } = createPlayof
 
         `
 
-        
+
         get_some_data(3).then(data => {
 
             const options = {
@@ -261,7 +274,7 @@ const { <span class="highlighted-code">setBaseRoundIndex</span> } = createPlayof
                 document.querySelector('.common-playoffs-wrapper.first'),
                 options
             )
-            
+
             const buttons = data.rounds.map((r, r_i) => {
                 const button = document.createElement('div')
                 button.innerHTML = r.name
@@ -305,7 +318,7 @@ const { <span class="highlighted-code">setBaseRoundIndex</span> } = createPlayof
                 if (r_i === 0) {
                     button.classList.add('selected')
                 }
-                
+
                 button.addEventListener('click', (e) => {
                     buttons.forEach(c => c.classList.remove('selected'))
                     e.target.classList.add('selected')
