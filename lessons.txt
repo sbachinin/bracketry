@@ -1,9 +1,0 @@
-LESSONS LEARNED ABOUT CANVAS
-
-
-
-Firefox fuckups
-
-    When I tried to draw match images from offscreen canvas using ctx.putImageData, scroll animation got very slow and ugly at FF. Switch back to ctx.drawImage insted of putImageData fixed the issue
-
-    Drawing svgs is risky. If root svg element doesn't contain width and height attributes, FF assumes they are 0 and 0 and thus calling drawImage draws nothing.
