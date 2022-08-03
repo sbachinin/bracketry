@@ -2,15 +2,9 @@
     "name": "easy-playoffs",
     "version": "1.0.0",
     "description": "Low-pain tool to visualize the 'draws' of a knockout tournament",
-    "type": "module",
-    "exports": "./lib/lib.mjs",
-    "directories": {
-        "lib": "lib"
-    },
-    "files": [
-        "/lib"
-    ],
     "types": "./index.d.ts",
+    "module": "./lib/lib.mjs",
+    "mode": "production",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
