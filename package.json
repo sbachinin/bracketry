@@ -6,7 +6,8 @@
     "module": "./lib/lib.mjs",
     "mode": "production",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "jest",
+        "btest": "webpack && jest"
     },
     "repository": {
         "type": "git",
@@ -20,5 +21,9 @@
     "homepage": "https://github.com/sbachinin/easy-playoffs#readme",
     "engines": {
         "node": " >=14.13.1 || >=16.0.0"
+    },
+    "devDependencies": {
+        "jest": "^28.1.3",
+        "jest-environment-jsdom": "^28.1.3"
     }
 }
