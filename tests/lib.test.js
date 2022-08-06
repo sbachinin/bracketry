@@ -95,3 +95,40 @@ test('survives when non-string id is provided for a round', () => {
     )
     expect(true).toBe(true);
 });
+
+
+
+test('survives when data.matches is undefined', () => {
+    const wrapper = document.createElement('div')
+    document.body.append(wrapper)
+
+    expect.assertions(1)
+
+    easyPlayoffs.createPlayoffs(
+        {
+            rounds: [],
+            contestants: {}
+        },
+        wrapper,
+        {}
+    )
+    expect(true).toBe(true);
+});
+
+test('survives when data.matches are not an array', () => {
+    const wrapper = document.createElement('div')
+    document.body.append(wrapper)
+
+    expect.assertions(1)
+
+    easyPlayoffs.createPlayoffs(
+        {
+            rounds: [],
+            matches: true,
+            contestants: {}
+        },
+        wrapper,
+        {}
+    )
+    expect(true).toBe(true);
+});
