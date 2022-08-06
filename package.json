@@ -7,7 +7,7 @@
     "mode": "production",
     "scripts": {
         "test": "jest",
-        "btest": "webpack && jest"
+        "btest": "webpack && jest --silent"
     },
     "repository": {
         "type": "git",
