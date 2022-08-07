@@ -412,10 +412,10 @@ test('survives when side.score is not an array', () => {
         {
             rounds: [{ id: 'r1' }],
             matches: [{ match_id: '32323', round_id: 'r1', order: 0,
-                sides: [{ contestant_id: 'contestant1', score: false }] }
+                sides: [{ contestant_id: 'contestant1', score: 312312 }] }
             ],
             contestants: {
-                contestant1: {}
+                contestant1: { players: [ { title: 'john' } ] }
             }
         },
         wrapper,
@@ -437,7 +437,7 @@ test('survives when side.score is an empty array', () => {
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {
-                contestant1: {}
+                contestant1: { players: [ { title: 'john' } ] }
             }
         },
         wrapper,

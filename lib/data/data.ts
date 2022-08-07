@@ -25,7 +25,7 @@ type Match = {
 // Side is a match-specific data for contestant: his id, his score ...
 type Side = {
     contestant_id: string,
-    score: [
+    score?: [
         {
             main_score: number | string, // May contain divergent results like 'W/O' or 'Ret' in tennis
             tie_break?: number,
