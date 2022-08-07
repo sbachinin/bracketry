@@ -492,3 +492,114 @@ test('survives when contestant.players is an empty array', () => {
 
 
 
+test('survives when contestant.players contains non-objects', () => {
+    const wrapper = document.createElement('div')
+    document.body.append(wrapper)
+
+    expect.assertions(1)
+
+    easyPlayoffs.createPlayoffs(
+        {
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+                sides: [{ contestant_id: 'contestant1', score: [] }] }
+            ],
+            contestants: {
+                contestant1: { players: [ '3232' ] }
+            }
+        },
+        wrapper,
+        {}
+    )
+    expect(true).toBe(true);
+});
+
+test('survives when player has no title', () => {
+    const wrapper = document.createElement('div')
+    document.body.append(wrapper)
+
+    expect.assertions(1)
+
+    easyPlayoffs.createPlayoffs(
+        {
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+                sides: [{ contestant_id: 'contestant1', score: [] }] }
+            ],
+            contestants: {
+                contestant1: { players: [ {} ] }
+            }
+        },
+        wrapper,
+        {}
+    )
+    expect(true).toBe(true);
+});
+
+
+test('survives when player has non-string title', () => {
+    const wrapper = document.createElement('div')
+    document.body.append(wrapper)
+
+    expect.assertions(1)
+
+    easyPlayoffs.createPlayoffs(
+        {
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+                sides: [{ contestant_id: 'contestant1', score: [] }] }
+            ],
+            contestants: {
+                contestant1: { players: [ { title: false } ] }
+            }
+        },
+        wrapper,
+        {}
+    )
+    expect(true).toBe(true);
+});
+
+
+test('survives when player has non-string nationality_code', () => {
+    const wrapper = document.createElement('div')
+    document.body.append(wrapper)
+
+    expect.assertions(1)
+
+    easyPlayoffs.createPlayoffs(
+        {
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+                sides: [{ contestant_id: 'contestant1', score: [] }] }
+            ],
+            contestants: {
+                contestant1: { players: [ { title: 'fdf', nationality_code: false } ] }
+            }
+        },
+        wrapper,
+        {}
+    )
+    expect(true).toBe(true);
+});
+
+test('survives when player has non-string flag_url', () => {
+    const wrapper = document.createElement('div')
+    document.body.append(wrapper)
+
+    expect.assertions(1)
+
+    easyPlayoffs.createPlayoffs(
+        {
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+                sides: [{ contestant_id: 'contestant1', score: [] }] }
+            ],
+            contestants: {
+                contestant1: { players: [ { title: 'fdf', nationality_code: 'fdsf', flag_url: false } ] }
+            }
+        },
+        wrapper,
+        {}
+    )
+    expect(true).toBe(true);
+});
