@@ -236,8 +236,8 @@ test('survives when match.order is not a number', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [],
-            matches: [{ match_id: '32323', round_id: '11111', order: [] }],
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: [] }],
             contestants: {}
         },
         wrapper,
@@ -259,8 +259,8 @@ test('survives when match.sides is not an array', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [],
-            matches: [{ match_id: '32323', round_id: '11111', order: 0, sides: true }],
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0, sides: true }],
             contestants: {}
         },
         wrapper,
@@ -277,8 +277,8 @@ test('survives when match.sides contains 0 elements', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [],
-            matches: [{ match_id: '32323', round_id: '11111', order: 0, sides: [] }],
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0, sides: [] }],
             contestants: {}
         },
         wrapper,
@@ -296,8 +296,8 @@ test('survives when match.sides contains non-object elements', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [],
-            matches: [{ match_id: '32323', round_id: '11111', order: 0, sides: ['fsdfsdf'] }],
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0, sides: ['fsdfsdf'] }],
             contestants: {}
         },
         wrapper,
@@ -314,8 +314,8 @@ test('survives when match.sides[0] is an empty object', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [],
-            matches: [{ match_id: '32323', round_id: '11111', order: 0, sides: [{}] }],
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0, sides: [{}] }],
             contestants: {}
         },
         wrapper,
@@ -333,8 +333,8 @@ test('survives when match.sides[0].contestant_id is not a string', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [],
-            matches: [{ match_id: '32323', round_id: '11111', order: 0, sides: [{ contestant_id: [] }] }],
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0, sides: [{ contestant_id: [] }] }],
             contestants: {}
         },
         wrapper,
@@ -352,8 +352,8 @@ test('survives when there is no contestant for match.sides[0].contestant_id', ()
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [],
-            matches: [{ match_id: '32323', round_id: '11111', order: 0, sides: [{ contestant_id: 'contestant1' }] }],
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0, sides: [{ contestant_id: 'contestant1' }] }],
             contestants: {}
         },
         wrapper,
@@ -370,8 +370,8 @@ test('survives when contestant is not an object', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [],
-            matches: [{ match_id: '32323', round_id: '11111', order: 0, sides: [{ contestant_id: 'contestant1' }] }],
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0, sides: [{ contestant_id: 'contestant1' }] }],
             contestants: {
                 contestant1: 333
             }
@@ -390,8 +390,8 @@ test('survives when contestant is an empty object', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [],
-            matches: [{ match_id: '32323', round_id: '11111', order: 0, sides: [{ contestant_id: 'contestant1' }] }],
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0, sides: [{ contestant_id: 'contestant1' }] }],
             contestants: {
                 contestant1: {}
             }
@@ -410,8 +410,8 @@ test('survives when side.score is not an array', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [],
-            matches: [{ match_id: '32323', round_id: '11111', order: 0,
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
                 sides: [{ contestant_id: 'contestant1', score: false }] }
             ],
             contestants: {
@@ -432,8 +432,8 @@ test('survives when side.score is an empty array', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [],
-            matches: [{ match_id: '32323', round_id: '11111', order: 0,
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {
@@ -454,8 +454,8 @@ test('survives when contestant.players is not an array', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [],
-            matches: [{ match_id: '32323', round_id: '11111', order: 0,
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {
@@ -476,8 +476,8 @@ test('survives when contestant.players is an empty array', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [],
-            matches: [{ match_id: '32323', round_id: '11111', order: 0,
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {
