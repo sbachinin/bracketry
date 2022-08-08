@@ -603,3 +603,82 @@ test('survives when player has non-string flag_url', () => {
     )
     expect(true).toBe(true);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+test('survives if non-element wrapper is provided', () => {
+    const wrapper = document.createElement('div')
+    document.body.append(wrapper)
+
+    expect.assertions(1)
+
+    easyPlayoffs.createPlayoffs(
+        {
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+                sides: [{ contestant_id: 'contestant1', score: [] }] }
+            ],
+            contestants: {
+                contestant1: { players: [ { title: 'fdf', nationality_code: 'fdsf', flag_url: false } ] }
+            }
+        },
+        null,
+        {}
+    )
+    expect(true).toBe(true);
+})
+
+
+test('survives if wrapper is not in the DOM', () => {
+    expect.assertions(1)
+
+    easyPlayoffs.createPlayoffs(
+        {
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+                sides: [{ contestant_id: 'contestant1', score: [] }] }
+            ],
+            contestants: {
+                contestant1: { players: [ { title: 'fdf', nationality_code: 'fdsf', flag_url: false } ] }
+            }
+        },
+        document.createElement('div'),
+        {}
+    )
+    expect(true).toBe(true);
+})
+
+
+test('survives if wrapper is of bad type', () => {
+    const wrapper = document.createElement('img')
+    document.body.append(wrapper)
+
+    expect.assertions(1)
+
+    easyPlayoffs.createPlayoffs(
+        {
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+                sides: [{ contestant_id: 'contestant1', score: [] }] }
+            ],
+            contestants: {
+                contestant1: { players: [ { title: 'fdf', nationality_code: 'fdsf', flag_url: false } ] }
+            }
+        },
+        wrapper,
+        {}
+    )
+    expect(true).toBe(true);
+})
