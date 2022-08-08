@@ -705,3 +705,25 @@ test('survives non-object options', () => {
     )
     expect(true).toBe(true);
 })
+
+test('survives non-existent options', () => {
+    const wrapper = document.createElement('div')
+    document.body.append(wrapper)
+
+    expect.assertions(1)
+
+    easyPlayoffs.createPlayoffs(
+        {
+            rounds: [{ id: 'r1' }],
+            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+                sides: [{ contestant_id: 'contestant1', score: [] }] }
+            ],
+            contestants: {
+                contestant1: { players: [ { title: 'fdf', nationality_code: 'fdsf', flag_url: false } ] }
+            }
+        },
+        wrapper,
+        { fsdfsd: false}
+    )
+    expect(true).toBe(true);
+})
