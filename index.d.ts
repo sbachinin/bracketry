@@ -45,8 +45,8 @@ type OptionsMap = { [key in OptionNames]?: any }
 
 export function createPlayoffs(
     user_data: Data,
-    user_wrapper_el: any,
-    user_options: any
+    user_wrapper_el: Element,
+    user_options: OptionsMap
 ): {
     moveToNextRound: () => void;
     moveToPreviousRound: () => void;
