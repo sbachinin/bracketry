@@ -52,6 +52,23 @@ test('sets the base round index + tells this index via getNavigationState', () =
 
 
 
+test('limits the base round index when setBaseRoundIndex is called with invalid number', () => {
+    const wrapper = init()
+
+    const { setBaseRoundIndex, getNavigationState } = easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        { visibleRoundsCount: 2 }
+    )
+
+    setBaseRoundIndex(235152)
+    expect(getNavigationState().baseRoundIndex).toBe(2);
+    setBaseRoundIndex(-23123)
+    expect(getNavigationState().baseRoundIndex).toBe(0);
+});
+
+
+
 test('moves to next round when "moveToNextRound" is called', () => {
     const wrapper = init()
 
