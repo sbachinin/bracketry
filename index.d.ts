@@ -56,9 +56,11 @@ export function createPlayoffs(
         allRoundsAreVisible: boolean,
         baseRoundIndex: number
     }
+
     applyNewOptions: (new_options: OptionsMap) => void;
+    getUserOptions: () => OptionsMap;
+    
     applyFullDataUpdate: (new_data: Data) => void;
     applyMatchesUpdates: (matches_data: Match[]) => void;
     getAllData: () => Data;
-    getUserOptions: () => OptionsMap;
 };
