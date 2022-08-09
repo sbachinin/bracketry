@@ -24,11 +24,45 @@ test('hides a number of rounds beyond options.visibleRoundsCount', () => {
 
     const all_rounds = [...document.querySelectorAll('.round-wrapper')]
     const hidden_rounds = all_rounds.filter(w => w.classList.contains('hidden'))
-    expect(hidden_rounds.length).toBe(2);
+    expect(hidden_rounds.length).toBe(2)
     expect(getComputedStyle(all_rounds[0]).display).not.toBe('none')
     expect(getComputedStyle(all_rounds[3]).display).toBe('none')
-});
+})
 
+
+
+test('floors the fractional visibleRoundsCount', () => {
+    const wrapper = init()
+
+    const { setBaseRoundIndex, getNavigationState } = easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        { visibleRoundsCount: 2.5 }
+    )
+
+    const all_rounds = [...document.querySelectorAll('.round-wrapper')]
+    const visible_rounds = all_rounds.filter(w => !w.classList.contains('hidden'))
+    expect(visible_rounds.length).toBe(2)
+
+    setBaseRoundIndex(2)
+    expect(getNavigationState().baseRoundIndex).toBe(2)
+})
+
+
+
+
+test('survives with negative visibleRoundsCount', () => {
+    const wrapper = init()
+    expect.assertions(1)
+
+    easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        { visibleRoundsCount: -2.5 }
+    )
+
+    expect(true).toBe(true);
+})
 
 
 
@@ -43,12 +77,12 @@ test('sets the base round index + tells this index via getNavigationState', () =
     )
 
     setBaseRoundIndex(2)
-    expect(getNavigationState().baseRoundIndex).toBe(2);
+    expect(getNavigationState().baseRoundIndex).toBe(2)
 
     // first round now should be hidden:
     const all_rounds = [...document.querySelectorAll('.round-wrapper')]
     expect(getComputedStyle(all_rounds[0]).display).toBe('none')
-});
+})
 
 
 
@@ -65,7 +99,7 @@ test('limits the base round index when setBaseRoundIndex is called with invalid 
     expect(getNavigationState().baseRoundIndex).toBe(2);
     setBaseRoundIndex(-23123)
     expect(getNavigationState().baseRoundIndex).toBe(0);
-});
+})
 
 
 
@@ -84,7 +118,7 @@ test('moves to next round when "moveToNextRound" is called', () => {
     const all_rounds = [...document.querySelectorAll('.round-wrapper')]
     expect(getComputedStyle(all_rounds[0]).display).toBe('none')
     expect(getComputedStyle(all_rounds[2]).display).not.toBe('none')
-});
+})
 
 
 test('moves to next round when right button is clicked', () => {
@@ -104,7 +138,7 @@ test('moves to next round when right button is clicked', () => {
     const all_rounds = [...document.querySelectorAll('.round-wrapper')]
     expect(getComputedStyle(all_rounds[0]).display).toBe('none')
     expect(getComputedStyle(all_rounds[2]).display).not.toBe('none')
-});
+})
 
 
 test('moves to previous round', () => {
@@ -119,7 +153,7 @@ test('moves to previous round', () => {
     moveToNextRound()
     moveToPreviousRound()
     expect(getNavigationState().baseRoundIndex).toBe(0)
-});
+})
 
 
 test('moves next only to the last possible round', () => {
@@ -141,7 +175,7 @@ test('moves next only to the last possible round', () => {
     moveToNextRound()
 
     expect(getNavigationState().baseRoundIndex).toBe(2)
-});
+})
 
 
 test('tells that it reached right edge when it is so', () => {
@@ -157,6 +191,6 @@ test('tells that it reached right edge when it is so', () => {
     expect(getNavigationState().reachedRightEdge).toBe(false)
     moveToNextRound()
     expect(getNavigationState().reachedRightEdge).toBe(true)
-});
+})
 
 
