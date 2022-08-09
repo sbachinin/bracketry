@@ -5,6 +5,12 @@
 global.ResizeObserver = require('resize-observer-polyfill')
 const { easyPlayoffs } = require('../index.js');
 
+test('survives no data', () => {
+    expect.assertions(1)
+    easyPlayoffs.createPlayoffs()
+    expect(true).toBe(true);
+});
+
 
 test('survives if no rounds array is provided', () => {
     const wrapper = document.createElement('div')
