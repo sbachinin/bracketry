@@ -25,8 +25,25 @@ test('renders one empty round with a given name', () => {
         {}
     )
     expect(document.querySelectorAll('.round-wrapper').length).toBe(1);
-    expect(document.querySelector('.round-title').innerHTML).toBe('Some round')
+    expect(document.querySelector('.round-name').innerHTML).toBe('Some round')
 });
+
+
+test('renders a default round name if none is given by user', () => {
+    const wrapper = init()
+
+    easyPlayoffs.createPlayoffs(
+        {
+            rounds: [{id: 'round1'}],
+            matches: [],
+            contestants: {}
+        },
+        wrapper,
+        {}
+    )
+    expect(document.querySelector('.round-name').innerHTML).toBe('Final')
+});
+
 
 test('renders match data', () => {
     const wrapper = init()
