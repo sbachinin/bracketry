@@ -58,3 +58,21 @@ test('merges old and new options', () => {
     expect(getUserOptions().visibleRoundsCount).toBe(2)
     expect(getUserOptions().matchMinVerticalGap).toBe(4)
 })
+
+
+
+
+
+test('applies matchMaxWidth to .match-body', () => {
+    const wrapper = init()
+
+    easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        { matchMaxWidth: 250 }
+    )
+
+    expect(
+        getComputedStyle(document.querySelector('.match-body')).maxWidth
+    ).toBe('250px')
+})
