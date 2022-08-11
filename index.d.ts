@@ -1,47 +1,49 @@
-import { Data, Match } from "./lib/data/data"
+import { Data, Match, Contestant } from "./lib/data/data"
 
-type OptionNames = 'connectionLinesColor'
-    | 'connectionLinesWidth'
-    | 'defaultNavigationSvgSize'
-    | 'distanceBetweenScorePairs'
-    | 'highlightedConnectionLinesColor'
-    | 'highlightedPlayerTitleColor'
-    | 'leftNavigationButtonBackground'
-    | 'leftNavigationButtonHTML'
-    | 'liveMatchBackgroundColor'
-    | 'liveMatchBorderColor'
-    | 'mainBorderColor'
-    | 'mainVerticalPadding'
-    | 'matchAxisMargin'
-    | 'matchFontSize'
-    | 'matchHorMargin'
-    | 'matchMaxWidth'
-    | 'matchMinVerticalGap'
-    | 'matchTextColor'
-    | 'navButtonsPosition'
-    | 'navigationButtonsTopDistance'
-    | 'navigationGutterBorderColor'
-    | 'navigationSvgColor'
-    | 'onMatchClick'
-    | 'onMatchSideClick'
-    | 'oneSidePlayersGap'
-    | 'playerTitleFontFamily'
-    | 'rightNavigationButtonBackground'
-    | 'rightNavigationButtonHTML'
-    | 'rootBackgroundColor'
-    | 'rootFontFamily'
-    | 'roundTitleColor'
-    | 'roundTitlesBorderBottomColor'
-    | 'roundTitlesFontFamily'
-    | 'roundTitlesFontSize'
-    | 'roundTitlesHeight'
-    | 'scoreFontFamily'
-    | 'scrollbarColor'
-    | 'scrollbarWidth'
-    | 'showScrollbar'
-    | 'visibleRoundsCount'
+type Options = {
+    mainBorderColor: string,
+    rootBackgroundColor: string,
+    mainVerticalPadding: number,
+    visibleRoundsCount: number,
+    showScrollbar: boolean,
+    scrollbarWidth: number,
+    scrollbarColor: string,
+    roundTitlesHeight: number,
+    roundTitlesBorderBottomColor: string,
+    roundTitleColor: string,
+    navButtonsPosition: string,
+    navigationButtonsTopDistance: string,
+    navigationGutterBorderColor: string,
+    defaultNavigationSvgSize: number,
+    navigationSvgColor: string,
+    leftNavigationButtonBackground: string,
+    rightNavigationButtonBackground: string,
+    leftNavigationButtonHTML: string,
+    rightNavigationButtonHTML: string,
+    rootFontFamily: string,
+    roundTitlesFontFamily: string,
+    roundTitlesFontSize: number,
+    matchTextColor: string,
+    matchFontSize: number,
+    playerTitleFontFamily: string,
+    highlightedPlayerTitleColor: string,
+    scoreFontFamily: string,
+    connectionLinesWidth: number,
+    connectionLinesColor: string,
+    highlightedConnectionLinesColor: string,
+    matchMaxWidth: number,
+    matchMinVerticalGap: number,
+    matchHorMargin: number,
+    matchAxisMargin: number,
+    oneSidePlayersGap: number,
+    liveMatchBorderColor: string,
+    liveMatchBackgroundColor: string,
+    distanceBetweenScorePairs: number,
+    onMatchClick: (match: Match) => void,
+    onMatchSideClick: (contestant: Contestant, contestant_id: string, match: Match) => void
+}
 
-type OptionsMap = { [key in OptionNames]?: any }
+type OptionsMap = Partial<Options>
 
 export function createPlayoffs(
     user_data: Data,
@@ -59,7 +61,7 @@ export function createPlayoffs(
 
     applyNewOptions: (new_options: OptionsMap) => void;
     getUserOptions: () => OptionsMap;
-    
+
     applyFullDataUpdate: (new_data: Data) => void;
     applyMatchesUpdates: (matches_data: Match[]) => void;
     getAllData: () => Data;
