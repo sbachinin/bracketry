@@ -124,7 +124,7 @@ test('moves to next round when "moveToNextRound" is called', () => {
 test('moves to next round when right button is clicked', () => {
     const wrapper = init()
 
-    const { moveToNextRound, getNavigationState } = easyPlayoffs.createPlayoffs(
+    const { getNavigationState } = easyPlayoffs.createPlayoffs(
         finished_ucl,
         wrapper,
         { visibleRoundsCount: 2 }
