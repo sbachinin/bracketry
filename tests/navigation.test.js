@@ -65,6 +65,61 @@ test('survives with negative visibleRoundsCount', () => {
 })
 
 
+test('shows more rounds when a greater visibleRoundsCount is supplied via applyNewOptions', () => {
+    const wrapper = init()
+
+    const { applyNewOptions } = easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        { visibleRoundsCount: 2 }
+    )
+
+    applyNewOptions({ visibleRoundsCount: 4 })
+
+    expect(
+        document.querySelectorAll('.round-wrapper:not(.hidden)').length
+    ).toBe(4)
+})
+
+
+test('shows less rounds when a lesser visibleRoundsCount is supplied via applyNewOptions', () => {
+    const wrapper = init()
+
+    const { applyNewOptions } = easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        { visibleRoundsCount: 4 }
+    )
+
+    applyNewOptions({ visibleRoundsCount: 2 })
+
+    expect(
+        document.querySelectorAll('.round-wrapper:not(.hidden)').length
+    ).toBe(2)
+})
+
+
+
+test(`shows more rounds when
+    a) a greater visibleRoundsCount is supplied via applyNewOptions
+    and b) navigation is at the very right
+`, () => {
+    const wrapper = init()
+
+    const { applyNewOptions, setBaseRoundIndex } = easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        { visibleRoundsCount: 2 }
+    )
+
+    setBaseRoundIndex(2)
+    applyNewOptions({ visibleRoundsCount: 3 })
+
+    expect(
+        document.querySelectorAll('.round-wrapper:not(.hidden)').length
+    ).toBe(3)
+})
+
 
 
 test('sets the base round index + tells this index via getNavigationState', () => {
