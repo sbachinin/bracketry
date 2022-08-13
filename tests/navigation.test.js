@@ -192,3 +192,37 @@ test('tells that it reached right edge when it is so', () => {
     moveToNextRound()
     expect(getNavigationState().reachedRightEdge).toBe(true)
 })
+
+
+
+
+test('does nothing on navigation-buttons click if all rounds are visible', () => {
+    const wrapper = init()
+
+    const { getNavigationState } = easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        { visibleRoundsCount: 4 }
+    )
+
+    document.querySelector('.navigation-button.non-header-button.right')
+        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+
+    expect(getNavigationState().baseRoundIndex).toBe(0)
+})
+
+
+
+test('ignores setBaseRoundIndex() if all rounds are visible', () => {
+    const wrapper = init()
+
+    const { setBaseRoundIndex, getNavigationState } = easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        { visibleRoundsCount: 4 }
+    )
+
+    setBaseRoundIndex(4)
+
+    expect(getNavigationState().baseRoundIndex).toBe(0)
+})
