@@ -233,6 +233,25 @@ test('moves next only to the last possible round', () => {
 })
 
 
+test('moves to last round when moveToLastRound is called', () => {
+    const wrapper = init()
+
+    const { moveToLastRound, getNavigationState } = easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        { visibleRoundsCount: 2 }
+    )
+
+    moveToLastRound()
+
+    expect(getNavigationState().baseRoundIndex).toBe(2)
+    expect(getNavigationState().reachedRightEdge).toBe(true)
+    expect(
+        getComputedStyle(document.querySelector('.round-wrapper:last-of-type')).display
+    ).not.toBe('none')
+})
+
+
 test('tells that it reached right edge when it is so', () => {
     const wrapper = init()
 

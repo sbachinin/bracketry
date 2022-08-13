@@ -50,8 +50,10 @@ export function createPlayoffs(
     user_wrapper_el: Element,
     user_options: OptionsMap
 ): {
-    moveToNextRound: () => void;
     moveToPreviousRound: () => void;
+    moveToNextRound: () => void;
+    moveToLastRound: () => void;
+
     setBaseRoundIndex: (i: number) => void;
     getNavigationState: () => {
         reachedRightEdge: boolean,

@@ -106,7 +106,7 @@ test('enables left nav button when base_round_index becomes more than 0', () => 
 test('disables right nav button when right edge is reached', () => {
     const wrapper = init()
 
-    const { moveToNextRound } = easyPlayoffs.createPlayoffs(
+    const { moveToNextRound, moveToLastRound } = easyPlayoffs.createPlayoffs(
         finished_ucl,
         wrapper,
         { visibleRoundsCount: 2 }
@@ -120,7 +120,7 @@ test('disables right nav button when right edge is reached', () => {
     expect(right_header_button.classList.contains('active')).toBe(true)
     expect(right_non_header_button.classList.contains('active')).toBe(true)
 
-    moveToNextRound()
+    moveToLastRound()
     expect(right_header_button.classList.contains('active')).toBe(false)
     expect(right_non_header_button.classList.contains('active')).toBe(false)
 })
