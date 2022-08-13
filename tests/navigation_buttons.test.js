@@ -191,9 +191,151 @@ test('injects rightNavigationButtonHTML to right buttons on applyNewOptions', ()
 
 
 
-// adjusts buttons positions and visibility according to options.navButtonsPosition
-    // overMatches
-    // gutters
-    // beforeTitles
-    // overTitles
-    // hidden
+
+
+
+
+
+test('applies certain styles when options.navButtonsPosition is "gutters"', () => {
+    const wrapper = init()
+
+    easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        {
+            navButtonsPosition: 'gutters',
+            navigationGutterBorderColor: 'red'
+        }
+    )
+
+    // 1. .buttons-header is hidden
+    const headerStyles = getComputedStyle(wrapper.querySelector('.buttons-header'))
+    expect(headerStyles.display).toBe('none')
+
+    // 2. non-header buttons are styled to be gutters
+    const expected_non_header_buttons_styles = {
+        display: 'flex',
+        position: 'static',
+        transform: 'none',
+        'min-height': '100%'
+    }
+
+    const left_main_button = wrapper.querySelector('.non-header-button.left')
+    const right_main_button = wrapper.querySelector('.non-header-button.right')
+
+    expect(getComputedStyle(left_main_button))
+        .toMatchObject({
+            ...expected_non_header_buttons_styles,
+            'border-right-color': 'red'
+        })
+    expect(getComputedStyle(right_main_button))
+        .toMatchObject({
+            ...expected_non_header_buttons_styles,
+            'border-left-color': 'red'
+        })
+})
+
+test('applies certain styles when options.navButtonsPosition is "overMatches"', () => {
+    const wrapper = init()
+
+    easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        { navButtonsPosition: 'overMatches' }
+    )
+
+    // 1. .buttons-header is hidden
+    const headerStyles = getComputedStyle(wrapper.querySelector('.buttons-header'))
+    expect(headerStyles.display).toBe('none')
+
+    // 2. non-header buttons are styled to be gutters
+    const expected_non_header_buttons_styles = {
+        display: 'flex',
+        position: 'absolute',
+        transform: 'translate(0, -50%)',
+        'min-height': '0'
+    }
+
+    const left_main_button = wrapper.querySelector('.non-header-button.left')
+    const right_main_button = wrapper.querySelector('.non-header-button.right')
+
+    expect(getComputedStyle(left_main_button))
+        .toMatchObject(expected_non_header_buttons_styles)
+    expect(getComputedStyle(right_main_button))
+        .toMatchObject(expected_non_header_buttons_styles)
+})
+
+
+test('applies certain styles when options.navButtonsPosition is "overTitles"', () => {
+    const wrapper = init()
+    const roundTitlesHeight = 66
+
+    easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        {
+            navButtonsPosition: 'overTitles',
+            roundTitlesHeight
+        }
+    )
+
+    // 1. non-header buttons are hidden
+    const visible_non_header_buttons = [...wrapper.querySelectorAll('.non-header-button')]
+        .filter(b => getComputedStyle(b).display !== 'none')
+    expect(visible_non_header_buttons.length).toBe(0)
+
+    // 2. .buttons-header is styled accordingly
+    const headerStyles = getComputedStyle(wrapper.querySelector('.buttons-header'))
+    expect(headerStyles).toMatchObject({
+        display: 'flex',
+        position: 'absolute',
+        'z-index': '1',
+        left: '0px',
+        right: '0px',
+        height: (roundTitlesHeight + 1) + 'px'        
+    })
+})
+
+
+test('applies certain styles when options.navButtonsPosition is "beforeTitles"', () => {
+    const wrapper = init()
+
+    easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        { navButtonsPosition: 'beforeTitles' }
+    )
+
+    // 1. non-header buttons are hidden
+    const visible_non_header_buttons = [...wrapper.querySelectorAll('.non-header-button')]
+        .filter(b => getComputedStyle(b).display !== 'none')
+    expect(visible_non_header_buttons.length).toBe(0)
+
+    // 2. .buttons-header is styled accordingly
+    const headerStyles = getComputedStyle(wrapper.querySelector('.buttons-header'))
+    expect(headerStyles).toMatchObject({
+        display: 'flex',
+        position: 'static',
+        height: 'auto'
+    })
+})
+
+
+test('hides navigation buttons when options.navButtonsPosition is "hidden"', () => {
+    const wrapper = init()
+
+    easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        { navButtonsPosition: 'hidden' }
+    )
+
+    // 1. non-header buttons are hidden
+    const visible_non_header_buttons = [...wrapper.querySelectorAll('.non-header-button')]
+        .filter(b => getComputedStyle(b).display !== 'none')
+    expect(visible_non_header_buttons.length).toBe(0)
+
+    // 2. .buttons-header is hidden
+    const headerStyles = getComputedStyle(wrapper.querySelector('.buttons-header'))
+    expect(headerStyles.display).toBe('none')
+})
