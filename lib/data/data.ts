@@ -11,7 +11,7 @@ type Round = {
 }
 
 export type Match = {
-    match_id: string,
+    id: string,
     round_index: number,
     order: number, // 0-based!
     sides: Side[],

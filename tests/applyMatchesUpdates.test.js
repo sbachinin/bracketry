@@ -22,7 +22,7 @@ test('modifies score in existing match', () => {
             ],
             matches: [
                 {
-                    match_id: '32323',
+                    id: '32323',
                     round_index: 0,
                     order: 0,
                     sides: [
@@ -47,7 +47,7 @@ test('modifies score in existing match', () => {
 
     applyMatchesUpdates([
         {
-            match_id: '32323',
+            id: '32323',
             round_index: 0,
             order: 0,
             sides: [
@@ -78,7 +78,7 @@ test('does not spoil a score in existing match if update is invalid', () => {
             ],
             matches: [
                 {
-                    match_id: '32323',
+                    id: '32323',
                     round_index: 0,
                     order: 0,
                     sides: [
@@ -103,7 +103,7 @@ test('does not spoil a score in existing match if update is invalid', () => {
 
     applyMatchesUpdates([
         {
-            match_id: '32323',
+            id: '32323',
             round_index: 0,
             order: 0,
             sides: [
@@ -157,7 +157,7 @@ test('creates new match', () => {
 
     applyMatchesUpdates([
         {
-            match_id: '32323',
+            id: '32323',
             round_index: 0,
             order: 0,
             sides: [

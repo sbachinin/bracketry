@@ -16,7 +16,7 @@ exports.default = {
     "matches": [
         
         {
-            "match_id": "0",
+            "id": "0",
             "round_index": 0,
             "sides": [
                 {
@@ -56,7 +56,7 @@ exports.default = {
 
 
         {
-            "match_id": "1",
+            "id": "1",
             "round_index": 0,
             "sides": [
                 {
@@ -95,7 +95,7 @@ exports.default = {
 
 
         {
-            "match_id": "2",
+            "id": "2",
             "round_index": 0,
             "sides": [
                 {
@@ -134,7 +134,7 @@ exports.default = {
 
 
         {
-            "match_id": "3",
+            "id": "3",
             "round_index": 0,
             "sides": [
                 {
@@ -173,7 +173,7 @@ exports.default = {
 
 
         {
-            "match_id": "4",
+            "id": "4",
             "round_index": 0,
             "sides": [
                 {
@@ -213,7 +213,7 @@ exports.default = {
 
 
         {
-            "match_id": "5",
+            "id": "5",
             "round_index": 0,
             "sides": [
                 {
@@ -253,7 +253,7 @@ exports.default = {
 
 
         {
-            "match_id": "6",
+            "id": "6",
             "round_index": 0,
             "sides": [
                 {
@@ -292,7 +292,7 @@ exports.default = {
 
 
         {
-            "match_id": "7",
+            "id": "7",
             "round_index": 0,
             "sides": [
                 {
@@ -334,7 +334,7 @@ exports.default = {
 
 
         {
-            "match_id": "8",
+            "id": "8",
             "round_index": 1,
             "sides": [
                 {
@@ -372,7 +372,7 @@ exports.default = {
         },
 
         {
-            "match_id": "9",
+            "id": "9",
             "round_index": 1,
             "sides": [
                 {
@@ -411,7 +411,7 @@ exports.default = {
 
 
         {
-            "match_id": "10",
+            "id": "10",
             "round_index": 1,
             "sides": [
                 {
@@ -451,7 +451,7 @@ exports.default = {
 
 
         {
-            "match_id": "11",
+            "id": "11",
             "round_index": 1,
             "sides": [
                 {
@@ -490,7 +490,7 @@ exports.default = {
 
 
         {
-            "match_id": "12",
+            "id": "12",
             "round_index": 2,
             "sides": [
                 {
@@ -528,7 +528,7 @@ exports.default = {
         },
 
         {
-            "match_id": "13",
+            "id": "13",
             "round_index": 2,
             "sides": [
                 {
@@ -566,7 +566,7 @@ exports.default = {
         },
 
         {
-            "match_id": "14",
+            "id": "14",
             "round_index": 3,
             "sides": [
                 {

@@ -55,7 +55,7 @@ test('renders match data', () => {
             ],
             matches: [
                 {
-                    match_id: '32323',
+                    id: '32323',
                     round_index: 0,
                     order: 0,
                     sides: [
