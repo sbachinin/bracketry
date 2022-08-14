@@ -40,7 +40,8 @@ type Options = {
     liveMatchBackgroundColor: string,
     distanceBetweenScorePairs: number,
     onMatchClick: (match: Match) => void,
-    onMatchSideClick: (contestant: Contestant, contestant_id: string, match: Match) => void
+    onMatchSideClick: (contestant: Contestant, contestant_id: string, match: Match) => void,
+    getMatchElement: (round_index: number, match_index: number, match_data?: Match) => Element
 }
 
 type OptionsMap = Partial<Options>
