@@ -23,7 +23,7 @@ test('modifies score in existing match', () => {
             matches: [
                 {
                     match_id: '32323',
-                    round_id: 'round1',
+                    round_index: 0,
                     order: 0,
                     sides: [
                         { contestant_id: 'c1', score: [{ main_score: '4' }] },
@@ -48,7 +48,7 @@ test('modifies score in existing match', () => {
     applyMatchesUpdates([
         {
             match_id: '32323',
-            round_id: 'round1',
+            round_index: 0,
             order: 0,
             sides: [
                 { contestant_id: 'c1', score: [{ main_score: '6' }] },
@@ -79,7 +79,7 @@ test('does not spoil a score in existing match if update is invalid', () => {
             matches: [
                 {
                     match_id: '32323',
-                    round_id: 'round1',
+                    round_index: 0,
                     order: 0,
                     sides: [
                         { contestant_id: 'c1', score: [{ main_score: '4' }] },
@@ -104,7 +104,7 @@ test('does not spoil a score in existing match if update is invalid', () => {
     applyMatchesUpdates([
         {
             match_id: '32323',
-            round_id: 'round1',
+            round_index: 0,
             order: 0,
             sides: [
                 { contestant_id: 'c1', score: [{ main_score: false }] },
@@ -158,7 +158,7 @@ test('creates new match', () => {
     applyMatchesUpdates([
         {
             match_id: '32323',
-            round_id: 'round1',
+            round_index: 0,
             order: 0,
             sides: [
                 { contestant_id: 'c1', score: [{ main_score: '6' }] },

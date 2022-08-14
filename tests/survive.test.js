@@ -238,7 +238,7 @@ test('survives when match.match_id is not a string', () => {
     expect(true).toBe(true);
 });
 
-test('survives when match.round_id is not a string', () => {
+test('survives when match.round_index is not a number', () => {
     const wrapper = document.createElement('div')
     document.body.append(wrapper)
 
@@ -246,8 +246,8 @@ test('survives when match.round_id is not a string', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [],
-            matches: [{ match_id: '32323', round_id: true }],
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: true }],
             contestants: {}
         },
         wrapper,
@@ -264,8 +264,8 @@ test('survives when match.order is not a number', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: [] }],
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: [] }],
             contestants: {}
         },
         wrapper,
@@ -287,8 +287,8 @@ test('survives when match.sides is not an array', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0, sides: true }],
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0, sides: true }],
             contestants: {}
         },
         wrapper,
@@ -305,8 +305,8 @@ test('survives when match.sides contains 0 elements', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0, sides: [] }],
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0, sides: [] }],
             contestants: {}
         },
         wrapper,
@@ -324,8 +324,8 @@ test('survives when match.sides contains non-object elements', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0, sides: ['fsdfsdf'] }],
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0, sides: ['fsdfsdf'] }],
             contestants: {}
         },
         wrapper,
@@ -342,8 +342,8 @@ test('survives when match.sides[0] is an empty object', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0, sides: [{}] }],
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0, sides: [{}] }],
             contestants: {}
         },
         wrapper,
@@ -361,8 +361,8 @@ test('survives when match.sides[0].contestant_id is not a string', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0, sides: [{ contestant_id: [] }] }],
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0, sides: [{ contestant_id: [] }] }],
             contestants: {}
         },
         wrapper,
@@ -380,8 +380,8 @@ test('survives when there is no contestant for match.sides[0].contestant_id', ()
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0, sides: [{ contestant_id: 'contestant1' }] }],
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0, sides: [{ contestant_id: 'contestant1' }] }],
             contestants: {}
         },
         wrapper,
@@ -398,8 +398,8 @@ test('survives when contestant is not an object', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0, sides: [{ contestant_id: 'contestant1' }] }],
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0, sides: [{ contestant_id: 'contestant1' }] }],
             contestants: {
                 contestant1: 333
             }
@@ -418,8 +418,8 @@ test('survives when contestant is an empty object', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0, sides: [{ contestant_id: 'contestant1' }] }],
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0, sides: [{ contestant_id: 'contestant1' }] }],
             contestants: {
                 contestant1: {}
             }
@@ -438,8 +438,8 @@ test('survives when side.score is not an array', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: 312312 }] }
             ],
             contestants: {
@@ -460,8 +460,8 @@ test('survives when side.score is an empty array', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {
@@ -482,8 +482,8 @@ test('survives when contestant.players is not an array', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {
@@ -504,8 +504,8 @@ test('survives when contestant.players is an empty array', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {
@@ -528,8 +528,8 @@ test('survives when contestant.players contains non-objects', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {
@@ -550,8 +550,8 @@ test('survives when player has no title', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {
@@ -573,8 +573,8 @@ test('survives when player has non-string title', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {
@@ -596,8 +596,8 @@ test('survives when player has non-string nationality_code', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {
@@ -618,8 +618,8 @@ test('survives when player has non-string flag_url', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {
@@ -654,8 +654,8 @@ test('survives if non-element wrapper is provided', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {
@@ -674,8 +674,8 @@ test('survives if wrapper is not in the DOM', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {
@@ -697,8 +697,8 @@ test('survives if wrapper is of bad type', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {
@@ -720,8 +720,8 @@ test('survives non-object options', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {
@@ -742,8 +742,8 @@ test('survives non-existent options', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{ id: 'r1' }],
-            matches: [{ match_id: '32323', round_id: 'r1', order: 0,
+            rounds: [{}],
+            matches: [{ match_id: '32323', round_index: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {

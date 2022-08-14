@@ -7,13 +7,12 @@ export type Data = {
 }
 
 type Round = {
-    id: string,
     name?: string,
 }
 
 export type Match = {
     match_id: string,
-    round_id: string,
+    round_index: number,
     order: number, // 0-based!
     sides: Side[],
     match_status?: string // it will be rendered IF there is no score. Meant for statuses like 'Cancelled' | 'Scheduled' | '19.05.2022 18:30' (any status INSTEAD of score)

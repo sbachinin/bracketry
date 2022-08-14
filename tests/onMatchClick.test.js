@@ -30,7 +30,7 @@ test('calls onMatchClick when .match-body is clicked', () => {
 
     expect(onMatchClick).toBeCalledWith(
         expect.objectContaining({
-            round_id: '1',
+            round_index: 0,
             match_id: '1',
             order: 1,
         }),

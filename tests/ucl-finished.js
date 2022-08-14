@@ -1,19 +1,15 @@
 exports.default = {
     "rounds": [
         {
-            "id": "1",
             "name": "Round of 16"
         },
         {
-            "id": "2",
             "name": "Quarter-finals"
         },
         {
-            "id": "3",
             "name": "Semi-finals"
         },
         {
-            "id": "4",
             "name": "Final"
         }
     ],
@@ -21,7 +17,7 @@ exports.default = {
         
         {
             "match_id": "0",
-            "round_id": "1",
+            "round_index": 0,
             "sides": [
                 {
                     "contestant_id": "benfica",
@@ -61,7 +57,7 @@ exports.default = {
 
         {
             "match_id": "1",
-            "round_id": "1",
+            "round_index": 0,
             "sides": [
                 {
                     "contestant_id": "inter",
@@ -100,7 +96,7 @@ exports.default = {
 
         {
             "match_id": "2",
-            "round_id": "1",
+            "round_index": 0,
             "sides": [
                 {
                     "contestant_id": "villarreal",
@@ -139,7 +135,7 @@ exports.default = {
 
         {
             "match_id": "3",
-            "round_id": "1",
+            "round_index": 0,
             "sides": [
                 {
                     "contestant_id": "salzburg",
@@ -178,7 +174,7 @@ exports.default = {
 
         {
             "match_id": "4",
-            "round_id": "1",
+            "round_index": 0,
             "sides": [
                 {
                     "contestant_id": "sporting",
@@ -218,7 +214,7 @@ exports.default = {
 
         {
             "match_id": "5",
-            "round_id": "1",
+            "round_index": 0,
             "sides": [
                 {
                     "contestant_id": "atletico",
@@ -258,7 +254,7 @@ exports.default = {
 
         {
             "match_id": "6",
-            "round_id": "1",
+            "round_index": 0,
             "sides": [
                 {
                     "contestant_id": "chelsea",
@@ -297,7 +293,7 @@ exports.default = {
 
         {
             "match_id": "7",
-            "round_id": "1",
+            "round_index": 0,
             "sides": [
                 {
                     "contestant_id": "psg",
@@ -339,7 +335,7 @@ exports.default = {
 
         {
             "match_id": "8",
-            "round_id": "2",
+            "round_index": 1,
             "sides": [
                 {
                     "contestant_id": "benfica",
@@ -377,7 +373,7 @@ exports.default = {
 
         {
             "match_id": "9",
-            "round_id": "2",
+            "round_index": 1,
             "sides": [
                 {
                     "contestant_id": "villarreal",
@@ -416,7 +412,7 @@ exports.default = {
 
         {
             "match_id": "10",
-            "round_id": "2",
+            "round_index": 1,
             "sides": [
                 {
                     "contestant_id": "city",
@@ -456,7 +452,7 @@ exports.default = {
 
         {
             "match_id": "11",
-            "round_id": "2",
+            "round_index": 1,
             "sides": [
                 {
                     "contestant_id": "chelsea",
@@ -495,7 +491,7 @@ exports.default = {
 
         {
             "match_id": "12",
-            "round_id": "3",
+            "round_index": 2,
             "sides": [
                 {
                     "contestant_id": "liverpool",
@@ -533,7 +529,7 @@ exports.default = {
 
         {
             "match_id": "13",
-            "round_id": "3",
+            "round_index": 2,
             "sides": [
                 {
                     "contestant_id": "city",
@@ -571,7 +567,7 @@ exports.default = {
 
         {
             "match_id": "14",
-            "round_id": "4",
+            "round_index": 3,
             "sides": [
                 {
                     "contestant_id": "liverpool",
