@@ -14,16 +14,18 @@ const init = () => {
 }
 
 
-test('returns all data from getAllData', () => {
+test('getAllData returns an exact copy of original user data', () => {
     const wrapper = init()
 
+    const ucl_with_nameless_rounds = { ...finished_ucl, rounds: finished_ucl.rounds.map(r => ({})) }
+
     const { getAllData } = easyPlayoffs.createPlayoffs(
-        finished_ucl,
+        ucl_with_nameless_rounds,
         wrapper,
         {}
     )
 
-    expect(getAllData()).toMatchObject(finished_ucl)
+    expect(getAllData()).toEqual(ucl_with_nameless_rounds)
 })
 
 test('applies new data from applyFullDataUpdate', () => {
