@@ -238,6 +238,27 @@ test('survives when match.match_id is not a string', () => {
     expect(true).toBe(true);
 });
 
+
+
+test('survives without match.round_index', () => {
+    const wrapper = document.createElement('div')
+    document.body.append(wrapper)
+
+    expect.assertions(1)
+
+    easyPlayoffs.createPlayoffs(
+        {
+            rounds: [{}],
+            matches: [{ match_id: 'fdfds' } ],
+            contestants: {}
+        },
+        wrapper,
+        {}
+    )
+    expect(true).toBe(true);
+});
+
+
 test('survives when match.round_index is not a number', () => {
     const wrapper = document.createElement('div')
     document.body.append(wrapper)
