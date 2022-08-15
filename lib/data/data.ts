@@ -1,7 +1,7 @@
 export type Data = {
     rounds: Round[], // you have to provide an object for each round, including the upcoming rounds
     matches?: Match[],
-    contestants: {
+    contestants?: {
         [contestant_id: string]: Contestant
     }
 }
