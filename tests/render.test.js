@@ -24,8 +24,8 @@ test('renders one empty round with a given name', () => {
         wrapper,
         {}
     )
-    expect(document.querySelectorAll('.round-wrapper').length).toBe(1);
-    expect(document.querySelector('.round-name').innerHTML).toBe('Some round')
+    expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(1);
+    expect(wrapper.querySelector('.round-name').innerHTML).toBe('Some round')
 });
 
 
@@ -41,7 +41,7 @@ test('renders a default round name if none is given by user', () => {
         wrapper,
         {}
     )
-    expect(document.querySelector('.round-name').innerHTML).toBe('Final')
+    expect(wrapper.querySelector('.round-name').innerHTML).toBe('Final')
 });
 
 
@@ -76,7 +76,19 @@ test('renders match data', () => {
         wrapper,
         {}
     )
-    expect(document.querySelector('.player-title').innerHTML).toBe('John Doe');
-    expect(document.querySelector('.main-score').innerHTML).toBe('4');
+    expect(wrapper.querySelector('.player-title').innerHTML).toBe('John Doe');
+    expect(wrapper.querySelector('.main-score').innerHTML).toBe('4');
 
 });
+
+
+test('renders 4 empty rounds with only "rounds" array of 4 empty objects', () => {
+    const wrapper = init()
+    
+    easyPlayoffs.createPlayoffs(
+        { rounds: [{}, {}, {}, {} ] },
+        wrapper
+    )
+    
+    expect(wrapper.querySelectorAll('.match-wrapper').length).toBe(15)
+})
