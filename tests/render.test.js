@@ -4,6 +4,7 @@
 
 global.ResizeObserver = require('resize-observer-polyfill')
 const { easyPlayoffs } = require('../index.js');
+const finished_ucl = require('./ucl-finished.js').default
  
 const init = () => {
     document.body.innerHTML = ''
@@ -82,7 +83,7 @@ test('renders match data', () => {
 });
 
 
-test('renders 4 empty rounds with only "rounds" array of 4 empty objects', () => {
+test('renders 4 empty rounds with only "rounds" array of 4 empty objects and without options', () => {
     const wrapper = init()
     
     easyPlayoffs.createPlayoffs(
@@ -91,4 +92,16 @@ test('renders 4 empty rounds with only "rounds" array of 4 empty objects', () =>
     )
     
     expect(wrapper.querySelectorAll('.match-wrapper').length).toBe(15)
+})
+
+test('renders contentful matches without options', () => {
+    const wrapper = init()
+    
+    easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper
+    )
+    
+    expect(wrapper.querySelectorAll('.match-wrapper[match-id]').length).toBe(15)
+    expect(wrapper.querySelector('.match-wrapper[match-id="0"]').textContent).toMatch('Benfica')
 })

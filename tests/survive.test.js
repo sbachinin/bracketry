@@ -43,7 +43,7 @@ test('survives no contestants', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            matches: [],
+            matches: [ { id: '32323', round_index: 0, order: 0, sides: [ { contestant_id: 'abc' } ] } ],
         },
         wrapper,
         {}
