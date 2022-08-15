@@ -75,5 +75,64 @@ test(`populates .match-body element with whatever is returned from user's getMat
 })
 
 
+test(`Renders default matches elements if options.getMatchElement is not a function`, () => {
+    const wrapper = init()
 
-// mouse handlers attached to user's match elements get called
+    easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        { getMatchElement: NaN }
+    )
+
+    expect(wrapper.querySelectorAll('.match-wrapper[match-id]').length).toBe(15)
+})
+
+
+test(`Renders a string if options.getMatchElement returns a string`, () => {
+    const wrapper = init()
+
+    easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        { getMatchElement: () => 'just a string' }
+    )
+
+    expect(wrapper.querySelector('.match-wrapper').textContent.trim()).toBe('just a string')
+})
+
+
+test(`Renders nothing within .match-body if options.getMatchElement returns not a sting or ELement`, () => {
+    const wrapper = init()
+
+    easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        { getMatchElement: () => NaN }
+    )
+
+    expect(wrapper.querySelector('.match-body').innerHTML).toBe('')
+})
+
+
+test(`Calls mouse handlers attached to match elements provided by options.getMatchElement`, () => {
+    const wrapper = init()
+    const clickHandler = jest.fn()
+
+    easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        {
+            getMatchElement: () => {
+                const div = document.createElement('div')
+                div.className = 'custom-match-element'
+                div.addEventListener('mouseup', clickHandler)
+                return div
+            }
+        }
+    )
+
+    wrapper.querySelectorAll('.custom-match-element')[0].dispatchEvent(new MouseEvent('mouseup'))
+    wrapper.querySelectorAll('.custom-match-element')[10].dispatchEvent(new MouseEvent('mouseup'))
+    expect(clickHandler).toBeCalledTimes(2)
+})
+

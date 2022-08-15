@@ -28,7 +28,7 @@ test('for a missing match renders a stub .match-wrapper without match-id attr', 
     expect(matches_without_ids[0].textContent.trim().length).toBe(0)
 })
 
-
+/* 
 test('applies { pointer-events: none } to stub .match-wrapper', () => {
     const wrapper = init()
     const data_without_one_match = { ...finished_ucl, matches: finished_ucl.matches.slice(1) }
@@ -45,7 +45,7 @@ test('applies { pointer-events: none } to stub .match-wrapper', () => {
         ).pointerEvents
     ).toBe('none')
 })
-
+ */
 test('fills upcoming (match-less) 4-round tournament with stub matches', () => {
     const wrapper = init()
 
