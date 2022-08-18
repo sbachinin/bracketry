@@ -3,19 +3,19 @@
  */
 
 global.ResizeObserver = require('resize-observer-polyfill')
-const { easyPlayoffs } = require('../index.js');
+const { createPlayoffs } = require('../index.js').easyPlayoffs
 const finished_ucl = require('./ucl-finished.js').default
 
 test('survives no data', () => {
     expect.assertions(1)
-    easyPlayoffs.createPlayoffs()
+    createPlayoffs()
     expect(true).toBe(true);
 });
 
 
 test('survives empty data', () => {
     expect.assertions(1)
-    easyPlayoffs.createPlayoffs({})
+    createPlayoffs({})
     expect(true).toBe(true);
 });
 
@@ -25,7 +25,7 @@ test('survives if no rounds array is provided', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             matches: [],
             contestants: {}
@@ -42,7 +42,7 @@ test('survives no contestants', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             matches: [ { id: '32323', round_index: 0, order: 0, sides: [ { contestant_id: 'abc' } ] } ],
         },
@@ -59,7 +59,7 @@ test('survives if rounds array contains 0 elements', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [],
             matches: [],
@@ -78,7 +78,7 @@ test('survives when non-object stuff is provided in rounds array', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [3],
             matches: [],
@@ -96,7 +96,7 @@ test('survives when empty round object is provided', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [],
@@ -115,7 +115,7 @@ test('survives when non-string name is provided for a round', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{ name: false }],
             matches: [],
@@ -135,7 +135,7 @@ test('survives when data.matches is undefined', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [],
             contestants: {}
@@ -152,7 +152,7 @@ test('survives when data.matches are not an array', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [],
             matches: true,
@@ -171,7 +171,7 @@ test('survives when string is given for a match', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [],
             matches: ['fdsdfsd'],
@@ -190,7 +190,7 @@ test('survives when match is an empty object', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [],
             matches: [{}],
@@ -209,7 +209,7 @@ test('survives when match.id is not a string', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [],
             matches: [{ id: true }],
@@ -229,7 +229,7 @@ test('survives without match.round_index', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: 'fdfds' } ],
@@ -248,7 +248,7 @@ test('survives when match.round_index is not a number', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: true }],
@@ -266,7 +266,7 @@ test('survives when match.order is not a number', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: [] }],
@@ -289,7 +289,7 @@ test('survives when match.sides is not an array', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0, sides: true }],
@@ -307,7 +307,7 @@ test('survives when match.sides contains 0 elements', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0, sides: [] }],
@@ -326,7 +326,7 @@ test('survives when match.sides contains non-object elements', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0, sides: ['fsdfsdf'] }],
@@ -344,7 +344,7 @@ test('survives when match.sides[0] is an empty object', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0, sides: [{}] }],
@@ -363,7 +363,7 @@ test('survives when match.sides[0].contestant_id is not a string', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0, sides: [{ contestant_id: [] }] }],
@@ -382,7 +382,7 @@ test('survives when there is no contestant for match.sides[0].contestant_id', ()
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0, sides: [{ contestant_id: 'contestant1' }] }],
@@ -400,7 +400,7 @@ test('survives when contestant is not an object', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0, sides: [{ contestant_id: 'contestant1' }] }],
@@ -420,7 +420,7 @@ test('survives when contestant is an empty object', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0, sides: [{ contestant_id: 'contestant1' }] }],
@@ -440,7 +440,7 @@ test('survives when side.score is not an array', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0,
@@ -462,7 +462,7 @@ test('survives when side.score is an empty array', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0,
@@ -484,7 +484,7 @@ test('survives when contestant.players is not an array', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0,
@@ -506,7 +506,7 @@ test('survives when contestant.players is an empty array', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0,
@@ -530,7 +530,7 @@ test('survives when contestant.players contains non-objects', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0,
@@ -552,7 +552,7 @@ test('survives when player has no title', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0,
@@ -575,7 +575,7 @@ test('survives when player has non-string title', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0,
@@ -598,7 +598,7 @@ test('survives when player has non-string nationality_code', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0,
@@ -620,7 +620,7 @@ test('survives when player has non-string flag_url', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0,
@@ -656,7 +656,7 @@ test('survives if non-element wrapper is provided', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0,
@@ -676,7 +676,7 @@ test('survives if non-element wrapper is provided', () => {
 test('survives if wrapper is not in the DOM', () => {
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0,
@@ -699,7 +699,7 @@ test('survives if wrapper is of bad type', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0,
@@ -722,7 +722,7 @@ test('survives non-object options', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0,
@@ -744,7 +744,7 @@ test('survives non-existent options', () => {
 
     expect.assertions(1)
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{}],
             matches: [{ id: '32323', round_index: 0, order: 0,
@@ -768,13 +768,13 @@ test('returns the same set of functions after successful and failed initializati
     const wrapper = document.createElement('div')
     document.body.append(wrapper)
 
-    const successful_playoffs = easyPlayoffs.createPlayoffs(
+    const successful_playoffs = createPlayoffs(
         finished_ucl,
         wrapper,
         {}
     )
 
-    const failed_playoffs = easyPlayoffs.createPlayoffs(
+    const failed_playoffs = createPlayoffs(
         'invalid data',
         'invalid wrapper',
         'invalid options'
@@ -789,7 +789,7 @@ test('returns the same set of functions after successful and failed initializati
 test('after initialization has failed, returned functions may be called without unhandled errors', () => {
     expect.assertions(2)
 
-    const failed_playoffs = easyPlayoffs.createPlayoffs(
+    const failed_playoffs = createPlayoffs(
         'invalid data',
         'invalid wrapper',
         'invalid options'

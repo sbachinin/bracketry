@@ -70,15 +70,7 @@ test('applyMatchesUpdates creates new match if none was present for this round_i
         {
             rounds: [ { name: 'Some round' } ],
             matches: [],
-            contestants: {
-                c1: {
-                    players: [
-                        {
-                            title: 'John Doe'
-                        }
-                    ]
-                },
-            }
+            contestants: { c1: { players: [ { title: 'John Doe' } ] } }
         },
         wrapper
     )
@@ -100,3 +92,28 @@ test('applyMatchesUpdates creates new match if none was present for this round_i
 
     expect(pl.getAllData().matches[0]).toEqual(new_match)
 });
+
+
+
+test('does not mutate data passed to applyMatchesUpdate', () => {
+    const wrapper = init()
+
+    const pl = createPlayoffs(finished_ucl, wrapper)
+
+    const new_match = {
+        id: 'some_id',
+        round_index: 1,
+        order: 2,
+        sides: [ { contestant_id: 'villarreal', score: [{ main_score: '666' }] } ]
+    }
+
+    pl.applyMatchesUpdates([ new_match ])
+
+    expect(new_match).toEqual({
+        id: 'some_id',
+        round_index: 1,
+        order: 2,
+        sides: [ { contestant_id: 'villarreal', score: [{ main_score: '666' }] } ]
+    })
+});
+

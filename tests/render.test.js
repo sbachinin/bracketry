@@ -3,7 +3,7 @@
  */
 
 global.ResizeObserver = require('resize-observer-polyfill')
-const { easyPlayoffs } = require('../index.js');
+const { createPlayoffs } = require('../index.js').easyPlayoffs
 const finished_ucl = require('./ucl-finished.js').default
  
 const init = () => {
@@ -16,14 +16,13 @@ const init = () => {
 test('renders one empty round with a given name', () => {
     const wrapper = init()
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [{ name: 'Some round' }],
             matches: [],
             contestants: {}
         },
-        wrapper,
-        {}
+        wrapper
     )
     expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(1);
     expect(wrapper.querySelector('.round-name').innerHTML).toBe('Some round')
@@ -33,14 +32,13 @@ test('renders one empty round with a given name', () => {
 test('renders a default round name if none is given by user', () => {
     const wrapper = init()
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [ {} ],
             matches: [],
             contestants: {}
         },
-        wrapper,
-        {}
+        wrapper
     )
     expect(wrapper.querySelector('.round-name').innerHTML).toBe('Final')
 });
@@ -49,7 +47,7 @@ test('renders a default round name if none is given by user', () => {
 test('renders match data', () => {
     const wrapper = init()
 
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         {
             rounds: [ { name: 'Some round'} ],
             matches: [
@@ -72,8 +70,7 @@ test('renders match data', () => {
                 },
             }
         },
-        wrapper,
-        {}
+        wrapper
     )
     expect(wrapper.querySelector('.player-title').innerHTML).toBe('John Doe');
     expect(wrapper.querySelector('.main-score').innerHTML).toBe('4');
@@ -84,7 +81,7 @@ test('renders match data', () => {
 test('renders 4 empty rounds with only "rounds" array of 4 empty objects and without options', () => {
     const wrapper = init()
     
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         { rounds: [{}, {}, {}, {} ] },
         wrapper
     )
@@ -95,7 +92,7 @@ test('renders 4 empty rounds with only "rounds" array of 4 empty objects and wit
 test('renders contentful matches without options', () => {
     const wrapper = init()
     
-    easyPlayoffs.createPlayoffs(
+    createPlayoffs(
         finished_ucl,
         wrapper
     )
