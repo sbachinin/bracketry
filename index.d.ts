@@ -65,7 +65,7 @@ export function createPlayoffs(
     applyNewOptions: (new_options: OptionsMap) => void;
     getUserOptions: () => OptionsMap;
 
-    applyFullDataUpdate: (new_data: Data) => void;
+    replaceData: (new_data: Data) => void;
     applyMatchesUpdates: (matches_data: Match[]) => void;
     getAllData: () => Data;
 };

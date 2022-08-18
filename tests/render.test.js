@@ -18,7 +18,7 @@ test('renders one empty round with a given name', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{id: 'round1', name: 'Some round' }],
+            rounds: [{ name: 'Some round' }],
             matches: [],
             contestants: {}
         },
@@ -35,7 +35,7 @@ test('renders a default round name if none is given by user', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{id: 'round1'}],
+            rounds: [ {} ],
             matches: [],
             contestants: {}
         },
@@ -51,9 +51,7 @@ test('renders match data', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [
-                {id: 'round1', name: 'Some round'},
-            ],
+            rounds: [ { name: 'Some round'} ],
             matches: [
                 {
                     id: '32323',

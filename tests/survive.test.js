@@ -4,6 +4,7 @@
 
 global.ResizeObserver = require('resize-observer-polyfill')
 const { easyPlayoffs } = require('../index.js');
+const finished_ucl = require('./ucl-finished.js').default
 
 test('survives no data', () => {
     expect.assertions(1)
@@ -107,24 +108,6 @@ test('survives when empty round object is provided', () => {
     expect(true).toBe(true);
 });
 
-test('survives when non-string id is provided for a round', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    easyPlayoffs.createPlayoffs(
-        {
-            rounds: [{id: true}],
-            matches: [],
-            contestants: {}
-        },
-        wrapper,
-        {}
-    )
-    expect(true).toBe(true);
-});
-
 
 test('survives when non-string name is provided for a round', () => {
     const wrapper = document.createElement('div')
@@ -134,7 +117,7 @@ test('survives when non-string name is provided for a round', () => {
 
     easyPlayoffs.createPlayoffs(
         {
-            rounds: [{id: 'round1', name: false }],
+            rounds: [{ name: false }],
             matches: [],
             contestants: {}
         },
@@ -775,4 +758,45 @@ test('survives non-existent options', () => {
         { fsdfsd: false}
     )
     expect(true).toBe(true);
+})
+
+
+
+
+
+test('returns the same set of functions after successful and failed initialization', () => {
+    const wrapper = document.createElement('div')
+    document.body.append(wrapper)
+
+    const successful_playoffs = easyPlayoffs.createPlayoffs(
+        finished_ucl,
+        wrapper,
+        {}
+    )
+
+    const failed_playoffs = easyPlayoffs.createPlayoffs(
+        'invalid data',
+        'invalid wrapper',
+        'invalid options'
+    )
+
+    expect(Object.keys(successful_playoffs)).toEqual(Object.keys(failed_playoffs))
+
+    const all_return_values_are_functions = Object.values(failed_playoffs).every(v => typeof v === 'function')
+    expect(all_return_values_are_functions).toBe(true)
+})
+
+test('after initialization has failed, returned functions may be called without unhandled errors', () => {
+    expect.assertions(2)
+
+    const failed_playoffs = easyPlayoffs.createPlayoffs(
+        'invalid data',
+        'invalid wrapper',
+        'invalid options'
+    )
+
+    Object.values(failed_playoffs).forEach(v => v())
+
+    expect(failed_playoffs.getAllData()).toBe('invalid data')
+    expect(failed_playoffs.getUserOptions()).toBe('invalid options')
 })

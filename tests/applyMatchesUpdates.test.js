@@ -17,9 +17,7 @@ test('modifies score in existing match', () => {
 
     const { applyMatchesUpdates } = easyPlayoffs.createPlayoffs(
         {
-            rounds: [
-                { id: 'round1', name: 'Some round' },
-            ],
+            rounds: [ { name: 'Some round' } ],
             matches: [
                 {
                     id: '32323',
@@ -73,9 +71,7 @@ test('does not spoil a score in existing match if update is invalid', () => {
 
     const { applyMatchesUpdates } = easyPlayoffs.createPlayoffs(
         {
-            rounds: [
-                { id: 'round1', name: 'Some round' },
-            ],
+            rounds: [ { name: 'Some round' } ],
             matches: [
                 {
                     id: '32323',
@@ -135,9 +131,7 @@ test('creates new match', () => {
 
     const { applyMatchesUpdates } = easyPlayoffs.createPlayoffs(
         {
-            rounds: [
-                { id: 'round1', name: 'Some round' },
-            ],
+            rounds: [ { name: 'Some round' } ],
             matches: [],
             contestants: {
                 c1: {
