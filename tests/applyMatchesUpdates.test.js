@@ -3,7 +3,8 @@
  */
 
 global.ResizeObserver = require('resize-observer-polyfill')
-const { easyPlayoffs } = require('../index.js');
+const { createPlayoffs } = require('../index.js').easyPlayoffs
+const finished_ucl = require('./ucl-finished.js').default
 
 const init = () => {
     document.body.innerHTML = ''
@@ -12,124 +13,60 @@ const init = () => {
     return wrapper
 }
 
-test('modifies score in existing match', () => {
+
+
+
+test('getAllData returns a new match supplied by applyMatchesUpdates in place of an old match', () => {
     const wrapper = init()
 
-    const { applyMatchesUpdates } = easyPlayoffs.createPlayoffs(
-        {
-            rounds: [ { name: 'Some round' } ],
-            matches: [
-                {
-                    id: '32323',
-                    round_index: 0,
-                    order: 0,
-                    sides: [
-                        { contestant_id: 'c1', score: [{ main_score: '4' }] },
-                    ]
-                }
-            ],
-            contestants: {
-                c1: {
-                    players: [
-                        {
-                            title: 'John Doe'
-                        }
-                    ]
-                },
-            }
-        },
-        wrapper,
-        {}
-    )
+    const pl = createPlayoffs(finished_ucl, wrapper)
 
+    const new_match = {
+        id: 'some_id',
+        round_index: 1,
+        order: 2,
+        sides: [ { contestant_id: 'c123', score: [{ main_score: '666' }] } ]
+    }
 
-    applyMatchesUpdates([
-        {
-            id: '32323',
-            round_index: 0,
-            order: 0,
-            sides: [
-                { contestant_id: 'c1', score: [{ main_score: '6' }] },
-            ]
-        }
-    ])
+    pl.applyMatchesUpdates([ new_match ])
 
-    expect(document.querySelector('.main-score').innerHTML).toBe('6');
+    const all_matches = pl.getAllData().matches
+    expect(all_matches.length).toBe(15)
 
+    const matches_in_this_position = all_matches.filter(m => m.round_index === 1 && m.order === 2)
+    expect(matches_in_this_position.length).toBe(1)
+    expect(matches_in_this_position[0]).toEqual(new_match)
 });
 
 
 
 
-
-
-
-
-
-test('does not spoil a score in existing match if update is invalid', () => {
+test('draws a new score for a match updated by applyMatchesUpdates', () => {
     const wrapper = init()
 
-    const { applyMatchesUpdates } = easyPlayoffs.createPlayoffs(
-        {
-            rounds: [ { name: 'Some round' } ],
-            matches: [
-                {
-                    id: '32323',
-                    round_index: 0,
-                    order: 0,
-                    sides: [
-                        { contestant_id: 'c1', score: [{ main_score: '4' }] },
-                    ]
-                }
-            ],
-            contestants: {
-                c1: {
-                    players: [
-                        {
-                            title: 'John Doe'
-                        }
-                    ]
-                },
-            }
-        },
-        wrapper,
-        {}
-    )
+    const pl = createPlayoffs(finished_ucl, wrapper)
 
+    const new_match = {
+        id: 'some_id',
+        round_index: 1,
+        order: 2,
+        sides: [ { contestant_id: 'c123', score: [{ main_score: '666' }] } ]
+    }
 
-    applyMatchesUpdates([
-        {
-            id: '32323',
-            round_index: 0,
-            order: 0,
-            sides: [
-                { contestant_id: 'c1', score: [{ main_score: false }] },
-            ]
-        }
-    ])
+    pl.applyMatchesUpdates([ new_match ])
 
-    expect(document.querySelector('.main-score').innerHTML).toBe('4');
-
+    const updated_match_score_el = wrapper.querySelectorAll('.round-wrapper')[1]
+        .querySelectorAll('.match-wrapper')[2]
+        .querySelector('.main-score')
+    expect(updated_match_score_el.textContent.trim()).toBe(new_match.sides[0].score[0].main_score)
 });
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-test('creates new match', () => {
+test('applyMatchesUpdates creates new match if none was present for this round_id and order', () => {
     const wrapper = init()
 
-    const { applyMatchesUpdates } = easyPlayoffs.createPlayoffs(
+    const pl = createPlayoffs(
         {
             rounds: [ { name: 'Some round' } ],
             matches: [],
@@ -143,23 +80,23 @@ test('creates new match', () => {
                 },
             }
         },
-        wrapper,
-        {}
+        wrapper
     )
 
-    expect(document.querySelector('.main-score')).toBe(null);
+    expect(wrapper.querySelector('.main-score')).toBe(null);
 
-    applyMatchesUpdates([
-        {
-            id: '32323',
-            round_index: 0,
-            order: 0,
-            sides: [
-                { contestant_id: 'c1', score: [{ main_score: '6' }] },
-            ]
-        }
-    ])
+    const new_match = {
+        id: '32323',
+        round_index: 0,
+        order: 0,
+        sides: [
+            { contestant_id: 'c1', score: [{ main_score: '6' }] },
+        ]
+    }
 
-    expect(document.querySelector('.main-score').innerHTML).toBe('6');
+    pl.applyMatchesUpdates([ new_match ])
 
+    expect(wrapper.querySelector('.main-score').innerHTML).toBe('6');
+
+    expect(pl.getAllData().matches[0]).toEqual(new_match)
 });
