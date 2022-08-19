@@ -25,8 +25,8 @@ test('can draw asymmetrical scores where two sides have different number of elem
                 round_index: 0,
                 order: 0,
                 sides: [
-                    { contestant_id: 'c1', score: [{ main_score: 'Rt' }] },
-                    { contestant_id: 'c2', score: [] }
+                    { contestant_id: 'c1', score: [] },
+                    { contestant_id: 'c2', score: [{ main_score: 'Rt' }] }
                 ]
             }],
             contestants: {
@@ -36,9 +36,9 @@ test('can draw asymmetrical scores where two sides have different number of elem
         },
         wrapper
     )
-    expect(wrapper.querySelector('.side-wrapper[contestant-id="c1"] .main-score').textContent).toBe('Rt')
+    expect(wrapper.querySelector('.side-wrapper[contestant-id="c2"] .main-score').textContent).toBe('Rt')
     // .score element is not rendered for a side with empty "score" array
-    expect(wrapper.querySelector('.side-wrapper[contestant-id="c2"] .score')).toBe(null)
+    expect(wrapper.querySelector('.side-wrapper[contestant-id="c1"] .score')).toBe(null)
 })
 
 
@@ -53,8 +53,8 @@ test('can draw asymmetrical scores where ONLY ONE SIDE has a score array', () =>
                 round_index: 0,
                 order: 0,
                 sides: [
-                    { contestant_id: 'c1', score: [{ main_score: 'Rt' }] },
-                    { contestant_id: 'c2' }
+                    { contestant_id: 'c1' },
+                    { contestant_id: 'c2', score: [{ main_score: 'Rt' }] }
                 ]
             }],
             contestants: {
@@ -64,9 +64,9 @@ test('can draw asymmetrical scores where ONLY ONE SIDE has a score array', () =>
         },
         wrapper
     )
-    expect(wrapper.querySelector('.side-wrapper[contestant-id="c1"] .main-score').textContent).toBe('Rt')
+    expect(wrapper.querySelector('.side-wrapper[contestant-id="c2"] .main-score').textContent).toBe('Rt')
     // .score element is not rendered for a side with empty "score" array
-    expect(wrapper.querySelector('.side-wrapper[contestant-id="c2"] .score')).toBe(null)
+    expect(wrapper.querySelector('.side-wrapper[contestant-id="c1"] .score')).toBe(null)
 })
 
 
@@ -80,3 +80,8 @@ test('can draw asymmetrical scores where ONLY ONE SIDE has a score array', () =>
 
 // does not render nationalies if not provided
 // does not render entry statuses if not provided
+
+
+// subscore
+
+// match_status OR score

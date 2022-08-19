@@ -6,15 +6,14 @@ global.ResizeObserver = require('resize-observer-polyfill')
 const { createPlayoffs } = require('../index.js').easyPlayoffs
 const finished_ucl = require('./ucl-finished.js').default
  
-const init = () => {
-    document.body.innerHTML = ''
+const create_wrapper = () => {
     const wrapper = document.createElement('div')
     document.body.append(wrapper)
     return wrapper
 }
 
 test('renders one empty round with a given name', () => {
-    const wrapper = init()
+    const wrapper = create_wrapper()
 
     createPlayoffs(
         {
@@ -30,7 +29,7 @@ test('renders one empty round with a given name', () => {
 
 
 test('renders a default round name if none is given by user', () => {
-    const wrapper = init()
+    const wrapper = create_wrapper()
 
     createPlayoffs(
         {
@@ -45,7 +44,7 @@ test('renders a default round name if none is given by user', () => {
 
 
 test('renders match data', () => {
-    const wrapper = init()
+    const wrapper = create_wrapper()
 
     createPlayoffs(
         {
@@ -74,29 +73,18 @@ test('renders match data', () => {
     )
     expect(wrapper.querySelector('.player-title').innerHTML).toBe('John Doe');
     expect(wrapper.querySelector('.main-score').innerHTML).toBe('4');
-
 });
 
 
 test('renders 4 empty rounds with only "rounds" array of 4 empty objects and without options', () => {
-    const wrapper = init()
-    
-    createPlayoffs(
-        { rounds: [{}, {}, {}, {} ] },
-        wrapper
-    )
-    
+    const wrapper = create_wrapper()
+    createPlayoffs({ rounds: [{}, {}, {}, {} ] }, wrapper)
     expect(wrapper.querySelectorAll('.match-wrapper').length).toBe(15)
 })
 
 test('renders contentful matches without options', () => {
-    const wrapper = init()
-    
-    createPlayoffs(
-        finished_ucl,
-        wrapper
-    )
-    
+    const wrapper = create_wrapper()
+    createPlayoffs(finished_ucl, wrapper)
     expect(wrapper.querySelectorAll('.match-wrapper[match-id]').length).toBe(15)
     expect(wrapper.querySelector('.match-wrapper[match-id="0"]').textContent).toMatch('Benfica')
 })
