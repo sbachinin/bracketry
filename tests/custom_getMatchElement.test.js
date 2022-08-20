@@ -101,7 +101,7 @@ test(`Renders a string if options.getMatchElement returns a string`, () => {
 })
 
 
-test(`Renders nothing within .match-body if options.getMatchElement returns not a sting or ELement`, () => {
+test(`Does not render .match-body if options.getMatchElement returns not a sting or ELement`, () => {
     const wrapper = init()
 
     easyPlayoffs.createPlayoffs(
@@ -110,7 +110,7 @@ test(`Renders nothing within .match-body if options.getMatchElement returns not 
         { getMatchElement: () => NaN }
     )
 
-    expect(wrapper.querySelector('.match-body').innerHTML).toBe('')
+    expect(wrapper.querySelectorAll('.match-body').length).toBe(0)
 })
 
 
