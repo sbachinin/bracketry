@@ -22,7 +22,7 @@ test('renders empty shell if no data', () => {
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
     expect(consoleWarn).toHaveBeenCalledTimes(1)
-});
+})
 
 
 
@@ -32,7 +32,7 @@ test('renders empty shell if data is an empty object', () => {
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
     expect(consoleWarn).toHaveBeenCalledTimes(1)
-});
+})
 
 
 test('renders empty shell if "rounds" is undefined', () => {
@@ -45,7 +45,7 @@ test('renders empty shell if "rounds" is undefined', () => {
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
     expect(consoleWarn).toHaveBeenCalledTimes(1)
-});
+})
 
 
 
@@ -59,7 +59,7 @@ test('renders empty shell if "rounds" is an empty array', () => {
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
     expect(consoleWarn).toHaveBeenCalledTimes(1)
-});
+})
 
 
 
@@ -74,4 +74,4 @@ test('renders empty shell if "rounds" contains non-object element', () => {
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
 
     expect(consoleWarn).toHaveBeenCalledTimes(1)
-});
+})
