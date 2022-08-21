@@ -300,3 +300,5 @@ test('ignores setBaseRoundIndex() if all rounds are visible', () => {
 
     expect(getNavigationState().baseRoundIndex).toBe(0)
 })
+
+// TODO getNavigationState tells if allRoundAreVisible
