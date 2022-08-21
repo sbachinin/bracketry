@@ -45,7 +45,7 @@ test('replaces old playoffs with new playoffs when createPlayoffs is called agai
 
 
 
-test(`two coexisting playoffs don't intervene into each other's navigation state`, () => {
+test(`two coexisting playoffs don't intervene in each other's navigation state`, () => {
     const wrapper1 = create_wrapper()
     const wrapper2 = create_wrapper()
 
@@ -58,7 +58,7 @@ test(`two coexisting playoffs don't intervene into each other's navigation state
 })
 
 
-test(`two coexisting playoffs don't intervene into each other's data`, () => {
+test(`two coexisting playoffs don't intervene in each other's data`, () => {
     const wrapper1 = create_wrapper()
     const wrapper2 = create_wrapper()
 
@@ -71,7 +71,7 @@ test(`two coexisting playoffs don't intervene into each other's data`, () => {
 })
 
 
-test(`two coexisting playoffs don't intervene into each other's "highlighted" state`, () => {
+test(`two coexisting playoffs don't intervene in each other's "highlighted" state`, () => {
     const wrapper1 = create_wrapper()
     const wrapper2 = create_wrapper()
 
@@ -89,8 +89,8 @@ test(`two coexisting playoffs don't intervene into each other's "highlighted" st
 
 
 
-
-test('calls "dead" playoffs api functions after it being removed from the DOM', () => {
+// TODO unfinished case
+test(`calls returned functions without errors after playoff's element was removed from the DOM`, () => {
     const wrapper = create_wrapper()
 
     const old_pl = createPlayoffs({ rounds: [] }, wrapper)
@@ -100,5 +100,4 @@ test('calls "dead" playoffs api functions after it being removed from the DOM', 
 })
 
 
-// what happens with the "dead" playoffs' api whose elements were removed?
-
+// TODO resume?

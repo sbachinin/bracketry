@@ -312,3 +312,39 @@ test(`draws a score even if contestant not found for such side`, () => {
         wrapper.querySelector('.side-wrapper[contestant-id="c1"] .side-own-score').textContent.trim()
     ).toBe('Walkover')
 })
+
+
+
+
+
+// TODO does not render a match with irrelevant round_index and order
+
+// TODO (in case of duplicate matches in a given position) render only 1st match in such position
+
+
+
+// TODO test match_status OR score (REALLY NECESSARY?)
+
+// TODO draws a winner mark for a side which has { is_winner: true }
+
+
+// TODO does not draw a winner mark when neither side has { is_winner: true }
+
+
+
+// TODO does not render nationalies if not provided
+// TODO does not render entry statuses if not provided
+
+// TODO test tie break
+
+// TODO test subscore
+
+
+
+
+
+// TODO renders unclickable a match without id
+    // (removed {pointer-events: auto} for such matches; need to make sure that clicks on such matches don't confuse highlighting)
+    // THINK: DO I NEED MATCH.ID AT ALL?
+
+// TODO renders 'BYE' contestant

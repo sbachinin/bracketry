@@ -12,35 +12,16 @@ const create_wrapper = () => {
     return wrapper
 }
 
-test('renders one empty round with a given name', () => {
+test('renders one empty round', () => {
     const wrapper = create_wrapper()
 
     createPlayoffs(
-        {
-            rounds: [{ name: 'Some round' }],
-            matches: [],
-            contestants: {}
-        },
+        { rounds: [{}] },
         wrapper
     )
-    expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(1);
-    expect(wrapper.querySelector('.round-name').innerHTML).toBe('Some round')
-});
+    expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(1)
+})
 
-
-test('renders a default round name if none is given by user', () => {
-    const wrapper = create_wrapper()
-
-    createPlayoffs(
-        {
-            rounds: [ {} ],
-            matches: [],
-            contestants: {}
-        },
-        wrapper
-    )
-    expect(wrapper.querySelector('.round-name').innerHTML).toBe('Final')
-});
 
 
 test('renders match data', () => {
@@ -88,3 +69,23 @@ test('renders contentful matches without options', () => {
     expect(wrapper.querySelectorAll('.match-wrapper[match-id]').length).toBe(15)
     expect(wrapper.querySelector('.match-wrapper[match-id="0"]').textContent).toMatch('Benfica')
 })
+
+
+test('renders 1 round with 1 match if data contains only "rounds" with 1 empty object', () => {
+    const wrapper = create_wrapper()
+
+    createPlayoffs({ rounds: [{}] }, wrapper)
+
+    expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(1)
+    expect(wrapper.querySelectorAll('.match-wrapper').length).toBe(1)
+});
+
+
+test('does not insert match-body element if there is no data for a match', () => {
+    const wrapper = create_wrapper()
+
+    createPlayoffs({ rounds: [{}] }, wrapper)
+
+    expect(wrapper.querySelectorAll('.match-wrapper').length).toBe(1)
+    expect(wrapper.querySelectorAll('.match-body').length).toBe(0)
+});

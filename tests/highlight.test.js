@@ -81,3 +81,6 @@ test('unhighlights history after click on anything other than .side-wrapper', ()
 
     expect(document.querySelectorAll(benfica_selector + '.highlighted').length).toBe(0)
 })
+
+// TODO ensure that clicks on empty / absent sides doesn't affect highlight
+

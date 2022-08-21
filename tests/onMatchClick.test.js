@@ -93,3 +93,7 @@ test(`contestant's match history isn't highlighted on click when onMatchClick is
 
     expect(document.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
 })
+
+// TODO think:
+// what if there wasn't any data for a match in this position?
+// won't pointer events be disabled in this case?

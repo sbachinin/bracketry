@@ -6,52 +6,7 @@ global.ResizeObserver = require('resize-observer-polyfill')
 const { createPlayoffs } = require('../index.js').easyPlayoffs
 const finished_ucl = require('./ucl-finished.js').default
 
-
-test('js survives if non-element wrapper is provided', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs(
-        {
-            rounds: [{}],
-            matches: [{ id: '32323', round_index: 0, order: 0,
-                sides: [{ contestant_id: 'contestant1', score: [] }] }
-            ],
-            contestants: {
-                contestant1: { players: [ { title: 'fdf', nationality_code: 'fdsf', flag_url: false } ] }
-            }
-        },
-        null,
-        {}
-    )
-    expect(true).toBe(true);
-})
-
-
-test('js survives if wrapper is not in the DOM', () => {
-    expect.assertions(1)
-
-    createPlayoffs(
-        { rounds: [{}] },
-        document.createElement('div'),
-        {}
-    )
-    expect(true).toBe(true);
-})
-
-
-test('js survives if wrapper is of bad type', () => {
-    const wrapper = document.createElement('img')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs({rounds: [{}]}, wrapper, {})
-    expect(true).toBe(true);
-})
-
+// TODO make sure console.warn is called
 
 test('survives non-object options', () => {
     const wrapper = document.createElement('div')

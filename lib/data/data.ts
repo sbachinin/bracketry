@@ -1,3 +1,5 @@
+// TODO camelcase all
+
 export type Data = {
     rounds: Round[], // you have to provide an object for each round, including the upcoming rounds
     matches?: Match[],
@@ -11,7 +13,7 @@ type Round = {
 }
 
 export type Match = {
-    id: string,
+    id: string, // TODO is it used or useful?
     round_index: number,
     order: number, // 0-based!
     sides?: Side[],

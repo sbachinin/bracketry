@@ -36,7 +36,7 @@ test('getAllData returns a new match supplied by applyMatchesUpdates in place of
     const matches_in_this_position = all_matches.filter(m => m.round_index === 1 && m.order === 2)
     expect(matches_in_this_position.length).toBe(1)
     expect(matches_in_this_position[0]).toEqual(new_match)
-});
+})
 
 
 
@@ -59,8 +59,7 @@ test('draws a new score for a match updated by applyMatchesUpdates', () => {
         .querySelectorAll('.match-wrapper')[2]
         .querySelector('.main-score')
     expect(updated_match_score_el.textContent.trim()).toBe(new_match.sides[0].score[0].main_score)
-});
-
+})
 
 
 test('applyMatchesUpdates creates new match if none was present for this round_id and order', () => {
@@ -91,7 +90,7 @@ test('applyMatchesUpdates creates new match if none was present for this round_i
     expect(wrapper.querySelector('.main-score').innerHTML).toBe('6');
 
     expect(pl.getAllData().matches[0]).toEqual(new_match)
-});
+})
 
 
 
@@ -115,5 +114,4 @@ test('does not mutate data passed to applyMatchesUpdate', () => {
         order: 2,
         sides: [ { contestant_id: 'villarreal', score: [{ main_score: '666' }] } ]
     })
-});
-
+})

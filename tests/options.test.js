@@ -23,7 +23,7 @@ test('tells user options via getUserOptions', () => {
         { visibleRoundsCount: 2 }
     )
 
-    expect(getUserOptions()).toMatchObject({ visibleRoundsCount: 2 })
+    expect(getUserOptions()).toEqual({ visibleRoundsCount: 2 })
 })
 
 test('applies new visibleRoundsCount via applyNewOptions', () => {
@@ -76,3 +76,9 @@ test('applies matchMaxWidth to .match-body', () => {
         getComputedStyle(document.querySelector('.match-body')).maxWidth
     ).toBe('250px')
 })
+
+// TODO other heavy-logic options
+
+// TODO ignores subsequent mutations of an options object by a user
+
+// TODO does not mutate an options object supplied by a user

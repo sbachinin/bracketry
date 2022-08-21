@@ -1,0 +1,6 @@
+// TODO
+
+compare screenshots of connection lines
+
+(maybe) scrollbar height with a given round height and wrapper height; scrollbar position after scroll. etc
+    + scrollbar is draggable

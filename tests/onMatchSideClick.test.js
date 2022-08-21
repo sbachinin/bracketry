@@ -71,6 +71,8 @@ test(`pointer-events of everything inside .side_wrapper are disabled (even if on
 })
 
 
+
+// TODO duplicate from onMatchClick?
 test(`contestant's match history isn't highlighted on click when onMatchClick is provided`, () => {
     const wrapper = init()
 
@@ -85,3 +87,7 @@ test(`contestant's match history isn't highlighted on click when onMatchClick is
 
     expect(document.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
 })
+
+
+// TODO ensure that onMatchClick isn't called without a good reason
+    // E.g., clicks on a side-wrapper without [contestant-id] should rather be ignored

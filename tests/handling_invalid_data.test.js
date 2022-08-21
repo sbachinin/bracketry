@@ -5,7 +5,7 @@
 global.ResizeObserver = require('resize-observer-polyfill')
 const { createPlayoffs } = require('../index.js').easyPlayoffs
 
-
+// TODO rewrite survival tests to 'render empty shell' tests
 test('survives when non-string name is provided for a round', () => {
     const wrapper = document.createElement('div')
     document.body.append(wrapper)

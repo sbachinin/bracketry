@@ -136,3 +136,10 @@ test(`Calls mouse handlers attached to match elements provided by options.getMat
     expect(clickHandler).toBeCalledTimes(2)
 })
 
+// TODO think of other vulnerable features of this custom element which must be preserved
+
+// TODO what if new getMatchElements is passed via applyNewOptions?
+
+
+// TODO resume
+

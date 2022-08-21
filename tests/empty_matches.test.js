@@ -28,6 +28,7 @@ test('for a missing match renders a stub .match-wrapper without match-id attr', 
     expect(matches_without_ids[0].textContent.trim().length).toBe(0)
 })
 
+// TODO WTF?
 /* 
 test('applies { pointer-events: none } to stub .match-wrapper', () => {
     const wrapper = init()
