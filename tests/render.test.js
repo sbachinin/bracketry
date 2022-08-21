@@ -89,3 +89,26 @@ test('does not insert match-body element if there is no data for a match', () =>
     expect(wrapper.querySelectorAll('.match-wrapper').length).toBe(1)
     expect(wrapper.querySelectorAll('.match-body').length).toBe(0)
 });
+
+
+test('adds "mobile" class to root element if data.rounds has only 1 item (even if options.visibleRoundsCount is > 1)', () => {
+    const wrapper = create_wrapper()
+    createPlayoffs({ rounds: [{}] }, wrapper, { visibleRoundsCount: 4 })
+    expect(wrapper.querySelector('.root-brackets-element.mobile')).not.toBe(null)
+    expect(
+        getComputedStyle(
+            wrapper.querySelector('.round-fake-padding')
+        ).display
+    ).toBe('none')
+})
+
+test('adds "mobile" class to root element if visibleRoundsCount is 1 (even if data.rounds is longer then 1)', () => {
+    const wrapper = create_wrapper()
+    createPlayoffs({ rounds: [{}, {}] }, wrapper, { visibleRoundsCount: 1 })
+    expect(wrapper.querySelector('.root-brackets-element.mobile')).not.toBe(null)
+    expect(
+        getComputedStyle(
+            wrapper.querySelector('.round-fake-padding')
+        ).display
+    ).toBe('none')
+})
