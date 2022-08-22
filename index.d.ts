@@ -51,21 +51,22 @@ export function createPlayoffs(
     user_wrapper_el: Element,
     user_options?: OptionsMap
 ): {
-    moveToPreviousRound: () => void;
-    moveToNextRound: () => void;
-    moveToLastRound: () => void;
+    moveToPreviousRound: () => void
+    moveToNextRound: () => void
+    moveToLastRound: () => void
 
-    setBaseRoundIndex: (i: number) => void;
+    setBaseRoundIndex: (i: number) => void
     getNavigationState: () => {
         reachedRightEdge: boolean,
         allRoundsAreVisible: boolean,
         baseRoundIndex: number
     }
 
-    applyNewOptions: (new_options: OptionsMap) => void;
-    getUserOptions: () => OptionsMap;
+    applyNewOptions: (new_options: OptionsMap) => void
+    getUserOptions: () => OptionsMap
 
-    replaceData: (new_data: Data) => void;
-    applyMatchesUpdates: (matches_data: Match[]) => void;
-    getAllData: () => Data;
-};
+    replaceData: (new_data: Data) => void
+    applyMatchesUpdates: (matches_data: Match[]) => void
+    getAllData: () => Data
+    highlightContestantHistory: (contestant_id: string | null) => void
+}

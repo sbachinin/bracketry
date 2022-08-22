@@ -179,7 +179,8 @@ test('renders .sides element if match.sides array contains at least one item', (
     expect(wrapper.querySelector('.match-body .sides')).not.toBe(null)
 })
 
-test(`renders two .side-wrapper elements even if match.sides contains only 1 side`, () => {
+test(`renders two .side-wrapper elements even if match.sides contains only 1 side
+    (and even if this side is an empty object)`, () => {
     // (two sides are necessary for vertical alignment)
     const wrapper = create_wrapper()
 
@@ -313,6 +314,24 @@ test(`draws a score even if contestant not found for such side`, () => {
     ).toBe('Walkover')
 })
 
+test(`does not add contestant-id attribute to .side-wrapper when match.sides[i] has no "contestant_id"`, () => {
+    const wrapper = create_wrapper()
+
+    createPlayoffs(
+        {
+            rounds: [{}],
+            matches: [{
+                id: 'm1', round_index: 0, order: 0, sides: [
+                    { score: [{ main_score: 'Walkover' }] }
+                ]
+            }],
+        },
+        wrapper
+    )
+
+    expect(wrapper.querySelector('.side-wrapper:first-child').getAttribute('contestant-id')).toBe(null)
+    expect(wrapper.querySelector('.side-wrapper:last-child').getAttribute('contestant-id')).toBe(null)
+})
 
 
 
