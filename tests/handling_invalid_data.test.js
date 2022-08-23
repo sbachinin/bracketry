@@ -21,8 +21,8 @@ test('survives when non-string name is provided for a round', () => {
         wrapper,
         {}
     )
-    expect(true).toBe(true);
-});
+    expect(true).toBe(true)
+})
 
 
 
@@ -40,8 +40,8 @@ test('survives when data.matches is undefined', () => {
         wrapper,
         {}
     )
-    expect(true).toBe(true);
-});
+    expect(true).toBe(true)
+})
 
 test('survives when data.matches are not an array', () => {
     const wrapper = document.createElement('div')
@@ -58,8 +58,8 @@ test('survives when data.matches are not an array', () => {
         wrapper,
         {}
     )
-    expect(true).toBe(true);
-});
+    expect(true).toBe(true)
+})
 
 
 test('survives when string is given for a match', () => {
@@ -77,8 +77,8 @@ test('survives when string is given for a match', () => {
         wrapper,
         {}
     )
-    expect(true).toBe(true);
-});
+    expect(true).toBe(true)
+})
 
 
 
@@ -98,8 +98,8 @@ test('survives when match is an empty object', () => {
         wrapper,
         {}
     )
-    expect(true).toBe(true);
-});
+    expect(true).toBe(true)
+})
 
 
 test('survives when match.id is not a string', () => {
@@ -117,8 +117,8 @@ test('survives when match.id is not a string', () => {
         wrapper,
         {}
     )
-    expect(true).toBe(true);
-});
+    expect(true).toBe(true)
+})
 
 
 
@@ -137,8 +137,8 @@ test('survives without match.round_index', () => {
         wrapper,
         {}
     )
-    expect(true).toBe(true);
-});
+    expect(true).toBe(true)
+})
 
 
 test('survives when match.round_index is not a number', () => {
@@ -156,8 +156,8 @@ test('survives when match.round_index is not a number', () => {
         wrapper,
         {}
     )
-    expect(true).toBe(true);
-});
+    expect(true).toBe(true)
+})
 
 test('survives when match.order is not a number', () => {
     const wrapper = document.createElement('div')
@@ -174,286 +174,10 @@ test('survives when match.order is not a number', () => {
         wrapper,
         {}
     )
-    expect(true).toBe(true);
-});
+    expect(true).toBe(true)
+})
 
 
-
-
-// SIDES
-
-test('survives when match.sides is not an array', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs(
-        {
-            rounds: [{}],
-            matches: [{ id: '32323', round_index: 0, order: 0, sides: true }],
-            contestants: {}
-        },
-        wrapper,
-        {}
-    )
-    expect(true).toBe(true);
-});
-
-test('survives when match.sides contains 0 elements', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs(
-        {
-            rounds: [{}],
-            matches: [{ id: '32323', round_index: 0, order: 0, sides: [] }],
-            contestants: {}
-        },
-        wrapper,
-        {}
-    )
-    expect(true).toBe(true);
-});
-
-
-test('survives when match.sides contains non-object elements', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs(
-        {
-            rounds: [{}],
-            matches: [{ id: '32323', round_index: 0, order: 0, sides: ['fsdfsdf'] }],
-            contestants: {}
-        },
-        wrapper,
-        {}
-    )
-    expect(true).toBe(true);
-});
-
-test('survives when match.sides[0] is an empty object', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs(
-        {
-            rounds: [{}],
-            matches: [{ id: '32323', round_index: 0, order: 0, sides: [{}] }],
-            contestants: {}
-        },
-        wrapper,
-        {}
-    )
-    expect(true).toBe(true);
-});
-
-
-test('survives when match.sides[0].contestant_id is not a string', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs(
-        {
-            rounds: [{}],
-            matches: [{ id: '32323', round_index: 0, order: 0, sides: [{ contestant_id: [] }] }],
-            contestants: {}
-        },
-        wrapper,
-        {}
-    )
-    expect(true).toBe(true);
-});
-
-
-test('survives when there is no contestant for match.sides[0].contestant_id', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs(
-        {
-            rounds: [{}],
-            matches: [{ id: '32323', round_index: 0, order: 0, sides: [{ contestant_id: 'contestant1' }] }],
-            contestants: {}
-        },
-        wrapper,
-        {}
-    )
-    expect(true).toBe(true);
-});
-
-test('survives when contestant is not an object', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs(
-        {
-            rounds: [{}],
-            matches: [{ id: '32323', round_index: 0, order: 0, sides: [{ contestant_id: 'contestant1' }] }],
-            contestants: {
-                contestant1: 333
-            }
-        },
-        wrapper,
-        {}
-    )
-    expect(true).toBe(true);
-});
-
-test('survives when contestant is an empty object', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs(
-        {
-            rounds: [{}],
-            matches: [{ id: '32323', round_index: 0, order: 0, sides: [{ contestant_id: 'contestant1' }] }],
-            contestants: {
-                contestant1: {}
-            }
-        },
-        wrapper,
-        {}
-    )
-    expect(true).toBe(true);
-});
-
-test('survives when side.score is not an array', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs(
-        {
-            rounds: [{}],
-            matches: [{
-                id: '32323', round_index: 0, order: 0,
-                sides: [{ contestant_id: 'contestant1', score: 312312 }]
-            }
-            ],
-            contestants: {
-                contestant1: { players: [{ title: 'john' }] }
-            }
-        },
-        wrapper,
-        {}
-    )
-    expect(true).toBe(true);
-});
-
-test('survives when side.score is an empty array', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs(
-        {
-            rounds: [{}],
-            matches: [{
-                id: '32323', round_index: 0, order: 0,
-                sides: [{ contestant_id: 'contestant1', score: [] }]
-            }
-            ],
-            contestants: {
-                contestant1: { players: [{ title: 'john' }] }
-            }
-        },
-        wrapper,
-        {}
-    )
-    expect(true).toBe(true);
-});
-
-test('survives when contestant.players is not an array', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs(
-        {
-            rounds: [{}],
-            matches: [{
-                id: '32323', round_index: 0, order: 0,
-                sides: [{ contestant_id: 'contestant1', score: [] }]
-            }
-            ],
-            contestants: {
-                contestant1: { players: 3232 }
-            }
-        },
-        wrapper,
-        {}
-    )
-    expect(true).toBe(true);
-});
-
-test('survives when contestant.players is an empty array', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs(
-        {
-            rounds: [{}],
-            matches: [{
-                id: '32323', round_index: 0, order: 0,
-                sides: [{ contestant_id: 'contestant1', score: [] }]
-            }
-            ],
-            contestants: {
-                contestant1: { players: [] }
-            }
-        },
-        wrapper,
-        {}
-    )
-    expect(true).toBe(true);
-});
-
-
-
-test('survives when contestant.players contains non-objects', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs(
-        {
-            rounds: [{}],
-            matches: [{
-                id: '32323', round_index: 0, order: 0,
-                sides: [{ contestant_id: 'contestant1', score: [] }]
-            }
-            ],
-            contestants: {
-                contestant1: { players: ['3232'] }
-            }
-        },
-        wrapper,
-        {}
-    )
-    expect(true).toBe(true);
-});
 
 test('survives when player has no title', () => {
     const wrapper = document.createElement('div')
@@ -476,8 +200,8 @@ test('survives when player has no title', () => {
         wrapper,
         {}
     )
-    expect(true).toBe(true);
-});
+    expect(true).toBe(true)
+})
 
 
 test('survives when player has non-string title', () => {
@@ -501,8 +225,8 @@ test('survives when player has non-string title', () => {
         wrapper,
         {}
     )
-    expect(true).toBe(true);
-});
+    expect(true).toBe(true)
+})
 
 
 test('survives when player has non-string nationality_code', () => {
@@ -526,8 +250,8 @@ test('survives when player has non-string nationality_code', () => {
         wrapper,
         {}
     )
-    expect(true).toBe(true);
-});
+    expect(true).toBe(true)
+})
 
 test('survives when player has non-string flag_url', () => {
     const wrapper = document.createElement('div')
@@ -550,6 +274,6 @@ test('survives when player has non-string flag_url', () => {
         wrapper,
         {}
     )
-    expect(true).toBe(true);
-});
+    expect(true).toBe(true)
+})
 

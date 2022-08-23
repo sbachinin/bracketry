@@ -12,6 +12,8 @@ const create_wrapper = () => {
     return wrapper
 }
 
+const consoleWarn = jest.spyOn(console, 'warn')
+afterEach(jest.clearAllMocks)
 
 test('can draw asymmetrical scores where two sides have different number of elements in score array', () => {
     const wrapper = create_wrapper()
@@ -91,6 +93,7 @@ test('renders a contentful match even if "contestants" are undefined', () => {
 
 test(`renders a contentful match even if "contestants" don't contain such contestant_id`, () => {
     const wrapper = create_wrapper()
+    expect.assertions(2)
 
     createPlayoffs(
         {
@@ -107,6 +110,10 @@ test(`renders a contentful match even if "contestants" don't contain such contes
             }
         },
         wrapper,
+    )
+
+    expect(consoleWarn.mock.calls[0][0]).toMatch(
+        `No contestant data found for this side.contestant_id`
     )
     expect(wrapper.querySelector('.match-status').textContent).toBe('Scheduled')
 })
@@ -139,49 +146,83 @@ test('renders a contentful match even if match.sides is an empty array', () => {
 
 
 
-test('does not render .sides element if match.sides is undefined', () => {
+test('renders a contentful match if match.sides contains empty objects', () => {
     const wrapper = create_wrapper()
+    expect.assertions(1)
 
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: 'm1', round_index: 0, order: 0 }],
+            matches: [{ id: '32323', round_index: 0, order: 0, sides: [{}, {}], match_status: 'Scheduled' }],
+            contestants: {}
         },
-        wrapper
+        wrapper,
+        {}
     )
-    expect(wrapper.querySelector('.match-body .sides')).toBe(null)
-})
+    expect(wrapper.querySelector('.match-status').textContent).toBe('Scheduled')
+});
 
-test('does not render .sides element if match.sides is an empty array', () => {
+
+
+test('renders a contentful match if side.score is an empty array', () => {
     const wrapper = create_wrapper()
+    expect.assertions(2)
 
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: 'm1', round_index: 0, order: 0, sides: [] }],
+            matches: [{
+                id: '32323', round_index: 0, order: 0,
+                sides: [{ contestant_id: 'contestant1', score: [] }]
+            }
+            ],
+            contestants: {
+                contestant1: { players: [{ title: 'john' }] }
+            }
         },
-        wrapper
+        wrapper,
+        {}
     )
-    expect(wrapper.querySelector('.match-body .sides')).toBe(null)
-})
 
 
-test('renders .sides element if match.sides array contains at least one item', () => {
+    expect(consoleWarn.mock.calls[0][0]).toMatch(
+        `side.score is provided but it's an empty array`
+    )
+    expect(wrapper.querySelector('.player-title').textContent).toBe('john')
+});
+
+
+
+test('renders a contentful match if contestant.players is an empty array', () => {
     const wrapper = create_wrapper()
+    expect.assertions(2)
 
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{}] }],
+            matches: [{
+                id: '32323', round_index: 0, order: 0,
+                sides: [{ contestant_id: 'c1' }],
+                match_status: 'Scheduled'
+            }
+            ],
+            contestants: {
+                c1: { players: [] }
+            }
         },
-        wrapper
+        wrapper,
+        {}
     )
-    expect(wrapper.querySelector('.match-body .sides')).not.toBe(null)
-})
 
-test(`renders two .side-wrapper elements even if match.sides contains only 1 side
-    (and even if this side is an empty object)`, () => {
-    // (two sides are necessary for vertical alignment)
+    expect(consoleWarn.mock.calls[0][0]).toMatch(
+        `contestant.players must contain at least one element`
+    )
+    expect(wrapper.querySelector('.match-status').textContent).toBe('Scheduled')
+});
+
+
+test(`renders 2 .side-wrapper elements if match.sides contains only 1 object`, () => {
+    // (two side-wrappers are necessary for vertical alignment)
     const wrapper = create_wrapper()
 
     createPlayoffs(
@@ -195,7 +236,48 @@ test(`renders two .side-wrapper elements even if match.sides contains only 1 sid
 })
 
 
-test(`allow clicks on a .side-wrapper which has a contestant_id (even if no contestant data for such id)`, () => {
+test(`renders 2 .side-wrapper elements if match.sides contains more items`, () => {
+    const wrapper = create_wrapper()
+    expect.assertions(3)
+
+    createPlayoffs(
+        {
+            rounds: [{}],
+            matches: [{
+                id: 'm1', round_index: 0, order: 0,
+                sides: [{ contestant_id: 'c1' }, { contestant_id: 'c2' }, { contestant_id: 'c3' }],
+                match_status: 'Scheduled'
+            }],
+        },
+        wrapper
+    )
+    expect(wrapper.querySelector('.side-wrapper[contestant-id="c1"]')).not.toBe(null)
+    expect(wrapper.querySelector('.side-wrapper[contestant-id="c2"]')).not.toBe(null)
+    expect(wrapper.querySelector('.side-wrapper[contestant-id="c3"]')).toBe(null)
+})
+
+
+test(`does not add "contestant-id" attribute to .side-wrapper when match.sides[i] has no "contestant_id"`, () => {
+    const wrapper = create_wrapper()
+
+    createPlayoffs(
+        {
+            rounds: [{}],
+            matches: [{
+                id: 'm1', round_index: 0, order: 0, sides: [
+                    { score: [{ main_score: 'Walkover' }] }
+                ]
+            }],
+        },
+        wrapper
+    )
+
+    expect(wrapper.querySelector('.side-wrapper:first-child').getAttribute('contestant-id')).toBe(null)
+    expect(wrapper.querySelector('.side-wrapper:last-child').getAttribute('contestant-id')).toBe(null)
+})
+
+
+test(`allows clicks on a .side-wrapper which has a contestant_id (even if no contestant data for such id)`, () => {
     const wrapper = create_wrapper()
 
     createPlayoffs(
@@ -217,7 +299,7 @@ test(`allow clicks on a .side-wrapper which has a contestant_id (even if no cont
 })
 
 
-test(`forbid clicks on a side-wrapper which has no contestant_id`, () => {
+test(`forbids clicks on a side-wrapper without contestant_id`, () => {
     const wrapper = create_wrapper()
 
     createPlayoffs(
@@ -237,7 +319,7 @@ test(`forbid clicks on a side-wrapper which has no contestant_id`, () => {
 
 
 
-test(`does not render a .score element for a side which has a 0-length "score" array`, () => {
+test(`does not render a .score element for a side which has 0 items in "score" array`, () => {
     const wrapper = create_wrapper()
 
     createPlayoffs(
@@ -266,7 +348,7 @@ test(`does not render a .score element for a side which has a 0-length "score" a
 
 
 
-test(`draws a score even if side has no "contestant_id"`, () => {
+test(`renders a score even if side has no "contestant_id"`, () => {
     const wrapper = create_wrapper()
 
     createPlayoffs(
@@ -314,8 +396,7 @@ test(`draws a score even if contestant not found for such side`, () => {
     ).toBe('Walkover')
 })
 
-test(`does not add contestant-id attribute to .side-wrapper when match.sides[i] has no "contestant_id"`, () => {
-    const wrapper = create_wrapper()
+
 
     createPlayoffs(
         {
