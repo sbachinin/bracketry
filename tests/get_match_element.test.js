@@ -373,7 +373,7 @@ test(`renders a score even if side has no "contestant_id"`, () => {
 
 
 
-test(`draws a score even if contestant not found for such side`, () => {
+test(`renders score even if contestant not found for such side`, () => {
     const wrapper = create_wrapper()
 
     createPlayoffs(
@@ -397,21 +397,119 @@ test(`draws a score even if contestant not found for such side`, () => {
 })
 
 
+test(`renders .single-score element only for side.score items which have "main_score"`, () => {
+    const wrapper = create_wrapper()
+    expect.assertions(2)
 
     createPlayoffs(
         {
             rounds: [{}],
             matches: [{
                 id: 'm1', round_index: 0, order: 0, sides: [
-                    { score: [{ main_score: 'Walkover' }] }
+                    {
+                        contestant_id: 'c1',
+                        score: [{ main_score: 'Walkover' }, { tie_break: 12 }]
+                    }
                 ]
             }],
         },
         wrapper
     )
 
-    expect(wrapper.querySelector('.side-wrapper:first-child').getAttribute('contestant-id')).toBe(null)
-    expect(wrapper.querySelector('.side-wrapper:last-child').getAttribute('contestant-id')).toBe(null)
+    expect(wrapper.querySelectorAll('.main-score').length).toBe(1)
+    expect(wrapper.querySelector('.main-score').textContent).toBe('Walkover')
+})
+
+
+test(`renders as much .single-score elements as there are valid items in side.score`, () => {
+    const wrapper = create_wrapper()
+    expect.assertions(2)
+
+    createPlayoffs(
+        {
+            rounds: [{}],
+            matches: [{
+                id: 'm1', round_index: 0, order: 0, sides: [
+                    {
+                        contestant_id: 'c1',
+                        score: [
+                            { main_score: 'Walkover' },
+                            { tie_break: 12 },
+                            { main_score: '444' },
+                            { main_score: '323', tie_break: 21 },
+                            { main_score: '323', is_winner: true }
+                        ]
+                    }
+                ]
+            }],
+        },
+        wrapper
+    )
+
+    expect(wrapper.querySelectorAll('.main-score').length).toBe(4)
+    expect(wrapper.querySelectorAll('.main-score')[1].textContent).toBe('444')
+})
+
+
+
+test(`renders player title if any of side.score items has no "main_score (and warns in console)`, () => {
+    const wrapper = create_wrapper()
+    expect.assertions(1)
+
+    createPlayoffs(
+        {
+            rounds: [{}],
+            matches: [{
+                id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1', score: [{}] }]
+            }],
+            contestants: {
+                c1: { players: [{ title: 'josh' }] }
+            }
+        },
+        wrapper
+    )
+
+    expect(wrapper.querySelector('.player-title').textContent).toBe('josh')
+})
+
+test(`renders tie break if there is a valid one`, () => {
+    const wrapper = create_wrapper()
+
+    createPlayoffs(
+        {
+            rounds: [{}],
+            matches: [{
+                id: 'm1', round_index: 0, order: 0, sides: [{ score: [{ main_score: '6', tie_break: 7 }] }]
+            }]
+        },
+        wrapper
+    )
+    
+    expect(wrapper.querySelector('.tie-break').textContent).toBe('7')
+})
+
+test(`renders a contentful match without .tie-break if score.tie_break is of invalid (non-number) type`, () => {
+    const wrapper = create_wrapper()
+    expect.assertions(3)
+
+    createPlayoffs(
+        {
+            rounds: [{}],
+            matches: [{
+                id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1', score: [{ main_score: '6', tie_break: 'jopa' }] }]
+            }],
+            contestants: {
+                c1: { players: [] }
+            }
+        },
+        wrapper
+    )
+
+    expect(typeof wrapper.querySelector('.main-score')).toBe('object')
+    expect(wrapper.querySelector('.tie-break')).toBe(null)
+    expect(consoleWarn.mock.calls[0][0]).toMatch(
+        `If you provide side.score.tie_break, it must be a number`
+    )
 })
 
 
