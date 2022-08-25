@@ -134,7 +134,7 @@ test('renders empty shell if match.sides[0].contestant_id is not a string', () =
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
     expect(consoleWarn.mock.calls[0][0]).toMatch(
-        `Side.contestant_id is required and must be a string`
+        `If you provide side.contestant_id, it must be a string`
     )
 })
 

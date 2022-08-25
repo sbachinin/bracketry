@@ -39,7 +39,7 @@ test('can draw asymmetrical scores where two sides have different number of elem
     )
     expect(wrapper.querySelector('.side-wrapper[contestant-id="c2"] .main-score').textContent).toBe('Rt')
     // .score element is not rendered for a side with empty "score" array
-    expect(wrapper.querySelector('.side-wrapper[contestant-id="c1"] .score')).toBe(null)
+    expect(wrapper.querySelector('.side-wrapper[contestant-id="c1"] .side-scores').textContent).toBe('')
 })
 
 
@@ -66,8 +66,7 @@ test('can draw asymmetrical scores where ONLY ONE SIDE has a score array', () =>
         wrapper
     )
     expect(wrapper.querySelector('.side-wrapper[contestant-id="c2"] .main-score').textContent).toBe('Rt')
-    // .score element is not rendered for a side with empty "score" array
-    expect(wrapper.querySelector('.side-wrapper[contestant-id="c1"] .score')).toBe(null)
+    expect(wrapper.querySelector('.side-wrapper[contestant-id="c1"] .side-scores').textContent).toBe('')
 })
 
 
@@ -319,7 +318,7 @@ test(`forbids clicks on a side-wrapper without contestant_id`, () => {
 
 
 
-test(`does not render a .score element for a side which has 0 items in "score" array`, () => {
+test(`does not render scores for a side which has 0 items in "score" array`, () => {
     const wrapper = create_wrapper()
 
     createPlayoffs(
@@ -341,9 +340,7 @@ test(`does not render a .score element for a side which has 0 items in "score" a
         wrapper
     )
 
-    expect(
-        wrapper.querySelector('.side-wrapper[contestant-id="c2"] .score')
-    ).toBe(null)
+    expect(wrapper.querySelector('.side-wrapper[contestant-id="c2"] .side-scores').textContent).toBe('')
 })
 
 
@@ -513,7 +510,7 @@ test(`renders a contentful match without .tie-break if score.tie_break is of inv
 })
 
 
-test('renders .side-title element if side has a "title" and no "contestant_id"', () => {
+test('renders side.title into .player-title element if side has no "contestant_id"', () => {
     const wrapper = create_wrapper()
 
     createPlayoffs(
@@ -524,10 +521,10 @@ test('renders .side-title element if side has a "title" and no "contestant_id"',
         wrapper
     )
 
-    expect(wrapper.querySelector('.side-title').textContent).toBe('BYE')
+    expect(wrapper.querySelector('.player-title').textContent).toBe('BYE')
 })
 
-test('does not render .side-title if side has both "title" and "contestant_id"', () => {
+test('does not render side.title if side has both "title" and "contestant_id"', () => {
     const wrapper = create_wrapper()
 
     createPlayoffs(
