@@ -34,3 +34,17 @@ When called with null, it will unhighlight what was highlighted before
 When called with something else, will do nothing
 
 If called with a valid contestant_id, it will highlight matches *even if options.onMatchClick or options.onMatchSideClick is provided*
+
+
+# Data
+
+## rounds
+
+## matches
+
+### * sides
+
+**title**: rendered IF there is NO contestant_id  
+*(because if there IS a contestant_id, a title is expected to be found in contestants[contestant_id].players[i].title)*
+
+## contestants

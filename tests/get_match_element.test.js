@@ -513,6 +513,45 @@ test(`renders a contentful match without .tie-break if score.tie_break is of inv
 })
 
 
+test('renders .side-title element if side has a "title" and no "contestant_id"', () => {
+    const wrapper = create_wrapper()
+
+    createPlayoffs(
+        {
+            rounds: [{}],
+            matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ title: 'BYE' }] }]
+        },
+        wrapper
+    )
+
+    expect(wrapper.querySelector('.side-title').textContent).toBe('BYE')
+})
+
+test('does not render .side-title if side has both "title" and "contestant_id"', () => {
+    const wrapper = create_wrapper()
+
+    createPlayoffs(
+        {
+            rounds: [{}],
+            matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ title: 'BYE', contestant_id: 'c1' }] }],
+            contestants: {
+                c1: { players: [ { title: 'Pete' } ] }
+            }
+        },
+        wrapper
+    )
+
+    expect(wrapper.querySelector('.side-title')).toBe(null)
+    expect(wrapper.querySelector('.player-title').textContent.trim()).toBe('Pete')
+})
+
+
+
+
+// TODO split this file
+
+
+
 
 
 // TODO does not render a match with irrelevant round_index and order
@@ -533,7 +572,6 @@ test(`renders a contentful match without .tie-break if score.tie_break is of inv
 // TODO does not render nationalies if not provided
 // TODO does not render entry statuses if not provided
 
-// TODO test tie break
 
 // TODO test subscore
 
@@ -544,5 +582,3 @@ test(`renders a contentful match without .tie-break if score.tie_break is of inv
 // TODO renders unclickable a match without id
     // (removed {pointer-events: auto} for such matches; need to make sure that clicks on such matches don't confuse highlighting)
     // THINK: DO I NEED MATCH.ID AT ALL?
-
-// TODO renders 'BYE' contestant
