@@ -543,6 +543,19 @@ test('does not render side.title if side has both "title" and "contestant_id"', 
 })
 
 
+test('does not render word "undefined" if contestants[i].players[j] has no title', () => {
+    const wrapper = create_wrapper()
+    
+    const data = {
+        rounds: [{}],
+        matches: [ { id: 'm1', round_index: 0, order: 0, sides: [ { contestant_id: 'c1'} ] } ],
+        contestants: { c1: { players: [ {}] } }
+    }
+
+    createPlayoffs(data, wrapper, { visibleRoundsCount: 1 })
+
+    expect(wrapper.querySelector('.player-title').textContent.trim()).toBe('')
+})
 
 
 // TODO split this file
