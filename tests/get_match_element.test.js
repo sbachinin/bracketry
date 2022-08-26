@@ -579,10 +579,6 @@ test('does not render word "undefined" if contestants[i].players[j] has no title
 
 
 
-// TODO does not render nationalies if not provided
-// TODO does not render entry statuses if not provided
-
-
 // TODO test subscore
 
 
