@@ -5,7 +5,7 @@
 global.ResizeObserver = require('resize-observer-polyfill')
 const { createPlayoffs } = require('../index.js').easyPlayoffs
 const finished_ucl = require('./ucl-finished.js').default
- 
+
 const create_wrapper = () => {
     const wrapper = document.createElement('div')
     document.body.append(wrapper)
@@ -29,14 +29,14 @@ test('renders match data', () => {
 
     createPlayoffs(
         {
-            rounds: [ { name: 'Some round'} ],
+            rounds: [{ name: 'Some round' }],
             matches: [
                 {
                     id: '32323',
                     round_index: 0,
                     order: 0,
                     sides: [
-                        { contestant_id: 'c1', score: [{ main_score: '4'}] },
+                        { contestant_id: 'c1', score: [{ main_score: '4' }] },
                     ]
                 }
             ],
@@ -59,7 +59,7 @@ test('renders match data', () => {
 
 test('renders 4 empty rounds with only "rounds" array of 4 empty objects and without options', () => {
     const wrapper = create_wrapper()
-    createPlayoffs({ rounds: [{}, {}, {}, {} ] }, wrapper)
+    createPlayoffs({ rounds: [{}, {}, {}, {}] }, wrapper)
     expect(wrapper.querySelectorAll('.match-wrapper').length).toBe(15)
 })
 

@@ -42,7 +42,7 @@ test(`does not add 'with-nationalities' class to matches-positioner in case of I
 })
 
 
-test(`adds "with-nationalities" class to matches-positioner if at least 1 Side is a Contestant with "flag_url"`, () => {
+test(`adds "with-nationalities" class to matches-positioner if at least 1 Side has a valid "flag_url"`, () => {
     const wrapper = create_wrapper()
     const data = { rounds: [{}, {}],
         matches: [ { id: 'm1', round_index: 0, order: 0, sides: [ { contestant_id: 'c1'} ] } ],
@@ -54,7 +54,7 @@ test(`adds "with-nationalities" class to matches-positioner if at least 1 Side i
     expect(wrapper.querySelector('.matches-positioner').classList.contains('with-nationalities')).toBe(true)
 })
 
-test(`adds "with-nationalities" class to matches-positioner if at least 1 Side is a Contestant with "nationality_code"`, () => {
+test(`adds "with-nationalities" class to matches-positioner if at least 1 Side has a valid "nationality_code"`, () => {
     const wrapper = create_wrapper()
     const data = { rounds: [{}, {}],
         matches: [ { id: 'm1', round_index: 0, order: 0, sides: [ { contestant_id: 'c1'} ] } ],
@@ -116,7 +116,7 @@ test(`renders flag <img> only for sides which have flag_url`, () => {
 
 
 test(`hides '.nationality' elements if no sides have "nationality_code" or "flag_url" for their contestants
-    (even if there is a contestant with flag_url)`, () => {
+    (even if there is an EXTRA contestant with flag_url)`, () => {
     const wrapper = create_wrapper()
     const data = {
         rounds: [{}],
@@ -221,4 +221,27 @@ test(`does not render crap if invalid flag_url is provided`, () => {
     createPlayoffs(data, wrapper)
     const nat_element = wrapper.querySelector('.player-wrapper .nationality')
     expect((nat_element).innerHTML).toBe('')
+})
+
+
+test(`renders html provided as "nationality_code"`, () => {
+    const wrapper = create_wrapper()
+    const data = {
+        rounds: [{}],
+        matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        contestants: {
+            c1: { players: [{
+                title: 'Pete',
+                nationality_code: '<span class="user-nationality" style="background: tomato">US</span>',
+            }]}
+        }
+    }
+
+    createPlayoffs(data, wrapper)
+    
+    expect(
+        getComputedStyle(
+            wrapper.querySelector('.player-wrapper .nationality .user-nationality')
+        ).background
+    ).toBe('tomato')
 })
