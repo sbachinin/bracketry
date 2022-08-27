@@ -3,21 +3,12 @@
  */
 
 global.ResizeObserver = require('resize-observer-polyfill')
-const { createPlayoffs } = require('../index.js').easyPlayoffs
 const finished_ucl = require('./ucl-finished.js').default
-
-
-const create_wrapper = () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-    return wrapper
-}
+const { deep_clone_object, create_wrapper, init } = require('./utils.js')
 
 
 test('highlights team history (add "highlighted" class to .match-wrapper and .side-wrapper)', () => {
-    const wrapper = create_wrapper()
-
-    createPlayoffs(finished_ucl, wrapper)
+    const { wrapper } = init(finished_ucl)
 
     const benfica_selector = `.side-wrapper[contestant-id='benfica']`
 
@@ -33,9 +24,7 @@ test('highlights team history (add "highlighted" class to .match-wrapper and .si
 
 
 test(`highlights next contestant's history after next click`, () => {
-    const wrapper = create_wrapper()
-
-    createPlayoffs(finished_ucl, wrapper)
+    const { wrapper } = init(finished_ucl)
 
     const benfica_selector = `.side-wrapper[contestant-id='benfica']`
     const real_selector = `.side-wrapper[contestant-id='real']`
@@ -54,9 +43,7 @@ test(`highlights next contestant's history after next click`, () => {
 
 
 test(`does not highlight when something other than '.side-wrapper' is clicked`, () => {
-    const wrapper = create_wrapper()
-
-    createPlayoffs(finished_ucl, wrapper)
+    const { wrapper } = init(finished_ucl)
 
     wrapper.querySelector('.matches-positioner')
         .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
@@ -76,9 +63,7 @@ test(`does not highlight when something other than '.side-wrapper' is clicked`, 
 
 
 test('unhighlights history after click on anything other than .side-wrapper', () => {
-    const wrapper = create_wrapper()
-
-    createPlayoffs(finished_ucl, wrapper)
+    const { wrapper } = init(finished_ucl)
 
     const benfica_selector = `.side-wrapper[contestant-id='benfica']`
     wrapper.querySelector(benfica_selector)
@@ -95,11 +80,9 @@ test('unhighlights history after click on anything other than .side-wrapper', ()
 
 
 test('highlights a contestant history when highlightContestantHistory is called with a valid contestant_id', () => {
-    const wrapper = create_wrapper()
+    const { wrapper, playoffs } = init(finished_ucl)
 
-    const pl = createPlayoffs(finished_ucl, wrapper)
-
-    pl.highlightContestantHistory('villarreal')
+    playoffs.highlightContestantHistory('villarreal')
 
     expect(
         wrapper.querySelectorAll(`.side-wrapper[contestant-id='villarreal'].highlighted`).length
@@ -108,11 +91,9 @@ test('highlights a contestant history when highlightContestantHistory is called 
 
 
 test('highlights a contestant history when highlightContestantHistory is called with a valid contestant_id', () => {
-    const wrapper = create_wrapper()
+    const { wrapper, playoffs } = init(finished_ucl)
 
-    const pl = createPlayoffs(finished_ucl, wrapper)
-
-    pl.highlightContestantHistory('villarreal')
+    playoffs.highlightContestantHistory('villarreal')
 
     const highlighted_side_wrappers = wrapper.querySelectorAll(`.side-wrapper.highlighted`)
     expect(highlighted_side_wrappers.length).toBe(3)
@@ -121,22 +102,18 @@ test('highlights a contestant history when highlightContestantHistory is called 
 })
 
 test('unhighlights when highlightContestantHistory is called with null', () => {
-    const wrapper = create_wrapper()
+    const { wrapper, playoffs } = init(finished_ucl)
 
-    const pl = createPlayoffs(finished_ucl, wrapper)
+    playoffs.highlightContestantHistory('villarreal')
 
-    pl.highlightContestantHistory('villarreal')
-
-    pl.highlightContestantHistory(null)
+    playoffs.highlightContestantHistory(null)
 
     expect(wrapper.querySelectorAll(`.side-wrapper.highlighted`).length).toBe(0)
 })
 
 
 test(`highlighted contestant remains highlighted when highlightContestantHistory is called with invalid arg`, () => {
-    const wrapper = create_wrapper()
-
-    const pl = createPlayoffs(finished_ucl, wrapper)
+    const { wrapper, playoffs: pl } = init(finished_ucl)
 
     pl.highlightContestantHistory('villarreal')
 
@@ -152,9 +129,7 @@ test(`highlighted contestant remains highlighted when highlightContestantHistory
 })
 
 test('last highlighted match has a "last-highlighted" class (and there is only one such match)', () => {
-    const wrapper = create_wrapper()
-
-    const pl = createPlayoffs(finished_ucl, wrapper)
+    const { wrapper, playoffs: pl } = init(finished_ucl)
 
     pl.highlightContestantHistory('villarreal')
 
@@ -167,9 +142,7 @@ test('last highlighted match has a "last-highlighted" class (and there is only o
 
 
 test('"last-highlighted" class is removed from match-wrapper after unhighlight', () => {
-    const wrapper = create_wrapper()
-
-    const pl = createPlayoffs(finished_ucl, wrapper)
+    const { wrapper, playoffs: pl } = init(finished_ucl)
 
     pl.highlightContestantHistory('villarreal')
     pl.highlightContestantHistory(null)
@@ -181,9 +154,7 @@ test('"last-highlighted" class is removed from match-wrapper after unhighlight',
 
 test(`".line-wrapper" elements of a .highlighted (but not .last-highlighted) match
     have style.color === options.highlightedConnectionLinesColor`, () => {
-    const wrapper = create_wrapper()
-
-    const pl = createPlayoffs(finished_ucl, wrapper, { highlightedConnectionLinesColor: 'navy' })
+    const { wrapper, playoffs: pl } = init(finished_ucl, { highlightedConnectionLinesColor: 'navy' })
 
     pl.highlightContestantHistory('villarreal')
 
@@ -205,9 +176,7 @@ test(`".line-wrapper" elements of a .highlighted (but not .last-highlighted) mat
 
 test(`".line-wrapper" elements of last highlighted match have style.color === options.connectionLinesColor
 (it unhighlights a right pseudo border which is actually a box-shadow)`, () => {
-    const wrapper = create_wrapper()
-
-    const pl = createPlayoffs(finished_ucl, wrapper, { connectionLinesColor: 'red' })
+    const { wrapper, playoffs: pl } = init(finished_ucl, { connectionLinesColor: 'red' })
 
     pl.highlightContestantHistory('villarreal')
 
@@ -218,9 +187,7 @@ test(`".line-wrapper" elements of last highlighted match have style.color === op
 
 
 test(`does not highlight contestant's matches ON CLICK when options.onMatchClick is defined`, () => {
-    const wrapper = create_wrapper()
-
-    createPlayoffs(finished_ucl, wrapper, { onMatchClick: () => {} })
+    const { wrapper } = init(finished_ucl, { onMatchClick: () => {} })
 
     wrapper.querySelector(`.side-wrapper[contestant-id='benfica']`)
         .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
@@ -229,9 +196,7 @@ test(`does not highlight contestant's matches ON CLICK when options.onMatchClick
 })
 
 test(`does not highlight contestant's matches ON CLICK when options.onMatchSideClick is defined`, () => {
-    const wrapper = create_wrapper()
-
-    createPlayoffs(finished_ucl, wrapper, { onMatchSideClick: () => {} })
+    const { wrapper } = init(finished_ucl, { onMatchSideClick: () => {} })
 
     wrapper.querySelector(`.side-wrapper[contestant-id='benfica']`)
         .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
@@ -241,9 +206,7 @@ test(`does not highlight contestant's matches ON CLICK when options.onMatchSideC
 
 test(`can highlight contestant's matches on highlightContestantHistory() call
     when options.onMatchClick and options.onMatchSideClick is provided`, () => {
-    const wrapper = create_wrapper()
-
-    const pl = createPlayoffs(finished_ucl, wrapper, { onMatchClick: () => {}, onMatchSideClick: () => {} })
+    const { wrapper, playoffs: pl } = init(finished_ucl, { onMatchClick: () => {}, onMatchSideClick: () => {} })
 
     pl.highlightContestantHistory('benfica')
 
@@ -263,12 +226,6 @@ test(`can highlight contestant's matches on highlightContestantHistory() call
 
 
 
-const deep_clone_object = obj => {
-    if (obj === null || typeof obj !== 'object') return obj
-    let temp = new obj.constructor()
-    for (let key in obj) { if (obj.hasOwnProperty(key)) { temp[key] = deep_clone_object(obj[key]) }}
-    return temp
-}
 const spoilt_ucl = deep_clone_object(finished_ucl)
 spoilt_ucl.matches.forEach(m => { // i need matches with some contestant_ids missing
     m.sides.forEach(s => {
@@ -285,19 +242,14 @@ spoilt_ucl.matches.forEach(m => { // i need matches with some contestant_ids mis
 
 
 test(`does not highlight anything when a side without [contestant-id] is clicked`, () => {
-    const wrapper = create_wrapper()
-
-    createPlayoffs(spoilt_ucl, wrapper)
-
+    const { wrapper } = init(spoilt_ucl)
     const anonymous_side_wrappers = wrapper.querySelectorAll('.side-wrapper:not([contestant-id])')
     anonymous_side_wrappers[0].dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
     expect(wrapper.querySelectorAll('.side-wrapper.highlighted').length).toBe(0)
 })
 
 test(`unhighlights when a side without [contestant-id] is clicked`, () => {
-    const wrapper = create_wrapper()
-
-    const pl = createPlayoffs(spoilt_ucl, wrapper)
+    const { wrapper, playoffs: pl } = init(spoilt_ucl)
 
     pl.highlightContestantHistory('benfica')
     expect(wrapper.querySelectorAll('.side-wrapper.highlighted').length).toBe(2)
@@ -310,12 +262,10 @@ test(`unhighlights when a side without [contestant-id] is clicked`, () => {
 
 
 test(`click outside playoffs should not unhighlight`, () => {
-    const wrapper = create_wrapper()
-    const some_external_div = create_wrapper()
-
     expect.assertions(1)
 
-    const pl = createPlayoffs(spoilt_ucl, wrapper)
+    const { wrapper, playoffs: pl } = init(spoilt_ucl)
+    const some_external_div = create_wrapper()
 
     pl.highlightContestantHistory('benfica')
 

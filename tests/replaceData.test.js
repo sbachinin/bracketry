@@ -3,83 +3,69 @@
  */
 
 global.ResizeObserver = require('resize-observer-polyfill')
-const { createPlayoffs } = require('../index.js').easyPlayoffs
 const finished_ucl = require('./ucl-finished.js').default
-
-const init = () => {
-    document.body.innerHTML = ''
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-    return wrapper
-}
+const { deep_clone_object, init } = require('./utils.js')
 
 
 test('draws new data supplied via replaceData', () => {
-    const wrapper = init()
-
-    const pl = createPlayoffs(finished_ucl, wrapper)
+    const { wrapper, playoffs } = init(finished_ucl)
 
     const dumb_test_data = { rounds: [{ name: 'round 1' }], matches: [], contestants: {} }
 
-    pl.replaceData(dumb_test_data)
+    playoffs.replaceData(dumb_test_data)
 
-    expect(document.querySelectorAll('.round-wrapper').length).toBe(1)
-    expect(document.querySelectorAll('.round-name')[0].textContent).toBe('round 1')
-    expect(document.querySelectorAll('.match-wrapper[match-id]').length).toBe(0)
+    expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(1)
+    expect(wrapper.querySelectorAll('.round-name')[0].textContent).toBe('round 1')
+    expect(wrapper.querySelectorAll('.match-wrapper[match-id]').length).toBe(0)
 })
 
 test('getAllData returns the latest data supplied via replaceData', () => {
-    const wrapper = init()
-    const pl = createPlayoffs(finished_ucl, wrapper)
+    const { playoffs } = init(finished_ucl)
 
     const dumb_test_data = { rounds: [{ name: 'round 1' }], matches: [], contestants: {} }
-    pl.replaceData(dumb_test_data)
+    playoffs.replaceData(dumb_test_data)
 
-    expect(pl.getAllData()).toEqual(dumb_test_data)
+    expect(playoffs.getAllData()).toEqual(dumb_test_data)
 })
 
 
 test(`does not keep old properties which aren't present in new data supplied via replaceData`, () => {
-    const wrapper = init()
-    const pl = createPlayoffs(finished_ucl, wrapper)
+    const { playoffs } = init(finished_ucl)
 
     const dumb_test_data = { rounds: [{ name: 'round 1' }] }
-    pl.replaceData(dumb_test_data)
+    playoffs.replaceData(dumb_test_data)
 
-    expect(pl.getAllData().matches).toBe(undefined)
-    expect(pl.getAllData().contestants).toBe(undefined)
+    expect(playoffs.getAllData().matches).toBe(undefined)
+    expect(playoffs.getAllData().contestants).toBe(undefined)
 })
 
 test(`does not mutate data passed to replaceData`, () => {
-    const wrapper = init()
-    const pl = createPlayoffs(finished_ucl, wrapper)
+    const { playoffs } = init({ rounds: [{ name: 'round 1' }] })
 
-    const dumb_test_data = { rounds: [{ name: 'round 1' }] }
-    pl.replaceData(dumb_test_data)
+    const cloned_ucl = deep_clone_object(finished_ucl)
+    playoffs.replaceData(finished_ucl)
 
-    expect(dumb_test_data).toEqual({ rounds: [{ name: 'round 1' }] })
+    expect(finished_ucl).toEqual(cloned_ucl)
 })
 
 
 
 test(`ignores subsequent mutations of user data passed to replaceData`, () => {
-    const wrapper = init()
-
     const dumb_test_data = {
         rounds: [{ name: 'round 1' }],
         matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1', score: [{ main_score: 1 }] }] }],
         contestants: { c1: { players: [] } }
     }
 
-    const pl = createPlayoffs(finished_ucl, wrapper)
+    const { wrapper, playoffs } = init(dumb_test_data)
 
-    pl.replaceData(dumb_test_data)
+    playoffs.replaceData(dumb_test_data)
 
     dumb_test_data.contestants = NaN
     dumb_test_data.rounds[0].name = 'bad round name'
     dumb_test_data.matches[0].sides[0].score[0].main_score = 100000000
 
-    expect(pl.getAllData()).toEqual({
+    expect(playoffs.getAllData()).toEqual({
         rounds: [{ name: 'round 1' }],
         matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1', score: [{ main_score: 1 }] }] }],
         contestants: { c1: { players: [] } }
@@ -92,18 +78,16 @@ test(`ignores subsequent mutations of user data passed to replaceData`, () => {
 
 
 test('keeps an old data when replaceData is called with critically invalid data (and keeps DOM intact)', () => {
-    const wrapper = init()
+    const { wrapper, playoffs } = init(finished_ucl)
 
-    const pl = createPlayoffs(finished_ucl, wrapper)
+    playoffs.replaceData('')
+    playoffs.replaceData({ rounds: null })
+    playoffs.replaceData({ rounds: [], matches: '' })
+    playoffs.replaceData({ rounds: [], matches: [ { id: 'm1', round_index: 1, order: 1, sides: NaN } ] })
 
-    pl.replaceData('')
-    pl.replaceData({ rounds: null })
-    pl.replaceData({ rounds: [], matches: '' })
-    pl.replaceData({ rounds: [], matches: [ { id: 'm1', round_index: 1, order: 1, sides: NaN } ] })
-
-    expect(pl.getAllData()).toEqual(finished_ucl)
+    expect(playoffs.getAllData()).toEqual(finished_ucl)
     expect(
-        document.querySelectorAll('.round-wrapper')[1]
+        wrapper.querySelectorAll('.round-wrapper')[1]
             .querySelectorAll('.match-wrapper')[1]
                 .querySelector('.player-title')
                     .textContent
@@ -113,16 +97,14 @@ test('keeps an old data when replaceData is called with critically invalid data 
 
 
 test(`resets navigation state when calling replaceData`, () => {
-    const wrapper = init()
+    const { wrapper, playoffs } = init(finished_ucl, { visibleRoundsCount: 2 })
 
-    const pl = createPlayoffs(finished_ucl, wrapper, { visibleRoundsCount: 2 })
-
-    pl.moveToLastRound()
-    expect(pl.getNavigationState().baseRoundIndex).toBe(2)
+    playoffs.moveToLastRound()
+    expect(playoffs.getNavigationState().baseRoundIndex).toBe(2)
     
-    pl.replaceData({ rounds: [ {}, {}, {}, {}, {}, {} ]})
+    playoffs.replaceData({ rounds: [ {}, {}, {}, {}, {}, {} ]})
     
-    expect(pl.getNavigationState().baseRoundIndex).toBe(0)
+    expect(playoffs.getNavigationState().baseRoundIndex).toBe(0)
     expect(
         getComputedStyle(
             wrapper.querySelectorAll('.round-wrapper')[0]

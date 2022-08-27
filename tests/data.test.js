@@ -3,47 +3,25 @@
  */
 
 global.ResizeObserver = require('resize-observer-polyfill')
-const { createPlayoffs } = require('../index.js').easyPlayoffs
 const finished_ucl = require('./ucl-finished.js').default
-
-const init = () => {
-    document.body.innerHTML = ''
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-    return wrapper
-}
-
+const { init, deep_clone_object } = require('./utils.js')
 
 
 test(`does not mutate data which wass passed to createPlayoffs`, () => {
-    const wrapper = init()
-
-    const dumb_test_data = { rounds: [{ name: 'round 1' }] }
-
-    createPlayoffs(
-        dumb_test_data,
-        wrapper,
-        {}
-    )
-
-    expect(dumb_test_data).toEqual({ rounds: [{ name: 'round 1' }] })
+    const cloned_ucl = deep_clone_object(finished_ucl)
+    init(finished_ucl)
+    expect(finished_ucl).toEqual(cloned_ucl)
 })
 
 
 test(`ignores subsequent mutations of user data passed to createPlayoffs`, () => {
-    const wrapper = init()
-
     const dumb_test_data = {
         rounds: [{ name: 'round 1' }],
         matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1', score: [{ main_score: 1 }] }] }],
         contestants: { c1: { players: [] } }
     }
 
-    const pl = createPlayoffs(
-        dumb_test_data,
-        wrapper,
-        {}
-    )
+    const { wrapper, playoffs: pl } = init(dumb_test_data)
 
     dumb_test_data.contestants = NaN
     dumb_test_data.rounds[0].name = 'bad round name'
@@ -64,15 +42,7 @@ test(`ignores subsequent mutations of user data passed to createPlayoffs`, () =>
 
 
 test('getAllData returns an exact copy of original user data', () => {
-    const wrapper = init()
-
     const ucl_with_nameless_rounds = { ...finished_ucl, rounds: finished_ucl.rounds.map(r => ({})) }
-
-    const { getAllData } = createPlayoffs(
-        ucl_with_nameless_rounds,
-        wrapper,
-        {}
-    )
-
-    expect(getAllData()).toEqual(ucl_with_nameless_rounds)
+    const { playoffs: pl } = init(ucl_with_nameless_rounds)
+    expect(pl.getAllData()).toEqual(ucl_with_nameless_rounds)
 })

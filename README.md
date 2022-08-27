@@ -48,3 +48,6 @@ If called with a valid contestant_id, it will highlight matches *even if options
 *(because if there IS a contestant_id, a title is expected to be found in contestants[contestant_id].players[i].title)*
 
 ## contestants
+
+### entry_status: can be HTML
+### nationality_code: can be HTML
