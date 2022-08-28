@@ -127,12 +127,29 @@ test('unhighlights when highlightContestantHistory is called with null', () => {
 })
 
 
+test('unhighlights when highlightContestantHistory is called with irrelevant string', () => {
+    const { wrapper, playoffs } = init(finished_ucl)
+    playoffs.highlightContestantHistory('villarreal')
+    playoffs.highlightContestantHistory('nonsense')
+    expect(wrapper.querySelectorAll(`.side-wrapper.highlighted`).length).toBe(0)
+})
+
+
+
+test(`unhighlights when highlightContestantHistory is called with an empty string`, () => {
+    const { wrapper, playoffs } = init(finished_ucl)
+    playoffs.highlightContestantHistory('villarreal')
+    playoffs.highlightContestantHistory('')
+    expect(wrapper.querySelectorAll(`.side-wrapper.highlighted`).length).toBe(0)
+})
+
+
+
 test(`highlighted contestant remains highlighted when highlightContestantHistory is called with invalid arg`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
 
     pl.highlightContestantHistory('villarreal')
 
-    pl.highlightContestantHistory('nonsense')
     pl.highlightContestantHistory(true)
     pl.highlightContestantHistory(NaN)
     pl.highlightContestantHistory([])
@@ -256,12 +273,25 @@ spoilt_ucl.matches.forEach(m => { // i need matches with some contestant_ids mis
 
 
 
-test(`does not highlight anything when a side without [contestant-id] is clicked`, () => {
+test(`does not highlight anonymous (contestant-less) sides when a side without [contestant-id] is clicked`, () => {
     const { wrapper } = init(spoilt_ucl)
-    const anonymous_side_wrappers = wrapper.querySelectorAll('.side-wrapper:not([contestant-id])')
-    anonymous_side_wrappers[0].dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+    const anonymous_side_wrapper = wrapper.querySelector('.side-wrapper:not([contestant-id])')
+    anonymous_side_wrapper.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
     expect(wrapper.querySelectorAll('.side-wrapper.highlighted').length).toBe(0)
 })
+
+test(`does not highlight anonymous (contestant-less) sides when highlightContestantHistory is called with null`, () => {
+    const { wrapper, playoffs: pl } = init(spoilt_ucl)
+    pl.highlightContestantHistory(null)
+    expect(wrapper.querySelectorAll('.side-wrapper.highlighted').length).toBe(0)
+})
+
+test(`does not highlight anonymous (contestant-less) sides when highlightContestantHistory is called with empty string`, () => {
+    const { wrapper, playoffs: pl } = init(spoilt_ucl)
+    pl.highlightContestantHistory('')
+    expect(wrapper.querySelectorAll('.side-wrapper.highlighted').length).toBe(0)
+})
+
 
 test(`unhighlights when a side without [contestant-id] is clicked`, () => {
     const { wrapper, playoffs: pl } = init(spoilt_ucl)
