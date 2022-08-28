@@ -62,7 +62,7 @@ test(`does not highlight when something other than '.side-wrapper' is clicked`, 
 })
 
 
-test('unhighlights history after click on anything other than .side-wrapper', () => {
+test('unhighlights history after click within .matches-positioner but not .side-wrapper', () => {
     const { wrapper } = init(finished_ucl)
 
     const benfica_selector = `.side-wrapper[contestant-id='benfica']`
@@ -71,12 +71,27 @@ test('unhighlights history after click on anything other than .side-wrapper', ()
 
     expect(wrapper.querySelectorAll(benfica_selector + '.highlighted').length).toBe(2)
 
-    wrapper.querySelector('.matches-positioner')
+    wrapper.querySelector('.round-wrapper')
         .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
 
     expect(wrapper.querySelectorAll(benfica_selector + '.highlighted').length).toBe(0)
 })
 
+
+test('does not unhighlight history after click outside .matches-positioner', () => {
+    const { wrapper } = init(finished_ucl)
+
+    const benfica_selector = `.side-wrapper[contestant-id='benfica']`
+    wrapper.querySelector(benfica_selector)
+        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+
+    expect(wrapper.querySelectorAll(benfica_selector + '.highlighted').length).toBe(2)
+
+    wrapper.querySelector('.all-but-buttons-header')
+        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+
+    expect(wrapper.querySelectorAll(benfica_selector + '.highlighted').length).toBe(2)
+})
 
 
 test('highlights a contestant history when highlightContestantHistory is called with a valid contestant_id', () => {
