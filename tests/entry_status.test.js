@@ -147,19 +147,3 @@ test(`renders html provided as entry_status`, () => {
     ).toBe('tomato')
 })
 
-
-test(`width of an .entry_status element is a product of matchFontSize and entryStatusWidthRatio`, () => {
-    const data = {
-        rounds: [{}],
-        matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
-        contestants: {
-            c1: { entry_status: 'WC', players: [{ title: 'Pete' }] }
-        }
-    }
-    const { wrapper } = init(data, { matchFontSize: 14, entryStatusWidthRatio: 3 } )
-    expect(
-        getComputedStyle(
-            wrapper.querySelector('.side-info-item.entry-status')
-        ).width
-    ).toBe('42px')
-})
