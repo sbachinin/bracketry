@@ -35,7 +35,7 @@ test('survives non-existent options', () => {
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {
-                contestant1: { players: [ { title: 'fdf', nationality_code: 'fdsf', flag_url: false } ] }
+                contestant1: { players: [ { title: 'Josh' } ] }
             }
         },
         wrapper,

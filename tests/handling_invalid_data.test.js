@@ -229,7 +229,7 @@ test('survives when player has non-string title', () => {
 })
 
 
-test('survives when player has non-string nationality_code', () => {
+test('survives when player has non-string nationality', () => {
     const wrapper = document.createElement('div')
     document.body.append(wrapper)
 
@@ -244,31 +244,7 @@ test('survives when player has non-string nationality_code', () => {
             }
             ],
             contestants: {
-                contestant1: { players: [{ title: 'fdf', nationality_code: false }] }
-            }
-        },
-        wrapper,
-        {}
-    )
-    expect(true).toBe(true)
-})
-
-test('survives when player has non-string flag_url', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs(
-        {
-            rounds: [{}],
-            matches: [{
-                id: '32323', round_index: 0, order: 0,
-                sides: [{ contestant_id: 'contestant1', score: [] }]
-            }
-            ],
-            contestants: {
-                contestant1: { players: [{ title: 'fdf', nationality_code: 'fdsf', flag_url: false }] }
+                contestant1: { players: [{ title: 'fdf', nationality: false }] }
             }
         },
         wrapper,

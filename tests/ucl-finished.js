@@ -600,7 +600,7 @@ exports.default = {
             "players": [
                 {
                     "title": "Liverpool",
-                    "flag_url": "https://sbachinin.github.io/easy-playoffs-site/football_flags/liverpool.png"
+                    "nationality": "liverpool"
                 }
             ]
         },
@@ -608,7 +608,7 @@ exports.default = {
             "players": [
                 {
                     "title": "Real Madrid",
-                    "flag_url": "https://sbachinin.github.io/easy-playoffs-site/football_flags/real.png"
+                    "nationality": "real"
                 }
             ]
         },
@@ -616,7 +616,7 @@ exports.default = {
             "players": [
                 {
                     "title": "Villarreal",
-                    "flag_url": "https://sbachinin.github.io/easy-playoffs-site/football_flags/villarreal.png"
+                    "nationality": "villarreal"
                 }
             ]
         },
@@ -624,7 +624,7 @@ exports.default = {
             "players": [
                 {
                     "title": "Manchester City",
-                    "flag_url": "https://sbachinin.github.io/easy-playoffs-site/football_flags/city.png"
+                    "nationality": "city"
                 }
             ]
         },
@@ -632,7 +632,7 @@ exports.default = {
             "players": [
                 {
                     "title": "Benfica",
-                    "flag_url": "https://sbachinin.github.io/easy-playoffs-site/football_flags/benfica.png"
+                    "nationality": "benfica"
                 }
             ]
         },
@@ -640,7 +640,7 @@ exports.default = {
             "players": [
                 {
                     "title": "Bayern Munich",
-                    "flag_url": "https://sbachinin.github.io/easy-playoffs-site/football_flags/bayern.png"
+                    "nationality": "bayern"
                 }
             ]
         },
@@ -648,7 +648,7 @@ exports.default = {
             "players": [
                 {
                     "title": "Atletico",
-                    "flag_url": "https://sbachinin.github.io/easy-playoffs-site/football_flags/atletico.png"
+                    "nationality": "atletico"
                 }
             ]
         },
@@ -656,7 +656,7 @@ exports.default = {
             "players": [
                 {
                     "title": "Chelsea",
-                    "flag_url": "https://sbachinin.github.io/easy-playoffs-site/football_flags/chelsea.png"
+                    "nationality": "chelsea"
                 }
             ]
         },
@@ -664,7 +664,7 @@ exports.default = {
             "players": [
                 {
                     "title": "Ajax",
-                    "flag_url": "https://sbachinin.github.io/easy-playoffs-site/football_flags/ajax.png"
+                    "nationality": "ajax"
                 }
             ]
         },
@@ -672,7 +672,7 @@ exports.default = {
             "players": [
                 {
                     "title": "Inter",
-                    "flag_url": "https://sbachinin.github.io/easy-playoffs-site/football_flags/inter.png"
+                    "nationality": "inter"
                 }
             ]
         },
@@ -680,7 +680,7 @@ exports.default = {
             "players": [
                 {
                     "title": "Juventus",
-                    "flag_url": "https://sbachinin.github.io/easy-playoffs-site/football_flags/juventus.png"
+                    "nationality": "juventus"
                 }
             ]
         },
@@ -688,7 +688,7 @@ exports.default = {
             "players": [
                 {
                     "title": "Salzburg",
-                    "flag_url": "https://sbachinin.github.io/easy-playoffs-site/football_flags/salzburg.png"
+                    "nationality": "salzburg"
                 }
             ]
         },
@@ -696,7 +696,7 @@ exports.default = {
             "players": [
                 {
                     "title": "Sporting",
-                    "flag_url": "https://sbachinin.github.io/easy-playoffs-site/football_flags/sporting.png"
+                    "nationality": "sporting"
                 }
             ]
         },
@@ -704,7 +704,7 @@ exports.default = {
             "players": [
                 {
                     "title": "Manchester United",
-                    "flag_url": "https://sbachinin.github.io/easy-playoffs-site/football_flags/mu.png"
+                    "nationality": "mu"
                 }
             ]
         },
@@ -712,7 +712,7 @@ exports.default = {
             "players": [
                 {
                     "title": "Lille",
-                    "flag_url": "https://sbachinin.github.io/easy-playoffs-site/football_flags/lille.png"
+                    "nationality": "lille"
                 }
             ]
         },
@@ -720,7 +720,7 @@ exports.default = {
             "players": [
                 {
                     "title": "PSG",
-                    "flag_url": "https://sbachinin.github.io/easy-playoffs-site/football_flags/psg.png"
+                    "nationality": "psg"
                 }
             ]
         }

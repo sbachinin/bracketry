@@ -22,7 +22,7 @@ test('js survives if non-element wrapper is provided', () => {
             }
             ],
             contestants: {
-                contestant1: { players: [{ title: 'fdf', nationality_code: 'fdsf', flag_url: false }] }
+                contestant1: { players: [{ title: 'Josh' }] }
             }
         },
         null,

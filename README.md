@@ -49,5 +49,8 @@ If called with a valid contestant_id, it will highlight matches *even if options
 
 ## contestants
 
-### entry_status: can be HTML
-### nationality_code: can be HTML
+### entry_status:
+    this value will be passed to "getEntryStatusHTML" function that you can provide in options.
+    (If you provide just this value and NO "getEntryStatusHTML", this value will be rendered as such. Though mind the width of an entry_status. If you provide just a text like 'LL' or '14', it will cause horizontal misalignment withing a match element. Thus it's recommended to provide an HTML with an explicit width. Storing HTML in a data doesn't seem reasonable so "getEntryStatusHTML" is given to you to transform entry_status data to HTML. getEntryStatusHTML's ?th argument will be the entry_status of a current player)
+### nationality:
+    (same rules as for entry status)
