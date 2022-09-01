@@ -68,3 +68,34 @@ test(`renders html provided as "nationality"`, () => {
         ).background
     ).toBe('tomato')
 })
+
+
+
+
+
+
+test(`calls getNationalityHTML for each player which has nationality`, () => {
+    const wrapper = create_wrapper()
+
+    getNationalityHTML = jest.fn()
+
+    const data = {
+        rounds: [{}],
+        matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1' }, { contestant_id: 'c2' }] }],
+        contestants: {
+            c1: { players: [{ title: 'Pete', nationality: 'US' }] },
+            c2: { players: [
+                { title: 'Pavel' },
+                { title: 'Mario', nationality: 'IT' }
+            ]}
+        }
+    }
+
+    createPlayoffs(data, wrapper, { getNationalityHTML })
+
+    expect(getNationalityHTML).toBeCalledTimes(2)
+    expect(getNationalityHTML.mock.calls[0][0]).toMatch(`US`)
+    expect(getNationalityHTML.mock.calls[1][0]).toMatch(`IT`)
+
+})
+
