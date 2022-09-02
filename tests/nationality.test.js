@@ -114,7 +114,7 @@ test(`calls getNationalityHTML with nationality of a player`, () => {
 
     init(data, { getNationalityHTML })
 
-    expect(getNationalityHTML).toBeCalledWith('US')
+    expect(getNationalityHTML.mock.calls[0][0]).toBe('US')
 })
 
 
@@ -130,7 +130,7 @@ test(`calls getNationalityHTML with nationality of a player, even if it's not a 
 
     init(data, { getNationalityHTML })
 
-    expect(getNationalityHTML).toBeCalledWith({ value: 'asshole' })
+    expect(getNationalityHTML.mock.calls[0][0]).toEqual({ value: 'asshole' })
 })
 
 
@@ -172,7 +172,7 @@ test(`renders contentful match if non-function getNationalityHTML is provided`, 
 
     const { wrapper } = init(data, { getNationalityHTML: [] })
     expect(wrapper.querySelector('.match-status').textContent).toBe('Scheduled')
-    expect(consoleWarn.mock.calls[0][0]).toMatch(`Impossible value provided for getNationalityHTML option`)
+    expect(consoleWarn.mock.calls[0][0]).toMatch(`Impossible value provided for "getNationalityHTML" option`)
 })
 
 
@@ -190,6 +190,26 @@ test(`renders contentful match if getNationalityHTML throws`, () => {
     expect(consoleWarn.mock.calls[0][0]).toMatch(`Failed to get a string from getNationalityHTML`)
 })
 
+
+test(`calls getNationalityHTML with context object as 2nd arg and data as 3rd`, () => {
+    getNationalityHTML = jest.fn()
+    const data = {
+        rounds: [{}],
+        matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        contestants: {
+            c1: { players: [{ title: 'Pete', nationality: 'US' }] }
+        }
+    }
+
+    init(data, { getNationalityHTML })
+
+    expect(getNationalityHTML.mock.calls[0][1]).toEqual({
+        matchId: 'm1',
+        contestantId: 'c1',
+        playerIndex: 0
+    })
+    expect(getNationalityHTML.mock.calls[0][2]).toEqual(data)
+})
 
 
 

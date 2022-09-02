@@ -44,7 +44,7 @@ type Options = {
     getMatchElement: (round_index: number, match_order: number, all_data: Data) => Element,
     getNationalityHTML: (
         nationality: any,
-        context: { match_id: string, contestant_id: string, player_index: number },
+        context: { matchId: string, contestantId: string, playerIndex: number },
         data: Data
     ) => string
 }

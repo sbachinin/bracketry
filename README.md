@@ -78,9 +78,9 @@ Any value that you provided as "nationality" for a current player (`contestants[
 Object that tells you where nationality is rendered.  
 Contatins following properties:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; match_id (string)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contestant_id (string)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; player_index (number)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; matchId (string)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contestantId (string)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; playerIndex (number)
 
 `data`
 
