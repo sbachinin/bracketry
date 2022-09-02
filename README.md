@@ -113,3 +113,5 @@ If no "nationality" in data, getNationalityHTML will be called for every player 
 You can use the nationality field however you want.  
 You can use getNationalityHTML as just a way to _inject something into the 2nd field from the left_.  
 What you inject can be an avatar of a player for instance.
+
+`getNationalityHTML will be ignored when passed to **applyNewOptions**`
