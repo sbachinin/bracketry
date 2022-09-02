@@ -70,9 +70,11 @@ test(`renders html provided as player's nationality (when no options.getNational
         rounds: [{}],
         matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
         contestants: {
-            c1: { players: [{
-                nationality: '<span class="user-nationality" style="width: 36px">US</span>',
-            }]}
+            c1: {
+                players: [{
+                    nationality: '<span class="user-nationality" style="width: 36px">US</span>',
+                }]
+            }
         }
     }
 
@@ -139,14 +141,18 @@ test(`calls getNationalityHTML for ALL players, even those with missing or inval
         rounds: [{}],
         matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1' }, { contestant_id: 'c2' }] }],
         contestants: {
-            c1: { players: [
-                { title: 'Pete', nationality: 'US' },
-                { title: 'Ivan' }
-            ]},
-            c2: { players: [
-                { title: 'Pavel', nationality: {} },
-                { title: 'Mario', nationality: 'IT' }
-            ]}
+            c1: {
+                players: [
+                    { title: 'Pete', nationality: 'US' },
+                    { title: 'Ivan' }
+                ]
+            },
+            c2: {
+                players: [
+                    { title: 'Pavel', nationality: {} },
+                    { title: 'Mario', nationality: 'IT' }
+                ]
+            }
         }
     }
 
@@ -179,7 +185,7 @@ test(`renders contentful match if getNationalityHTML throws`, () => {
         }
     }
 
-    const { wrapper } = init(data, { getNationalityHTML: () => { very.bad() }})
+    const { wrapper } = init(data, { getNationalityHTML: () => { very.bad() } })
     expect(wrapper.querySelector('.match-status').textContent).toBe('Scheduled')
     expect(consoleWarn.mock.calls[0][0]).toMatch(`Failed to get a string from getNationalityHTML`)
 })
@@ -208,7 +214,7 @@ test(`injects the return value of getNationalityHTML even if player has no natio
         }
     }
 
-    const { wrapper } = init(data, { getNationalityHTML: n => `I am an asshole`})
+    const { wrapper } = init(data, { getNationalityHTML: n => `I am an asshole` })
     expect(wrapper.querySelector('.player-wrapper .nationality').innerHTML).toBe('I am an asshole')
 })
 
@@ -221,7 +227,7 @@ test(`injects the return value of getNationalityHTML even if player's nationalit
         }
     }
 
-    const { wrapper } = init(data, { getNationalityHTML: n => `I am an asshole`})
+    const { wrapper } = init(data, { getNationalityHTML: n => `I am an asshole` })
     expect(wrapper.querySelector('.player-wrapper .nationality').innerHTML).toBe(`I am an asshole`)
     expect(consoleWarn.mock.calls[0][0]).toMatch(`If nationality is provided for a player, it must be a string`)
 })
@@ -231,14 +237,18 @@ test(`injects a valid return value of getNationalityHTML to ALL players`, () => 
         rounds: [{}],
         matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1' }, { contestant_id: 'c2' }] }],
         contestants: {
-            c1: { players: [
-                { title: 'Pete', nationality: 'US' },
-                { title: 'Ivan' }
-            ]},
-            c2: { players: [
-                { title: 'Pavel', nationality: 'PO' },
-                { title: 'Mario', nationality: 'IT' }
-            ]}
+            c1: {
+                players: [
+                    { title: 'Pete', nationality: 'US' },
+                    { title: 'Ivan' }
+                ]
+            },
+            c2: {
+                players: [
+                    { title: 'Pavel', nationality: 'PO' },
+                    { title: 'Mario', nationality: 'IT' }
+                ]
+            }
         }
     }
 

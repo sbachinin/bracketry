@@ -42,6 +42,11 @@ type Options = {
     onMatchClick: (match: Match) => void,
     onMatchSideClick: (contestant: Contestant, contestant_id: string, match: Match) => void,
     getMatchElement: (round_index: number, match_order: number, all_data: Data) => Element,
+    getNationalityHTML: (
+        nationality: any,
+        context: { match_id: string, contestant_id: string, player_index: number },
+        data: Data
+    ) => string
 }
 
 type OptionsMap = Partial<Options>
