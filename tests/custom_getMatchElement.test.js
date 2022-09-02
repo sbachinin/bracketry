@@ -3,40 +3,30 @@
  */
 
 global.ResizeObserver = require('resize-observer-polyfill')
-const { easyPlayoffs } = require('../index.js');
+const { init } = require('./utils.js')
 const finished_ucl = require('./ucl-finished.js').default
 
-const init = () => {
-    document.body.innerHTML = ''
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-    return wrapper
-}
+const consoleWarn = jest.spyOn(console, 'warn')
+afterEach(jest.clearAllMocks)
 
-test('options.getMatchElement gets called for each match', () => {
-    const wrapper = init()
+
+test(`options.getMatchElement gets called for each match`, () => {
     const getMatchElement = jest.fn()
 
-    easyPlayoffs.createPlayoffs(
+    init(
         { rounds: [{}, {}, {}, {}] },
-        wrapper,
         { getMatchElement }
     )
 
     expect(getMatchElement).toBeCalledTimes(15)
 })
 
-test('options.getMatchElement gets called with certain arguments', () => {
-    const wrapper = init()
+test(`options.getMatchElement gets called with certain arguments`, () => {
     const getMatchElement = jest.fn()
 
     const data = { rounds: [{}, {}, {}, {}] }
 
-    easyPlayoffs.createPlayoffs(
-        data,
-        wrapper,
-        { getMatchElement }
-    )
+    init(data, { getMatchElement })
 
     expect(getMatchElement).toHaveBeenNthCalledWith(
         1,
@@ -54,7 +44,6 @@ test('options.getMatchElement gets called with certain arguments', () => {
 
 
 test(`populates .match-body element with whatever is returned from user's getMatchElement`, () => {
-    const wrapper = init()
     const getMatchElement = jest.fn(() => {
         const div = document.createElement('div')
         div.className = 'custom-match-element'
@@ -62,9 +51,8 @@ test(`populates .match-body element with whatever is returned from user's getMat
         return div
     })
 
-    easyPlayoffs.createPlayoffs(
+    const { wrapper } = init(
         { rounds: [{}, {}, {}, {}] },
-        wrapper,
         { getMatchElement }
     )
 
@@ -76,51 +64,29 @@ test(`populates .match-body element with whatever is returned from user's getMat
 
 
 test(`Renders default matches elements if options.getMatchElement is not a function`, () => {
-    const wrapper = init()
-
-    easyPlayoffs.createPlayoffs(
-        finished_ucl,
-        wrapper,
-        { getMatchElement: NaN }
-    )
-
+    const { wrapper } = init(finished_ucl, { getMatchElement: NaN })
     expect(wrapper.querySelectorAll('.match-wrapper[match-id]').length).toBe(15)
 })
 
 
 test(`Renders a string if options.getMatchElement returns a string`, () => {
-    const wrapper = init()
-
-    easyPlayoffs.createPlayoffs(
-        finished_ucl,
-        wrapper,
-        { getMatchElement: () => 'just a string' }
-    )
-
+    const { wrapper } = init(finished_ucl, { getMatchElement: () => 'just a string' })
     expect(wrapper.querySelector('.match-wrapper').textContent.trim()).toBe('just a string')
 })
 
 
-test(`Does not render .match-body if options.getMatchElement returns not a sting or ELement`, () => {
-    const wrapper = init()
-
-    easyPlayoffs.createPlayoffs(
-        finished_ucl,
-        wrapper,
-        { getMatchElement: () => NaN }
-    )
-
+test(`Renders .match-lines-area but not .match-body if options.getMatchElement returns not a sting or ELement`, () => {
+    const { wrapper } = init(finished_ucl, { getMatchElement: () => NaN })
+    expect(wrapper.querySelectorAll('.match-lines-area').length).toBe(15)
     expect(wrapper.querySelectorAll('.match-body').length).toBe(0)
 })
 
 
 test(`Calls mouse handlers attached to match elements provided by options.getMatchElement`, () => {
-    const wrapper = init()
     const clickHandler = jest.fn()
 
-    easyPlayoffs.createPlayoffs(
+    const { wrapper } = init(
         finished_ucl,
-        wrapper,
         {
             getMatchElement: () => {
                 const div = document.createElement('div')
@@ -136,9 +102,23 @@ test(`Calls mouse handlers attached to match elements provided by options.getMat
     expect(clickHandler).toBeCalledTimes(2)
 })
 
-// TODO think of other vulnerable features of this custom element which must be preserved
+test(`renders .match-lines-area but not .match-body if getMatchElement throws`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1' }], match_status: 'Scheduled' }],
+        contestants: {
+            c1: { players: [{ title: 'Pete', nationality: 'US' }] }
+        }
+    }
 
-// TODO what if new getMatchElements is passed via applyNewOptions?
+    const { wrapper } = init(data, { getMatchElement: () => { very.bad() } })
+    expect(wrapper.querySelector('.match-lines-area')).not.toBe(null)
+    expect(wrapper.querySelector('.match-body')).toBe(null)
+    expect(consoleWarn.mock.calls[0][0]).toMatch(`Failed to get an element from getMatchElement`)
+})
+
+
+// TODO think of other vulnerable features of this custom element which must be preserved
 
 
 // TODO resume
