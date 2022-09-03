@@ -39,7 +39,7 @@ type Side = {
 
 // Contestant is an individual player OR an array of individual players (e.g., single tennis player or double tennis team)
 export type Contestant = {
-    entry_status?: string, // tennis: 'Q' | 'WC' | 'LL' | 'A' | 'SR' | 'LD' | '14',
+    entryStatus?: string, // tennis: 'Q' | 'WC' | 'LL' | 'A' | 'SR' | 'LD' | '14',
     players: Player[]
 }
 

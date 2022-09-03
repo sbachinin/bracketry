@@ -49,10 +49,10 @@ If called with a valid contestantId, it will highlight matches *even if options.
 
 ## contestants
 
-### entry_status:
+### entryStatus:
     Optional.
     this value will be passed to "getEntryStatusHTML" function that you can provide in options.
-    (If you provide just this value and NO "getEntryStatusHTML", this value will be rendered as such. Though mind the width of an entry_status. If you provide just a text like 'LL' or '14', it will cause horizontal misalignment withing a match element. Thus it's recommended to provide an HTML with an explicit width. Storing HTML in a data doesn't seem reasonable so "getEntryStatusHTML" is given to you to transform entry_status data to HTML. getEntryStatusHTML's ?th argument will be the entry_status of a current player)
+    (If you provide just this value and NO "getEntryStatusHTML", this value will be rendered as such. Though mind the width of an entry status. If you provide just a text like 'LL' or '14', it will cause horizontal misalignment withing a match element. Thus it's recommended to provide an HTML with an explicit width. Storing HTML in a data doesn't seem reasonable so "getEntryStatusHTML" is given to you to transform entryStatus data to HTML. getEntryStatusHTML's ?th argument will be the entryStatus of a current player)
 ### nationality:
     Optional.
     (same rules as for entry status)
@@ -129,7 +129,7 @@ This function will be called for every side of every match in a tournament.
 
 `entryStatus`  
 
-Any value that you provided as "entry_status" for a current contestant (`contestants[id].entry_status`). Can be undefined if you didn't provide "entry_status" for a current contestant.
+Any value that you provided as "entryStatus" for a current contestant (`contestants[id].entryStatus`). Can be undefined if you didn't provide "entryStatus" for a current contestant.
 
 `context`
 
@@ -151,7 +151,7 @@ It will be injected as innerHTML into the ".entry-status" column of each side.
 
 This string may contain any text but HTML markup is advisable.
 
-It non-string value will be returned, it will be ignored and the ".entry-status" column will be filled with bare data.contestants[id].entry_status (if present).
+It non-string value will be returned, it will be ignored and the ".entry-status" column will be filled with bare data.contestants[id].entryStatus (if present).
 
 ### Considerations
 
@@ -162,11 +162,11 @@ This will help with horizontal alignment within match element.
 
 `If this function is not provided`
 
-Then bare "entry_status" from a current player's data will be used (`contestants[id].entry_status`). If there is no such data for a contestant, then ".entry-status" column will not be visible.
+Then bare "entryStatus" from a current player's data will be used (`contestants[id].entryStatus`). If there is no such data for a contestant, then ".entry-status" column will not be visible.
 
 `Use the "first column" for anything you want`
 
-If no "entry_status" in data, getEntryStatusHTML will be called for every side anyway. You don't have to provide entry_status for each or any contestant.  
+If no "entryStatus" in data, getEntryStatusHTML will be called for every side anyway. You don't have to provide entryStatus for each or any contestant.  
 You can use the first column however you want.  
 You can use getEntryStatusHTML as just a way to _inject something into the leftmost column_.  
 
