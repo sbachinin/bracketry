@@ -23,11 +23,11 @@ exports.default = {
                     "contestantId": "benfica",
                     "score": [
                         {
-                            "main_score": "2",
+                            "mainScore": "2",
                             "is_winner": false
                         },
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": true
                         },
                     ],
@@ -37,11 +37,11 @@ exports.default = {
                     "contestantId": "ajax",
                     "score": [
                         {
-                            "main_score": "2",
+                            "mainScore": "2",
                             "is_winner": false
                         },
                         {
-                            "main_score": "0",
+                            "mainScore": "0",
                             "is_winner": false
                         },
                     ],
@@ -63,11 +63,11 @@ exports.default = {
                     "contestantId": "inter",
                     "score": [
                         {
-                            "main_score": "0",
+                            "mainScore": "0",
                             "is_winner": false
                         },
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": true
                         },
                     ],
@@ -77,11 +77,11 @@ exports.default = {
                     "contestantId": "liverpool",
                     "score": [
                         {
-                            "main_score": "2",
+                            "mainScore": "2",
                             "is_winner": true
                         },
                         {
-                            "main_score": "0",
+                            "mainScore": "0",
                             "is_winner": false
                         },
                     ],
@@ -102,11 +102,11 @@ exports.default = {
                     "contestantId": "villarreal",
                     "score": [
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": false
                         },
                         {
-                            "main_score": "3",
+                            "mainScore": "3",
                             "is_winner": true
                         },
                     ],
@@ -116,11 +116,11 @@ exports.default = {
                     "contestantId": "juventus",
                     "score": [
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": false
                         },
                         {
-                            "main_score": "0",
+                            "mainScore": "0",
                             "is_winner": false
                         },
                     ],
@@ -141,11 +141,11 @@ exports.default = {
                     "contestantId": "salzburg",
                     "score": [
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": false
                         },
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": false
                         },
                     ],
@@ -155,11 +155,11 @@ exports.default = {
                     "contestantId": "bayern",
                     "score": [
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": false
                         },
                         {
-                            "main_score": "7",
+                            "mainScore": "7",
                             "is_winner": true
                         },
                     ],
@@ -180,11 +180,11 @@ exports.default = {
                     "contestantId": "sporting",
                     "score": [
                         {
-                            "main_score": "0",
+                            "mainScore": "0",
                             "is_winner": false
                         },
                         {
-                            "main_score": "0",
+                            "mainScore": "0",
                             "is_winner": false
                         },
                     ],
@@ -194,11 +194,11 @@ exports.default = {
                     "contestantId": "city",
                     "score": [
                         {
-                            "main_score": "5",
+                            "mainScore": "5",
                             "is_winner": true
                         },
                         {
-                            "main_score": "0",
+                            "mainScore": "0",
                             "is_winner": false
                         },
                     ],
@@ -220,11 +220,11 @@ exports.default = {
                     "contestantId": "atletico",
                     "score": [
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": false
                         },
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": true
                         },
                     ],
@@ -234,11 +234,11 @@ exports.default = {
                     "contestantId": "mu",
                     "score": [
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": false
                         },
                         {
-                            "main_score": "0",
+                            "mainScore": "0",
                             "is_winner": false
                         },
                     ],
@@ -260,11 +260,11 @@ exports.default = {
                     "contestantId": "chelsea",
                     "score": [
                         {
-                            "main_score": "2",
+                            "mainScore": "2",
                             "is_winner": true
                         },
                         {
-                            "main_score": "2",
+                            "mainScore": "2",
                             "is_winner": true
                         },
                     ],
@@ -274,11 +274,11 @@ exports.default = {
                     "contestantId": "lille",
                     "score": [
                         {
-                            "main_score": "0",
+                            "mainScore": "0",
                             "is_winner": false
                         },
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": false
                         },
                     ],
@@ -299,11 +299,11 @@ exports.default = {
                     "contestantId": "psg",
                     "score": [
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": true
                         },
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": false
                         },
                     ],
@@ -313,11 +313,11 @@ exports.default = {
                     "contestantId": "real",
                     "score": [
                         {
-                            "main_score": "0",
+                            "mainScore": "0",
                             "is_winner": false
                         },
                         {
-                            "main_score": "3",
+                            "mainScore": "3",
                             "is_winner": true
                         },
                     ],
@@ -341,11 +341,11 @@ exports.default = {
                     "contestantId": "benfica",
                     "score": [
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": false
                         },
                         {
-                            "main_score": "3",
+                            "mainScore": "3",
                             "is_winner": false
                         },
                     ],
@@ -355,11 +355,11 @@ exports.default = {
                     "contestantId": "liverpool",
                     "score": [
                         {
-                            "main_score": "3",
+                            "mainScore": "3",
                             "is_winner": true
                         },
                         {
-                            "main_score": "3",
+                            "mainScore": "3",
                             "is_winner": false
                         },
                     ],
@@ -379,11 +379,11 @@ exports.default = {
                     "contestantId": "villarreal",
                     "score": [
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": true
                         },
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": false
                         },
                     ],
@@ -393,11 +393,11 @@ exports.default = {
                     "contestantId": "bayern",
                     "score": [
                         {
-                            "main_score": "0",
+                            "mainScore": "0",
                             "is_winner": false
                         },
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": false
                         },
                     ],
@@ -418,11 +418,11 @@ exports.default = {
                     "contestantId": "city",
                     "score": [
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": true
                         },
                         {
-                            "main_score": "0",
+                            "mainScore": "0",
                             "is_winner": false
                         },
                     ],
@@ -432,11 +432,11 @@ exports.default = {
                     "contestantId": "atletico",
                     "score": [
                         {
-                            "main_score": "0",
+                            "mainScore": "0",
                             "is_winner": false
                         },
                         {
-                            "main_score": "0",
+                            "mainScore": "0",
                             "is_winner": false
                         },
                     ],
@@ -458,11 +458,11 @@ exports.default = {
                     "contestantId": "chelsea",
                     "score": [
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": false
                         },
                         {
-                            "main_score": "3",
+                            "mainScore": "3",
                             "is_winner":  true
                         },
                     ],
@@ -472,11 +472,11 @@ exports.default = {
                     "contestantId": "real",
                     "score": [
                         {
-                            "main_score": "3",
+                            "mainScore": "3",
                             "is_winner": true
                         },
                         {
-                            "main_score": "2",
+                            "mainScore": "2",
                             "is_winner": false
                         },
                     ],
@@ -497,11 +497,11 @@ exports.default = {
                     "contestantId": "liverpool",
                     "score": [
                         {
-                            "main_score": "2",
+                            "mainScore": "2",
                             "is_winner": true
                         },
                         {
-                            "main_score": "3",
+                            "mainScore": "3",
                             "is_winner": true
                         },
                     ],
@@ -511,11 +511,11 @@ exports.default = {
                     "contestantId": "villarreal",
                     "score": [
                         {
-                            "main_score": "0",
+                            "mainScore": "0",
                             "is_winner": false
                         },
                         {
-                            "main_score": "3",
+                            "mainScore": "3",
                             "is_winner": false
                         },
                     ],
@@ -535,11 +535,11 @@ exports.default = {
                     "contestantId": "city",
                     "score": [
                         {
-                            "main_score": "4",
+                            "mainScore": "4",
                             "is_winner": true
                         },
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": false
                         },
                     ],
@@ -549,11 +549,11 @@ exports.default = {
                     "contestantId": "real",
                     "score": [
                         {
-                            "main_score": "3",
+                            "mainScore": "3",
                             "is_winner": false
                         },
                         {
-                            "main_score": "3",
+                            "mainScore": "3",
                             "is_winner": true
                         },
                     ],
@@ -573,7 +573,7 @@ exports.default = {
                     "contestantId": "liverpool",
                     "score": [
                         {
-                            "main_score": "0",
+                            "mainScore": "0",
                             "is_winner": false
                         }
                     ],
@@ -583,7 +583,7 @@ exports.default = {
                     "contestantId": "real",
                     "score": [
                         {
-                            "main_score": "1",
+                            "mainScore": "1",
                             "is_winner": true
                         }
                     ],

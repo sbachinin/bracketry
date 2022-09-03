@@ -25,7 +25,7 @@ test('getAllData returns a new match supplied by applyMatchesUpdates in place of
         id: 'some_id',
         roundIndex: 1,
         order: 2,
-        sides: [ { contestantId: 'c123', score: [{ main_score: '666' }] } ]
+        sides: [ { contestantId: 'c123', score: [{ mainScore: '666' }] } ]
     }
 
     pl.applyMatchesUpdates([ new_match ])
@@ -50,7 +50,7 @@ test('draws a new score for a match updated by applyMatchesUpdates', () => {
         id: 'some_id',
         roundIndex: 1,
         order: 2,
-        sides: [ { contestantId: 'c123', score: [{ main_score: '666' }] } ]
+        sides: [ { contestantId: 'c123', score: [{ mainScore: '666' }] } ]
     }
 
     pl.applyMatchesUpdates([ new_match ])
@@ -58,7 +58,7 @@ test('draws a new score for a match updated by applyMatchesUpdates', () => {
     const updated_match_score_el = wrapper.querySelectorAll('.round-wrapper')[1]
         .querySelectorAll('.match-wrapper')[2]
         .querySelector('.main-score')
-    expect(updated_match_score_el.textContent.trim()).toBe(new_match.sides[0].score[0].main_score)
+    expect(updated_match_score_el.textContent.trim()).toBe(new_match.sides[0].score[0].mainScore)
 })
 
 
@@ -81,7 +81,7 @@ test('applyMatchesUpdates creates new match if none was present for this round_i
         roundIndex: 0,
         order: 0,
         sides: [
-            { contestantId: 'c1', score: [{ main_score: '6' }] },
+            { contestantId: 'c1', score: [{ mainScore: '6' }] },
         ]
     }
 
@@ -103,7 +103,7 @@ test('does not mutate data passed to applyMatchesUpdate', () => {
         id: 'some_id',
         roundIndex: 1,
         order: 2,
-        sides: [ { contestantId: 'villarreal', score: [{ main_score: '666' }] } ]
+        sides: [ { contestantId: 'villarreal', score: [{ mainScore: '666' }] } ]
     }
 
     pl.applyMatchesUpdates([ new_match ])
@@ -112,6 +112,6 @@ test('does not mutate data passed to applyMatchesUpdate', () => {
         id: 'some_id',
         roundIndex: 1,
         order: 2,
-        sides: [ { contestantId: 'villarreal', score: [{ main_score: '666' }] } ]
+        sides: [ { contestantId: 'villarreal', score: [{ mainScore: '666' }] } ]
     })
 })

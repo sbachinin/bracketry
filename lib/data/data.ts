@@ -26,7 +26,7 @@ type Side = {
     contestantId?: string,
     score?: [
         {
-            main_score: number | string, // May contain divergent results like 'W/O' or 'Ret' in tennis
+            mainScore: number | string, // May contain divergent results like 'W/O' or 'Ret' in tennis
             tie_break?: number,
             is_winner?: boolean
         }

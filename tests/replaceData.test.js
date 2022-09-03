@@ -53,7 +53,7 @@ test(`does not mutate data passed to replaceData`, () => {
 test(`ignores subsequent mutations of user data passed to replaceData`, () => {
     const dumb_test_data = {
         rounds: [{ name: 'round 1' }],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{ main_score: 1 }] }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{ mainScore: 1 }] }] }],
         contestants: { c1: { players: [] } }
     }
 
@@ -63,11 +63,11 @@ test(`ignores subsequent mutations of user data passed to replaceData`, () => {
 
     dumb_test_data.contestants = NaN
     dumb_test_data.rounds[0].name = 'bad round name'
-    dumb_test_data.matches[0].sides[0].score[0].main_score = 100000000
+    dumb_test_data.matches[0].sides[0].score[0].mainScore = 100000000
 
     expect(playoffs.getAllData()).toEqual({
         rounds: [{ name: 'round 1' }],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{ main_score: 1 }] }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{ mainScore: 1 }] }] }],
         contestants: { c1: { players: [] } }
     })
 

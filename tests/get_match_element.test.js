@@ -27,7 +27,7 @@ test('can draw asymmetrical scores where two sides have different number of elem
                 order: 0,
                 sides: [
                     { contestantId: 'c1', score: [] },
-                    { contestantId: 'c2', score: [{ main_score: 'Rt' }] }
+                    { contestantId: 'c2', score: [{ mainScore: 'Rt' }] }
                 ]
             }],
             contestants: {
@@ -55,7 +55,7 @@ test('can draw asymmetrical scores where ONLY ONE SIDE has a score array', () =>
                 order: 0,
                 sides: [
                     { contestantId: 'c1' },
-                    { contestantId: 'c2', score: [{ main_score: 'Rt' }] }
+                    { contestantId: 'c2', score: [{ mainScore: 'Rt' }] }
                 ]
             }],
             contestants: {
@@ -264,7 +264,7 @@ test(`does not add "contestant-id" attribute to .side-wrapper when match.sides[i
             rounds: [{}],
             matches: [{
                 id: 'm1', roundIndex: 0, order: 0, sides: [
-                    { score: [{ main_score: 'Walkover' }] }
+                    { score: [{ mainScore: 'Walkover' }] }
                 ]
             }],
         },
@@ -328,7 +328,7 @@ test(`does not render scores for a side which has 0 items in "score" array`, () 
                 id: 'm1', roundIndex: 0, order: 0, sides: [
                     {
                         contestantId: 'c1',
-                        score: [{ main_score: 'Walkover' }]
+                        score: [{ mainScore: 'Walkover' }]
                     },
                     {
                         contestantId: 'c2',
@@ -354,7 +354,7 @@ test(`renders a score even if side has no "contestantId"`, () => {
             matches: [{
                 id: 'm1', roundIndex: 0, order: 0, sides: [
                     {
-                        score: [{ main_score: 'Walkover' }]
+                        score: [{ mainScore: 'Walkover' }]
                     }
                 ]
             }],
@@ -380,7 +380,7 @@ test(`renders score even if contestant not found for such side`, () => {
                 id: 'm1', roundIndex: 0, order: 0, sides: [
                     {
                         contestantId: 'c1',
-                        score: [{ main_score: 'Walkover' }]
+                        score: [{ mainScore: 'Walkover' }]
                     }
                 ]
             }],
@@ -394,7 +394,7 @@ test(`renders score even if contestant not found for such side`, () => {
 })
 
 
-test(`renders .single-score element only for side.score items which have "main_score"`, () => {
+test(`renders .single-score element only for side.score items which have "mainScore"`, () => {
     const wrapper = create_wrapper()
     expect.assertions(2)
 
@@ -405,7 +405,7 @@ test(`renders .single-score element only for side.score items which have "main_s
                 id: 'm1', roundIndex: 0, order: 0, sides: [
                     {
                         contestantId: 'c1',
-                        score: [{ main_score: 'Walkover' }, { tie_break: 12 }]
+                        score: [{ mainScore: 'Walkover' }, { tie_break: 12 }]
                     }
                 ]
             }],
@@ -430,11 +430,11 @@ test(`renders as much .single-score elements as there are valid items in side.sc
                     {
                         contestantId: 'c1',
                         score: [
-                            { main_score: 'Walkover' },
+                            { mainScore: 'Walkover' },
                             { tie_break: 12 },
-                            { main_score: '444' },
-                            { main_score: '323', tie_break: 21 },
-                            { main_score: '323', is_winner: true }
+                            { mainScore: '444' },
+                            { mainScore: '323', tie_break: 21 },
+                            { mainScore: '323', is_winner: true }
                         ]
                     }
                 ]
@@ -449,7 +449,7 @@ test(`renders as much .single-score elements as there are valid items in side.sc
 
 
 
-test(`renders player title if any of side.score items has no "main_score (and warns in console)`, () => {
+test(`renders player title if any of side.score items has no "mainScore (and warns in console)`, () => {
     const wrapper = create_wrapper()
     expect.assertions(1)
 
@@ -476,7 +476,7 @@ test(`renders tie break if there is a valid one`, () => {
         {
             rounds: [{}],
             matches: [{
-                id: 'm1', roundIndex: 0, order: 0, sides: [{ score: [{ main_score: '6', tie_break: 7 }] }]
+                id: 'm1', roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', tie_break: 7 }] }]
             }]
         },
         wrapper
@@ -493,7 +493,7 @@ test(`renders a contentful match without .tie-break if score.tie_break is of inv
         {
             rounds: [{}],
             matches: [{
-                id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{ main_score: '6', tie_break: 'jopa' }] }]
+                id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{ mainScore: '6', tie_break: 'jopa' }] }]
             }],
             contestants: {
                 c1: { players: [] }
