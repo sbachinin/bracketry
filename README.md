@@ -64,14 +64,14 @@ If called with a valid contestant_id, it will highlight matches *even if options
 
 ## getNationalityHTML()
 
-The **getNationalityHTML** option allows you to inject any HTML into the "nationality" section of a player (second column from the left, if "Entry status" field is also displayed).  
+The **getNationalityHTML** option allows you to inject any HTML (or simply text) into the "nationality" section of a player (second column from the left, if "Entry status" field is also displayed).  
 This function will be called for every player in a tournament.
 
 ### Parameters
 
 `nationality`  
 
-Any value that you provided as "nationality" for a current player (`contestants[i].players[j].nationality`). Can be undefined if you didn't provide "nationality" for a current player.
+Any value that you provided as "nationality" for a current player (`contestants[id].players[i].nationality`). Can be undefined if you didn't provide "nationality" for a current player.
 
 `context`
 
@@ -90,11 +90,11 @@ All data that you provided to easy-playoffs
 
 String
 
-It will be injected as innerHTML into the nationality element of each player.
+It will be injected as innerHTML into the ".nationality" column of each player.
 
 This string may contain any text but HTML markup is advisable.
 
-It non-string value will be returned, it will be ignored and "nationality" from player's data will be used instead.
+It non-string value will be returned, it will be ignored and the ".nationality" column will be filled with bare data.contestants[id].players[i].nationality (if present).
 
 ### Considerations
 
@@ -105,7 +105,7 @@ This will help with horizontal alignment within match element.
 
 `If this function is not provided`
 
-Then bare "nationality" from a current player's data will be used (`contestants[i].players[j].nationality`). If there is no such data for a player, then nationality field will not be visible.
+Then bare "nationality" from a current player's data will be used (`contestants[id].players[i].nationality`). If there is no such data for a player, then nationality field will not be visible.
 
 `Use the "second column" for anything you want`
 
@@ -114,4 +114,60 @@ You can use the nationality field however you want.
 You can use getNationalityHTML as just a way to _inject something into the 2nd field from the left_.  
 What you inject can be an avatar of a player for instance.
 
-`getNationalityHTML will be ignored when passed to **applyNewOptions**`
+`getNationalityHTML will not be updated if a new getNationalityHTML is passed to **applyNewOptions**`
+
+
+
+
+
+## getEntryStatusHTML()
+
+The **getEntryStatusHTML** option allows you to inject any HTML (or simply text) into the "entry status" section of a player (leftmost column within a match element).  
+This function will be called for every side of every match in a tournament.
+
+### Parameters
+
+`entryStatus`  
+
+Any value that you provided as "entry_status" for a current contestant (`contestants[id].entry_status`). Can be undefined if you didn't provide "entry_status" for a current contestant.
+
+`context`
+
+Object that tells you where entry status is rendered.  
+Contatins following properties:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; matchId (string)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contestantId (string)  
+
+`data`
+
+All data that you provided to easy-playoffs
+
+### Return value
+
+String
+
+It will be injected as innerHTML into the ".entry-status" column of each side.
+
+This string may contain any text but HTML markup is advisable.
+
+It non-string value will be returned, it will be ignored and the ".entry-status" column will be filled with bare data.contestants[id].entry_status (if present).
+
+### Considerations
+
+`Issue of width`
+
+We recommend that you always return an element with explicit (and **equal** for each side) width.  
+This will help with horizontal alignment within match element.
+
+`If this function is not provided`
+
+Then bare "entry_status" from a current player's data will be used (`contestants[id].entry_status`). If there is no such data for a contestant, then ".entry-status" column will not be visible.
+
+`Use the "first column" for anything you want`
+
+If no "entry_status" in data, getEntryStatusHTML will be called for every side anyway. You don't have to provide entry_status for each or any contestant.  
+You can use the first column however you want.  
+You can use getEntryStatusHTML as just a way to _inject something into the leftmost column_.  
+
+`getEntryStatusHTML will not be updated if a new getEntryStatusHTML is passed to **applyNewOptions**`

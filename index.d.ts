@@ -46,6 +46,11 @@ type Options = {
         nationality: any,
         context: { matchId: string, contestantId: string, playerIndex: number },
         data: Data
+    ) => string,
+    getEntryStatusHTML: (
+        entryStatus: any,
+        context: { matchId: string, contestantId: string },
+        data: Data
     ) => string
 }
 

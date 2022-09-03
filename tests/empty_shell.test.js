@@ -164,7 +164,7 @@ test('renders empty shell when contestant is not an object', () => {
 
 
 
-test('renders empty shell when contestant is an empty object', () => {
+test('renders matches when contestant is an empty object', () => {
     const wrapper = document.createElement('div')
     document.body.append(wrapper)
     expect.assertions(3)
@@ -180,8 +180,8 @@ test('renders empty shell when contestant is an empty object', () => {
         wrapper
     )
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
-    expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
-    expect(consoleWarn.mock.calls[0][0]).toMatch(`contestant.players is required and it must be an array`)
+    expect(wrapper.querySelector('.match-wrapper')).not.toBe(null)
+    expect(consoleWarn.mock.calls[0][0]).toMatch(`contestant.players is required`)
 })
 
 
@@ -248,7 +248,7 @@ test('renders empty shell when contestant.players is not an array', () => {
     
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
-    expect(consoleWarn.mock.calls[0][0]).toMatch(`contestant.players is required and it must be an array`)
+    expect(consoleWarn.mock.calls[0][0]).toMatch(`contestant.players must be an array`)
 })
 
 test('renders empty shell when contestant.players contains non-objects', () => {
