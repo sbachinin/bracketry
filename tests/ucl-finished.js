@@ -24,28 +24,28 @@ exports.default = {
                     "score": [
                         {
                             "mainScore": "2",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "1",
-                            "is_winner": true
+                            "isWinner": true
                         },
                     ],
-                    "is_winner": true
+                    "isWinner": true
                 },
                 {
                     "contestantId": "ajax",
                     "score": [
                         {
                             "mainScore": "2",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "0",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": false
+                    "isWinner": false
                 }
             ],
             "order": 0,
@@ -64,28 +64,28 @@ exports.default = {
                     "score": [
                         {
                             "mainScore": "0",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "1",
-                            "is_winner": true
+                            "isWinner": true
                         },
                     ],
-                    "is_winner": false
+                    "isWinner": false
                 },
                 {
                     "contestantId": "liverpool",
                     "score": [
                         {
                             "mainScore": "2",
-                            "is_winner": true
+                            "isWinner": true
                         },
                         {
                             "mainScore": "0",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": true
+                    "isWinner": true
                 }
             ],
             "order": 1,
@@ -103,28 +103,28 @@ exports.default = {
                     "score": [
                         {
                             "mainScore": "1",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "3",
-                            "is_winner": true
+                            "isWinner": true
                         },
                     ],
-                    "is_winner": true
+                    "isWinner": true
                 },
                 {
                     "contestantId": "juventus",
                     "score": [
                         {
                             "mainScore": "1",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "0",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": false
+                    "isWinner": false
                 }
             ],
             "order": 2,
@@ -142,28 +142,28 @@ exports.default = {
                     "score": [
                         {
                             "mainScore": "1",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "1",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": false
+                    "isWinner": false
                 },
                 {
                     "contestantId": "bayern",
                     "score": [
                         {
                             "mainScore": "1",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "7",
-                            "is_winner": true
+                            "isWinner": true
                         },
                     ],
-                    "is_winner": true
+                    "isWinner": true
                 }
             ],
             "order": 3,
@@ -181,28 +181,28 @@ exports.default = {
                     "score": [
                         {
                             "mainScore": "0",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "0",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": false
+                    "isWinner": false
                 },
                 {
                     "contestantId": "city",
                     "score": [
                         {
                             "mainScore": "5",
-                            "is_winner": true
+                            "isWinner": true
                         },
                         {
                             "mainScore": "0",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": true
+                    "isWinner": true
                 }
             ],
             "order": 4,
@@ -221,28 +221,28 @@ exports.default = {
                     "score": [
                         {
                             "mainScore": "1",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "1",
-                            "is_winner": true
+                            "isWinner": true
                         },
                     ],
-                    "is_winner": true
+                    "isWinner": true
                 },
                 {
                     "contestantId": "mu",
                     "score": [
                         {
                             "mainScore": "1",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "0",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": false
+                    "isWinner": false
                 }
             ],
             "order": 5,
@@ -261,28 +261,28 @@ exports.default = {
                     "score": [
                         {
                             "mainScore": "2",
-                            "is_winner": true
+                            "isWinner": true
                         },
                         {
                             "mainScore": "2",
-                            "is_winner": true
+                            "isWinner": true
                         },
                     ],
-                    "is_winner": true
+                    "isWinner": true
                 },
                 {
                     "contestantId": "lille",
                     "score": [
                         {
                             "mainScore": "0",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "1",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": false
+                    "isWinner": false
                 }
             ],
             "order": 6,
@@ -300,28 +300,28 @@ exports.default = {
                     "score": [
                         {
                             "mainScore": "1",
-                            "is_winner": true
+                            "isWinner": true
                         },
                         {
                             "mainScore": "1",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": false
+                    "isWinner": false
                 },
                 {
                     "contestantId": "real",
                     "score": [
                         {
                             "mainScore": "0",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "3",
-                            "is_winner": true
+                            "isWinner": true
                         },
                     ],
-                    "is_winner": true
+                    "isWinner": true
                 }
             ],
             "order": 7,
@@ -342,28 +342,28 @@ exports.default = {
                     "score": [
                         {
                             "mainScore": "1",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "3",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": true
+                    "isWinner": true
                 },
                 {
                     "contestantId": "liverpool",
                     "score": [
                         {
                             "mainScore": "3",
-                            "is_winner": true
+                            "isWinner": true
                         },
                         {
                             "mainScore": "3",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": false
+                    "isWinner": false
                 }
             ],
             "order": 0,
@@ -380,28 +380,28 @@ exports.default = {
                     "score": [
                         {
                             "mainScore": "1",
-                            "is_winner": true
+                            "isWinner": true
                         },
                         {
                             "mainScore": "1",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": true
+                    "isWinner": true
                 },
                 {
                     "contestantId": "bayern",
                     "score": [
                         {
                             "mainScore": "0",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "1",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": false
+                    "isWinner": false
                 }
             ],
             "order": 1,
@@ -419,28 +419,28 @@ exports.default = {
                     "score": [
                         {
                             "mainScore": "1",
-                            "is_winner": true
+                            "isWinner": true
                         },
                         {
                             "mainScore": "0",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": true
+                    "isWinner": true
                 },
                 {
                     "contestantId": "atletico",
                     "score": [
                         {
                             "mainScore": "0",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "0",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": false
+                    "isWinner": false
                 }
             ],
             "order": 2,
@@ -459,28 +459,28 @@ exports.default = {
                     "score": [
                         {
                             "mainScore": "1",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "3",
-                            "is_winner":  true
+                            "isWinner":  true
                         },
                     ],
-                    "is_winner": false
+                    "isWinner": false
                 },
                 {
                     "contestantId": "real",
                     "score": [
                         {
                             "mainScore": "3",
-                            "is_winner": true
+                            "isWinner": true
                         },
                         {
                             "mainScore": "2",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": true
+                    "isWinner": true
                 }
             ],
             "order": 3,
@@ -498,28 +498,28 @@ exports.default = {
                     "score": [
                         {
                             "mainScore": "2",
-                            "is_winner": true
+                            "isWinner": true
                         },
                         {
                             "mainScore": "3",
-                            "is_winner": true
+                            "isWinner": true
                         },
                     ],
-                    "is_winner": true
+                    "isWinner": true
                 },
                 {
                     "contestantId": "villarreal",
                     "score": [
                         {
                             "mainScore": "0",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "3",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": false
+                    "isWinner": false
                 }
             ],
             "order": 0,
@@ -536,28 +536,28 @@ exports.default = {
                     "score": [
                         {
                             "mainScore": "4",
-                            "is_winner": true
+                            "isWinner": true
                         },
                         {
                             "mainScore": "1",
-                            "is_winner": false
+                            "isWinner": false
                         },
                     ],
-                    "is_winner": false
+                    "isWinner": false
                 },
                 {
                     "contestantId": "real",
                     "score": [
                         {
                             "mainScore": "3",
-                            "is_winner": false
+                            "isWinner": false
                         },
                         {
                             "mainScore": "3",
-                            "is_winner": true
+                            "isWinner": true
                         },
                     ],
-                    "is_winner": true
+                    "isWinner": true
                 }
             ],
             "order": 1,
@@ -574,20 +574,20 @@ exports.default = {
                     "score": [
                         {
                             "mainScore": "0",
-                            "is_winner": false
+                            "isWinner": false
                         }
                     ],
-                    "is_winner": false
+                    "isWinner": false
                 },
                 {
                     "contestantId": "real",
                     "score": [
                         {
                             "mainScore": "1",
-                            "is_winner": true
+                            "isWinner": true
                         }
                     ],
-                    "is_winner": true
+                    "isWinner": true
                 }
             ],
             "order": 0,

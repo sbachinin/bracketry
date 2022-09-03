@@ -28,13 +28,13 @@ type Side = {
         {
             mainScore: number | string, // May contain divergent results like 'W/O' or 'Ret' in tennis
             tieBreak?: number,
-            is_winner?: boolean
+            isWinner?: boolean
         }
     ]
 
     subscore?: number | string, // e.g., points within a game in tennis: this number is drawn after 'score', is surrounded by border and is higlighted with green if match 'is_live'
     is_serving?: boolean, // if this one is 'true', a tennis ball icon will be drawn before a side's score
-    is_winner?: boolean
+    isWinner?: boolean
 }
 
 // Contestant is an individual player OR an array of individual players (e.g., single tennis player or double tennis team)

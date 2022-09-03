@@ -434,7 +434,7 @@ test(`renders as much .single-score elements as there are valid items in side.sc
                             { tieBreak: 12 },
                             { mainScore: '444' },
                             { mainScore: '323', tieBreak: 21 },
-                            { mainScore: '323', is_winner: true }
+                            { mainScore: '323', isWinner: true }
                         ]
                     }
                 ]
@@ -572,10 +572,10 @@ test('does not render word "undefined" if contestants[i].players[j] has no title
 
 // TODO test matchStatus OR score (REALLY NECESSARY?)
 
-// TODO draws a winner mark for a side which has { is_winner: true }
+// TODO draws a winner mark for a side which has { isWinner: true }
 
 
-// TODO does not draw a winner mark when neither side has { is_winner: true }
+// TODO does not draw a winner mark when neither side has { isWinner: true }
 
 
 
