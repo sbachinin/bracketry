@@ -405,7 +405,7 @@ test(`renders .single-score element only for side.score items which have "mainSc
                 id: 'm1', roundIndex: 0, order: 0, sides: [
                     {
                         contestantId: 'c1',
-                        score: [{ mainScore: 'Walkover' }, { tie_break: 12 }]
+                        score: [{ mainScore: 'Walkover' }, { tieBreak: 12 }]
                     }
                 ]
             }],
@@ -431,9 +431,9 @@ test(`renders as much .single-score elements as there are valid items in side.sc
                         contestantId: 'c1',
                         score: [
                             { mainScore: 'Walkover' },
-                            { tie_break: 12 },
+                            { tieBreak: 12 },
                             { mainScore: '444' },
-                            { mainScore: '323', tie_break: 21 },
+                            { mainScore: '323', tieBreak: 21 },
                             { mainScore: '323', is_winner: true }
                         ]
                     }
@@ -476,7 +476,7 @@ test(`renders tie break if there is a valid one`, () => {
         {
             rounds: [{}],
             matches: [{
-                id: 'm1', roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', tie_break: 7 }] }]
+                id: 'm1', roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', tieBreak: 7 }] }]
             }]
         },
         wrapper
@@ -485,7 +485,7 @@ test(`renders tie break if there is a valid one`, () => {
     expect(wrapper.querySelector('.tie-break').textContent).toBe('7')
 })
 
-test(`renders a contentful match without .tie-break if score.tie_break is of invalid (non-number) type`, () => {
+test(`renders a contentful match without .tie-break if score.tieBreak is of invalid (non-number) type`, () => {
     const wrapper = create_wrapper()
     expect.assertions(3)
 
@@ -493,7 +493,7 @@ test(`renders a contentful match without .tie-break if score.tie_break is of inv
         {
             rounds: [{}],
             matches: [{
-                id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{ mainScore: '6', tie_break: 'jopa' }] }]
+                id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{ mainScore: '6', tieBreak: 'jopa' }] }]
             }],
             contestants: {
                 c1: { players: [] }
@@ -505,7 +505,7 @@ test(`renders a contentful match without .tie-break if score.tie_break is of inv
     expect(typeof wrapper.querySelector('.main-score')).toBe('object')
     expect(wrapper.querySelector('.tie-break')).toBe(null)
     expect(consoleWarn.mock.calls[0][0]).toMatch(
-        `If you provide side.score.tie_break, it must be a number`
+        `If you provide side.score.tieBreak, it must be a number`
     )
 })
 
