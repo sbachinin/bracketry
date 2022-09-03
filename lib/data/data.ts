@@ -33,7 +33,7 @@ type Side = {
     ]
 
     subscore?: number | string, // e.g., points within a game in tennis: this number is drawn after 'score', is surrounded by border and is higlighted with green if match 'is_live'
-    is_serving?: boolean, // if this one is 'true', a tennis ball icon will be drawn before a side's score
+    isServing?: boolean, // if this one is 'true', a tennis ball icon will be drawn before a side's score
     isWinner?: boolean
 }
 
