@@ -53,7 +53,7 @@ test(`does not mutate data passed to replaceData`, () => {
 test(`ignores subsequent mutations of user data passed to replaceData`, () => {
     const dumb_test_data = {
         rounds: [{ name: 'round 1' }],
-        matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1', score: [{ main_score: 1 }] }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1', score: [{ main_score: 1 }] }] }],
         contestants: { c1: { players: [] } }
     }
 
@@ -67,7 +67,7 @@ test(`ignores subsequent mutations of user data passed to replaceData`, () => {
 
     expect(playoffs.getAllData()).toEqual({
         rounds: [{ name: 'round 1' }],
-        matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1', score: [{ main_score: 1 }] }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1', score: [{ main_score: 1 }] }] }],
         contestants: { c1: { players: [] } }
     })
 
@@ -83,7 +83,7 @@ test('keeps an old data when replaceData is called with critically invalid data 
     playoffs.replaceData('')
     playoffs.replaceData({ rounds: null })
     playoffs.replaceData({ rounds: [], matches: '' })
-    playoffs.replaceData({ rounds: [], matches: [ { id: 'm1', round_index: 1, order: 1, sides: NaN } ] })
+    playoffs.replaceData({ rounds: [], matches: [ { id: 'm1', roundIndex: 1, order: 1, sides: NaN } ] })
 
     expect(playoffs.getAllData()).toEqual(finished_ucl)
     expect(

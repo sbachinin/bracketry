@@ -23,7 +23,7 @@ test('can draw asymmetrical scores where two sides have different number of elem
             rounds: [{}],
             matches: [{
                 id: 'm1',
-                round_index: 0,
+                roundIndex: 0,
                 order: 0,
                 sides: [
                     { contestant_id: 'c1', score: [] },
@@ -51,7 +51,7 @@ test('can draw asymmetrical scores where ONLY ONE SIDE has a score array', () =>
             rounds: [{}],
             matches: [{
                 id: 'm1',
-                round_index: 0,
+                roundIndex: 0,
                 order: 0,
                 sides: [
                     { contestant_id: 'c1' },
@@ -78,7 +78,7 @@ test('renders a contentful match even if "contestants" are undefined', () => {
             rounds: [{}],
             matches: [{
                 id: '32323',
-                round_index: 0,
+                roundIndex: 0,
                 order: 0,
                 sides: [{ contestant_id: 'abc' }],
                 match_status: 'Scheduled'
@@ -99,7 +99,7 @@ test(`renders a contentful match even if "contestants" don't contain such contes
             rounds: [{}],
             matches: [{
                 id: '32323',
-                round_index: 0,
+                roundIndex: 0,
                 order: 0,
                 sides: [{ contestant_id: 'abc' }],
                 match_status: 'Scheduled'
@@ -123,7 +123,7 @@ test('renders a contentful match even if match.sides is undefined', () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: 'm1', round_index: 0, order: 0, match_status: 'Scheduled' }],
+            matches: [{ id: 'm1', roundIndex: 0, order: 0, match_status: 'Scheduled' }],
         },
         wrapper
     )
@@ -136,7 +136,7 @@ test('renders a contentful match even if match.sides is an empty array', () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: 'm1', round_index: 0, order: 0, sides: [], match_status: 'Scheduled' }],
+            matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [], match_status: 'Scheduled' }],
         },
         wrapper
     )
@@ -152,7 +152,7 @@ test('renders a contentful match if match.sides contains empty objects', () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: '32323', round_index: 0, order: 0, sides: [{}, {}], match_status: 'Scheduled' }],
+            matches: [{ id: '32323', roundIndex: 0, order: 0, sides: [{}, {}], match_status: 'Scheduled' }],
             contestants: {}
         },
         wrapper,
@@ -171,7 +171,7 @@ test('renders a contentful match if side.score is an empty array', () => {
         {
             rounds: [{}],
             matches: [{
-                id: '32323', round_index: 0, order: 0,
+                id: '32323', roundIndex: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }]
             }
             ],
@@ -200,7 +200,7 @@ test('renders a contentful match if contestant.players is an empty array', () =>
         {
             rounds: [{}],
             matches: [{
-                id: '32323', round_index: 0, order: 0,
+                id: '32323', roundIndex: 0, order: 0,
                 sides: [{ contestant_id: 'c1' }],
                 match_status: 'Scheduled'
             }
@@ -227,7 +227,7 @@ test(`renders 2 .side-wrapper elements if match.sides contains only 1 object`, (
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{}] }],
+            matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{}] }],
         },
         wrapper
     )
@@ -243,7 +243,7 @@ test(`renders 2 .side-wrapper elements if match.sides contains more items`, () =
         {
             rounds: [{}],
             matches: [{
-                id: 'm1', round_index: 0, order: 0,
+                id: 'm1', roundIndex: 0, order: 0,
                 sides: [{ contestant_id: 'c1' }, { contestant_id: 'c2' }, { contestant_id: 'c3' }],
                 match_status: 'Scheduled'
             }],
@@ -263,7 +263,7 @@ test(`does not add "contestant-id" attribute to .side-wrapper when match.sides[i
         {
             rounds: [{}],
             matches: [{
-                id: 'm1', round_index: 0, order: 0, sides: [
+                id: 'm1', roundIndex: 0, order: 0, sides: [
                     { score: [{ main_score: 'Walkover' }] }
                 ]
             }],
@@ -283,7 +283,7 @@ test(`allows clicks on a .side-wrapper which has a contestant_id (even if no con
         {
             rounds: [{}],
             matches: [{
-                id: 'm1', round_index: 0, order: 0,
+                id: 'm1', roundIndex: 0, order: 0,
                 sides: [{ contestant_id: 'c1' }]
             }],
         },
@@ -304,7 +304,7 @@ test(`forbids clicks on a side-wrapper without contestant_id`, () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+            matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
         },
         wrapper
     )
@@ -325,7 +325,7 @@ test(`does not render scores for a side which has 0 items in "score" array`, () 
         {
             rounds: [{}],
             matches: [{
-                id: 'm1', round_index: 0, order: 0, sides: [
+                id: 'm1', roundIndex: 0, order: 0, sides: [
                     {
                         contestant_id: 'c1',
                         score: [{ main_score: 'Walkover' }]
@@ -352,7 +352,7 @@ test(`renders a score even if side has no "contestant_id"`, () => {
         {
             rounds: [{}],
             matches: [{
-                id: 'm1', round_index: 0, order: 0, sides: [
+                id: 'm1', roundIndex: 0, order: 0, sides: [
                     {
                         score: [{ main_score: 'Walkover' }]
                     }
@@ -377,7 +377,7 @@ test(`renders score even if contestant not found for such side`, () => {
         {
             rounds: [{}],
             matches: [{
-                id: 'm1', round_index: 0, order: 0, sides: [
+                id: 'm1', roundIndex: 0, order: 0, sides: [
                     {
                         contestant_id: 'c1',
                         score: [{ main_score: 'Walkover' }]
@@ -402,7 +402,7 @@ test(`renders .single-score element only for side.score items which have "main_s
         {
             rounds: [{}],
             matches: [{
-                id: 'm1', round_index: 0, order: 0, sides: [
+                id: 'm1', roundIndex: 0, order: 0, sides: [
                     {
                         contestant_id: 'c1',
                         score: [{ main_score: 'Walkover' }, { tie_break: 12 }]
@@ -426,7 +426,7 @@ test(`renders as much .single-score elements as there are valid items in side.sc
         {
             rounds: [{}],
             matches: [{
-                id: 'm1', round_index: 0, order: 0, sides: [
+                id: 'm1', roundIndex: 0, order: 0, sides: [
                     {
                         contestant_id: 'c1',
                         score: [
@@ -457,7 +457,7 @@ test(`renders player title if any of side.score items has no "main_score (and wa
         {
             rounds: [{}],
             matches: [{
-                id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1', score: [{}] }]
+                id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1', score: [{}] }]
             }],
             contestants: {
                 c1: { players: [{ title: 'josh' }] }
@@ -476,7 +476,7 @@ test(`renders tie break if there is a valid one`, () => {
         {
             rounds: [{}],
             matches: [{
-                id: 'm1', round_index: 0, order: 0, sides: [{ score: [{ main_score: '6', tie_break: 7 }] }]
+                id: 'm1', roundIndex: 0, order: 0, sides: [{ score: [{ main_score: '6', tie_break: 7 }] }]
             }]
         },
         wrapper
@@ -493,7 +493,7 @@ test(`renders a contentful match without .tie-break if score.tie_break is of inv
         {
             rounds: [{}],
             matches: [{
-                id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1', score: [{ main_score: '6', tie_break: 'jopa' }] }]
+                id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1', score: [{ main_score: '6', tie_break: 'jopa' }] }]
             }],
             contestants: {
                 c1: { players: [] }
@@ -516,7 +516,7 @@ test('renders side.title into .player-title element if side has no "contestant_i
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ title: 'BYE' }] }]
+            matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ title: 'BYE' }] }]
         },
         wrapper
     )
@@ -530,7 +530,7 @@ test('does not render side.title if side has both "title" and "contestant_id"', 
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ title: 'BYE', contestant_id: 'c1' }] }],
+            matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ title: 'BYE', contestant_id: 'c1' }] }],
             contestants: {
                 c1: { players: [ { title: 'Pete' } ] }
             }
@@ -548,7 +548,7 @@ test('does not render word "undefined" if contestants[i].players[j] has no title
     
     const data = {
         rounds: [{}],
-        matches: [ { id: 'm1', round_index: 0, order: 0, sides: [ { contestant_id: 'c1'} ] } ],
+        matches: [ { id: 'm1', roundIndex: 0, order: 0, sides: [ { contestant_id: 'c1'} ] } ],
         contestants: { c1: { players: [ {}] } }
     }
 
@@ -564,7 +564,7 @@ test('does not render word "undefined" if contestants[i].players[j] has no title
 
 
 
-// TODO does not render a match with irrelevant round_index and order
+// TODO does not render a match with irrelevant roundIndex and order
 
 // TODO (in case of duplicate matches in a given position) render only 1st match in such position
 

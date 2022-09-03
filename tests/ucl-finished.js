@@ -17,7 +17,7 @@ exports.default = {
         
         {
             "id": "0",
-            "round_index": 0,
+            "roundIndex": 0,
             "sides": [
                 {
                     "contestant_id": "benfica",
@@ -57,7 +57,7 @@ exports.default = {
 
         {
             "id": "1",
-            "round_index": 0,
+            "roundIndex": 0,
             "sides": [
                 {
                     "contestant_id": "inter",
@@ -96,7 +96,7 @@ exports.default = {
 
         {
             "id": "2",
-            "round_index": 0,
+            "roundIndex": 0,
             "sides": [
                 {
                     "contestant_id": "villarreal",
@@ -135,7 +135,7 @@ exports.default = {
 
         {
             "id": "3",
-            "round_index": 0,
+            "roundIndex": 0,
             "sides": [
                 {
                     "contestant_id": "salzburg",
@@ -174,7 +174,7 @@ exports.default = {
 
         {
             "id": "4",
-            "round_index": 0,
+            "roundIndex": 0,
             "sides": [
                 {
                     "contestant_id": "sporting",
@@ -214,7 +214,7 @@ exports.default = {
 
         {
             "id": "5",
-            "round_index": 0,
+            "roundIndex": 0,
             "sides": [
                 {
                     "contestant_id": "atletico",
@@ -254,7 +254,7 @@ exports.default = {
 
         {
             "id": "6",
-            "round_index": 0,
+            "roundIndex": 0,
             "sides": [
                 {
                     "contestant_id": "chelsea",
@@ -293,7 +293,7 @@ exports.default = {
 
         {
             "id": "7",
-            "round_index": 0,
+            "roundIndex": 0,
             "sides": [
                 {
                     "contestant_id": "psg",
@@ -335,7 +335,7 @@ exports.default = {
 
         {
             "id": "8",
-            "round_index": 1,
+            "roundIndex": 1,
             "sides": [
                 {
                     "contestant_id": "benfica",
@@ -373,7 +373,7 @@ exports.default = {
 
         {
             "id": "9",
-            "round_index": 1,
+            "roundIndex": 1,
             "sides": [
                 {
                     "contestant_id": "villarreal",
@@ -412,7 +412,7 @@ exports.default = {
 
         {
             "id": "10",
-            "round_index": 1,
+            "roundIndex": 1,
             "sides": [
                 {
                     "contestant_id": "city",
@@ -452,7 +452,7 @@ exports.default = {
 
         {
             "id": "11",
-            "round_index": 1,
+            "roundIndex": 1,
             "sides": [
                 {
                     "contestant_id": "chelsea",
@@ -491,7 +491,7 @@ exports.default = {
 
         {
             "id": "12",
-            "round_index": 2,
+            "roundIndex": 2,
             "sides": [
                 {
                     "contestant_id": "liverpool",
@@ -529,7 +529,7 @@ exports.default = {
 
         {
             "id": "13",
-            "round_index": 2,
+            "roundIndex": 2,
             "sides": [
                 {
                     "contestant_id": "city",
@@ -567,7 +567,7 @@ exports.default = {
 
         {
             "id": "14",
-            "round_index": 3,
+            "roundIndex": 3,
             "sides": [
                 {
                     "contestant_id": "liverpool",

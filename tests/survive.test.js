@@ -31,7 +31,7 @@ test('survives non-existent options', () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: '32323', round_index: 0, order: 0,
+            matches: [{ id: '32323', roundIndex: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }] }
             ],
             contestants: {

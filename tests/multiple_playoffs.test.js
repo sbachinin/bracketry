@@ -20,7 +20,7 @@ test('replaces old playoffs with new playoffs when createPlayoffs is called agai
         rounds: [{}],
         matches: [{
             id: 'm1',
-            round_index: 0,
+            roundIndex: 0,
             order: 0,
             sides: [
                 { contestant_id: 'c1' },

@@ -105,7 +105,7 @@ test(`Calls mouse handlers attached to match elements provided by options.getMat
 test(`renders .match-lines-area but not .match-body if getMatchElement throws`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', round_index: 0, order: 0, sides: [{ contestant_id: 'c1' }], match_status: 'Scheduled' }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }], match_status: 'Scheduled' }],
         contestants: {
             c1: { players: [{ title: 'Pete', nationality: 'US' }] }
         }

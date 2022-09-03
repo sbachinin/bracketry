@@ -122,7 +122,7 @@ test('survives when match.id is not a string', () => {
 
 
 
-test('survives without match.round_index', () => {
+test('survives without match.roundIndex', () => {
     const wrapper = document.createElement('div')
     document.body.append(wrapper)
 
@@ -141,7 +141,7 @@ test('survives without match.round_index', () => {
 })
 
 
-test('survives when match.round_index is not a number', () => {
+test('survives when match.roundIndex is not a number', () => {
     const wrapper = document.createElement('div')
     document.body.append(wrapper)
 
@@ -150,7 +150,7 @@ test('survives when match.round_index is not a number', () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: '32323', round_index: true }],
+            matches: [{ id: '32323', roundIndex: true }],
             contestants: {}
         },
         wrapper,
@@ -168,7 +168,7 @@ test('survives when match.order is not a number', () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: '32323', round_index: 0, order: [] }],
+            matches: [{ id: '32323', roundIndex: 0, order: [] }],
             contestants: {}
         },
         wrapper,
@@ -189,7 +189,7 @@ test('survives when player has no title', () => {
         {
             rounds: [{}],
             matches: [{
-                id: '32323', round_index: 0, order: 0,
+                id: '32323', roundIndex: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }]
             }
             ],
@@ -214,7 +214,7 @@ test('survives when player has non-string title', () => {
         {
             rounds: [{}],
             matches: [{
-                id: '32323', round_index: 0, order: 0,
+                id: '32323', roundIndex: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }]
             }
             ],
@@ -239,7 +239,7 @@ test('survives when player has non-string nationality', () => {
         {
             rounds: [{}],
             matches: [{
-                id: '32323', round_index: 0, order: 0,
+                id: '32323', roundIndex: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }]
             }
             ],

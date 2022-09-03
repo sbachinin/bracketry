@@ -85,7 +85,7 @@ test('renders empty shell when match.sides is not an array', () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: '32323', round_index: 0, order: 0, sides: true }],
+            matches: [{ id: '32323', roundIndex: 0, order: 0, sides: true }],
             contestants: {}
         },
         wrapper
@@ -104,7 +104,7 @@ test('renders empty shell if match.sides contains non-object items', () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: 'm1', round_index: 0, order: 0, sides: ['crap'], match_status: 'Scheduled' }],
+            matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: ['crap'], match_status: 'Scheduled' }],
         },
         wrapper
     )
@@ -125,7 +125,7 @@ test('renders empty shell if match.sides[0].contestant_id is not a string', () =
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: '32323', round_index: 0, order: 0, sides: [{ contestant_id: [] }] }],
+            matches: [{ id: '32323', roundIndex: 0, order: 0, sides: [{ contestant_id: [] }] }],
             contestants: {}
         },
         wrapper
@@ -149,7 +149,7 @@ test('renders empty shell when contestant is not an object', () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: '32323', round_index: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+            matches: [{ id: '32323', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
             contestants: {
                 c1: 333
             }
@@ -172,7 +172,7 @@ test('renders matches when contestant is an empty object', () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: '32323', round_index: 0, order: 0, sides: [{ contestant_id: 'contestant1' }] }],
+            matches: [{ id: '32323', roundIndex: 0, order: 0, sides: [{ contestant_id: 'contestant1' }] }],
             contestants: {
                 contestant1: {}
             }
@@ -195,7 +195,7 @@ test('renders empty shell when side.score is not an array', () => {
         {
             rounds: [{}],
             matches: [{
-                id: '32323', round_index: 0, order: 0,
+                id: '32323', roundIndex: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: 312312 }]
             }
             ],
@@ -234,7 +234,7 @@ test('renders empty shell when contestant.players is not an array', () => {
         {
             rounds: [{}],
             matches: [{
-                id: '32323', round_index: 0, order: 0,
+                id: '32323', roundIndex: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }]
             }
             ],
@@ -261,7 +261,7 @@ test('renders empty shell when contestant.players contains non-objects', () => {
         {
             rounds: [{}],
             matches: [{
-                id: '32323', round_index: 0, order: 0,
+                id: '32323', roundIndex: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }]
             }
             ],

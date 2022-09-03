@@ -14,7 +14,7 @@ type Round = {
 
 export type Match = {
     id: string, // TODO is it used or useful?
-    round_index: number,
+    roundIndex: number,
     order: number, // 0-based!
     sides?: Side[],
     match_status?: string // it will be rendered IF there is no score. Meant for statuses like 'Cancelled' | 'Scheduled' | '19.05.2022 18:30' (any status INSTEAD of score)

@@ -41,7 +41,7 @@ type Options = {
     distanceBetweenScorePairs: number,
     onMatchClick: (match: Match) => void,
     onMatchSideClick: (contestant: Contestant, contestant_id: string, match: Match) => void,
-    getMatchElement: (round_index: number, match_order: number, all_data: Data) => Element,
+    getMatchElement: (roundIndex: number, match_order: number, all_data: Data) => Element,
     getNationalityHTML: (
         nationality: any,
         context: { matchId: string, contestantId: string, playerIndex: number },

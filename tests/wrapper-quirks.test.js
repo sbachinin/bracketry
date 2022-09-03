@@ -17,7 +17,7 @@ test('js survives if non-element wrapper is provided', () => {
         {
             rounds: [{}],
             matches: [{
-                id: '32323', round_index: 0, order: 0,
+                id: '32323', roundIndex: 0, order: 0,
                 sides: [{ contestant_id: 'contestant1', score: [] }]
             }
             ],

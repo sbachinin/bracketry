@@ -23,7 +23,7 @@ test('getAllData returns a new match supplied by applyMatchesUpdates in place of
 
     const new_match = {
         id: 'some_id',
-        round_index: 1,
+        roundIndex: 1,
         order: 2,
         sides: [ { contestant_id: 'c123', score: [{ main_score: '666' }] } ]
     }
@@ -33,7 +33,7 @@ test('getAllData returns a new match supplied by applyMatchesUpdates in place of
     const all_matches = pl.getAllData().matches
     expect(all_matches.length).toBe(15)
 
-    const matches_in_this_position = all_matches.filter(m => m.round_index === 1 && m.order === 2)
+    const matches_in_this_position = all_matches.filter(m => m.roundIndex === 1 && m.order === 2)
     expect(matches_in_this_position.length).toBe(1)
     expect(matches_in_this_position[0]).toEqual(new_match)
 })
@@ -48,7 +48,7 @@ test('draws a new score for a match updated by applyMatchesUpdates', () => {
 
     const new_match = {
         id: 'some_id',
-        round_index: 1,
+        roundIndex: 1,
         order: 2,
         sides: [ { contestant_id: 'c123', score: [{ main_score: '666' }] } ]
     }
@@ -78,7 +78,7 @@ test('applyMatchesUpdates creates new match if none was present for this round_i
 
     const new_match = {
         id: '32323',
-        round_index: 0,
+        roundIndex: 0,
         order: 0,
         sides: [
             { contestant_id: 'c1', score: [{ main_score: '6' }] },
@@ -101,7 +101,7 @@ test('does not mutate data passed to applyMatchesUpdate', () => {
 
     const new_match = {
         id: 'some_id',
-        round_index: 1,
+        roundIndex: 1,
         order: 2,
         sides: [ { contestant_id: 'villarreal', score: [{ main_score: '666' }] } ]
     }
@@ -110,7 +110,7 @@ test('does not mutate data passed to applyMatchesUpdate', () => {
 
     expect(new_match).toEqual({
         id: 'some_id',
-        round_index: 1,
+        roundIndex: 1,
         order: 2,
         sides: [ { contestant_id: 'villarreal', score: [{ main_score: '666' }] } ]
     })
