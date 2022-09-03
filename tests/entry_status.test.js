@@ -12,7 +12,7 @@ afterEach(jest.clearAllMocks)
 test(`renders empty .entry-status IF side has NO entry_status AND getEntryStatusHTML is NOT provided`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { players: [{ title: 'Josh' }] } }
     }
     const { wrapper } = init(data)
@@ -22,7 +22,7 @@ test(`renders empty .entry-status IF side has NO entry_status AND getEntryStatus
 test(`renders empty .entry-status IF side has NON-STRING entry_status AND getEntryStatusHTML is NOT provided`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entry_status: {} } }
     }
     const { wrapper } = init(data)
@@ -34,7 +34,7 @@ test(`renders empty .entry-status IF side has NON-STRING entry_status AND getEnt
 test(`renders side's VALID entry_status as such if getEntryStatusHTML is NOT provided`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entry_status: 'WC' } }
     }
     const { wrapper } = init(data)
@@ -45,7 +45,7 @@ test(`renders side's VALID entry_status as such if getEntryStatusHTML is NOT pro
 test(`renders side's VALID entry_status as such if getEntryStatusHTML is INVALID (not a function)`, async () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: {
             c1: { entry_status: 'WC', players: [{ title: 'Pete' }] }
         }
@@ -61,7 +61,7 @@ test(`renders side's VALID entry_status as such if getEntryStatusHTML is INVALID
 test(`renders html provided as entry_status (when no options.getEntryStatusHTML)`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: {
             c1: { entry_status: '<span class="user-status" style="background: tomato">WC</span>' }
         }
@@ -95,7 +95,7 @@ test(`calls getEntryStatusHTML with entry_status of a contestant`, () => {
     const getEntryStatusHTML = jest.fn()
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entry_status: 'WC' } }
     }
     init(data, { getEntryStatusHTML })
@@ -107,7 +107,7 @@ test(`calls getEntryStatusHTML with entry_status of a contestant, even if entry_
     const getEntryStatusHTML = jest.fn()
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entry_status: {} } }
     }
     init(data, { getEntryStatusHTML })
@@ -118,7 +118,7 @@ test(`calls getEntryStatusHTML for all contestants, even those with missing or i
     const getEntryStatusHTML = jest.fn()
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }, { contestant_id: 'c2' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }, { contestantId: 'c2' }] }],
         contestants: {
             c1: { entry_status: {} },
             c2: { players: [{ title: 'Pete' }] }
@@ -133,7 +133,7 @@ test(`calls getEntryStatusHTML for all contestants, even those with missing or i
 test(`renders bare contestant.entry_status if getEntryStatusHTML is provided but it's not a function`, async () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entry_status: 'LL', players: [{ title: 'j' }] } }
     }
 
@@ -147,7 +147,7 @@ test(`renders bare contestant.entry_status if getEntryStatusHTML is provided but
 test(`renders bare contestant.entry_status if getEntryStatusHTML throws`, async () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entry_status: 'LL', players: [{ title: 'j' }] } }
     }
 
@@ -162,7 +162,7 @@ test(`calls getEntryStatusHTML with context object as 2nd arg and data as 3rd`, 
     getEntryStatusHTML = jest.fn()
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: {} }
     }
 
@@ -187,7 +187,7 @@ test(`calls getEntryStatusHTML with context object as 2nd arg and data as 3rd`, 
 test(`injects the return value of getEntryStatusHTML even if contestant has no entry_status`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: {} }
     }
 
@@ -199,7 +199,7 @@ test(`injects the return value of getEntryStatusHTML even if contestant has no e
 test(`injects the return value of getEntryStatusHTML even if contestant's entry_status is not a string`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entry_status: {} } }
     }
 
@@ -213,8 +213,8 @@ test(`injects a valid return value of getEntryStatusHTML to ALL sides`, () => {
     const data = {
         rounds: [{}, {}],
         matches: [
-            { id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }, { contestant_id: 'c2' }] },
-            { id: 'm2', roundIndex: 0, order: 1, sides: [{ contestant_id: 'c3' }, { contestant_id: 'c4' }] }
+            { id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }, { contestantId: 'c2' }] },
+            { id: 'm2', roundIndex: 0, order: 1, sides: [{ contestantId: 'c3' }, { contestantId: 'c4' }] }
         ],
         contestants: { c1: {}, c2: {}, c3: {}, c4: {} }
     }
@@ -231,7 +231,7 @@ test(`injects a valid return value of getEntryStatusHTML to ALL sides`, () => {
 test(`Falls back to bare contestant.entry_status (valid one) IF getEntryStatusHTML returns invalid value`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entry_status: 'WC', players: [{title: ''}] } }
     }
 
@@ -244,7 +244,7 @@ test(`Falls back to bare contestant.entry_status (valid one) IF getEntryStatusHT
 test(`renders empty .entry-status if both contestant.entry_status and getEntryStatusHTML's return value are invalid`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entry_status: [] } }
     }
 
@@ -254,5 +254,5 @@ test(`renders empty .entry-status if both contestant.entry_status and getEntrySt
 
 
 
-// TODO should it be called if there is no data for contestant_id? (now it's not called)
+// TODO should it be called if there is no data for contestantId? (now it's not called)
 

@@ -20,7 +20,7 @@ exports.default = {
             "roundIndex": 0,
             "sides": [
                 {
-                    "contestant_id": "benfica",
+                    "contestantId": "benfica",
                     "score": [
                         {
                             "main_score": "2",
@@ -34,7 +34,7 @@ exports.default = {
                     "is_winner": true
                 },
                 {
-                    "contestant_id": "ajax",
+                    "contestantId": "ajax",
                     "score": [
                         {
                             "main_score": "2",
@@ -60,7 +60,7 @@ exports.default = {
             "roundIndex": 0,
             "sides": [
                 {
-                    "contestant_id": "inter",
+                    "contestantId": "inter",
                     "score": [
                         {
                             "main_score": "0",
@@ -74,7 +74,7 @@ exports.default = {
                     "is_winner": false
                 },
                 {
-                    "contestant_id": "liverpool",
+                    "contestantId": "liverpool",
                     "score": [
                         {
                             "main_score": "2",
@@ -99,7 +99,7 @@ exports.default = {
             "roundIndex": 0,
             "sides": [
                 {
-                    "contestant_id": "villarreal",
+                    "contestantId": "villarreal",
                     "score": [
                         {
                             "main_score": "1",
@@ -113,7 +113,7 @@ exports.default = {
                     "is_winner": true
                 },
                 {
-                    "contestant_id": "juventus",
+                    "contestantId": "juventus",
                     "score": [
                         {
                             "main_score": "1",
@@ -138,7 +138,7 @@ exports.default = {
             "roundIndex": 0,
             "sides": [
                 {
-                    "contestant_id": "salzburg",
+                    "contestantId": "salzburg",
                     "score": [
                         {
                             "main_score": "1",
@@ -152,7 +152,7 @@ exports.default = {
                     "is_winner": false
                 },
                 {
-                    "contestant_id": "bayern",
+                    "contestantId": "bayern",
                     "score": [
                         {
                             "main_score": "1",
@@ -177,7 +177,7 @@ exports.default = {
             "roundIndex": 0,
             "sides": [
                 {
-                    "contestant_id": "sporting",
+                    "contestantId": "sporting",
                     "score": [
                         {
                             "main_score": "0",
@@ -191,7 +191,7 @@ exports.default = {
                     "is_winner": false
                 },
                 {
-                    "contestant_id": "city",
+                    "contestantId": "city",
                     "score": [
                         {
                             "main_score": "5",
@@ -217,7 +217,7 @@ exports.default = {
             "roundIndex": 0,
             "sides": [
                 {
-                    "contestant_id": "atletico",
+                    "contestantId": "atletico",
                     "score": [
                         {
                             "main_score": "1",
@@ -231,7 +231,7 @@ exports.default = {
                     "is_winner": true
                 },
                 {
-                    "contestant_id": "mu",
+                    "contestantId": "mu",
                     "score": [
                         {
                             "main_score": "1",
@@ -257,7 +257,7 @@ exports.default = {
             "roundIndex": 0,
             "sides": [
                 {
-                    "contestant_id": "chelsea",
+                    "contestantId": "chelsea",
                     "score": [
                         {
                             "main_score": "2",
@@ -271,7 +271,7 @@ exports.default = {
                     "is_winner": true
                 },
                 {
-                    "contestant_id": "lille",
+                    "contestantId": "lille",
                     "score": [
                         {
                             "main_score": "0",
@@ -296,7 +296,7 @@ exports.default = {
             "roundIndex": 0,
             "sides": [
                 {
-                    "contestant_id": "psg",
+                    "contestantId": "psg",
                     "score": [
                         {
                             "main_score": "1",
@@ -310,7 +310,7 @@ exports.default = {
                     "is_winner": false
                 },
                 {
-                    "contestant_id": "real",
+                    "contestantId": "real",
                     "score": [
                         {
                             "main_score": "0",
@@ -338,7 +338,7 @@ exports.default = {
             "roundIndex": 1,
             "sides": [
                 {
-                    "contestant_id": "benfica",
+                    "contestantId": "benfica",
                     "score": [
                         {
                             "main_score": "1",
@@ -352,7 +352,7 @@ exports.default = {
                     "is_winner": true
                 },
                 {
-                    "contestant_id": "liverpool",
+                    "contestantId": "liverpool",
                     "score": [
                         {
                             "main_score": "3",
@@ -376,7 +376,7 @@ exports.default = {
             "roundIndex": 1,
             "sides": [
                 {
-                    "contestant_id": "villarreal",
+                    "contestantId": "villarreal",
                     "score": [
                         {
                             "main_score": "1",
@@ -390,7 +390,7 @@ exports.default = {
                     "is_winner": true
                 },
                 {
-                    "contestant_id": "bayern",
+                    "contestantId": "bayern",
                     "score": [
                         {
                             "main_score": "0",
@@ -415,7 +415,7 @@ exports.default = {
             "roundIndex": 1,
             "sides": [
                 {
-                    "contestant_id": "city",
+                    "contestantId": "city",
                     "score": [
                         {
                             "main_score": "1",
@@ -429,7 +429,7 @@ exports.default = {
                     "is_winner": true
                 },
                 {
-                    "contestant_id": "atletico",
+                    "contestantId": "atletico",
                     "score": [
                         {
                             "main_score": "0",
@@ -455,7 +455,7 @@ exports.default = {
             "roundIndex": 1,
             "sides": [
                 {
-                    "contestant_id": "chelsea",
+                    "contestantId": "chelsea",
                     "score": [
                         {
                             "main_score": "1",
@@ -469,7 +469,7 @@ exports.default = {
                     "is_winner": false
                 },
                 {
-                    "contestant_id": "real",
+                    "contestantId": "real",
                     "score": [
                         {
                             "main_score": "3",
@@ -494,7 +494,7 @@ exports.default = {
             "roundIndex": 2,
             "sides": [
                 {
-                    "contestant_id": "liverpool",
+                    "contestantId": "liverpool",
                     "score": [
                         {
                             "main_score": "2",
@@ -508,7 +508,7 @@ exports.default = {
                     "is_winner": true
                 },
                 {
-                    "contestant_id": "villarreal",
+                    "contestantId": "villarreal",
                     "score": [
                         {
                             "main_score": "0",
@@ -532,7 +532,7 @@ exports.default = {
             "roundIndex": 2,
             "sides": [
                 {
-                    "contestant_id": "city",
+                    "contestantId": "city",
                     "score": [
                         {
                             "main_score": "4",
@@ -546,7 +546,7 @@ exports.default = {
                     "is_winner": false
                 },
                 {
-                    "contestant_id": "real",
+                    "contestantId": "real",
                     "score": [
                         {
                             "main_score": "3",
@@ -570,7 +570,7 @@ exports.default = {
             "roundIndex": 3,
             "sides": [
                 {
-                    "contestant_id": "liverpool",
+                    "contestantId": "liverpool",
                     "score": [
                         {
                             "main_score": "0",
@@ -580,7 +580,7 @@ exports.default = {
                     "is_winner": false
                 },
                 {
-                    "contestant_id": "real",
+                    "contestantId": "real",
                     "score": [
                         {
                             "main_score": "1",

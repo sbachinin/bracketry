@@ -94,7 +94,7 @@ test('does not unhighlight history after click outside .matches-positioner', () 
 })
 
 
-test('highlights a contestant history when highlightContestantHistory is called with a valid contestant_id', () => {
+test('highlights a contestant history when highlightContestantHistory is called with a valid contestantId', () => {
     const { wrapper, playoffs } = init(finished_ucl)
 
     playoffs.highlightContestantHistory('villarreal')
@@ -105,7 +105,7 @@ test('highlights a contestant history when highlightContestantHistory is called 
 })
 
 
-test('highlights a contestant history when highlightContestantHistory is called with a valid contestant_id', () => {
+test('highlights a contestant history when highlightContestantHistory is called with a valid contestantId', () => {
     const { wrapper, playoffs } = init(finished_ucl)
 
     playoffs.highlightContestantHistory('villarreal')
@@ -261,8 +261,8 @@ test(`can highlight contestant's matches on highlightContestantHistory() call
 const spoilt_ucl = deep_clone_object(finished_ucl)
 spoilt_ucl.matches.forEach(m => { // i need matches with some contestant_ids missing
     m.sides.forEach(s => {
-        if (s.contestant_id === 'villarreal') {
-            delete s.contestant_id
+        if (s.contestantId === 'villarreal') {
+            delete s.contestantId
         }
     })
 })

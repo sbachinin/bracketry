@@ -4,7 +4,7 @@ export type Data = {
     rounds: Round[], // you have to provide an object for each round, including the upcoming rounds
     matches?: Match[],
     contestants?: {
-        [contestant_id: string]: Contestant
+        [contestantId: string]: Contestant
     }
 }
 
@@ -23,7 +23,7 @@ export type Match = {
 // Side is a match-specific data for contestant: his id, his score ...
 type Side = {
     title?: string,
-    contestant_id?: string,
+    contestantId?: string,
     score?: [
         {
             main_score: number | string, // May contain divergent results like 'W/O' or 'Ret' in tennis

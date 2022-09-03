@@ -17,7 +17,7 @@ afterEach(jest.clearAllMocks)
 test(`renders empty .nationality IF player has NO nationality AND getNationalityHTML is NOT provided`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { players: [{ title: 'Josh' }] } }
     }
 
@@ -30,7 +30,7 @@ test(`renders empty .nationality IF player has NO nationality AND getNationality
 test(`renders empty .nationality IF player has NON-STRING nationality AND getNationalityHTML is NOT provided`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { players: [{ title: 'Josh', nationality: {} }] } }
     }
 
@@ -43,7 +43,7 @@ test(`renders empty .nationality IF player has NON-STRING nationality AND getNat
 test(`renders player's VALID nationality as such if getNationalityHTML is NOT provided`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { players: [{ title: 'Josh', nationality: 'US' }] } }
     }
 
@@ -56,7 +56,7 @@ test(`renders player's VALID nationality as such if getNationalityHTML is NOT pr
 test(`renders player's VALID nationality as such if getNationalityHTML is INVALID (not a function)`, async () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { players: [{ title: 'Josh', nationality: 'US' }] } }
     }
 
@@ -70,7 +70,7 @@ test(`renders player's VALID nationality as such if getNationalityHTML is INVALI
 test(`renders html provided as player's nationality (when no options.getNationalityHTML)`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: {
             c1: {
                 players: [{
@@ -108,7 +108,7 @@ test(`calls getNationalityHTML with nationality of a player`, () => {
     getNationalityHTML = jest.fn()
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: {
             c1: { players: [{ title: 'Pete', nationality: 'US' }] }
         }
@@ -124,7 +124,7 @@ test(`calls getNationalityHTML with nationality of a player, even if it's not a 
     getNationalityHTML = jest.fn()
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: {
             c1: { players: [{ title: 'Pete', nationality: { value: 'asshole' } }] }
         }
@@ -141,7 +141,7 @@ test(`calls getNationalityHTML for ALL players, even those with missing or inval
 
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }, { contestant_id: 'c2' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }, { contestantId: 'c2' }] }],
         contestants: {
             c1: {
                 players: [
@@ -166,7 +166,7 @@ test(`calls getNationalityHTML for ALL players, even those with missing or inval
 test(`renders bare player.nationality if getNationalityHTML is provided but it's not a function`, async () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: {
             c1: { players: [{ title: 'Pete', nationality: 'US' }] }
         }
@@ -182,7 +182,7 @@ test(`renders bare player.nationality if getNationalityHTML is provided but it's
 test(`renders bare player.nationality if getNationalityHTML throws`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: {
             c1: { players: [{ title: 'Pete', nationality: 'US' }] }
         }
@@ -198,7 +198,7 @@ test(`calls getNationalityHTML with context object as 2nd arg and data as 3rd`, 
     getNationalityHTML = jest.fn()
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: {
             c1: { players: [{ title: 'Pete', nationality: 'US' }] }
         }
@@ -231,7 +231,7 @@ test(`calls getNationalityHTML with context object as 2nd arg and data as 3rd`, 
 test(`injects the return value of getNationalityHTML even if player has no nationality`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: {
             c1: { players: [{ title: 'Pete' }] }
         }
@@ -244,7 +244,7 @@ test(`injects the return value of getNationalityHTML even if player has no natio
 test(`injects the return value of getNationalityHTML even if player's nationality is not a string`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: {
             c1: { players: [{ title: 'Pete', nationality: {} }] }
         }
@@ -258,7 +258,7 @@ test(`injects the return value of getNationalityHTML even if player's nationalit
 test(`injects a valid return value of getNationalityHTML to ALL players`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }, { contestant_id: 'c2' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }, { contestantId: 'c2' }] }],
         contestants: {
             c1: {
                 players: [
@@ -284,7 +284,7 @@ test(`injects a valid return value of getNationalityHTML to ALL players`, () => 
 test(`Falls back to bare player's nationality (valid one) IF getNationalityHTML returns invalid value`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: {
             c1: { players: [{ title: 'Pete', nationality: 'CAN' }] }
         }
@@ -298,7 +298,7 @@ test(`Falls back to bare player's nationality (valid one) IF getNationalityHTML 
 test(`renders empty .nationality if both player's nationality and getNationalityHTML's return value are invalid`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: {
             c1: { players: [{ title: 'Pete', nationality: Object }] }
         }

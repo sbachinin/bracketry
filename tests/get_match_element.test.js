@@ -26,8 +26,8 @@ test('can draw asymmetrical scores where two sides have different number of elem
                 roundIndex: 0,
                 order: 0,
                 sides: [
-                    { contestant_id: 'c1', score: [] },
-                    { contestant_id: 'c2', score: [{ main_score: 'Rt' }] }
+                    { contestantId: 'c1', score: [] },
+                    { contestantId: 'c2', score: [{ main_score: 'Rt' }] }
                 ]
             }],
             contestants: {
@@ -54,8 +54,8 @@ test('can draw asymmetrical scores where ONLY ONE SIDE has a score array', () =>
                 roundIndex: 0,
                 order: 0,
                 sides: [
-                    { contestant_id: 'c1' },
-                    { contestant_id: 'c2', score: [{ main_score: 'Rt' }] }
+                    { contestantId: 'c1' },
+                    { contestantId: 'c2', score: [{ main_score: 'Rt' }] }
                 ]
             }],
             contestants: {
@@ -80,7 +80,7 @@ test('renders a contentful match even if "contestants" are undefined', () => {
                 id: '32323',
                 roundIndex: 0,
                 order: 0,
-                sides: [{ contestant_id: 'abc' }],
+                sides: [{ contestantId: 'abc' }],
                 matchStatus: 'Scheduled'
             }],
         },
@@ -90,7 +90,7 @@ test('renders a contentful match even if "contestants" are undefined', () => {
 });
 
 
-test(`renders a contentful match even if "contestants" don't contain such contestant_id`, () => {
+test(`renders a contentful match even if "contestants" don't contain such contestantId`, () => {
     const wrapper = create_wrapper()
     expect.assertions(2)
 
@@ -101,7 +101,7 @@ test(`renders a contentful match even if "contestants" don't contain such contes
                 id: '32323',
                 roundIndex: 0,
                 order: 0,
-                sides: [{ contestant_id: 'abc' }],
+                sides: [{ contestantId: 'abc' }],
                 matchStatus: 'Scheduled'
             }],
             contestants: {
@@ -112,7 +112,7 @@ test(`renders a contentful match even if "contestants" don't contain such contes
     )
 
     expect(consoleWarn.mock.calls[0][0]).toMatch(
-        `No contestant data found for this side.contestant_id`
+        `No contestant data found for this side.contestantId`
     )
     expect(wrapper.querySelector('.match-status').textContent).toBe('Scheduled')
 })
@@ -172,7 +172,7 @@ test('renders a contentful match if side.score is an empty array', () => {
             rounds: [{}],
             matches: [{
                 id: '32323', roundIndex: 0, order: 0,
-                sides: [{ contestant_id: 'contestant1', score: [] }]
+                sides: [{ contestantId: 'contestant1', score: [] }]
             }
             ],
             contestants: {
@@ -201,7 +201,7 @@ test('renders a contentful match if contestant.players is an empty array', () =>
             rounds: [{}],
             matches: [{
                 id: '32323', roundIndex: 0, order: 0,
-                sides: [{ contestant_id: 'c1' }],
+                sides: [{ contestantId: 'c1' }],
                 matchStatus: 'Scheduled'
             }
             ],
@@ -244,7 +244,7 @@ test(`renders 2 .side-wrapper elements if match.sides contains more items`, () =
             rounds: [{}],
             matches: [{
                 id: 'm1', roundIndex: 0, order: 0,
-                sides: [{ contestant_id: 'c1' }, { contestant_id: 'c2' }, { contestant_id: 'c3' }],
+                sides: [{ contestantId: 'c1' }, { contestantId: 'c2' }, { contestantId: 'c3' }],
                 matchStatus: 'Scheduled'
             }],
         },
@@ -256,7 +256,7 @@ test(`renders 2 .side-wrapper elements if match.sides contains more items`, () =
 })
 
 
-test(`does not add "contestant-id" attribute to .side-wrapper when match.sides[i] has no "contestant_id"`, () => {
+test(`does not add "contestant-id" attribute to .side-wrapper when match.sides[i] has no "contestantId"`, () => {
     const wrapper = create_wrapper()
 
     createPlayoffs(
@@ -276,7 +276,7 @@ test(`does not add "contestant-id" attribute to .side-wrapper when match.sides[i
 })
 
 
-test(`allows clicks on a .side-wrapper which has a contestant_id (even if no contestant data for such id)`, () => {
+test(`allows clicks on a .side-wrapper which has a contestantId (even if no contestant data for such id)`, () => {
     const wrapper = create_wrapper()
 
     createPlayoffs(
@@ -284,7 +284,7 @@ test(`allows clicks on a .side-wrapper which has a contestant_id (even if no con
             rounds: [{}],
             matches: [{
                 id: 'm1', roundIndex: 0, order: 0,
-                sides: [{ contestant_id: 'c1' }]
+                sides: [{ contestantId: 'c1' }]
             }],
         },
         wrapper
@@ -298,13 +298,13 @@ test(`allows clicks on a .side-wrapper which has a contestant_id (even if no con
 })
 
 
-test(`forbids clicks on a side-wrapper without contestant_id`, () => {
+test(`forbids clicks on a side-wrapper without contestantId`, () => {
     const wrapper = create_wrapper()
 
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+            matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         },
         wrapper
     )
@@ -327,11 +327,11 @@ test(`does not render scores for a side which has 0 items in "score" array`, () 
             matches: [{
                 id: 'm1', roundIndex: 0, order: 0, sides: [
                     {
-                        contestant_id: 'c1',
+                        contestantId: 'c1',
                         score: [{ main_score: 'Walkover' }]
                     },
                     {
-                        contestant_id: 'c2',
+                        contestantId: 'c2',
                         score: []
                     }
                 ]
@@ -345,7 +345,7 @@ test(`does not render scores for a side which has 0 items in "score" array`, () 
 
 
 
-test(`renders a score even if side has no "contestant_id"`, () => {
+test(`renders a score even if side has no "contestantId"`, () => {
     const wrapper = create_wrapper()
 
     createPlayoffs(
@@ -379,7 +379,7 @@ test(`renders score even if contestant not found for such side`, () => {
             matches: [{
                 id: 'm1', roundIndex: 0, order: 0, sides: [
                     {
-                        contestant_id: 'c1',
+                        contestantId: 'c1',
                         score: [{ main_score: 'Walkover' }]
                     }
                 ]
@@ -404,7 +404,7 @@ test(`renders .single-score element only for side.score items which have "main_s
             matches: [{
                 id: 'm1', roundIndex: 0, order: 0, sides: [
                     {
-                        contestant_id: 'c1',
+                        contestantId: 'c1',
                         score: [{ main_score: 'Walkover' }, { tie_break: 12 }]
                     }
                 ]
@@ -428,7 +428,7 @@ test(`renders as much .single-score elements as there are valid items in side.sc
             matches: [{
                 id: 'm1', roundIndex: 0, order: 0, sides: [
                     {
-                        contestant_id: 'c1',
+                        contestantId: 'c1',
                         score: [
                             { main_score: 'Walkover' },
                             { tie_break: 12 },
@@ -457,7 +457,7 @@ test(`renders player title if any of side.score items has no "main_score (and wa
         {
             rounds: [{}],
             matches: [{
-                id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1', score: [{}] }]
+                id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{}] }]
             }],
             contestants: {
                 c1: { players: [{ title: 'josh' }] }
@@ -493,7 +493,7 @@ test(`renders a contentful match without .tie-break if score.tie_break is of inv
         {
             rounds: [{}],
             matches: [{
-                id: 'm1', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1', score: [{ main_score: '6', tie_break: 'jopa' }] }]
+                id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{ main_score: '6', tie_break: 'jopa' }] }]
             }],
             contestants: {
                 c1: { players: [] }
@@ -510,7 +510,7 @@ test(`renders a contentful match without .tie-break if score.tie_break is of inv
 })
 
 
-test('renders side.title into .player-title element if side has no "contestant_id"', () => {
+test('renders side.title into .player-title element if side has no "contestantId"', () => {
     const wrapper = create_wrapper()
 
     createPlayoffs(
@@ -524,13 +524,13 @@ test('renders side.title into .player-title element if side has no "contestant_i
     expect(wrapper.querySelector('.player-title').textContent).toBe('BYE')
 })
 
-test('does not render side.title if side has both "title" and "contestant_id"', () => {
+test('does not render side.title if side has both "title" and "contestantId"', () => {
     const wrapper = create_wrapper()
 
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ title: 'BYE', contestant_id: 'c1' }] }],
+            matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ title: 'BYE', contestantId: 'c1' }] }],
             contestants: {
                 c1: { players: [ { title: 'Pete' } ] }
             }
@@ -548,7 +548,7 @@ test('does not render word "undefined" if contestants[i].players[j] has no title
     
     const data = {
         rounds: [{}],
-        matches: [ { id: 'm1', roundIndex: 0, order: 0, sides: [ { contestant_id: 'c1'} ] } ],
+        matches: [ { id: 'm1', roundIndex: 0, order: 0, sides: [ { contestantId: 'c1'} ] } ],
         contestants: { c1: { players: [ {}] } }
     }
 

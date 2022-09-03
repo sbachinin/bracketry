@@ -1,5 +1,5 @@
 
-## data.contestants[contestant_id].title can be actually an HTML string, for example a link
+## data.contestants[contestantId].title can be actually an HTML string, for example a link
 
 contestants: {
         a: {
@@ -25,15 +25,15 @@ Highlight on click will not work if options.onMatchClick or options.onMatchSideC
 
 ## highlightContestantHistory
 
-Accepts one argument: **contestant_id** which can be a string or null
+Accepts one argument: **contestantId** which can be a string or null
 
-When called with a valid contestant_id (for which a side is found in data.matches), it will highlight such contestant's matches.
+When called with a valid contestantId (for which a side is found in data.matches), it will highlight such contestant's matches.
 
 When called with null, it will unhighlight what was highlighted before
 
 When called with something else, will do nothing
 
-If called with a valid contestant_id, it will highlight matches *even if options.onMatchClick or options.onMatchSideClick is provided*
+If called with a valid contestantId, it will highlight matches *even if options.onMatchClick or options.onMatchSideClick is provided*
 
 
 # Data
@@ -44,8 +44,8 @@ If called with a valid contestant_id, it will highlight matches *even if options
 
 ### * sides
 
-**title**: rendered IF there is NO contestant_id  
-*(because if there IS a contestant_id, a title is expected to be found in contestants[contestant_id].players[i].title)*
+**title**: rendered IF there is NO contestantId  
+*(because if there IS a contestantId, a title is expected to be found in contestants[contestantId].players[i].title)*
 
 ## contestants
 

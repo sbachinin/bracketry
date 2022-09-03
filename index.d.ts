@@ -40,7 +40,7 @@ type Options = {
     liveMatchBackgroundColor: string,
     distanceBetweenScorePairs: number,
     onMatchClick: (match: Match) => void,
-    onMatchSideClick: (contestant: Contestant, contestant_id: string, match: Match) => void,
+    onMatchSideClick: (contestant: Contestant, contestantId: string, match: Match) => void,
     getMatchElement: (roundIndex: number, match_order: number, all_data: Data) => Element,
     getNationalityHTML: (
         nationality: any,
@@ -78,5 +78,5 @@ export function createPlayoffs(
     replaceData: (new_data: Data) => void
     applyMatchesUpdates: (matches_data: Match[]) => void
     getAllData: () => Data
-    highlightContestantHistory: (contestant_id: string | null) => void
+    highlightContestantHistory: (contestantId: string | null) => void
 }

@@ -25,7 +25,7 @@ test('getAllData returns a new match supplied by applyMatchesUpdates in place of
         id: 'some_id',
         roundIndex: 1,
         order: 2,
-        sides: [ { contestant_id: 'c123', score: [{ main_score: '666' }] } ]
+        sides: [ { contestantId: 'c123', score: [{ main_score: '666' }] } ]
     }
 
     pl.applyMatchesUpdates([ new_match ])
@@ -50,7 +50,7 @@ test('draws a new score for a match updated by applyMatchesUpdates', () => {
         id: 'some_id',
         roundIndex: 1,
         order: 2,
-        sides: [ { contestant_id: 'c123', score: [{ main_score: '666' }] } ]
+        sides: [ { contestantId: 'c123', score: [{ main_score: '666' }] } ]
     }
 
     pl.applyMatchesUpdates([ new_match ])
@@ -81,7 +81,7 @@ test('applyMatchesUpdates creates new match if none was present for this round_i
         roundIndex: 0,
         order: 0,
         sides: [
-            { contestant_id: 'c1', score: [{ main_score: '6' }] },
+            { contestantId: 'c1', score: [{ main_score: '6' }] },
         ]
     }
 
@@ -103,7 +103,7 @@ test('does not mutate data passed to applyMatchesUpdate', () => {
         id: 'some_id',
         roundIndex: 1,
         order: 2,
-        sides: [ { contestant_id: 'villarreal', score: [{ main_score: '666' }] } ]
+        sides: [ { contestantId: 'villarreal', score: [{ main_score: '666' }] } ]
     }
 
     pl.applyMatchesUpdates([ new_match ])
@@ -112,6 +112,6 @@ test('does not mutate data passed to applyMatchesUpdate', () => {
         id: 'some_id',
         roundIndex: 1,
         order: 2,
-        sides: [ { contestant_id: 'villarreal', score: [{ main_score: '666' }] } ]
+        sides: [ { contestantId: 'villarreal', score: [{ main_score: '666' }] } ]
     })
 })

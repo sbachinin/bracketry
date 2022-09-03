@@ -23,8 +23,8 @@ test('replaces old playoffs with new playoffs when createPlayoffs is called agai
             roundIndex: 0,
             order: 0,
             sides: [
-                { contestant_id: 'c1' },
-                { contestant_id: 'c2' }
+                { contestantId: 'c1' },
+                { contestantId: 'c2' }
             ]
         }],
         contestants: {

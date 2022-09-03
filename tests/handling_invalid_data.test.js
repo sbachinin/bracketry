@@ -190,7 +190,7 @@ test('survives when player has no title', () => {
             rounds: [{}],
             matches: [{
                 id: '32323', roundIndex: 0, order: 0,
-                sides: [{ contestant_id: 'contestant1', score: [] }]
+                sides: [{ contestantId: 'contestant1', score: [] }]
             }
             ],
             contestants: {
@@ -215,7 +215,7 @@ test('survives when player has non-string title', () => {
             rounds: [{}],
             matches: [{
                 id: '32323', roundIndex: 0, order: 0,
-                sides: [{ contestant_id: 'contestant1', score: [] }]
+                sides: [{ contestantId: 'contestant1', score: [] }]
             }
             ],
             contestants: {
@@ -240,7 +240,7 @@ test('survives when player has non-string nationality', () => {
             rounds: [{}],
             matches: [{
                 id: '32323', roundIndex: 0, order: 0,
-                sides: [{ contestant_id: 'contestant1', score: [] }]
+                sides: [{ contestantId: 'contestant1', score: [] }]
             }
             ],
             contestants: {

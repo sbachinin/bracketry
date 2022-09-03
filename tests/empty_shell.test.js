@@ -117,7 +117,7 @@ test('renders empty shell if match.sides contains non-object items', () => {
 
 
 
-test('renders empty shell if match.sides[0].contestant_id is not a string', () => {
+test('renders empty shell if match.sides[0].contestantId is not a string', () => {
     const wrapper = document.createElement('div')
     document.body.append(wrapper)
     expect.assertions(3)
@@ -125,7 +125,7 @@ test('renders empty shell if match.sides[0].contestant_id is not a string', () =
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: '32323', roundIndex: 0, order: 0, sides: [{ contestant_id: [] }] }],
+            matches: [{ id: '32323', roundIndex: 0, order: 0, sides: [{ contestantId: [] }] }],
             contestants: {}
         },
         wrapper
@@ -134,7 +134,7 @@ test('renders empty shell if match.sides[0].contestant_id is not a string', () =
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
     expect(consoleWarn.mock.calls[0][0]).toMatch(
-        `If you provide side.contestant_id, it must be a string`
+        `If you provide side.contestantId, it must be a string`
     )
 })
 
@@ -149,7 +149,7 @@ test('renders empty shell when contestant is not an object', () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: '32323', roundIndex: 0, order: 0, sides: [{ contestant_id: 'c1' }] }],
+            matches: [{ id: '32323', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
             contestants: {
                 c1: 333
             }
@@ -172,7 +172,7 @@ test('renders matches when contestant is an empty object', () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: '32323', roundIndex: 0, order: 0, sides: [{ contestant_id: 'contestant1' }] }],
+            matches: [{ id: '32323', roundIndex: 0, order: 0, sides: [{ contestantId: 'contestant1' }] }],
             contestants: {
                 contestant1: {}
             }
@@ -196,7 +196,7 @@ test('renders empty shell when side.score is not an array', () => {
             rounds: [{}],
             matches: [{
                 id: '32323', roundIndex: 0, order: 0,
-                sides: [{ contestant_id: 'contestant1', score: 312312 }]
+                sides: [{ contestantId: 'contestant1', score: 312312 }]
             }
             ],
             contestants: {
@@ -235,7 +235,7 @@ test('renders empty shell when contestant.players is not an array', () => {
             rounds: [{}],
             matches: [{
                 id: '32323', roundIndex: 0, order: 0,
-                sides: [{ contestant_id: 'contestant1', score: [] }]
+                sides: [{ contestantId: 'contestant1', score: [] }]
             }
             ],
             contestants: {
@@ -262,7 +262,7 @@ test('renders empty shell when contestant.players contains non-objects', () => {
             rounds: [{}],
             matches: [{
                 id: '32323', roundIndex: 0, order: 0,
-                sides: [{ contestant_id: 'contestant1', score: [] }]
+                sides: [{ contestantId: 'contestant1', score: [] }]
             }
             ],
             contestants: {
