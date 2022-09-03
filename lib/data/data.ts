@@ -17,8 +17,7 @@ export type Match = {
     roundIndex: number,
     order: number, // 0-based!
     sides?: Side[],
-    match_status?: string // it will be rendered IF there is no score. Meant for statuses like 'Cancelled' | 'Scheduled' | '19.05.2022 18:30' (any status INSTEAD of score)
-    // match_status can also be any html string
+    matchStatus?: string // it will be rendered IF there is no score. Meant for statuses like 'Cancelled' | 'Scheduled' | '19.05.2022 18:30' (any status INSTEAD of score)
 }
 
 // Side is a match-specific data for contestant: his id, his score ...

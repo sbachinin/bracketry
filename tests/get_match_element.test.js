@@ -81,7 +81,7 @@ test('renders a contentful match even if "contestants" are undefined', () => {
                 roundIndex: 0,
                 order: 0,
                 sides: [{ contestant_id: 'abc' }],
-                match_status: 'Scheduled'
+                matchStatus: 'Scheduled'
             }],
         },
         wrapper,
@@ -102,7 +102,7 @@ test(`renders a contentful match even if "contestants" don't contain such contes
                 roundIndex: 0,
                 order: 0,
                 sides: [{ contestant_id: 'abc' }],
-                match_status: 'Scheduled'
+                matchStatus: 'Scheduled'
             }],
             contestants: {
                 c1: { players: [{ title: 'Josh' }] }
@@ -123,7 +123,7 @@ test('renders a contentful match even if match.sides is undefined', () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: 'm1', roundIndex: 0, order: 0, match_status: 'Scheduled' }],
+            matches: [{ id: 'm1', roundIndex: 0, order: 0, matchStatus: 'Scheduled' }],
         },
         wrapper
     )
@@ -136,7 +136,7 @@ test('renders a contentful match even if match.sides is an empty array', () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [], match_status: 'Scheduled' }],
+            matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [], matchStatus: 'Scheduled' }],
         },
         wrapper
     )
@@ -152,7 +152,7 @@ test('renders a contentful match if match.sides contains empty objects', () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: '32323', roundIndex: 0, order: 0, sides: [{}, {}], match_status: 'Scheduled' }],
+            matches: [{ id: '32323', roundIndex: 0, order: 0, sides: [{}, {}], matchStatus: 'Scheduled' }],
             contestants: {}
         },
         wrapper,
@@ -202,7 +202,7 @@ test('renders a contentful match if contestant.players is an empty array', () =>
             matches: [{
                 id: '32323', roundIndex: 0, order: 0,
                 sides: [{ contestant_id: 'c1' }],
-                match_status: 'Scheduled'
+                matchStatus: 'Scheduled'
             }
             ],
             contestants: {
@@ -245,7 +245,7 @@ test(`renders 2 .side-wrapper elements if match.sides contains more items`, () =
             matches: [{
                 id: 'm1', roundIndex: 0, order: 0,
                 sides: [{ contestant_id: 'c1' }, { contestant_id: 'c2' }, { contestant_id: 'c3' }],
-                match_status: 'Scheduled'
+                matchStatus: 'Scheduled'
             }],
         },
         wrapper
@@ -570,7 +570,7 @@ test('does not render word "undefined" if contestants[i].players[j] has no title
 
 
 
-// TODO test match_status OR score (REALLY NECESSARY?)
+// TODO test matchStatus OR score (REALLY NECESSARY?)
 
 // TODO draws a winner mark for a side which has { is_winner: true }
 

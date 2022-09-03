@@ -104,7 +104,7 @@ test('renders empty shell if match.sides contains non-object items', () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: ['crap'], match_status: 'Scheduled' }],
+            matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: ['crap'], matchStatus: 'Scheduled' }],
         },
         wrapper
     )
