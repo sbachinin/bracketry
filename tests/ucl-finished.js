@@ -49,7 +49,7 @@ exports.default = {
                 }
             ],
             "order": 0,
-            "is_live": false,
+            "is_live": true,
             "matchStatus": "Complete"
         },
 
@@ -484,7 +484,7 @@ exports.default = {
                 }
             ],
             "order": 3,
-            "is_live": false,
+            "is_live": true,
             "matchStatus": "Complete"
         },
 
