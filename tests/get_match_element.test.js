@@ -267,8 +267,6 @@ test(`does not render match-status if match.matchStatus is an empty string`, () 
 
 
 
-// TODO does not show serving marks when sides are undefined
-
 
 
 // TODO split this file
