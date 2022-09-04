@@ -49,7 +49,7 @@ exports.default = {
                 }
             ],
             "order": 0,
-            "is_live": true,
+            "isLive": true,
             "matchStatus": "Complete"
         },
 
@@ -89,7 +89,6 @@ exports.default = {
                 }
             ],
             "order": 1,
-            "is_live": false,
         },
 
 
@@ -127,7 +126,6 @@ exports.default = {
                 }
             ],
             "order": 2,
-            "is_live": false,
             "matchStatus": "Complete"
         },
 
@@ -166,7 +164,6 @@ exports.default = {
                 }
             ],
             "order": 3,
-            "is_live": false,
             "matchStatus": "Complete"
         },
 
@@ -205,7 +202,6 @@ exports.default = {
                 }
             ],
             "order": 4,
-            "is_live": false,
             "matchStatus": "Complete"
         },
 
@@ -245,7 +241,6 @@ exports.default = {
                 }
             ],
             "order": 5,
-            "is_live": false,
             "matchStatus": "Compl"
         },
 
@@ -285,7 +280,6 @@ exports.default = {
                 }
             ],
             "order": 6,
-            "is_live": false,
             "matchStatus": "Complete"
         },
 
@@ -324,7 +318,6 @@ exports.default = {
                 }
             ],
             "order": 7,
-            "is_live": false,
             "matchStatus": "Complete"
         },
 
@@ -366,7 +359,6 @@ exports.default = {
                 }
             ],
             "order": 0,
-            "is_live": false,
             "matchStatus": "Complete"
         },
 
@@ -404,7 +396,6 @@ exports.default = {
                 }
             ],
             "order": 1,
-            "is_live": false,
             "matchStatus": "C"
         },
 
@@ -443,7 +434,6 @@ exports.default = {
                 }
             ],
             "order": 2,
-            "is_live": false,
         },
 
 
@@ -482,7 +472,7 @@ exports.default = {
                 }
             ],
             "order": 3,
-            "is_live": true,
+            "isLive": true,
             "matchStatus": "Complete"
         },
 
@@ -521,7 +511,6 @@ exports.default = {
                 }
             ],
             "order": 0,
-            "is_live": false,
             "matchStatus": "Complete"
         },
 
@@ -559,7 +548,6 @@ exports.default = {
                 }
             ],
             "order": 1,
-            "is_live": false,
             "matchStatus": "Complete"
         },
 
@@ -589,7 +577,6 @@ exports.default = {
                 }
             ],
             "order": 0,
-            "is_live": false,
             "matchStatus": "Complete"
         },
     ],

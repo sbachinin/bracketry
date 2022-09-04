@@ -18,6 +18,7 @@ export type Match = {
     order: number, // 0-based!
     sides?: Side[],
     matchStatus?: string // it will be rendered IF there is no score. Meant for statuses like 'Cancelled' | 'Scheduled' | '19.05.2022 18:30' (any status INSTEAD of score)
+    isLive?: boolean
 }
 
 // Side is a match-specific data for contestant: his id, his score ...
@@ -32,7 +33,7 @@ type Side = {
         }
     ]
 
-    subscore?: number | string, // e.g., points within a game in tennis: this number is drawn after 'score', is surrounded by border and is higlighted with green if match 'is_live'
+    subscore?: number | string, // e.g., points within a game in tennis: this number is drawn after 'score', is surrounded by border and is higlighted with green if match 'isLive'
     isServing?: boolean, // if this one is 'true', a tennis ball icon will be drawn before a side's score
     isWinner?: boolean
 }
