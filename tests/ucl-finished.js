@@ -90,7 +90,6 @@ exports.default = {
             ],
             "order": 1,
             "is_live": false,
-            "matchStatus": "Complete"
         },
 
 
@@ -247,7 +246,7 @@ exports.default = {
             ],
             "order": 5,
             "is_live": false,
-            "matchStatus": "Complete"
+            "matchStatus": "Compl"
         },
 
 
@@ -406,7 +405,7 @@ exports.default = {
             ],
             "order": 1,
             "is_live": false,
-            "matchStatus": "Complete"
+            "matchStatus": "C"
         },
 
 
@@ -445,7 +444,6 @@ exports.default = {
             ],
             "order": 2,
             "is_live": false,
-            "matchStatus": "Complete"
         },
 
 
