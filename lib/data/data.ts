@@ -1,5 +1,3 @@
-// TODO camelcase all
-
 export type Data = {
     rounds: Round[], // you have to provide an object for each round, including the upcoming rounds
     matches?: Match[],

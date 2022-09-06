@@ -38,7 +38,7 @@ test('replaces old playoffs with new playoffs when createPlayoffs is called agai
     createPlayoffs(first_data, wrapper)
     createPlayoffs(second_data, wrapper)
 
-    expect(wrapper.querySelectorAll('.root-brackets-element').length).toBe(1)
+    expect(wrapper.querySelectorAll('.easy-playoffs-root').length).toBe(1)
     expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(4)
     expect(wrapper.querySelectorAll('.side-wrapper[contestant-id]').length).toBe(0)
 })
