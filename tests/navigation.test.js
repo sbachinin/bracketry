@@ -302,3 +302,12 @@ test('ignores setBaseRoundIndex() if all rounds are visible', () => {
 })
 
 // TODO getNavigationState tells if allRoundAreVisible
+
+
+
+test(`returns empty object if getNavigationState is called after elements were removed`, () => {
+    const wrapper = init()
+    const { getNavigationState } = easyPlayoffs.createPlayoffs(finished_ucl, wrapper)
+    wrapper.remove()
+    expect(getNavigationState()).toEqual({})
+})
