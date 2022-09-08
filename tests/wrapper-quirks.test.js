@@ -58,6 +58,10 @@ test('Nothing changes after wrapper is reassigned', () => {
     expect(document.querySelectorAll('.round-wrapper').length).toBe(4)
 })
 
-// TODO ! wrapper already contains something - let's try to preserve it
-
-// TODO wrapper's styles are changed - concern?
+test('Keeps any old (non-playoffs) content within wrapper', () => {
+    const wrapper = document.createElement('div')
+    wrapper.innerHTML = '<div class="some-old-stuff">Unwanted crap</div>'
+    document.body.append(wrapper)
+    createPlayoffs(finished_ucl, wrapper)
+    expect(wrapper.querySelector('.some-old-stuff').textContent).toBe('Unwanted crap')
+})

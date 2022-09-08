@@ -16,30 +16,11 @@ const create_wrapper = () => {
 test('replaces old playoffs with new playoffs when createPlayoffs is called again with the same wrapper', () => {
     const wrapper = create_wrapper()
 
-    const first_data = {
-        rounds: [{}],
-        matches: [{
-            id: 'm1',
-            roundIndex: 0,
-            order: 0,
-            sides: [
-                { contestantId: 'c1' },
-                { contestantId: 'c2' }
-            ]
-        }],
-        contestants: {
-            c1: { players: [{ title: 'John' }] },
-            c2: { players: [{ title: 'Pete' }] }
-        }
-    }
-
-    const second_data = { rounds: [{}, {}, {}, {}] }
-
-    createPlayoffs(first_data, wrapper)
-    createPlayoffs(second_data, wrapper)
+    createPlayoffs(finished_ucl, wrapper)
+    createPlayoffs({ rounds: [{}, {}] }, wrapper)
 
     expect(wrapper.querySelectorAll('.easy-playoffs-root').length).toBe(1)
-    expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(4)
+    expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(2)
     expect(wrapper.querySelectorAll('.side-wrapper[contestant-id]').length).toBe(0)
 })
 
