@@ -3,23 +3,16 @@
  */
 
 global.ResizeObserver = require('resize-observer-polyfill')
-const { createPlayoffs } = require('../index.js').easyPlayoffs
+const { init } = require('./utils.js')
 const finished_ucl = require('./ucl-finished.js').default
 
-const init = () => {
-    document.body.innerHTML = ''
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-    return wrapper
-}
 
-
+const consoleWarn = jest.spyOn(console, 'warn')
+afterEach(jest.clearAllMocks)
 
 
 test('getAllData returns a new match supplied by applyMatchesUpdates in place of an old match', () => {
-    const wrapper = init()
-
-    const pl = createPlayoffs(finished_ucl, wrapper)
+    const { playoffs: pl } = init(finished_ucl)
 
     const new_match = {
         id: 'some_id',
@@ -42,9 +35,7 @@ test('getAllData returns a new match supplied by applyMatchesUpdates in place of
 
 
 test('draws a new score for a match updated by applyMatchesUpdates', () => {
-    const wrapper = init()
-
-    const pl = createPlayoffs(finished_ucl, wrapper)
+    const { wrapper, playoffs: pl } = init(finished_ucl)
 
     const new_match = {
         id: 'some_id',
@@ -63,15 +54,12 @@ test('draws a new score for a match updated by applyMatchesUpdates', () => {
 
 
 test('applyMatchesUpdates creates new match if none was present for this round_id and order', () => {
-    const wrapper = init()
-
-    const pl = createPlayoffs(
+    const { wrapper, playoffs: pl } = init(
         {
             rounds: [ { name: 'Some round' } ],
             matches: [],
             contestants: { c1: { players: [ { title: 'John Doe' } ] } }
-        },
-        wrapper
+        }
     )
 
     expect(wrapper.querySelector('.main-score')).toBe(null);
@@ -95,9 +83,7 @@ test('applyMatchesUpdates creates new match if none was present for this round_i
 
 
 test('does not mutate data passed to applyMatchesUpdate', () => {
-    const wrapper = init()
-
-    const pl = createPlayoffs(finished_ucl, wrapper)
+    const { wrapper, playoffs: pl } = init(finished_ucl)
 
     const new_match = {
         id: 'some_id',
@@ -114,4 +100,21 @@ test('does not mutate data passed to applyMatchesUpdate', () => {
         order: 2,
         sides: [ { contestantId: 'villarreal', score: [{ mainScore: '666' }] } ]
     })
+})
+
+
+test(`does not throw and does not spoil the dom if nothing is passed to applyMatchesUpdates`, () => {
+    const { wrapper, playoffs: pl } = init(finished_ucl)
+    const apply_nothing = () => { pl.applyMatchesUpdates() }
+    expect(apply_nothing).not.toThrow()
+    expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
+    expect(consoleWarn.mock.calls[0][0]).toMatch('applyMatchesUpdates must be called with an array of matches')
+})
+
+test(`does not throw and does not spoil the dom if non-array stuff is passed to applyMatchesUpdates`, () => {
+    const { wrapper, playoffs: pl } = init(finished_ucl)
+    const apply_nothing = () => { pl.applyMatchesUpdates('i am an idiot') }
+    expect(apply_nothing).not.toThrow()
+    expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
+    expect(consoleWarn.mock.calls[0][0]).toMatch('applyMatchesUpdates must be called with an array of matches')
 })
