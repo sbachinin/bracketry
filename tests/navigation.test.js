@@ -181,6 +181,24 @@ test('ignores setBaseRoundIndex() if all rounds are visible', () => {
     expect(pl.getNavigationState().baseRoundIndex).toBe(0)
 })
 
+test('ignores non-numeric values passed to setBaseRoundIndex()', () => {
+    const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
+    pl.setBaseRoundIndex(1)
+    pl.setBaseRoundIndex('shit')
+    expect(pl.getNavigationState().baseRoundIndex).toBe(1)
+    expect(getComputedStyle(wrapper.querySelectorAll('.round-wrapper')[0]).display).toBe('none')
+    expect(getComputedStyle(wrapper.querySelectorAll('.round-wrapper')[1]).display).not.toBe('none')
+})
+
+test('ignores NaN passed to setBaseRoundIndex()', () => {
+    const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
+    pl.setBaseRoundIndex(1)
+    pl.setBaseRoundIndex(NaN)
+    expect(pl.getNavigationState().baseRoundIndex).toBe(1)
+    expect(getComputedStyle(wrapper.querySelectorAll('.round-wrapper')[0]).display).toBe('none')
+    expect(getComputedStyle(wrapper.querySelectorAll('.round-wrapper')[1]).display).not.toBe('none')
+})
+
 test(`returns stub values if getNavigationState is called after elements were removed`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
     wrapper.remove()
