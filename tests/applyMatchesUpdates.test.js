@@ -105,16 +105,59 @@ test('does not mutate data passed to applyMatchesUpdate', () => {
 
 test(`does not throw and does not spoil the dom if nothing is passed to applyMatchesUpdates`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
-    const apply_nothing = () => { pl.applyMatchesUpdates() }
-    expect(apply_nothing).not.toThrow()
+    const risky_fn = () => { pl.applyMatchesUpdates() }
+    expect(risky_fn).not.toThrow()
     expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
     expect(consoleWarn.mock.calls[0][0]).toMatch('applyMatchesUpdates must be called with an array of matches')
 })
 
 test(`does not throw and does not spoil the dom if non-array stuff is passed to applyMatchesUpdates`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
-    const apply_nothing = () => { pl.applyMatchesUpdates('i am an idiot') }
-    expect(apply_nothing).not.toThrow()
+    const risky_fn = () => { pl.applyMatchesUpdates('i am an idiot') }
+    expect(risky_fn).not.toThrow()
     expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
     expect(consoleWarn.mock.calls[0][0]).toMatch('applyMatchesUpdates must be called with an array of matches')
+})
+
+test(`does not throw and ignores match with missing roundIndex passed to applyMatchesUpdates`, () => {
+    const { wrapper, playoffs: pl } = init(finished_ucl)
+    const risky_fn = () => { pl.applyMatchesUpdates([ { id: 'm1', order: 0 } ]) }
+    expect(risky_fn).not.toThrow()
+    expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
+})
+
+test(`does not throw and ignores match with non-string roundIndex passed to applyMatchesUpdates`, () => {
+    const { wrapper, playoffs: pl } = init(finished_ucl)
+    const risky_fn = () => { pl.applyMatchesUpdates([ { id: 'm1', roundIndex: true, order: 0 } ]) }
+    expect(risky_fn).not.toThrow()
+    expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
+})
+
+test(`does not throw and ignores match with roundIndex === NaN passed to applyMatchesUpdates`, () => {
+    const { wrapper, playoffs: pl } = init(finished_ucl)
+    const risky_fn = () => { pl.applyMatchesUpdates([ { id: 'm1', roundIndex: NaN, order: 0 } ]) }
+    expect(risky_fn).not.toThrow()
+    expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
+})
+
+
+test(`does not throw and ignores match with missing order passed to applyMatchesUpdates`, () => {
+    const { wrapper, playoffs: pl } = init(finished_ucl)
+    const risky_fn = () => { pl.applyMatchesUpdates([ { id: 'm1', roundIndex: 0 } ]) }
+    expect(risky_fn).not.toThrow()
+    expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
+})
+
+test(`does not throw and ignores match with non-string order passed to applyMatchesUpdates`, () => {
+    const { wrapper, playoffs: pl } = init(finished_ucl)
+    const risky_fn = () => { pl.applyMatchesUpdates([ { id: 'm1', roundIndex: 0, order: {} } ]) }
+    expect(risky_fn).not.toThrow()
+    expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
+})
+
+test(`does not throw and ignores match with order === NaN passed to applyMatchesUpdates`, () => {
+    const { wrapper, playoffs: pl } = init(finished_ucl)
+    const risky_fn = () => { pl.applyMatchesUpdates([ { id: 'm1', roundIndex: 0, order: NaN } ]) }
+    expect(risky_fn).not.toThrow()
+    expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
 })

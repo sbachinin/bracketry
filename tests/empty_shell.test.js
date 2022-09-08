@@ -77,6 +77,37 @@ test('renders empty shell if "rounds" contains non-object element', () => {
 
 
 
+test('renders empty shell when "matches" are not an array', () => {
+    expect.assertions(1)
+
+    const wrapper = document.createElement('div')
+    document.body.append(wrapper)
+    createPlayoffs(
+        { rounds: [{}], matches: true, contestants: {} },
+        wrapper
+    )
+    expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
+})
+
+test('renders empty shell when string is given for a match', () => {
+    expect.assertions(1)
+
+    const wrapper = document.createElement('div')
+    document.body.append(wrapper)
+
+    createPlayoffs(
+        {
+            rounds: [],
+            matches: ['i am an diot'],
+            contestants: {}
+        },
+        wrapper,
+        {}
+    )
+    expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
+})
+
+
 test('renders empty shell when match.sides is not an array', () => {
     const wrapper = document.createElement('div')
     document.body.append(wrapper)
