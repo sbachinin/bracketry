@@ -4,61 +4,60 @@
 
 global.ResizeObserver = require('resize-observer-polyfill')
 const { createPlayoffs } = require('../index.js').easyPlayoffs
+const { init } = require('./utils.js')
 const finished_ucl = require('./ucl-finished.js').default
 
-
-test('js survives if non-element wrapper is provided', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs(
-        {
-            rounds: [{}],
-            matches: [{
-                id: '32323', roundIndex: 0, order: 0,
-                sides: [{ contestantId: 'contestant1', score: [] }]
-            }
-            ],
-            contestants: {
-                contestant1: { players: [{ title: 'Josh' }] }
-            }
-        },
-        null,
-        {}
-    )
-    expect(true).toBe(true);
+afterEach(() => {
+    document.body.innerHTML = ''
 })
 
 
-test('js survives if wrapper is not in the DOM', () => {
+test('does not throw if non-element wrapper is provided', () => {
     expect.assertions(1)
-
-    createPlayoffs(
-        { rounds: [{}] },
-        document.createElement('div'),
-        {}
-    )
-    expect(true).toBe(true);
+    const try_create = () => createPlayoffs(finished_ucl, 'i an an idiot')
+    expect(try_create).not.toThrow()
 })
 
 
-test('js survives if wrapper is of bad type', () => {
+test('does not throw if wrapper is not in the DOM', () => {
+    expect.assertions(1)
+    const try_create = () => createPlayoffs({ rounds: [{}] }, document.createElement('div'))
+    expect(try_create).not.toThrow()
+})
+
+
+test('does not throw if wrapper is of bad type', () => {
+    expect.assertions(1)
     const wrapper = document.createElement('img')
     document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs({ rounds: [{}] }, wrapper, {})
-    expect(true).toBe(true);
+    const try_create = () => createPlayoffs({ rounds: [{}] }, wrapper)
+    expect(try_create).not.toThrow()
 })
 
 
-// TODO wrapper is mutated
+test('Returned methods are called without errors after user wrapper is removed', () => {
+    const { wrapper, playoffs: pl } = init(finished_ucl)
+    wrapper.remove()
+    const run_all = () => Object.values(pl).forEach(v => v())
+    expect(run_all).not.toThrow()
+})
 
-// TODO wrapper already contains something - let's try to preserve it
+test('Returned methods are called without errors after another playoffs are installed into the same wrapper', () => {
+    const { wrapper, playoffs: pl } = init(finished_ucl)
+    createPlayoffs({ rounds: [{}] }, wrapper)
+    const run_all = () => Object.values(pl).forEach(v => v())
+    expect(run_all).not.toThrow()
+})
 
-// TODO wrapper is deleted - what's with returned functionS?
+
+test('Nothing changes after wrapper is reassigned', () => {
+    let { wrapper, playoffs: pl } = init(finished_ucl)
+    wrapper = 'something else'
+    const run_all = () => Object.values(pl).forEach(v => v())
+    expect(run_all).not.toThrow()
+    expect(document.querySelectorAll('.round-wrapper').length).toBe(4)
+})
+
+// TODO ! wrapper already contains something - let's try to preserve it
 
 // TODO wrapper's styles are changed - concern?
