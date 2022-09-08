@@ -181,11 +181,10 @@ test('ignores setBaseRoundIndex() if all rounds are visible', () => {
     expect(pl.getNavigationState().baseRoundIndex).toBe(0)
 })
 
-
-test(`returns empty object if getNavigationState is called after elements were removed`, () => {
+test(`returns stub values if getNavigationState is called after elements were removed`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
     wrapper.remove()
-    expect(pl.getNavigationState()).toEqual({})
+    expect(pl.getNavigationState()).toEqual({ reachedRightEdge: false, allRoundsAreVisible: false, baseRoundIndex: 0 })
 })
 
 test(`getNavigationState tells if allRoundsAreVisible`, () => {
