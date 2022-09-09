@@ -54,6 +54,26 @@ test(`renders a contentful match even if match.sides is undefined`, () => {
     expect(wrapper.querySelector('.match-status').textContent).toBe('Scheduled')
 })
 
+test(`does not render .sides when match.sides is undefined`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [{ roundIndex: 0, order: 0 }],
+    }
+    const { wrapper } = init(data)
+    expect(wrapper.querySelector('.sides')).toBe(null)
+})
+
+
+test(`disables pointer-events for a .match-body that has data but no actual content`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [{ roundIndex: 0, order: 0 }],
+    }
+    const { wrapper } = init(data)
+    expect(getComputedStyle(wrapper.querySelector('.match-body')).pointerEvents).toBe('none')
+})
+
+
 test(`renders a contentful match even if match.sides is an empty array`, () => {
     const data ={
         rounds: [{}],

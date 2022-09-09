@@ -64,7 +64,7 @@ test(`does not highlight when something other than '.side-wrapper[contestant-id]
 test(`does not highlight when side-wrapper without [contestant-id] is clicked`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ roundIndex: 0, order: 0, sides: []}]
+        matches: [{ roundIndex: 0, order: 0, sides: [{}]}]
     }
     
     const { wrapper } = init(data)

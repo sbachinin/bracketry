@@ -48,22 +48,13 @@ test(`does not add { display: none } to serving-mark of a non-serving side's if 
 })
 
 
-test(`applies { display: none } to .serving-mark when sides are undefined`, () => {
-    const data = {
-        rounds: [{}],
-        matches: [{ roundIndex: 0, order: 0 }],
-    }
-    const { wrapper } = init(data)
-    expect(getComputedStyle(wrapper.querySelector('.serving-mark')).display).toBe('none')
-})
-
-test(`applies { display: none } to .serving-mark when sides are an empty array`, () => {
+test(`does not render <.serving-mark> when match.sides is an empty array`, () => {
     const data = {
         rounds: [{}],
         matches: [{ roundIndex: 0, order: 0, sides: [] }],
     }
     const { wrapper } = init(data)
-    expect(getComputedStyle(wrapper.querySelector('.serving-mark')).display).toBe('none')
+    expect(wrapper.querySelector('.serving-mark')).toBe(null)
 })
 
 
