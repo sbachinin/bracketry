@@ -318,14 +318,31 @@ test(`unhighlights when a side without [contestant-id] is clicked`, () => {
 
 
 
+
+
+
+
+
+
 test(`click outside playoffs should not unhighlight`, () => {
     expect.assertions(1)
 
-    const { wrapper, playoffs: pl } = init(spoilt_ucl)
+    const { wrapper, playoffs: pl } = init(finished_ucl)
     const some_external_div = create_wrapper()
 
     pl.highlightContestantHistory('benfica')
 
     some_external_div.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
     expect(wrapper.querySelectorAll('.side-wrapper.highlighted').length).toBe(2)
+})
+
+test(`applies highlighted color to <player-title>`, () => {
+    const { wrapper, playoffs: pl } = init(finished_ucl, { highlightedPlayerTitleColor: 'pink' })
+
+    pl.highlightContestantHistory('benfica')
+    expect(
+        getComputedStyle(
+            wrapper.querySelector('.side-wrapper.highlighted .player-title')
+        ).color
+    ).toBe('pink')
 })
