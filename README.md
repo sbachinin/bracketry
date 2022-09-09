@@ -173,3 +173,9 @@ You can use the first column however you want.
 You can use getEntryStatusHTML as just a way to _inject something into the leftmost column_.  
 
 `getEntryStatusHTML will not be updated if a new getEntryStatusHTML is passed to **applyNewOptions**`
+
+
+
+## getMatchElement()
+
+Should return an Element or undefined

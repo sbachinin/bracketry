@@ -80,6 +80,11 @@ test(`Renders empty .match-body if options.getMatchElement returns not a sting o
     expect(wrapper.querySelector('.match-body').innerHTML).toBe('')
 })
 
+test(`Renders empty .match-body if options.getMatchElement returns undefined (which is a valid return)`, () => {
+    const { wrapper } = init(finished_ucl, { getMatchElement: () => {} })
+    expect(wrapper.querySelector('.match-body').innerHTML).toBe('')
+})
+
 
 test(`Calls mouse handlers attached to match elements provided by options.getMatchElement`, () => {
     const clickHandler = jest.fn()
@@ -111,6 +116,7 @@ test(`renders empty .match-body if getMatchElement throws`, () => {
     expect(wrapper.querySelector('.match-body').innerHTML).toBe('')
     expect(consoleWarn.mock.calls[0][0]).toMatch(`Failed to get an element from getMatchElement`)
 })
+
 
 
 // TODO think of other vulnerable features of this custom element which must be preserved
