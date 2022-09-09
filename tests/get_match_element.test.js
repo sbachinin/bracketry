@@ -13,7 +13,6 @@ test(`renders a contentful match even if "contestants" are undefined`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            id: '32323',
             roundIndex: 0,
             order: 0,
             sides: [{ contestantId: 'abc' }],
@@ -31,7 +30,6 @@ test(`renders a contentful match even if "contestants" don't contain such contes
     const data = {
         rounds: [{}],
         matches: [{
-            id: '32323',
             roundIndex: 0,
             order: 0,
             sides: [{ contestantId: 'abc' }],
@@ -50,7 +48,7 @@ test(`renders a contentful match even if "contestants" don't contain such contes
 test(`renders a contentful match even if match.sides is undefined`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, matchStatus: 'Scheduled' }],
+        matches: [{ roundIndex: 0, order: 0, matchStatus: 'Scheduled' }],
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.match-status').textContent).toBe('Scheduled')
@@ -59,7 +57,7 @@ test(`renders a contentful match even if match.sides is undefined`, () => {
 test(`renders a contentful match even if match.sides is an empty array`, () => {
     const data ={
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [], matchStatus: 'Scheduled' }],
+        matches: [{ roundIndex: 0, order: 0, sides: [], matchStatus: 'Scheduled' }],
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.match-status').textContent).toBe('Scheduled')
@@ -72,7 +70,7 @@ test(`renders a contentful match if match.sides contains empty objects`, () => {
 
     const data = {
         rounds: [{}],
-        matches: [{ id: '32323', roundIndex: 0, order: 0, sides: [{}, {}], matchStatus: 'Scheduled' }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{}, {}], matchStatus: 'Scheduled' }],
         contestants: {}
     }
     const { wrapper } = init(data)
@@ -87,7 +85,7 @@ test(`renders a contentful match if side.score is an empty array`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            id: '32323', roundIndex: 0, order: 0,
+            roundIndex: 0, order: 0,
             sides: [{ contestantId: 'contestant1', score: [] }]
         }
         ],
@@ -111,7 +109,7 @@ test(`renders a contentful match if contestant.players is an empty array`, () =>
     const data = {
         rounds: [{}],
         matches: [{
-            id: '32323', roundIndex: 0, order: 0,
+            roundIndex: 0, order: 0,
             sides: [{ contestantId: 'c1' }],
             matchStatus: 'Scheduled'
         }
@@ -133,7 +131,7 @@ test(`renders 2 .side-wrapper elements if match.sides contains only 1 object`, (
     // (two side-wrappers are necessary for vertical alignment)
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{}] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{}] }],
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelectorAll('.match-body .side-wrapper').length).toBe(2)
@@ -145,7 +143,7 @@ test(`renders 2 .side-wrapper elements if match.sides contains more items`, () =
     const data = {
         rounds: [{}],
         matches: [{
-            id: 'm1', roundIndex: 0, order: 0,
+            roundIndex: 0, order: 0,
             sides: [{ contestantId: 'c1' }, { contestantId: 'c2' }, { contestantId: 'c3' }],
             matchStatus: 'Scheduled'
         }],
@@ -161,7 +159,7 @@ test(`does not add "contestant-id" attribute to .side-wrapper when match.sides[i
     const data = {
         rounds: [{}],
         matches: [{
-            id: 'm1', roundIndex: 0, order: 0, sides: [
+            roundIndex: 0, order: 0, sides: [
                 { score: [{ mainScore: 'Walkover' }] }
             ]
         }],
@@ -176,7 +174,7 @@ test(`allows clicks on a .side-wrapper which has a contestantId (even if no cont
     const data = {
         rounds: [{}],
         matches: [{
-            id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+            roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
     }
     const { wrapper } = init(data)
     expect(
@@ -190,7 +188,7 @@ test(`allows clicks on a .side-wrapper which has a contestantId (even if no cont
 test(`forbids clicks on a side-wrapper without contestantId`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
     }
     const { wrapper } = init(data)
     expect(
@@ -205,7 +203,7 @@ test(`forbids clicks on a side-wrapper without contestantId`, () => {
 test(`renders side.title into .player-title element if side has no "contestantId"`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ title: 'BYE' }] }]
+        matches: [{ roundIndex: 0, order: 0, sides: [{ title: 'BYE' }] }]
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.player-title').textContent).toBe('BYE')
@@ -214,7 +212,7 @@ test(`renders side.title into .player-title element if side has no "contestantId
 test(`does not render side.title if side has both "title" and "contestantId"`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ title: 'BYE', contestantId: 'c1' }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ title: 'BYE', contestantId: 'c1' }] }],
         contestants: {
             c1: { players: [ { title: 'Pete' } ] }
         }
@@ -228,7 +226,7 @@ test(`does not render side.title if side has both "title" and "contestantId"`, (
 test(`does not render word "undefined" if contestants[i].players[j] has no title`, () => {
     const data = {
         rounds: [{}],
-        matches: [ { id: 'm1', roundIndex: 0, order: 0, sides: [ { contestantId: 'c1'} ] } ],
+        matches: [ { roundIndex: 0, order: 0, sides: [ { contestantId: 'c1'} ] } ],
         contestants: { c1: { players: [ {}] } }
     }
     const { wrapper } = init(data)
@@ -240,7 +238,7 @@ test(`does not render word "undefined" if contestants[i].players[j] has no title
 test(`does not render .match-status if match.matchStatus is undefined`, () => {
     const data = {
         rounds: [{}],
-        matches: [ { id: 'm1', roundIndex: 0, order: 0 } ],
+        matches: [ { roundIndex: 0, order: 0 } ],
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.match-status')).toBe(null)
@@ -249,7 +247,7 @@ test(`does not render .match-status if match.matchStatus is undefined`, () => {
 test(`does not render .match-status if match.matchStatus is a non-string`, () => {
     const data = {
         rounds: [{}],
-        matches: [ { id: 'm1', roundIndex: 0, order: 0, matchStatus: {} } ],
+        matches: [ { roundIndex: 0, order: 0, matchStatus: {} } ],
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.match-status')).toBe(null)
@@ -259,13 +257,21 @@ test(`does not render .match-status if match.matchStatus is a non-string`, () =>
 test(`does not render match-status if match.matchStatus is an empty string`, () => {
     const data = {
         rounds: [{}],
-        matches: [ { id: 'm1', roundIndex: 0, order: 0, matchStatus: '' } ],
+        matches: [ { roundIndex: 0, order: 0, matchStatus: '' } ],
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.match-status')).toBe(null)
 })
 
 
+test(`does not render a match with irrelevant roundIndex and order`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [ { roundIndex: 12, order: 12, matchStatus: 'WC' } ],
+    }
+    const { wrapper } = init(data)
+    expect(wrapper.querySelector('.match-body')).toBe(null)
+})
 
 
 
@@ -275,7 +281,6 @@ test(`does not render match-status if match.matchStatus is an empty string`, () 
 
 
 
-// TODO does not render a match with irrelevant roundIndex and order
 
 // TODO (in case of duplicate matches in a given position) render only 1st match in such position
 
@@ -292,8 +297,3 @@ test(`does not render match-status if match.matchStatus is an empty string`, () 
 
 
 
-
-
-// TODO renders unclickable a match without id
-    // (removed {pointer-events: auto} for such matches; need to make sure that clicks on such matches don't confuse highlighting)
-    // THINK: DO I NEED MATCH.ID AT ALL?

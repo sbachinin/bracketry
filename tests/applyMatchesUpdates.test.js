@@ -15,7 +15,6 @@ test('getAllData returns a new match supplied by applyMatchesUpdates in place of
     const { playoffs: pl } = init(finished_ucl)
 
     const new_match = {
-        id: 'some_id',
         roundIndex: 1,
         order: 2,
         sides: [ { contestantId: 'c123', score: [{ mainScore: '666' }] } ]
@@ -38,7 +37,6 @@ test('draws a new score for a match updated by applyMatchesUpdates', () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
 
     const new_match = {
-        id: 'some_id',
         roundIndex: 1,
         order: 2,
         sides: [ { contestantId: 'c123', score: [{ mainScore: '666' }] } ]
@@ -65,7 +63,6 @@ test('applyMatchesUpdates creates new match if none was present for this round_i
     expect(wrapper.querySelector('.main-score')).toBe(null);
 
     const new_match = {
-        id: '32323',
         roundIndex: 0,
         order: 0,
         sides: [
@@ -86,7 +83,6 @@ test('does not mutate data passed to applyMatchesUpdate', () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
 
     const new_match = {
-        id: 'some_id',
         roundIndex: 1,
         order: 2,
         sides: [ { contestantId: 'villarreal', score: [{ mainScore: '666' }] } ]
@@ -95,7 +91,6 @@ test('does not mutate data passed to applyMatchesUpdate', () => {
     pl.applyMatchesUpdates([ new_match ])
 
     expect(new_match).toEqual({
-        id: 'some_id',
         roundIndex: 1,
         order: 2,
         sides: [ { contestantId: 'villarreal', score: [{ mainScore: '666' }] } ]
@@ -121,21 +116,21 @@ test(`does not throw and does not spoil the dom if non-array stuff is passed to 
 
 test(`does not throw and ignores match with missing roundIndex passed to applyMatchesUpdates`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
-    const risky_fn = () => { pl.applyMatchesUpdates([ { id: 'm1', order: 0 } ]) }
+    const risky_fn = () => { pl.applyMatchesUpdates([ { order: 0 } ]) }
     expect(risky_fn).not.toThrow()
     expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
 })
 
 test(`does not throw and ignores match with non-string roundIndex passed to applyMatchesUpdates`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
-    const risky_fn = () => { pl.applyMatchesUpdates([ { id: 'm1', roundIndex: true, order: 0 } ]) }
+    const risky_fn = () => { pl.applyMatchesUpdates([ { roundIndex: true, order: 0 } ]) }
     expect(risky_fn).not.toThrow()
     expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
 })
 
 test(`does not throw and ignores match with roundIndex === NaN passed to applyMatchesUpdates`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
-    const risky_fn = () => { pl.applyMatchesUpdates([ { id: 'm1', roundIndex: NaN, order: 0 } ]) }
+    const risky_fn = () => { pl.applyMatchesUpdates([ { roundIndex: NaN, order: 0 } ]) }
     expect(risky_fn).not.toThrow()
     expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
 })
@@ -143,21 +138,21 @@ test(`does not throw and ignores match with roundIndex === NaN passed to applyMa
 
 test(`does not throw and ignores match with missing order passed to applyMatchesUpdates`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
-    const risky_fn = () => { pl.applyMatchesUpdates([ { id: 'm1', roundIndex: 0 } ]) }
+    const risky_fn = () => { pl.applyMatchesUpdates([ { roundIndex: 0 } ]) }
     expect(risky_fn).not.toThrow()
     expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
 })
 
 test(`does not throw and ignores match with non-string order passed to applyMatchesUpdates`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
-    const risky_fn = () => { pl.applyMatchesUpdates([ { id: 'm1', roundIndex: 0, order: {} } ]) }
+    const risky_fn = () => { pl.applyMatchesUpdates([ { roundIndex: 0, order: {} } ]) }
     expect(risky_fn).not.toThrow()
     expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
 })
 
 test(`does not throw and ignores match with order === NaN passed to applyMatchesUpdates`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
-    const risky_fn = () => { pl.applyMatchesUpdates([ { id: 'm1', roundIndex: 0, order: NaN } ]) }
+    const risky_fn = () => { pl.applyMatchesUpdates([ { roundIndex: 0, order: NaN } ]) }
     expect(risky_fn).not.toThrow()
     expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
 })

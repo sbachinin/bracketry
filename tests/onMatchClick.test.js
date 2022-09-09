@@ -25,19 +25,14 @@ test('calls onMatchClick when .match-body is clicked', () => {
         { onMatchClick }
     )
 
-    document.querySelector('.match-wrapper[match-id="1"] .match-body')
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+    document.querySelector(
+        '.round-wrapper[round-index="0"] .match-wrapper[match-order="1"] .match-body'
+    ).dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
 
-    expect(onMatchClick).toBeCalledWith(
-        expect.objectContaining({
-            roundIndex: 0,
-            id: '1',
-            order: 1,
-        }),
-    )
+    expect(onMatchClick).toBeCalledWith(expect.objectContaining(finished_ucl.matches[1]))
 })
 
-test('does not call onMatchClick when clicked somewhere else', () => {
+test('does not call onMatchClick when clicked outside match-body', () => {
     const wrapper = init()
 
     const onMatchClick = jest.fn()
@@ -48,14 +43,14 @@ test('does not call onMatchClick when clicked somewhere else', () => {
         { onMatchClick }
     )
 
-    document.querySelector('.match-wrapper[match-id="1"]')
+    document.querySelector('.round-wrapper')
         .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
 
     expect(onMatchClick).not.toBeCalled();
 })
 
 test(`pointer-events of a .side_wrapper are disabled when onMatchClick is provided
-    (clicks must be registered only on .match-body and not on its descendants`, () => {
+    (clicks must be registered only on .match-body and not on its descendants)`, () => {
     const wrapper = init()
 
     easyPlayoffs.createPlayoffs(
@@ -64,13 +59,8 @@ test(`pointer-events of a .side_wrapper are disabled when onMatchClick is provid
         { onMatchClick: () => {} }
     )
 
-    expect(getComputedStyle(
-        document.querySelector(`.side-wrapper[contestant-id='benfica']`)
-    ).pointerEvents).toBe('none')
-
-    expect(getComputedStyle(
-        document.querySelector('.match-wrapper[match-id="1"] .match-body')
-    ).pointerEvents).toBe('auto')
+    expect(getComputedStyle(document.querySelector(`.side-wrapper`)).pointerEvents).toBe('none')
+    expect(getComputedStyle(document.querySelector(`.match-body`)).pointerEvents).toBe('auto')
 })
 
 
@@ -93,7 +83,3 @@ test(`contestant's match history isn't highlighted on click when onMatchClick is
 
     expect(document.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
 })
-
-// TODO think:
-// what if there wasn't any data for a match in this position?
-// won't pointer events be disabled in this case?

@@ -63,9 +63,9 @@ test(`populates .match-body element with whatever is returned from user's getMat
 })
 
 
-test(`Renders default matches elements if options.getMatchElement is not a function`, () => {
+test(`Renders matches elements if options.getMatchElement is not a function`, () => {
     const { wrapper } = init(finished_ucl, { getMatchElement: NaN })
-    expect(wrapper.querySelectorAll('.match-wrapper[match-id]').length).toBe(15)
+    expect(wrapper.querySelectorAll('.match-body').length).toBe(15)
 })
 
 
@@ -105,7 +105,7 @@ test(`Calls mouse handlers attached to match elements provided by options.getMat
 test(`renders .match-lines-area but not .match-body if getMatchElement throws`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }], matchStatus: 'Scheduled' }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }], matchStatus: 'Scheduled' }],
         contestants: {
             c1: { players: [{ title: 'Pete', nationality: 'US' }] }
         }

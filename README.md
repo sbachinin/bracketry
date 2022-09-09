@@ -78,7 +78,8 @@ Any value that you provided as "nationality" for a current player (`contestants[
 Object that tells you where nationality is rendered.  
 Contatins following properties:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; matchId (string)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; roundIndex (number)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; matchOrder (number)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contestantId (string)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; playerIndex (number)
 
@@ -136,7 +137,8 @@ Any value that you provided as "entryStatus" for a current contestant (`contesta
 Object that tells you where entry status is rendered.  
 Contatins following properties:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; matchId (string)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; roundIndex (number)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; matchOrder (number)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contestantId (string)  
 
 `data`

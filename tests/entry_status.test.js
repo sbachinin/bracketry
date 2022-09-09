@@ -12,7 +12,7 @@ afterEach(jest.clearAllMocks)
 test(`renders empty .entry-status IF side has NO entryStatus AND getEntryStatusHTML is NOT provided`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { players: [{ title: 'Josh' }] } }
     }
     const { wrapper } = init(data)
@@ -22,7 +22,7 @@ test(`renders empty .entry-status IF side has NO entryStatus AND getEntryStatusH
 test(`renders empty .entry-status IF side has NON-STRING entryStatus AND getEntryStatusHTML is NOT provided`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entryStatus: {} } }
     }
     const { wrapper } = init(data)
@@ -34,7 +34,7 @@ test(`renders empty .entry-status IF side has NON-STRING entryStatus AND getEntr
 test(`renders side's VALID entryStatus as such if getEntryStatusHTML is NOT provided`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entryStatus: 'WC' } }
     }
     const { wrapper } = init(data)
@@ -45,7 +45,7 @@ test(`renders side's VALID entryStatus as such if getEntryStatusHTML is NOT prov
 test(`renders side's VALID entryStatus as such if getEntryStatusHTML is INVALID (not a function)`, async () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: {
             c1: { entryStatus: 'WC', players: [{ title: 'Pete' }] }
         }
@@ -61,7 +61,7 @@ test(`renders side's VALID entryStatus as such if getEntryStatusHTML is INVALID 
 test(`renders html provided as entryStatus (when no options.getEntryStatusHTML)`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: {
             c1: { entryStatus: '<span class="user-status" style="background: tomato">WC</span>' }
         }
@@ -95,7 +95,7 @@ test(`calls getEntryStatusHTML with entryStatus of a contestant`, () => {
     const getEntryStatusHTML = jest.fn()
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entryStatus: 'WC' } }
     }
     init(data, { getEntryStatusHTML })
@@ -107,7 +107,7 @@ test(`calls getEntryStatusHTML with entryStatus of a contestant, even if entrySt
     const getEntryStatusHTML = jest.fn()
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entryStatus: {} } }
     }
     init(data, { getEntryStatusHTML })
@@ -118,7 +118,7 @@ test(`calls getEntryStatusHTML for all contestants, even those with missing or i
     const getEntryStatusHTML = jest.fn()
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }, { contestantId: 'c2' }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }, { contestantId: 'c2' }] }],
         contestants: {
             c1: { entryStatus: {} },
             c2: { players: [{ title: 'Pete' }] }
@@ -133,7 +133,7 @@ test(`calls getEntryStatusHTML for all contestants, even those with missing or i
 test(`renders bare contestant.entryStatus if getEntryStatusHTML is provided but it's not a function`, async () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entryStatus: 'LL', players: [{ title: 'j' }] } }
     }
 
@@ -147,7 +147,7 @@ test(`renders bare contestant.entryStatus if getEntryStatusHTML is provided but 
 test(`renders bare contestant.entryStatus if getEntryStatusHTML throws`, async () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entryStatus: 'LL', players: [{ title: 'j' }] } }
     }
 
@@ -162,14 +162,15 @@ test(`calls getEntryStatusHTML with context object as 2nd arg and data as 3rd`, 
     getEntryStatusHTML = jest.fn()
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: {} }
     }
 
     init(data, { getEntryStatusHTML })
 
     expect(getEntryStatusHTML.mock.calls[0][1]).toEqual({
-        matchId: 'm1',
+        roundIndex: 0,
+        matchOrder: 0,
         contestantId: 'c1'
     })
     expect(getEntryStatusHTML.mock.calls[0][2]).toEqual(data)
@@ -187,7 +188,7 @@ test(`calls getEntryStatusHTML with context object as 2nd arg and data as 3rd`, 
 test(`injects the return value of getEntryStatusHTML even if contestant has no entryStatus`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: {} }
     }
 
@@ -199,7 +200,7 @@ test(`injects the return value of getEntryStatusHTML even if contestant has no e
 test(`injects the return value of getEntryStatusHTML even if contestant's entryStatus is not a string`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entryStatus: {} } }
     }
 
@@ -213,8 +214,8 @@ test(`injects a valid return value of getEntryStatusHTML to ALL sides`, () => {
     const data = {
         rounds: [{}, {}],
         matches: [
-            { id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }, { contestantId: 'c2' }] },
-            { id: 'm2', roundIndex: 0, order: 1, sides: [{ contestantId: 'c3' }, { contestantId: 'c4' }] }
+            { roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }, { contestantId: 'c2' }] },
+            { roundIndex: 0, order: 1, sides: [{ contestantId: 'c3' }, { contestantId: 'c4' }] }
         ],
         contestants: { c1: {}, c2: {}, c3: {}, c4: {} }
     }
@@ -231,7 +232,7 @@ test(`injects a valid return value of getEntryStatusHTML to ALL sides`, () => {
 test(`Falls back to bare contestant.entryStatus (valid one) IF getEntryStatusHTML returns invalid value`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entryStatus: 'WC', players: [{title: ''}] } }
     }
 
@@ -244,7 +245,7 @@ test(`Falls back to bare contestant.entryStatus (valid one) IF getEntryStatusHTM
 test(`renders empty .entry-status if both contestant.entryStatus and getEntryStatusHTML's return value are invalid`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
         contestants: { c1: { entryStatus: [] } }
     }
 

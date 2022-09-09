@@ -11,7 +11,6 @@ type Round = {
 }
 
 export type Match = {
-    id: string, // TODO is it used or useful?
     roundIndex: number,
     order: number, // 0-based!
     sides?: Side[],

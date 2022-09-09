@@ -31,32 +31,9 @@ test('renders match-wrapper without body when match is an empty object', () => {
 })
 
 
-// TODO is it a critical error? should empty shell be rendered?
-/* 
-test('survives when match.id is not a string', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    expect.assertions(1)
-
-    createPlayoffs(
-        {
-            rounds: [],
-            matches: [{ id: true }],
-            contestants: {}
-        },
-        wrapper,
-        {}
-    )
-    expect(true).toBe(true)
-})
- */
-
-
-
 test('renders match-wrapper without body when match.roundIndex is missing', () => {
     expect.assertions(2)
-    const data = { rounds: [{}], matches: [{ id: 'm1', order: 0 }] }
+    const data = { rounds: [{}], matches: [{ order: 0 }] }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.match-wrapper')).not.toBe(null)
     expect(wrapper.querySelector('.match-body')).toBe(null)
@@ -65,7 +42,7 @@ test('renders match-wrapper without body when match.roundIndex is missing', () =
 
 test('renders match-wrapper without body when match.roundIndex is not a number', () => {
     expect.assertions(2)
-    const data = { rounds: [{}], matches: [{ id: 'm1', roundIndex: true, order: 0 }] }
+    const data = { rounds: [{}], matches: [{ roundIndex: true, order: 0 }] }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.match-wrapper')).not.toBe(null)
     expect(wrapper.querySelector('.match-body')).toBe(null)
@@ -73,7 +50,7 @@ test('renders match-wrapper without body when match.roundIndex is not a number',
 
 test('renders match-wrapper without body when match.roundIndex is NaN', () => {
     expect.assertions(2)
-    const data = { rounds: [{}], matches: [{ id: 'm1', roundIndex: NaN, order: 0 }] }
+    const data = { rounds: [{}], matches: [{ roundIndex: NaN, order: 0 }] }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.match-wrapper')).not.toBe(null)
     expect(wrapper.querySelector('.match-body')).toBe(null)
@@ -81,7 +58,7 @@ test('renders match-wrapper without body when match.roundIndex is NaN', () => {
 
 test('renders match-wrapper without body when match.order is missing', () => {
     expect.assertions(2)
-    const data = { rounds: [{}], matches: [{ id: 'm1', roundIndex: 0 }] }
+    const data = { rounds: [{}], matches: [{ roundIndex: 0 }] }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.match-wrapper')).not.toBe(null)
     expect(wrapper.querySelector('.match-body')).toBe(null)
@@ -89,7 +66,7 @@ test('renders match-wrapper without body when match.order is missing', () => {
 
 test('renders match-wrapper without body when match.order is not a number', () => {
     expect.assertions(2)
-    const data = { rounds: [{}], matches: [{ id: 'm1', roundIndex: 0, order: true }] }
+    const data = { rounds: [{}], matches: [{ roundIndex: 0, order: true }] }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.match-wrapper')).not.toBe(null)
     expect(wrapper.querySelector('.match-body')).toBe(null)
@@ -97,7 +74,7 @@ test('renders match-wrapper without body when match.order is not a number', () =
 
 test('renders match-wrapper without body when match.order is NaN', () => {
     expect.assertions(2)
-    const data = { rounds: [{}], matches: [{ id: 'm1', roundIndex: 0, order: NaN }] }
+    const data = { rounds: [{}], matches: [{ roundIndex: 0, order: NaN }] }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.match-wrapper')).not.toBe(null)
     expect(wrapper.querySelector('.match-body')).toBe(null)
@@ -110,7 +87,7 @@ test('renders score and no title when player has no title', () => {
     const data = {
         rounds: [{}],
         matches: [{
-            id: '32323', roundIndex: 0, order: 0,
+            roundIndex: 0, order: 0,
             sides: [{ contestantId: 'contestant1', score: [ { mainScore: '6' } ] }]
         }],
         contestants: { contestant1: { players: [{}] } }
@@ -126,7 +103,7 @@ test('renders score and no title when player has non-string title', () => {
     const data = {
         rounds: [{}],
         matches: [{
-            id: '32323', roundIndex: 0, order: 0,
+            roundIndex: 0, order: 0,
             sides: [{ contestantId: 'contestant1', score: [ { mainScore: '6' } ] }]
         }],
         contestants: { contestant1: { players: [{ title: {} }] } }
@@ -141,7 +118,7 @@ test('renders player title when player has non-string nationality', () => {
     const data = {
         rounds: [{}],
         matches: [{
-            id: '32323', roundIndex: 0, order: 0,
+            roundIndex: 0, order: 0,
             sides: [{ contestantId: 'contestant1', score: [ { mainScore: '6' } ] }]
         }],
         contestants: { contestant1: { players: [{ title: 'John', nationality: true }] } }

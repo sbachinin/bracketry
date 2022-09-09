@@ -39,17 +39,19 @@ type Options = {
     liveMatchBorderColor: string,
     liveMatchBackgroundColor: string,
     distanceBetweenScorePairs: number,
-    onMatchClick: (match: Match) => void,
-    onMatchSideClick: (contestant: Contestant, contestantId: string, match: Match) => void,
-    getMatchElement: (roundIndex: number, match_order: number, all_data: Data) => Element,
+    onMatchClick: (match: Partial<Match>) => void,
+
+    // TODO so contestant and contestantId are not guaranteed?
+    onMatchSideClick: (match: Partial<Match>, contestant?: Contestant, contestantId?: string) => void,
+    getMatchElement: (roundIndex: number, matchOrder: number, data: Data) => Element,
     getNationalityHTML: (
         nationality: any,
-        context: { matchId: string, contestantId: string, playerIndex: number },
+        context: { roundIndex: number, matchOrder: number, contestantId: string, playerIndex: number },
         data: Data
     ) => string,
     getEntryStatusHTML: (
         entryStatus: any,
-        context: { matchId: string, contestantId: string },
+        context: { roundIndex: number, matchOrder: number, contestantId: string },
         data: Data
     ) => string
 }
@@ -57,9 +59,9 @@ type Options = {
 type OptionsMap = Partial<Options>
 
 export function createPlayoffs(
-    user_data: Data,
-    user_wrapper_el: Element,
-    user_options?: OptionsMap
+    data: Data,
+    wrapperElement: Element,
+    options: OptionsMap
 ): {
     moveToPreviousRound: () => void
     moveToNextRound: () => void
@@ -72,11 +74,11 @@ export function createPlayoffs(
         baseRoundIndex: number
     }
 
-    applyNewOptions: (new_options: OptionsMap) => void
+    applyNewOptions: (newOptions: OptionsMap) => void
     getUserOptions: () => OptionsMap
 
-    replaceData: (new_data: Data) => void
-    applyMatchesUpdates: (matches_data: Match[]) => void
+    replaceData: (newData: Data) => void
+    applyMatchesUpdates: (matches: Match[]) => void
     getAllData: () => Data
     highlightContestantHistory: (contestantId: string | null) => void
 }

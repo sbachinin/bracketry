@@ -16,8 +16,10 @@ exports.default = {
     "matches": [
         
         {
-            "id": "0",
             "roundIndex": 0,
+            "order": 0,
+            "isLive": true,
+            "matchStatus": "Complete",
             "sides": [
                 {
                     "contestantId": "benfica",
@@ -47,17 +49,14 @@ exports.default = {
                     ],
                     "isWinner": false
                 }
-            ],
-            "order": 0,
-            "isLive": true,
-            "matchStatus": "Complete"
+            ]
         },
 
 
 
         {
-            "id": "1",
             "roundIndex": 0,
+            "order": 1,
             "sides": [
                 {
                     "contestantId": "inter",
@@ -87,14 +86,14 @@ exports.default = {
                     ],
                     "isWinner": true
                 }
-            ],
-            "order": 1,
+            ]
         },
 
 
         {
-            "id": "2",
             "roundIndex": 0,
+            "order": 2,
+            "matchStatus": "Complete",
             "sides": [
                 {
                     "contestantId": "villarreal",
@@ -124,15 +123,14 @@ exports.default = {
                     ],
                     "isWinner": false
                 }
-            ],
-            "order": 2,
-            "matchStatus": "Complete"
+            ]
         },
 
 
         {
-            "id": "3",
             "roundIndex": 0,
+            "order": 3,
+            "matchStatus": "Complete",
             "sides": [
                 {
                     "contestantId": "salzburg",
@@ -162,15 +160,14 @@ exports.default = {
                     ],
                     "isWinner": true
                 }
-            ],
-            "order": 3,
-            "matchStatus": "Complete"
+            ]
         },
 
 
         {
-            "id": "4",
             "roundIndex": 0,
+            "order": 4,
+            "matchStatus": "Complete",
             "sides": [
                 {
                     "contestantId": "sporting",
@@ -200,16 +197,15 @@ exports.default = {
                     ],
                     "isWinner": true
                 }
-            ],
-            "order": 4,
-            "matchStatus": "Complete"
+            ]
         },
 
 
 
         {
-            "id": "5",
             "roundIndex": 0,
+            "order": 5,
+            "matchStatus": "Compl",
             "sides": [
                 {
                     "contestantId": "atletico",
@@ -239,16 +235,15 @@ exports.default = {
                     ],
                     "isWinner": false
                 }
-            ],
-            "order": 5,
-            "matchStatus": "Compl"
+            ]
         },
 
 
 
         {
-            "id": "6",
             "roundIndex": 0,
+            "order": 6,
+            "matchStatus": "Complete",
             "sides": [
                 {
                     "contestantId": "chelsea",
@@ -278,15 +273,14 @@ exports.default = {
                     ],
                     "isWinner": false
                 }
-            ],
-            "order": 6,
-            "matchStatus": "Complete"
+            ]
         },
 
 
         {
-            "id": "7",
             "roundIndex": 0,
+            "order": 7,
+            "matchStatus": "Complete",
             "sides": [
                 {
                     "contestantId": "psg",
@@ -316,9 +310,7 @@ exports.default = {
                     ],
                     "isWinner": true
                 }
-            ],
-            "order": 7,
-            "matchStatus": "Complete"
+            ]
         },
 
 
@@ -326,8 +318,9 @@ exports.default = {
 
 
         {
-            "id": "8",
             "roundIndex": 1,
+            "order": 0,
+            "matchStatus": "Complete",
             "sides": [
                 {
                     "contestantId": "benfica",
@@ -357,14 +350,13 @@ exports.default = {
                     ],
                     "isWinner": false
                 }
-            ],
-            "order": 0,
-            "matchStatus": "Complete"
+            ]
         },
 
         {
-            "id": "9",
             "roundIndex": 1,
+            "order": 1,
+            "matchStatus": "C",
             "sides": [
                 {
                     "contestantId": "villarreal",
@@ -394,15 +386,13 @@ exports.default = {
                     ],
                     "isWinner": false
                 }
-            ],
-            "order": 1,
-            "matchStatus": "C"
+            ]
         },
 
 
         {
-            "id": "10",
             "roundIndex": 1,
+            "order": 2,
             "sides": [
                 {
                     "contestantId": "city",
@@ -432,15 +422,16 @@ exports.default = {
                     ],
                     "isWinner": false
                 }
-            ],
-            "order": 2,
+            ]
         },
 
 
 
         {
-            "id": "11",
             "roundIndex": 1,
+            "order": 3,
+            "isLive": true,
+            "matchStatus": "Complete",
             "sides": [
                 {
                     "contestantId": "chelsea",
@@ -470,16 +461,14 @@ exports.default = {
                     ],
                     "isWinner": true
                 }
-            ],
-            "order": 3,
-            "isLive": true,
-            "matchStatus": "Complete"
+            ]
         },
 
 
         {
-            "id": "12",
             "roundIndex": 2,
+            "order": 0,
+            "matchStatus": "Complete",
             "sides": [
                 {
                     "contestantId": "liverpool",
@@ -509,14 +498,13 @@ exports.default = {
                     ],
                     "isWinner": false
                 }
-            ],
-            "order": 0,
-            "matchStatus": "Complete"
+            ]
         },
 
         {
-            "id": "13",
             "roundIndex": 2,
+            "order": 1,
+            "matchStatus": "Complete",
             "sides": [
                 {
                     "contestantId": "city",
@@ -546,14 +534,13 @@ exports.default = {
                     ],
                     "isWinner": true
                 }
-            ],
-            "order": 1,
-            "matchStatus": "Complete"
+            ]
         },
 
         {
-            "id": "14",
             "roundIndex": 3,
+            "order": 0,
+            "matchStatus": "Complete",
             "sides": [
                 {
                     "contestantId": "liverpool",
@@ -575,9 +562,7 @@ exports.default = {
                     ],
                     "isWinner": true
                 }
-            ],
-            "order": 0,
-            "matchStatus": "Complete"
+            ]
         },
     ],
     "contestants": {

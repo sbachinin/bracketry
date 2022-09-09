@@ -15,7 +15,6 @@ test('can draw asymmetrical scores where two sides have different number of elem
     const data = {
         rounds: [{}],
         matches: [{
-            id: 'm1',
             roundIndex: 0,
             order: 0,
             sides: [
@@ -40,7 +39,6 @@ test('can draw asymmetrical scores where ONLY ONE SIDE has a score array', () =>
     const data = {
         rounds: [{}],
         matches: [{
-            id: 'm1',
             roundIndex: 0,
             order: 0,
             sides: [
@@ -63,7 +61,7 @@ test(`does not render scores for a side which has 0 items in "score" array`, () 
     const data = {
         rounds: [{}],
         matches: [{
-            id: 'm1', roundIndex: 0, order: 0, sides: [
+            roundIndex: 0, order: 0, sides: [
                 {
                     contestantId: 'c1',
                     score: [{ mainScore: 'Walkover' }]
@@ -85,7 +83,7 @@ test(`renders a score even if side has no "contestantId"`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            id: 'm1', roundIndex: 0, order: 0, sides: [
+            roundIndex: 0, order: 0, sides: [
                 {
                     score: [{ mainScore: 'Walkover' }]
                 }
@@ -104,7 +102,7 @@ test(`renders score even if contestant not found for such side`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            id: 'm1', roundIndex: 0, order: 0, sides: [
+            roundIndex: 0, order: 0, sides: [
                 {
                     contestantId: 'c1',
                     score: [{ mainScore: 'Walkover' }]
@@ -125,7 +123,7 @@ test(`renders .single-score element only for side.score items which have "mainSc
     const data = {
         rounds: [{}],
         matches: [{
-            id: 'm1', roundIndex: 0, order: 0, sides: [
+            roundIndex: 0, order: 0, sides: [
                 {
                     contestantId: 'c1',
                     score: [{ mainScore: 'Walkover' }, { tieBreak: 12 }]
@@ -145,7 +143,7 @@ test(`renders as much .single-score elements as there are valid items in side.sc
     const data = {
         rounds: [{}],
         matches: [{
-            id: 'm1', roundIndex: 0, order: 0, sides: [
+            roundIndex: 0, order: 0, sides: [
                 {
                     contestantId: 'c1',
                     score: [
@@ -172,7 +170,7 @@ test(`renders player title if any of side.score items has no "mainScore (and war
     const data = {
         rounds: [{}],
         matches: [{
-            id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{}] }]
+            roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{}] }]
         }],
         contestants: {
             c1: { players: [{ title: 'josh' }] }
@@ -186,7 +184,7 @@ test(`renders tie break if there is a valid one`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            id: 'm1', roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', tieBreak: 7 }] }]
+            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', tieBreak: 7 }] }]
         }]
     }
     const { wrapper } = init(data)
@@ -199,7 +197,7 @@ test(`renders a contentful match without .tie-break if score.tieBreak is of inva
     const data = {
         rounds: [{}],
         matches: [{
-            id: 'm1', roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{ mainScore: '6', tieBreak: 'jopa' }] }]
+            roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{ mainScore: '6', tieBreak: 'jopa' }] }]
         }],
         contestants: {
             c1: { players: [] }

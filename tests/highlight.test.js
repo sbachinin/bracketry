@@ -7,7 +7,7 @@ const finished_ucl = require('./ucl-finished.js').default
 const { deep_clone_object, create_wrapper, init } = require('./utils.js')
 
 
-test('highlights team history (add "highlighted" class to .match-wrapper and .side-wrapper)', () => {
+test(`highlights team history (add "highlighted" class to .match-wrapper and .side-wrapper)`, () => {
     const { wrapper } = init(finished_ucl)
 
     const benfica_selector = `.side-wrapper[contestant-id='benfica']`
@@ -42,7 +42,7 @@ test(`highlights next contestant's history after next click`, () => {
 
 
 
-test(`does not highlight when something other than '.side-wrapper' is clicked`, () => {
+test(`does not highlight when something other than '.side-wrapper[contestant-id]' is clicked`, () => {
     const { wrapper } = init(finished_ucl)
 
     wrapper.querySelector('.matches-positioner')
@@ -61,8 +61,20 @@ test(`does not highlight when something other than '.side-wrapper' is clicked`, 
     expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
 })
 
+test(`does not highlight when side-wrapper without [contestant-id] is clicked`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [{ roundIndex: 0, order: 0, sides: []}]
+    }
+    
+    const { wrapper } = init(data)
+    wrapper.querySelector('.side-wrapper:not([contestant-id])')
+        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+    expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
+})
 
-test('unhighlights history after click within .matches-positioner but not .side-wrapper', () => {
+
+test(`unhighlights history after click within .matches-positioner but not .side-wrapper`, () => {
     const { wrapper } = init(finished_ucl)
 
     const benfica_selector = `.side-wrapper[contestant-id='benfica']`
@@ -78,7 +90,7 @@ test('unhighlights history after click within .matches-positioner but not .side-
 })
 
 
-test('does not unhighlight history after click outside .matches-positioner', () => {
+test(`does not unhighlight history after click outside .matches-positioner`, () => {
     const { wrapper } = init(finished_ucl)
 
     const benfica_selector = `.side-wrapper[contestant-id='benfica']`
@@ -94,7 +106,7 @@ test('does not unhighlight history after click outside .matches-positioner', () 
 })
 
 
-test('highlights a contestant history when highlightContestantHistory is called with a valid contestantId', () => {
+test(`highlights a contestant history when highlightContestantHistory is called with a valid contestantId`, () => {
     const { wrapper, playoffs } = init(finished_ucl)
 
     playoffs.highlightContestantHistory('villarreal')
@@ -105,7 +117,7 @@ test('highlights a contestant history when highlightContestantHistory is called 
 })
 
 
-test('highlights a contestant history when highlightContestantHistory is called with a valid contestantId', () => {
+test(`highlights a contestant history when highlightContestantHistory is called with a valid contestantId`, () => {
     const { wrapper, playoffs } = init(finished_ucl)
 
     playoffs.highlightContestantHistory('villarreal')
@@ -116,7 +128,7 @@ test('highlights a contestant history when highlightContestantHistory is called 
     expect(highlighted_side_wrappers[2].getAttribute('contestant-id')).toBe('villarreal')
 })
 
-test('unhighlights when highlightContestantHistory is called with null', () => {
+test(`unhighlights when highlightContestantHistory is called with null`, () => {
     const { wrapper, playoffs } = init(finished_ucl)
 
     playoffs.highlightContestantHistory('villarreal')
@@ -127,7 +139,7 @@ test('unhighlights when highlightContestantHistory is called with null', () => {
 })
 
 
-test('unhighlights when highlightContestantHistory is called with irrelevant string', () => {
+test(`unhighlights when highlightContestantHistory is called with irrelevant string`, () => {
     const { wrapper, playoffs } = init(finished_ucl)
     playoffs.highlightContestantHistory('villarreal')
     playoffs.highlightContestantHistory('nonsense')
@@ -160,7 +172,7 @@ test(`highlighted contestant remains highlighted when highlightContestantHistory
     expect(highlighted_side_wrappers[2].getAttribute('contestant-id')).toBe('villarreal')
 })
 
-test('last highlighted match has a "last-highlighted" class (and there is only one such match)', () => {
+test(`last highlighted match has a "last-highlighted" class (and there is only one such match)`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
 
     pl.highlightContestantHistory('villarreal')
@@ -173,7 +185,7 @@ test('last highlighted match has a "last-highlighted" class (and there is only o
 })
 
 
-test('"last-highlighted" class is removed from match-wrapper after unhighlight', () => {
+test(`"last-highlighted" class is removed from match-wrapper after unhighlight`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
 
     pl.highlightContestantHistory('villarreal')

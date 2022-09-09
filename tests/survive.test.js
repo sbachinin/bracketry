@@ -6,7 +6,6 @@ global.ResizeObserver = require('resize-observer-polyfill')
 const { createPlayoffs } = require('../index.js').easyPlayoffs
 const finished_ucl = require('./ucl-finished.js').default
 
-// TODO make sure console.warn is called
 
 test('survives non-object options', () => {
     const wrapper = document.createElement('div')
@@ -31,7 +30,7 @@ test('survives non-existent options', () => {
     createPlayoffs(
         {
             rounds: [{}],
-            matches: [{ id: '32323', roundIndex: 0, order: 0,
+            matches: [{ roundIndex: 0, order: 0,
                 sides: [{ contestantId: 'contestant1', score: [] }] }
             ],
             contestants: {

@@ -3,91 +3,46 @@
  */
 
 global.ResizeObserver = require('resize-observer-polyfill')
-const { easyPlayoffs } = require('../index.js');
+const { init } = require('./utils.js')
 const finished_ucl = require('./ucl-finished.js').default
-
-const init = () => {
-    document.body.innerHTML = ''
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-    return wrapper
-}
 
 
 test('calls onMatchSideClick when .side-wrapper is clicked', () => {
-    const wrapper = init()
-
     const onMatchSideClick = jest.fn()
-
-    easyPlayoffs.createPlayoffs(
-        finished_ucl,
-        wrapper,
-        { onMatchSideClick }
-    )
-
-    document.querySelector('.match-wrapper[match-id="1"] .side-wrapper[contestant-id="inter"]')
+    const { wrapper } = init(finished_ucl, { onMatchSideClick })
+    wrapper.querySelector('.side-wrapper[contestant-id="inter"]')
         .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
 
     expect(onMatchSideClick).toBeCalledWith(
+        expect.objectContaining(finished_ucl.matches[1]),
         expect.objectContaining(finished_ucl.contestants.inter),
-        'inter',
-        expect.objectContaining(finished_ucl.matches.find(m => m.id === '1'))
+        'inter'
     )
 })
 
 test('does not call onMatchSideClick when clicked somewhere else', () => {
-    const wrapper = init()
-
     const onMatchSideClick = jest.fn()
-
-    easyPlayoffs.createPlayoffs(
-        finished_ucl,
-        wrapper,
-        { onMatchSideClick }
-    )
-
-    document.querySelector('.match-wrapper')
+    const { wrapper } = init(finished_ucl, { onMatchSideClick })
+    wrapper.querySelector('.match-wrapper')
         .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
 
     expect(onMatchSideClick).not.toBeCalled();
 })
 
+
+
 test(`pointer-events of everything inside .side_wrapper are disabled (even if onMatchSideClick is not provided)`, () => {
-    const wrapper = init()
-
-    easyPlayoffs.createPlayoffs(
-        finished_ucl,
-        wrapper,
-        {}
-    )
-
-    expect(getComputedStyle(
-        document.querySelector(`.player-title`)
-    ).pointerEvents).toBe('none')
-
-    expect(getComputedStyle(
-        document.querySelector(`.side-info-item`)
-    ).pointerEvents).toBe('none')
+    const { wrapper } = init(finished_ucl)
+    expect(getComputedStyle(wrapper.querySelector(`.player-title`)).pointerEvents).toBe('none')
+    expect(getComputedStyle(wrapper.querySelector(`.side-info-item`)).pointerEvents).toBe('none')
 })
 
 
-
-// TODO duplicate from onMatchClick?
 test(`contestant's match history isn't highlighted on click when onMatchClick is provided`, () => {
-    const wrapper = init()
-
-    easyPlayoffs.createPlayoffs(
-        finished_ucl,
-        wrapper,
-        { onMatchClick: () => {} }
-    )
-
-    document.querySelector('.side-wrapper')
+    const { wrapper } = init(finished_ucl, { onMatchSideClick: () => { } })
+    wrapper.querySelector('.side-wrapper')
         .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
 
-    expect(document.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
+    expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
 })
 
-
-// TODO ensure that onMatchClick isn't called without a good reason
-    // E.g., clicks on a side-wrapper without [contestant-id] should rather be ignored

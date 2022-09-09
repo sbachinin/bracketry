@@ -32,7 +32,6 @@ test('renders match data', () => {
             rounds: [{ name: 'Some round' }],
             matches: [
                 {
-                    id: '32323',
                     roundIndex: 0,
                     order: 0,
                     sides: [
@@ -66,8 +65,7 @@ test('renders 4 empty rounds with only "rounds" array of 4 empty objects and wit
 test('renders contentful matches without options', () => {
     const wrapper = create_wrapper()
     createPlayoffs(finished_ucl, wrapper)
-    expect(wrapper.querySelectorAll('.match-wrapper[match-id]').length).toBe(15)
-    expect(wrapper.querySelector('.match-wrapper[match-id="0"]').textContent).toMatch('Benfica')
+    expect(wrapper.querySelectorAll('.match-body').length).toBe(15)
 })
 
 
