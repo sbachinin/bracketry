@@ -71,3 +71,14 @@ test(`does not apply live styles to a match element WITHOUT sides, even if { isL
     expect(getComputedStyle(wrapper.querySelector('.match-body')).borderColor).not.toBe('red')
     expect(getComputedStyle(wrapper.querySelector('.match-body')).backgroundColor).not.toBe('blue')
 })
+
+test(`does not apply live styles to match element if options.getMatchElement is provided`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [{ roundIndex: 0, order: 0, isLive: true, sides: [{}, {}] }],
+    }
+    const options = { getMatchElement: () => {}, liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }
+    const { wrapper } = init(data, options)
+    expect(getComputedStyle(wrapper.querySelector('.match-body')).borderColor).not.toBe('red')
+    expect(getComputedStyle(wrapper.querySelector('.match-body')).backgroundColor).not.toBe('blue')
+})

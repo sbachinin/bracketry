@@ -75,10 +75,9 @@ test(`Renders a string if options.getMatchElement returns a string`, () => {
 })
 
 
-test(`Renders .match-lines-area but not .match-body if options.getMatchElement returns not a sting or ELement`, () => {
+test(`Renders empty .match-body if options.getMatchElement returns not a sting or ELement`, () => {
     const { wrapper } = init(finished_ucl, { getMatchElement: () => NaN })
-    expect(wrapper.querySelectorAll('.match-lines-area').length).toBe(15)
-    expect(wrapper.querySelectorAll('.match-body').length).toBe(0)
+    expect(wrapper.querySelector('.match-body').innerHTML).toBe('')
 })
 
 
@@ -102,18 +101,14 @@ test(`Calls mouse handlers attached to match elements provided by options.getMat
     expect(clickHandler).toBeCalledTimes(2)
 })
 
-test(`renders .match-lines-area but not .match-body if getMatchElement throws`, () => {
+test(`renders empty .match-body if getMatchElement throws`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }], matchStatus: 'Scheduled' }],
-        contestants: {
-            c1: { players: [{ title: 'Pete', nationality: 'US' }] }
-        }
+        matches: [{ roundIndex: 0, order: 0, matchStatus: 'Scheduled' }],
     }
 
     const { wrapper } = init(data, { getMatchElement: () => { very.bad() } })
-    expect(wrapper.querySelector('.match-lines-area')).not.toBe(null)
-    expect(wrapper.querySelector('.match-body')).toBe(null)
+    expect(wrapper.querySelector('.match-body').innerHTML).toBe('')
     expect(consoleWarn.mock.calls[0][0]).toMatch(`Failed to get an element from getMatchElement`)
 })
 
