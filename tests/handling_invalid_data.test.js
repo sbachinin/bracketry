@@ -119,7 +119,7 @@ test('renders player title when player has non-string nationality', () => {
         rounds: [{}],
         matches: [{
             roundIndex: 0, order: 0,
-            sides: [{ contestantId: 'contestant1', score: [ { mainScore: '6' } ] }]
+            sides: [{ contestantId: 'contestant1' }]
         }],
         contestants: { contestant1: { players: [{ title: 'John', nationality: true }] } }
     }

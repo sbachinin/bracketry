@@ -14,11 +14,7 @@ afterEach(jest.clearAllMocks)
 test('getAllData returns a new match supplied by applyMatchesUpdates in place of an old match', () => {
     const { playoffs: pl } = init(finished_ucl)
 
-    const new_match = {
-        roundIndex: 1,
-        order: 2,
-        sides: [ { contestantId: 'c123', score: [{ mainScore: '666' }] } ]
-    }
+    const new_match = {roundIndex: 1, order: 2, matchStatus: 'Completed'}
 
     pl.applyMatchesUpdates([ new_match ])
 
@@ -39,35 +35,25 @@ test('draws a new score for a match updated by applyMatchesUpdates', () => {
     const new_match = {
         roundIndex: 1,
         order: 2,
-        sides: [ { contestantId: 'c123', score: [{ mainScore: '666' }] } ]
+        sides: [ { score: [{ mainScore: '6' }] } ]
     }
 
     pl.applyMatchesUpdates([ new_match ])
 
-    const updated_match_score_el = wrapper.querySelectorAll('.round-wrapper')[1]
-        .querySelectorAll('.match-wrapper')[2]
-        .querySelector('.main-score')
-    expect(updated_match_score_el.textContent.trim()).toBe(new_match.sides[0].score[0].mainScore)
+    const updated_match_score_el = wrapper.querySelector(
+        '.round-wrapper[round-index="1"] .match-wrapper[match-order="2"] .main-score'
+    )
+    expect(updated_match_score_el.textContent.trim()).toBe('6')
 })
 
 
 test('applyMatchesUpdates creates new match if none was present for this round_id and order', () => {
-    const { wrapper, playoffs: pl } = init(
-        {
-            rounds: [ { name: 'Some round' } ],
-            matches: [],
-            contestants: { c1: { players: [ { title: 'John Doe' } ] } }
-        }
-    )
-
-    expect(wrapper.querySelector('.main-score')).toBe(null);
+    const { wrapper, playoffs: pl } = init({ rounds: [ {} ], matches: [] })
 
     const new_match = {
         roundIndex: 0,
         order: 0,
-        sides: [
-            { contestantId: 'c1', score: [{ mainScore: '6' }] },
-        ]
+        sides: [{ score: [{ mainScore: '6' }] }]
     }
 
     pl.applyMatchesUpdates([ new_match ])
@@ -85,7 +71,7 @@ test('does not mutate data passed to applyMatchesUpdate', () => {
     const new_match = {
         roundIndex: 1,
         order: 2,
-        sides: [ { contestantId: 'villarreal', score: [{ mainScore: '666' }] } ]
+        sides: [ { contestantId: 'villarreal' } ]
     }
 
     pl.applyMatchesUpdates([ new_match ])
@@ -93,7 +79,7 @@ test('does not mutate data passed to applyMatchesUpdate', () => {
     expect(new_match).toEqual({
         roundIndex: 1,
         order: 2,
-        sides: [ { contestantId: 'villarreal', score: [{ mainScore: '666' }] } ]
+        sides: [ { contestantId: 'villarreal' } ]
     })
 })
 
