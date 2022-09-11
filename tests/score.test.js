@@ -15,7 +15,7 @@ test(`renders a string for mainScore`, () => {
         matches: [{
             roundIndex: 0,
             order: 0,
-            sides: [ { score: [ { mainScore: 'Rt' } ] } ]
+            sides: [{ score: [{ mainScore: 'Rt' }] }]
         }],
     }
     const { wrapper } = init(data)
@@ -28,7 +28,7 @@ test(`renders a number for mainScore`, () => {
         matches: [{
             roundIndex: 0,
             order: 0,
-            sides: [ { score: [ { mainScore: 12 } ] } ]
+            sides: [{ score: [{ mainScore: 12 }] }]
         }],
     }
     const { wrapper } = init(data)
@@ -44,7 +44,7 @@ test(`renders no <side-own-single-score>s when neither side has a score array`, 
         matches: [{
             roundIndex: 0,
             order: 0,
-            sides: [ {}, {} ]
+            sides: [{}, {}]
         }],
     }
     const { wrapper } = init(data)
@@ -59,7 +59,7 @@ test(`renders no <side-own-single-score>s when both sides have EMPTY score array
         matches: [{
             roundIndex: 0,
             order: 0,
-            sides: [ { score: [] }, { score: [] } ]
+            sides: [{ score: [] }, { score: [] }]
         }],
     }
     const { wrapper } = init(data)
@@ -73,7 +73,7 @@ test(`renders <side-own-single-score>s for both sides when ONLY 1 side has a sco
         matches: [{
             roundIndex: 0,
             order: 0,
-            sides: [ {}, { score: [{ mainScore: 'Rt' }] } ]
+            sides: [{}, { score: [{ mainScore: 'Rt' }] }]
         }],
     }
     const { wrapper } = init(data)
@@ -107,7 +107,7 @@ test(`renders a score even if side has no "contestantId"`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [ { score: [{ mainScore: '12' }] } ]
+            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '12' }] }]
         }],
     }
     const { wrapper } = init(data)
@@ -126,7 +126,7 @@ test(`renders as much <single-score-wrapper>s as the longest score length of bot
                     score: [
                         { mainScore: '1' },
                         NaN,
-                        { },
+                        {},
                         { mainScore: '3' }
                     ]
                 },
@@ -178,7 +178,7 @@ test(`renders tie break if there is a valid one`, () => {
 test(`should not render 'NaN' for mainScore`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: NaN }] }]}]
+        matches: [{ roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: NaN }] }] }]
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.main-score').textContent).toBe('')
@@ -188,10 +188,12 @@ test(`should not render 'NaN' for mainScore`, () => {
 test(`renders empty <side-own-single-score>s for undefined score entries, does not throw`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ roundIndex: 0, order: 0, sides: [
-            { contestantId: 'c1', score: [ undefined, { mainScore: '4' } ] },
-            { contestantId: 'c2', score: [ { mainScore: '2' }, undefined ] }
-        ]}]
+        matches: [{
+            roundIndex: 0, order: 0, sides: [
+                { contestantId: 'c1', score: [undefined, { mainScore: '4' }] },
+                { contestantId: 'c2', score: [{ mainScore: '2' }, undefined] }
+            ]
+        }]
     }
 
     let pl = null
@@ -206,37 +208,41 @@ test(`renders empty <side-own-single-score>s for undefined score entries, does n
     expect(second_side_own_scores[0].textContent.trim()).toBe('2')
     expect(second_side_own_scores[1].textContent.trim()).toBe('')
 })
- 
+
 test(`renders empty <side-own-single-score> for other invalid entries, does not throw`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ roundIndex: 0, order: 0, sides: [
-            { score: [
-                undefined,
-                NaN,
-                null,
-                true,
-                false,
-                12,
-                [],
-                Object,
-                Element,
-                { mainScore: NaN },
-                { mainScore: null },
-                { mainScore: true},
-                { mainScore: false},
-                { mainScore: []},
-                { mainScore: Object},
-                { mainScore: Element},
-                { tieBreak: NaN },
-                { tieBreak: null },
-                { tieBreak: true},
-                { tieBreak: false},
-                { tieBreak: []},
-                { tieBreak: Object},
-                { tieBreak: Element}
-            ]},
-        ]}]
+        matches: [{
+            roundIndex: 0, order: 0, sides: [
+                {
+                    score: [
+                        undefined,
+                        NaN,
+                        null,
+                        true,
+                        false,
+                        12,
+                        [],
+                        Object,
+                        Element,
+                        { mainScore: NaN },
+                        { mainScore: null },
+                        { mainScore: true },
+                        { mainScore: false },
+                        { mainScore: [] },
+                        { mainScore: Object },
+                        { mainScore: Element },
+                        { tieBreak: NaN },
+                        { tieBreak: null },
+                        { tieBreak: true },
+                        { tieBreak: false },
+                        { tieBreak: [] },
+                        { tieBreak: Object },
+                        { tieBreak: Element }
+                    ]
+                },
+            ]
+        }]
     }
 
     let pl = null
@@ -280,7 +286,7 @@ test(`renders empty <side-own-single-score> for other invalid entries, does not 
 
 // TIEBREAK
 
-test(`renders valid tieBreak even without mainScore`, () => {
+test(`renders numeric tieBreak even without mainScore`, () => {
     const data = {
         rounds: [{}],
         matches: [
@@ -289,6 +295,17 @@ test(`renders valid tieBreak even without mainScore`, () => {
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.tie-break').textContent).toBe('32')
+})
+
+test(`renders string tieBreak even without mainScore`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [
+            { roundIndex: 0, order: 0, sides: [{ score: [{ tieBreak: '32%' }] }] }
+        ]
+    }
+    const { wrapper } = init(data)
+    expect(wrapper.querySelector('.tie-break').textContent).toBe('32%')
 })
 
 test(`renders valid tieBreak even if mainScore is invalid`, () => {
@@ -304,18 +321,18 @@ test(`renders valid tieBreak even if mainScore is invalid`, () => {
 
 
 
-test(`renders a contentful match without .tie-break if score.tieBreak is of invalid (non-number) type`, () => {
+test(`renders a contentful match without .tie-break if score.tieBreak is of invalid type`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', tieBreak: 'i am an idiot' }] }]
+            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', tieBreak: Array }] }]
         }]
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.main-score')).not.toBe(null)
     expect(wrapper.querySelector('.tie-break')).toBe(null)
     expect(consoleWarn.mock.calls[0][0]).toMatch(
-        `If you provide side.score.tieBreak, it must be a number`
+        `If you provide side.score.tieBreak, it must be a number or a string`
     )
 })
 
@@ -324,7 +341,7 @@ test(`renders mainScore if tieBreak is invalid`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', tieBreak: 'i am an idiot' }] }]
+            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', tieBreak: Array }] }]
         }]
     }
     const { wrapper } = init(data)
@@ -332,12 +349,32 @@ test(`renders mainScore if tieBreak is invalid`, () => {
 })
 
 
-
-test(`renders <single-score-wrapper> semi-transparent when score entry HAS NOT { isWinner: true }`, () =>  {
+// does not render NaN tieBreak
+test(`does not render <tie-break> if tieBreak is NaN`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [ { contestantId: 'c1', score: [{ mainScore: '6' }] }]
+            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', tieBreak: NaN }] }]
+        }]
+    }
+    const { wrapper } = init(data)
+    expect(wrapper.querySelector('.tie-break')).toBe(null)
+})
+
+
+
+
+
+
+
+
+// WINNER SCORE
+
+test(`renders <single-score-wrapper> semi-transparent when score entry HAS NOT { isWinner: true }`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [{
+            roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{ mainScore: '6' }] }]
         }]
     }
     const { wrapper } = init(data)
@@ -348,11 +385,11 @@ test(`renders <single-score-wrapper> semi-transparent when score entry HAS NOT {
     ).toBe('0.54')
 })
 
-test(`renders <single-score-wrapper> opaque when score entry HAS { isWinner: true }`, () =>  {
+test(`renders <single-score-wrapper> opaque when score entry HAS { isWinner: true }`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [ { contestantId: 'c1', score: [{ isWinner: true, mainScore: '6' }] }]
+            roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{ isWinner: true, mainScore: '6' }] }]
         }]
     }
     const { wrapper } = init(data)
@@ -362,6 +399,4 @@ test(`renders <single-score-wrapper> opaque when score entry HAS { isWinner: tru
         ).opacity
     ).toBe('')
 })
-
-
 

@@ -25,7 +25,7 @@ type Side = {
     score?: [
         {
             mainScore: number | string, // May contain divergent results like 'W/O' or 'Ret' in tennis
-            tieBreak?: number,
+            tieBreak?: number | string,
             isWinner?: boolean
         }
     ]
