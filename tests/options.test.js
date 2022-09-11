@@ -38,7 +38,7 @@ test('merges old and new options', () => {
 
 
 test('applies matchMaxWidth to .match-body', () => {
-    const { wrapper } = init(finished_ucl, { matchMaxWidth: 250 })
+    const { wrapper } = init(finished_ucl, { matchMaxWidth: '250px' })
     expect(
         getComputedStyle(wrapper.querySelector('.match-body')).maxWidth
     ).toBe('250px')
@@ -56,7 +56,7 @@ test(`falls back to default options in case of EMPTY options`, () => {
     ).toBe('20px')
     expect(
         getComputedStyle(wrapper.querySelector('.match-body')).maxWidth
-    ).toBe('450px')
+    ).toBe('unset')
 })
 
 
@@ -75,7 +75,7 @@ test(`falls back to default option if NaN is provided for an option of type "num
 
 test(`falls back to default options in case of INVALID options`, () => {
     const { wrapper } = init(finished_ucl, {
-        roundTitlesHeight: {}, matchHorMargin: [], matchMaxWidth: 'crap'
+        roundTitlesHeight: {}, matchHorMargin: [], matchMaxWidth: Object
     })
     expect(
         getComputedStyle(wrapper.querySelector('.round-titles-wrapper')).height
@@ -85,7 +85,7 @@ test(`falls back to default options in case of INVALID options`, () => {
     ).toBe('20px')
     expect(
         getComputedStyle(wrapper.querySelector('.match-body')).maxWidth
-    ).toBe('450px')
+    ).toBe('unset')
 })
 
 // TODO other heavy-logic options
