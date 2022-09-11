@@ -12,3 +12,5 @@ RESIZE => navigation response
 click on custom match element => custom event handler is called
     (i do this in Jest with 'dispatchEvent' but it's unreliable.
     There might be disabled pointerEvents due to some parent's style but Jest isn't smart enough to block such a click)
+
+scores' (and subscores') widths are equalized

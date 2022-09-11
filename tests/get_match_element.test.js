@@ -313,7 +313,5 @@ test(`does not render a match with irrelevant roundIndex and order`, () => {
 
 
 
-// TODO test subscore
-
 
 

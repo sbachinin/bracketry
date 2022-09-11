@@ -18,19 +18,19 @@ export type Match = {
     isLive?: boolean
 }
 
+type Score = {
+    mainScore: number | string, // May contain divergent results like 'W/O' or 'Ret' in tennis
+    tieBreak?: number | string,
+    isWinner?: boolean
+}
+
 // Side is a match-specific data for contestant: his id, his score ...
 type Side = {
     title?: string,
     contestantId?: string,
-    score?: [
-        {
-            mainScore: number | string, // May contain divergent results like 'W/O' or 'Ret' in tennis
-            tieBreak?: number | string,
-            isWinner?: boolean
-        }
-    ]
+    score?: Score[]
 
-    subscore?: number | string, // e.g., points within a game in tennis: this number is drawn after 'score', is surrounded by border and is higlighted with green if match 'isLive'
+    subscore?: Score, // e.g., points within a game in tennis: this number is drawn after 'score', is surrounded by border and is higlighted with green if match 'isLive'
     isServing?: boolean, // if this one is 'true', a tennis ball icon will be drawn before a side's score
     isWinner?: boolean
 }

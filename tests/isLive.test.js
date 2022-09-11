@@ -12,7 +12,10 @@ afterEach(jest.clearAllMocks)
 test(`applies certain styles to a match element which { isLive: true }`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ roundIndex: 0, order: 0, isLive: true, sides: [{ subscore: '1' }, {}] }],
+        matches: [{
+            roundIndex: 0, order: 0, isLive: true,
+            sides: [{ subscore: { mainScore: '1' } }, {}]
+        }],
     }
     const options = { liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }
     const { wrapper } = init(data, options)
@@ -25,7 +28,10 @@ test(`applies certain styles to a match element which { isLive: true }`, () => {
 test(`does not apply live styles to a match element which { isLive: false }`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ roundIndex: 0, order: 0, isLive: false, sides: [{ subscore: '1' }, {}] }],
+        matches: [{
+            roundIndex: 0, order: 0, isLive: false,
+            sides: [{ subscore: { mainScore: '1' } }, {}]
+        }],
     }
     const options = { liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }
     const { wrapper } = init(data, options)
@@ -37,7 +43,10 @@ test(`does not apply live styles to a match element which { isLive: false }`, ()
 test(`does not apply live styles to a match element which has no 'isLive' property`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ roundIndex: 0, order: 0, sides: [{ subscore: '1' }, {}] }],
+        matches: [{
+            roundIndex: 0, order: 0,
+            sides: [{ subscore: { mainScore: '1' } }, {}]
+        }],
     }
     const options = { liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }
     const { wrapper } = init(data, options)
@@ -50,7 +59,10 @@ test(`does not apply live styles to a match element which has no 'isLive' proper
 test(`does not apply live styles to a match element which has non-boolean 'isLive' property`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ roundIndex: 0, order: 0, isLive: 'yes', sides: [{ subscore: '1' }, {}] }],
+        matches: [{
+            roundIndex: 0, order: 0, isLive: 'yes',
+            sides: [{ subscore: { mainScore: '1' } }, {}]
+        }],
     }
     const options = { liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }
     const { wrapper } = init(data, options)
@@ -77,7 +89,7 @@ test(`does not apply live styles to match element if options.getMatchElement is 
         rounds: [{}],
         matches: [{ roundIndex: 0, order: 0, isLive: true, sides: [{}, {}] }],
     }
-    const options = { getMatchElement: () => {}, liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }
+    const options = { getMatchElement: () => { }, liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }
     const { wrapper } = init(data, options)
     expect(getComputedStyle(wrapper.querySelector('.match-body')).borderColor).not.toBe('red')
     expect(getComputedStyle(wrapper.querySelector('.match-body')).backgroundColor).not.toBe('blue')

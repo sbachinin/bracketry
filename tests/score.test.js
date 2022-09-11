@@ -332,7 +332,7 @@ test(`renders a contentful match without .tie-break if score.tieBreak is of inva
     expect(wrapper.querySelector('.main-score')).not.toBe(null)
     expect(wrapper.querySelector('.tie-break')).toBe(null)
     expect(consoleWarn.mock.calls[0][0]).toMatch(
-        `If you provide side.score.tieBreak, it must be a number or a string`
+        `If you provide "tieBreak", it must be a number or a string`
     )
 })
 
