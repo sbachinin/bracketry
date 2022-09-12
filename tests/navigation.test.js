@@ -10,8 +10,8 @@ test('hides a number of rounds beyond options.visibleRoundsCount', () => {
     const { wrapper } = init(finished_ucl, { visibleRoundsCount: 2 })
 
     const all_rounds = [...wrapper.querySelectorAll('.round-wrapper')]
-    const hidden_rounds = all_rounds.filter(w => w.classList.contains('hidden'))
-    expect(hidden_rounds.length).toBe(2)
+    const collapsed_rounds = all_rounds.filter(w => w.classList.contains('collapsed'))
+    expect(collapsed_rounds.length).toBe(2)
     expect(getComputedStyle(all_rounds[0]).display).not.toBe('none')
     expect(getComputedStyle(all_rounds[3]).display).toBe('none')
 })
@@ -22,7 +22,7 @@ test('floors the fractional visibleRoundsCount', () => {
     const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2.5 })
 
     const all_rounds = [...wrapper.querySelectorAll('.round-wrapper')]
-    const visible_rounds = all_rounds.filter(w => !w.classList.contains('hidden'))
+    const visible_rounds = all_rounds.filter(w => !w.classList.contains('collapsed'))
     expect(visible_rounds.length).toBe(2)
 
     pl.setBaseRoundIndex(2)
@@ -42,14 +42,14 @@ test('renders content with negative visibleRoundsCount', () => {
 test('shows more rounds when a greater visibleRoundsCount is supplied via applyNewOptions', () => {
     const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
     pl.applyNewOptions({ visibleRoundsCount: 4 })
-    expect(wrapper.querySelectorAll('.round-wrapper:not(.hidden)').length).toBe(4)
+    expect(wrapper.querySelectorAll('.round-wrapper:not(.collapsed)').length).toBe(4)
 })
 
 
 test('shows less rounds when a lesser visibleRoundsCount is supplied via applyNewOptions', () => {
     const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 4 })
     pl.applyNewOptions({ visibleRoundsCount: 2 })
-    expect(wrapper.querySelectorAll('.round-wrapper:not(.hidden)').length).toBe(2)
+    expect(wrapper.querySelectorAll('.round-wrapper:not(.collapsed)').length).toBe(2)
 })
 
 
@@ -61,7 +61,7 @@ test(`shows more rounds when
     const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
     pl.setBaseRoundIndex(2)
     pl.applyNewOptions({ visibleRoundsCount: 3 })
-    expect(wrapper.querySelectorAll('.round-wrapper:not(.hidden)').length).toBe(3)
+    expect(wrapper.querySelectorAll('.round-wrapper:not(.collapsed)').length).toBe(3)
 })
 
 
@@ -72,9 +72,9 @@ test('sets the base round index + tells this index via getNavigationState', () =
     pl.setBaseRoundIndex(2)
     expect(pl.getNavigationState().baseRoundIndex).toBe(2)
 
-    // first round now should be hidden:
+    // first round now should be collapsed:
     const all_rounds = [...wrapper.querySelectorAll('.round-wrapper')]
-    expect(getComputedStyle(all_rounds[0]).display).toBe('none')
+    expect(getComputedStyle(all_rounds[0]).height).toBe('0px')
 })
 
 
@@ -146,7 +146,7 @@ test('moves to last round when moveToLastRound is called', () => {
     pl.moveToLastRound()
 
     expect(pl.getNavigationState().baseRoundIndex).toBe(2)
-    expect(pl.getNavigationState().reachedRightEdge).toBe(true)
+    expect(pl.getNavigationState().lastRoundIsVisible).toBe(true)
     expect(
         getComputedStyle(wrapper.querySelector('.round-wrapper:last-of-type')).display
     ).not.toBe('none')
@@ -156,9 +156,9 @@ test('moves to last round when moveToLastRound is called', () => {
 test('tells that it reached right edge when it is so', () => {
     const { playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
     pl.moveToNextRound()
-    expect(pl.getNavigationState().reachedRightEdge).toBe(false)
+    expect(pl.getNavigationState().lastRoundIsVisible).toBe(false)
     pl.moveToNextRound()
-    expect(pl.getNavigationState().reachedRightEdge).toBe(true)
+    expect(pl.getNavigationState().lastRoundIsVisible).toBe(true)
 })
 
 
@@ -202,7 +202,7 @@ test('ignores NaN passed to setBaseRoundIndex()', () => {
 test(`returns stub values if getNavigationState is called after elements were removed`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
     wrapper.remove()
-    expect(pl.getNavigationState()).toEqual({ reachedRightEdge: false, allRoundsAreVisible: false, baseRoundIndex: 0 })
+    expect(pl.getNavigationState()).toEqual({ lastRoundIsVisible: false, allRoundsAreVisible: false, baseRoundIndex: 0 })
 })
 
 test(`getNavigationState tells if allRoundsAreVisible`, () => {

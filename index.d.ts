@@ -69,7 +69,7 @@ export function createPlayoffs(
 
     setBaseRoundIndex: (i: number) => void
     getNavigationState: () => {
-        reachedRightEdge: boolean,
+        lastRoundIsVisible: boolean,
         allRoundsAreVisible: boolean,
         baseRoundIndex: number
     }

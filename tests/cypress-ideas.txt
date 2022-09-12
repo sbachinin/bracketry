@@ -5,8 +5,6 @@ compare screenshots of connection lines
 (maybe) scrollbar height with a given round height and wrapper height; scrollbar position after scroll. etc
     + scrollbar is draggable
 
-adds 'mobile' class to easy-playoffs-root if natural round width allowed only 1 round to be visible
-
 RESIZE => navigation response
 
 click on custom match element => custom event handler is called
