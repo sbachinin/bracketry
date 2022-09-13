@@ -187,11 +187,18 @@ You can use getEntryStatusHTML as just a way to _inject something into the leftm
 
 
 
-## getMatchElement()
+## getMatchElement
 &nbsp;&nbsp;&nbsp;    <sup>function</sup>
 
 Should return an Element or undefined
 
+
+## displayWholeRounds
+&nbsp;&nbsp;&nbsp;    <sup>boolean</sup>
+
+If true, widths of rounds will be adjusted in order to hide the partly visible round on the right.  
+By default it's false (thus you will likely see only a fraction of round on the right).  
+When this option is true, mind that rounds (and matches too) will become wider - and in some cases it may be too wide. To prevent this use __matchMaxWidth__ option
 
 
 ## useClassicalLayout
