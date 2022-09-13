@@ -12,3 +12,9 @@ click on custom match element => custom event handler is called
     There might be disabled pointerEvents due to some parent's style but Jest isn't smart enough to block such a click)
 
 scores' (and subscores') widths are equalized
+
+use classical layout -> matches' vertical margins?
+
+wrapper with auto height -> EP stretches to full height of matches
+
+wrapper auto width -> it probably fills the body widht -> EP stretches to this full width

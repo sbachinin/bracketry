@@ -9,6 +9,15 @@ contestants: {
 }
 
 
+# wrapper
+
+It's recommended to provide __fixed height__ for your wrapper.  
+If not, easy-playoffs will take as much height as necessary to display all matches.  
+But it may have a negative side effect: the actual height will start changing on navigation  
+(because by default easy-playoffs tries to reduce the height according to which rounds are visible. Thus it plays better with not-so-tall wrappers).  
+If you still want to have an __auto height__, it's recommended to switch '__useClassicalLayout__' option to true. This will ensure that the height will remain stable on navigation
+
+
 
 # Highlight contestants's matches
 
@@ -62,7 +71,8 @@ If called with a valid contestantId, it will highlight matches *even if options.
 
 # Options
 
-## getNationalityHTML()
+## getNationalityHTML
+&nbsp;&nbsp;&nbsp;    <sup>function</sup>
 
 The **getNationalityHTML** option allows you to inject any HTML (or simply text) into the "nationality" section of a player (second column from the left, if "Entry status" field is also displayed).  
 This function will be called for every player in a tournament.
@@ -121,7 +131,8 @@ What you inject can be an avatar of a player for instance.
 
 
 
-## getEntryStatusHTML()
+## getEntryStatusHTML
+&nbsp;&nbsp;&nbsp;    <sup>function</sup>
 
 The **getEntryStatusHTML** option allows you to inject any HTML (or simply text) into the "entry status" section of a player (leftmost column within a match element).  
 This function will be called for every side of every match in a tournament.
@@ -177,5 +188,15 @@ You can use getEntryStatusHTML as just a way to _inject something into the leftm
 
 
 ## getMatchElement()
+&nbsp;&nbsp;&nbsp;    <sup>function</sup>
 
 Should return an Element or undefined
+
+
+
+## useClassicalLayout
+&nbsp;&nbsp;&nbsp;    <sup>boolean</sup>
+
+'True' means that vertical space taken by one match will be doubled for every next round.  
+In contrast, default behaviour (with useClassical layout set to **false**) means that this vertical space will be reduced to the smallest possible value for a given navigation state (if you scrolled 2 rounds to the right, then the 3rd round will become "the base round" with a smallest possible height)
+(images are desirable)
