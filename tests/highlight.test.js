@@ -55,7 +55,7 @@ test(`does not highlight when something other than '.side-wrapper[contestant-id]
 
     expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
     
-    wrapper.querySelector('.navigation-button.active')
+    wrapper.querySelector('.navigation-button')
         .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
 
     expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)

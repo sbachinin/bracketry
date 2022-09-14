@@ -110,11 +110,6 @@ test(`resets navigation state when calling replaceData`, () => {
             wrapper.querySelectorAll('.round-wrapper')[0]
         ).display
     ).not.toBe('none')
-    expect(
-        getComputedStyle(
-            wrapper.querySelectorAll('.round-wrapper')[2]
-        ).display
-    ).toBe('none')
 })
 
 
