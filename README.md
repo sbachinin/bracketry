@@ -111,7 +111,8 @@ It non-string value will be returned, it will be ignored and the ".nationality" 
 
 `Issue of width`
 
-It's highly recommended that you always return HTML with explicit (and **equal** for each side) width AND height. Especially if you mean to inject images.
+It's highly recommended that you always return HTML with explicit (and **equal** for each side) width AND height.  Especially if you mean to inject images.  
+Ideally width and height should be set inline: `<img style="width: 40px; height:30px;" src="some_url">`
 
 `If this function is not provided`
 
@@ -169,7 +170,8 @@ It non-string value will be returned, it will be ignored and the ".entry-status"
 
 `Issue of width`
 
-It's highly recommended that you always return HTML with explicit (and **equal** for each side) width AND height.  Especially if you mean to inject images.
+It's highly recommended that you always return HTML with explicit (and **equal** for each side) width AND height.  Especially if you mean to inject images.  
+Ideally width and height should be set inline: `<img style="width: 40px; height:30px;" src="some_url">`
 
 `If this function is not provided`
 
@@ -191,7 +193,7 @@ You can use getEntryStatusHTML as just a way to _inject something into the leftm
 Should return an Element or undefined
 
 ### notes on sizes
-    Please set explicit width and height, especially if you mean to inject images or any asynchronous stuff.
+    Please set explicit width and height to your images and other content which may change its size afterwards.
 
 
 ## displayWholeRounds
