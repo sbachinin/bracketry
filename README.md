@@ -111,8 +111,7 @@ It non-string value will be returned, it will be ignored and the ".nationality" 
 
 `Issue of width`
 
-We recommend that you always return an element with explicit (and **equal** for each player) width. Especially if you mean to inject images.
-This will help with horizontal alignment within match element.
+It's highly recommended that you always return HTML with explicit (and **equal** for each side) width AND height. Especially if you mean to inject images.
 
 `If this function is not provided`
 
@@ -170,8 +169,7 @@ It non-string value will be returned, it will be ignored and the ".entry-status"
 
 `Issue of width`
 
-We recommend that you always return an element with explicit (and **equal** for each side) width.  
-This will help with horizontal alignment within match element.
+It's highly recommended that you always return HTML with explicit (and **equal** for each side) width AND height.  Especially if you mean to inject images.
 
 `If this function is not provided`
 
@@ -193,8 +191,7 @@ You can use getEntryStatusHTML as just a way to _inject something into the leftm
 Should return an Element or undefined
 
 ### notes on sizes
-    perhaps it's better to recommend a fixed width
-    if images, then 'lazy' (general advice)
+    Please set explicit width and height, especially if you mean to inject images or any asynchronous stuff.
 
 
 ## displayWholeRounds
