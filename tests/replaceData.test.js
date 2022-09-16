@@ -7,7 +7,7 @@ const finished_ucl = require('./ucl-finished.js').default
 const { deep_clone_object, init } = require('./utils.js')
 
 
-test('draws new data supplied via replaceData', () => {
+test(`draws new data supplied via replaceData`, () => {
     const { wrapper, playoffs } = init(finished_ucl)
 
     const dumb_test_data = { rounds: [{ name: 'round 1' }], matches: [], contestants: {} }
@@ -19,7 +19,7 @@ test('draws new data supplied via replaceData', () => {
     expect(wrapper.querySelectorAll('.match-body').length).toBe(0)
 })
 
-test('getAllData returns the latest data supplied via replaceData', () => {
+test(`getAllData returns the latest data supplied via replaceData`, () => {
     const { playoffs } = init(finished_ucl)
 
     const dumb_test_data = { rounds: [{ name: 'round 1' }], matches: [], contestants: {} }
@@ -77,7 +77,7 @@ test(`ignores subsequent mutations of user data passed to replaceData`, () => {
 
 
 
-test('keeps an old data when replaceData is called with critically invalid data (and keeps DOM intact)', () => {
+test(`keeps an old data when replaceData is called with critically invalid data (and keeps DOM intact)`, () => {
     const { wrapper, playoffs } = init(finished_ucl)
 
     playoffs.replaceData('')

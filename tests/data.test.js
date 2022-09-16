@@ -41,8 +41,29 @@ test(`ignores subsequent mutations of user data passed to createPlayoffs`, () =>
 
 
 
-test('getAllData returns an exact copy of original user data', () => {
-    const ucl_with_nameless_rounds = { ...finished_ucl, rounds: finished_ucl.rounds.map(r => ({})) }
-    const { playoffs: pl } = init(ucl_with_nameless_rounds)
-    expect(pl.getAllData()).toEqual(ucl_with_nameless_rounds)
+test(`getAllData returns an exact copy of original user data`, () => {
+    const { playoffs: pl } = init(finished_ucl)
+    expect(pl.getAllData()).toEqual(finished_ucl)
+})
+
+
+test(`getAllData returns an exact copy of original user data, even if it contained extra properties`, () => {
+    const data = { ...finished_ucl, extra: true }
+    const { playoffs: pl } = init(data)
+    expect(pl.getAllData()).toEqual(data)
+})
+
+test(`getAllData returns an exact copy of original user data, even if it was invalid`, () => {
+    const data = { rounds: 'yes', shit: true }
+    const { playoffs: pl } = init(data)
+    expect(pl.getAllData()).toEqual(data)
+})
+
+
+test(`getAllData returns an exact copy of new data provided by replaceData
+    (with extra properties preserved)`, () => {
+    const { playoffs: pl } = init(finished_ucl)
+    const new_data = { rounds: [{}], extra: true }
+    pl.replaceData(new_data)
+    expect(pl.getAllData()).toEqual(new_data)
 })

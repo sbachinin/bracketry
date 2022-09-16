@@ -146,7 +146,7 @@ test('moves to last round when moveToLastRound is called', () => {
     pl.moveToLastRound()
 
     expect(pl.getNavigationState().baseRoundIndex).toBe(2)
-    expect(pl.getNavigationState().lastRoundIsVisible).toBe(true)
+    expect(pl.getNavigationState().lastRoundIsFullyVisible).toBe(true)
     expect(
         getComputedStyle(wrapper.querySelector('.round-wrapper:last-of-type')).display
     ).not.toBe('none')
@@ -156,9 +156,9 @@ test('moves to last round when moveToLastRound is called', () => {
 test('tells that it reached right edge when it is so', () => {
     const { playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
     pl.moveToNextRound()
-    expect(pl.getNavigationState().lastRoundIsVisible).toBe(false)
+    expect(pl.getNavigationState().lastRoundIsFullyVisible).toBe(false)
     pl.moveToNextRound()
-    expect(pl.getNavigationState().lastRoundIsVisible).toBe(true)
+    expect(pl.getNavigationState().lastRoundIsFullyVisible).toBe(true)
 })
 
 
@@ -202,7 +202,7 @@ test('ignores NaN passed to setBaseRoundIndex()', () => {
 test(`returns stub values if getNavigationState is called after elements were removed`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
     wrapper.remove()
-    expect(pl.getNavigationState()).toEqual({ lastRoundIsVisible: false, allRoundsAreVisible: false, baseRoundIndex: 0 })
+    expect(pl.getNavigationState()).toEqual({ lastRoundIsFullyVisible: false, allRoundsAreVisible: false, baseRoundIndex: 0 })
 })
 
 test(`getNavigationState tells if allRoundsAreVisible`, () => {

@@ -87,7 +87,7 @@ test(`keeps old score element untouched when no score provided by applyMatchesUp
 
 
 
-test.only(`draws a new matchStatus for a match updated by applyMatchesUpdates`, () => {
+test(`draws a new matchStatus for a match updated by applyMatchesUpdates`, () => {
 
     const { wrapper, playoffs: pl } = init(finished_ucl)
 
