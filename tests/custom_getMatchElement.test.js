@@ -118,6 +118,28 @@ test(`renders empty .match-body if getMatchElement throws`, () => {
 })
 
 
+test(`calls getMatchElement with an updated match data on applyMatchesUpdates`, () => {
+    const getMatchElement = jest.fn(() => {})
+
+    const data = {
+        rounds: [{}],
+        matches: [{ roundIndex: 0, order: 0, matchStatus: 'Scheduled' }],
+    }
+
+    const { playoffs: pl } = init(data, { getMatchElement })
+    getMatchElement.mockClear()
+
+    pl.applyMatchesUpdates([{ roundIndex: 0, order: 0, something_new: true }])
+    
+    const new_data = getMatchElement.mock.calls[0][2]
+    expect(new_data.matches[0]).toEqual({
+        roundIndex: 0,
+        order: 0,
+        matchStatus: 'Scheduled',
+        something_new: true
+    })
+})
+
 
 // TODO think of other vulnerable features of this custom element which must be preserved
 
