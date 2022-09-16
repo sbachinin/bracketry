@@ -102,6 +102,15 @@ test(`limits the base round index when setBaseRoundIndex is called with invalid 
 
 
 
+test(`allows to set fractional base round index`, () => {
+
+    const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
+    pl.setBaseRoundIndex(1.5)
+    expect(wrapper.querySelector('.content-horizontal-scroller').style.marginLeft).toBe('-75%')
+})
+
+
+
 test(`moves to next round when "moveToNextRound" is called`, () => {
 
     const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
