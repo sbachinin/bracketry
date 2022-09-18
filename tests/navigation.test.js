@@ -31,11 +31,19 @@ test(`renders fractional number of rounds if fractional visibleRoundsCount`, () 
 
 
 
+test(`limits number of visible rounds if visibleRoundsCount is greater than actual rounds.length `, () => {
+    const { wrapper } = init(finished_ucl, { visibleRoundsCount: 250 })
+    expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(4)
+    expect(wrapper.querySelector('.content-horizontal-scroller').style.width).toBe('100%')
+})
+
+
+
 test(`renders content with negative visibleRoundsCount`, () => {
 
-    expect.assertions(1)
     const { wrapper } = init(finished_ucl, { visibleRoundsCount: -2.5 })
     expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(4)
+    expect(wrapper.querySelector('.content-horizontal-scroller').style.width).toBe('')
 })
 
 
