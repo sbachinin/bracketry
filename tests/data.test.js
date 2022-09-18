@@ -67,3 +67,28 @@ test(`getAllData returns an exact copy of new data provided by replaceData
     pl.replaceData(new_data)
     expect(pl.getAllData()).toEqual(new_data)
 })
+
+
+
+test(`Mutating an object returned from getAllData does not change the internal data`, () => {
+    const { playoffs: pl } = init(finished_ucl)
+    const data = pl.getAllData()
+    Object.assign(data, { some_external_stuff: true, rounds: [] })
+    data.matches[0].sides[0].score[0].mainScore = '12312312312321'
+    expect(pl.getAllData()).toEqual(finished_ucl)
+})
+
+
+
+test(`Mutating an object passed to getMatchElement does not change the internal data`, () => {
+    const { playoffs: pl } = init(
+        finished_ucl,
+        {
+            getMatchElement: (r, m, data) => {
+                Object.assign(data, { some_external_stuff: true, rounds: [] })
+                data.matches[0].sides[0].score[0].mainScore = '12312312312321'
+            }
+        }
+    )
+    expect(pl.getAllData()).toEqual(finished_ucl)
+})
