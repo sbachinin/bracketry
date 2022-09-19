@@ -17,15 +17,15 @@ test(`renders valid current_score`, () => {
 })
 
 
-test(`renders valid current_score.tieBreak (even without mainScore)`, () => {
+test(`renders valid current_score.subscore (even without mainScore)`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [{ current_score: { tieBreak: '2' } }]
+            roundIndex: 0, order: 0, sides: [{ current_score: { subscore: '2' } }]
         }]
     }
     const { wrapper } = init(data)
-    expect(wrapper.querySelector('.current_score .side-own-single-score .tie-break').textContent).toBe('2')
+    expect(wrapper.querySelector('.current_score .side-own-single-score .subscore').textContent).toBe('2')
 })
 
 test(`renders empty <current_score> if not an object`, () => {
@@ -55,16 +55,16 @@ test(`renders empty <main-score> if it's invalid`, () => {
 })
 
 
-test(`renders no <tie-break> if it's invalid`, () => {
+test(`renders no <subscore> if it's invalid`, () => {
     const data = {
         rounds: [{}, {}],
         matches: [
-            { roundIndex: 0, order: 0, sides: [{ current_score: { tieBreak: NaN } }, { current_score: { tieBreak: Array } }] },
-            { roundIndex: 0, order: 1, sides: [{ current_score: { tieBreak: null } }, { current_score: { tieBreak: true } }] },
+            { roundIndex: 0, order: 0, sides: [{ current_score: { subscore: NaN } }, { current_score: { subscore: Array } }] },
+            { roundIndex: 0, order: 1, sides: [{ current_score: { subscore: null } }, { current_score: { subscore: true } }] },
         ]
     }
     const { wrapper } = init(data)
-    expect(wrapper.querySelectorAll('.current_score .side-own-single-score .tie-break').length).toBe(0)
+    expect(wrapper.querySelectorAll('.current_score .side-own-single-score .subscore').length).toBe(0)
 })
 
 

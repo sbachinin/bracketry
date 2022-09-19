@@ -167,11 +167,11 @@ test(`renders tie break if there is a valid one`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', tieBreak: 7 }] }]
+            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', subscore: 7 }] }]
         }]
     }
     const { wrapper } = init(data)
-    expect(wrapper.querySelector('.tie-break').textContent).toBe('7')
+    expect(wrapper.querySelector('.subscore').textContent).toBe('7')
 })
 
 
@@ -232,13 +232,13 @@ test(`renders empty <side-own-single-score> for other invalid entries, does not 
                         { mainScore: [] },
                         { mainScore: Object },
                         { mainScore: Element },
-                        { tieBreak: NaN },
-                        { tieBreak: null },
-                        { tieBreak: true },
-                        { tieBreak: false },
-                        { tieBreak: [] },
-                        { tieBreak: Object },
-                        { tieBreak: Element }
+                        { subscore: NaN },
+                        { subscore: null },
+                        { subscore: true },
+                        { subscore: false },
+                        { subscore: [] },
+                        { subscore: Object },
+                        { subscore: Element }
                     ]
                 },
             ]
@@ -252,7 +252,7 @@ test(`renders empty <side-own-single-score> for other invalid entries, does not 
 
     expect(pl.wrapper.querySelectorAll('.side-own-single-score').length).toBe(23)
     expect(pl.wrapper.querySelectorAll('.side-own-single-score .main-score:empty').length).toBe(23)
-    expect(pl.wrapper.querySelectorAll('.side-own-single-score .tie-break').length).toBe(0)
+    expect(pl.wrapper.querySelectorAll('.side-own-single-score .subscore').length).toBe(0)
 })
 
 
@@ -284,64 +284,64 @@ test(`renders empty <side-own-single-score> for other invalid entries, does not 
 
 
 
-// TIEBREAK
+// SUBSCORE
 
-test(`renders numeric tieBreak even without mainScore`, () => {
+test(`renders numeric subscore even without mainScore`, () => {
     const data = {
         rounds: [{}],
         matches: [
-            { roundIndex: 0, order: 0, sides: [{ score: [{ tieBreak: 32 }] }] }
+            { roundIndex: 0, order: 0, sides: [{ score: [{ subscore: 32 }] }] }
         ]
     }
     const { wrapper } = init(data)
-    expect(wrapper.querySelector('.tie-break').textContent).toBe('32')
+    expect(wrapper.querySelector('.subscore').textContent).toBe('32')
 })
 
-test(`renders string tieBreak even without mainScore`, () => {
+test(`renders string subscore even without mainScore`, () => {
     const data = {
         rounds: [{}],
         matches: [
-            { roundIndex: 0, order: 0, sides: [{ score: [{ tieBreak: '32%' }] }] }
+            { roundIndex: 0, order: 0, sides: [{ score: [{ subscore: '32%' }] }] }
         ]
     }
     const { wrapper } = init(data)
-    expect(wrapper.querySelector('.tie-break').textContent).toBe('32%')
+    expect(wrapper.querySelector('.subscore').textContent).toBe('32%')
 })
 
-test(`renders valid tieBreak even if mainScore is invalid`, () => {
+test(`renders valid subscore even if mainScore is invalid`, () => {
     const data = {
         rounds: [{}],
         matches: [
-            { roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: Object, tieBreak: 32 }] }] }
+            { roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: Object, subscore: 32 }] }] }
         ]
     }
     const { wrapper } = init(data)
-    expect(wrapper.querySelector('.tie-break').textContent).toBe('32')
+    expect(wrapper.querySelector('.subscore').textContent).toBe('32')
 })
 
 
 
-test(`renders a contentful match without .tie-break if score.tieBreak is of invalid type`, () => {
+test(`renders a contentful match without .subscore if score.subscore is of invalid type`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', tieBreak: Array }] }]
+            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', subscore: Array }] }]
         }]
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.main-score')).not.toBe(null)
-    expect(wrapper.querySelector('.tie-break')).toBe(null)
+    expect(wrapper.querySelector('.subscore')).toBe(null)
     expect(consoleWarn.mock.calls[0][0]).toMatch(
-        `If you provide "tieBreak", it must be a number or a string`
+        `If you provide "subscore", it must be a number or a string`
     )
 })
 
 
-test(`renders mainScore if tieBreak is invalid`, () => {
+test(`renders mainScore if subscore is invalid`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', tieBreak: Array }] }]
+            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', subscore: Array }] }]
         }]
     }
     const { wrapper } = init(data)
@@ -349,16 +349,16 @@ test(`renders mainScore if tieBreak is invalid`, () => {
 })
 
 
-// does not render NaN tieBreak
-test(`does not render <tie-break> if tieBreak is NaN`, () => {
+// does not render NaN subscore
+test(`does not render <subscore> if subscore is NaN`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', tieBreak: NaN }] }]
+            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', subscore: NaN }] }]
         }]
     }
     const { wrapper } = init(data)
-    expect(wrapper.querySelector('.tie-break')).toBe(null)
+    expect(wrapper.querySelector('.subscore')).toBe(null)
 })
 
 

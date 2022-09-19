@@ -20,7 +20,7 @@ export type Match = {
 
 type Score = {
     mainScore: number | string, // May contain divergent results like 'W/O' or 'Ret' in tennis
-    tieBreak?: number | string,
+    subscore?: number | string,
     isWinner?: boolean
 }
 
