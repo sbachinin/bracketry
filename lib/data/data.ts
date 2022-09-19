@@ -30,7 +30,7 @@ type Side = {
     contestantId?: string,
     score?: Score[]
 
-    subscore?: Score, // e.g., points within a game in tennis: this number is drawn after 'score', is surrounded by border and is higlighted with green if match 'isLive'
+    current_score?: Score, // e.g., points within a game in tennis: this number is drawn after 'score', is surrounded by border and is higlighted with green if match 'isLive'
     isServing?: boolean, // if this one is 'true', a tennis ball icon will be drawn before a side's score
     isWinner?: boolean
 }
