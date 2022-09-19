@@ -35,7 +35,7 @@ test('renders match data', () => {
                     roundIndex: 0,
                     order: 0,
                     sides: [
-                        { contestantId: 'c1', score: [{ mainScore: '4' }] },
+                        { contestantId: 'c1', scores: [{ mainScore: '4' }] },
                     ]
                 }
             ],

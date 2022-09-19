@@ -70,7 +70,7 @@ test(`keeps old matches elements untouched
 
 
 
-test(`keeps old score element untouched when no score provided by applyMatchesUpdates`, () => {
+test(`keeps old scores element untouched when no scores provided by applyMatchesUpdates`, () => {
 
     const { wrapper, playoffs: pl } = init(finished_ucl)
 
@@ -123,14 +123,14 @@ test(`applies live styles to a match which had { isLive: true } in applyMatchesU
 
 
 
-test(`draws a new score for a match updated by applyMatchesUpdates`, () => {
+test(`draws a new scores for a match updated by applyMatchesUpdates`, () => {
 
     const { wrapper, playoffs: pl } = init(finished_ucl)
 
     const update = {
         roundIndex: 1,
         order: 2,
-        sides: [{ score: [{ mainScore: '26' }] }]
+        sides: [{ scores: [{ mainScore: '26' }] }]
     }
 
     pl.applyMatchesUpdates([update])
@@ -150,7 +150,7 @@ test(`new match data from applyMatchesUpdates gets injected into previously empt
     const update = {
         roundIndex: 0,
         order: 0,
-        sides: [{ score: [{ mainScore: '6' }] }]
+        sides: [{ scores: [{ mainScore: '6' }] }]
     }
 
     pl.applyMatchesUpdates([update])
@@ -166,7 +166,7 @@ test(`new match data from applyMatchesUpdates is returned from later calls to ge
     const update = {
         roundIndex: 0,
         order: 0,
-        sides: [{ score: [{ mainScore: '6' }] }]
+        sides: [{ scores: [{ mainScore: '6' }] }]
     }
 
     pl.applyMatchesUpdates([update])

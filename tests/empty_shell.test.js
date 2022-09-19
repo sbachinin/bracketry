@@ -217,7 +217,7 @@ test('renders matches when contestant is an empty object', () => {
 
 
 
-test('renders empty shell when side.score is not an array', () => {
+test('renders empty shell when side.scores is not an array', () => {
     const wrapper = document.createElement('div')
     document.body.append(wrapper)
     expect.assertions(3)
@@ -227,7 +227,7 @@ test('renders empty shell when side.score is not an array', () => {
             rounds: [{}],
             matches: [{
                 roundIndex: 0, order: 0,
-                sides: [{ contestantId: 'contestant1', score: 312312 }]
+                sides: [{ contestantId: 'contestant1', scores: 312312 }]
             }
             ],
             contestants: {
@@ -239,7 +239,7 @@ test('renders empty shell when side.score is not an array', () => {
     
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
-    expect(consoleWarn.mock.calls[0][0]).toMatch(`If side.score is provided, it must be an array`)
+    expect(consoleWarn.mock.calls[0][0]).toMatch(`If side.scores is provided, it must be an array`)
 })
 
 
@@ -266,7 +266,7 @@ test('renders empty shell when contestant.players is not an array', () => {
             rounds: [{}],
             matches: [{
                 roundIndex: 0, order: 0,
-                sides: [{ contestantId: 'contestant1', score: [] }]
+                sides: [{ contestantId: 'contestant1', scores: [] }]
             }
             ],
             contestants: {
@@ -293,7 +293,7 @@ test('renders empty shell when contestant.players contains non-objects', () => {
             rounds: [{}],
             matches: [{
                 roundIndex: 0, order: 0,
-                sides: [{ contestantId: 'contestant1', score: [] }]
+                sides: [{ contestantId: 'contestant1', scores: [] }]
             }
             ],
             contestants: {

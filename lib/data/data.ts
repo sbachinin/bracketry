@@ -14,7 +14,7 @@ export type Match = {
     roundIndex: number,
     order: number, // 0-based!
     sides?: Side[],
-    matchStatus?: string // it will be rendered IF there is no score. Meant for statuses like 'Cancelled' | 'Scheduled' | '19.05.2022 18:30' (any status INSTEAD of score)
+    matchStatus?: string // Meant for statuses like 'Cancelled' | 'Scheduled' | '19.05.2022 18:30'
     isLive?: boolean
 }
 
@@ -24,14 +24,18 @@ type Score = {
     isWinner?: boolean
 }
 
-// Side is a match-specific data for contestant: his id, his score ...
+// Side is a match-specific data for contestant: his id, his scores ...
 type Side = {
     title?: string,
     contestantId?: string,
-    score?: Score[]
+    scores?: Score[]
 
-    current_score?: Score, // e.g., points within a game in tennis: this number is drawn after 'score', is surrounded by border and is higlighted with green if match 'isLive'
-    isServing?: boolean, // if this one is 'true', a tennis ball icon will be drawn before a side's score
+    /* any score you want to appear highlighted to the right of the 'normal' scores.
+        E.g., points within a game in tennis: this number is drawn after 'scores',
+        is surrounded by border and is higlighted with green if match 'isLive'
+    */
+    current_score?: Score,
+    isServing?: boolean, // (for tennis) If 'true', a tennis ball icon will be drawn on the very left of a side
     isWinner?: boolean
 }
 

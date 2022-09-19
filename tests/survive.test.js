@@ -31,7 +31,7 @@ test('survives non-existent options', () => {
         {
             rounds: [{}],
             matches: [{ roundIndex: 0, order: 0,
-                sides: [{ contestantId: 'contestant1', score: [] }] }
+                sides: [{ contestantId: 'contestant1', scores: [] }] }
             ],
             contestants: {
                 contestant1: { players: [ { title: 'Josh' } ] }

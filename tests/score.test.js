@@ -15,7 +15,7 @@ test(`renders a string for mainScore`, () => {
         matches: [{
             roundIndex: 0,
             order: 0,
-            sides: [{ score: [{ mainScore: 'Rt' }] }]
+            sides: [{ scores: [{ mainScore: 'Rt' }] }]
         }],
     }
     const { wrapper } = init(data)
@@ -28,7 +28,7 @@ test(`renders a number for mainScore`, () => {
         matches: [{
             roundIndex: 0,
             order: 0,
-            sides: [{ score: [{ mainScore: 12 }] }]
+            sides: [{ scores: [{ mainScore: 12 }] }]
         }],
     }
     const { wrapper } = init(data)
@@ -38,7 +38,7 @@ test(`renders a number for mainScore`, () => {
 
 
 
-test(`renders no <side-own-single-score>s when neither side has a score array`, () => {
+test(`renders no <side-own-single-score>s when neither side has a scores array`, () => {
     const data = {
         rounds: [{}],
         matches: [{
@@ -53,13 +53,13 @@ test(`renders no <side-own-single-score>s when neither side has a score array`, 
 
 
 
-test(`renders no <side-own-single-score>s when both sides have EMPTY score arrays`, () => {
+test(`renders no <side-own-single-score>s when both sides have EMPTY scores arrays`, () => {
     const data = {
         rounds: [{}],
         matches: [{
             roundIndex: 0,
             order: 0,
-            sides: [{ score: [] }, { score: [] }]
+            sides: [{ scores: [] }, { scores: [] }]
         }],
     }
     const { wrapper } = init(data)
@@ -67,13 +67,13 @@ test(`renders no <side-own-single-score>s when both sides have EMPTY score array
 })
 
 
-test(`renders <side-own-single-score>s for both sides when ONLY 1 side has a score array`, () => {
+test(`renders <side-own-single-score>s for both sides when ONLY 1 side has a scores array`, () => {
     const data = {
         rounds: [{}],
         matches: [{
             roundIndex: 0,
             order: 0,
-            sides: [{}, { score: [{ mainScore: 'Rt' }] }]
+            sides: [{}, { scores: [{ mainScore: 'Rt' }] }]
         }],
     }
     const { wrapper } = init(data)
@@ -81,18 +81,18 @@ test(`renders <side-own-single-score>s for both sides when ONLY 1 side has a sco
 })
 
 
-test(`renders empty <side-own-single-score> for an empty side.score when other side has a score entry`, () => {
+test(`renders empty <side-own-single-score> for an empty side.scores when other side has a scores entry`, () => {
     const data = {
         rounds: [{}],
         matches: [{
             roundIndex: 0, order: 0, sides: [
                 {
                     contestantId: 'c1',
-                    score: [{ mainScore: 'Walkover' }]
+                    scores: [{ mainScore: 'Walkover' }]
                 },
                 {
                     contestantId: 'c2',
-                    score: []
+                    scores: []
                 }
             ]
         }],
@@ -103,11 +103,11 @@ test(`renders empty <side-own-single-score> for an empty side.score when other s
 
 
 
-test(`renders a score even if side has no "contestantId"`, () => {
+test(`renders scores even if side has no "contestantId"`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '12' }] }]
+            roundIndex: 0, order: 0, sides: [{ scores: [{ mainScore: '12' }] }]
         }],
     }
     const { wrapper } = init(data)
@@ -115,7 +115,7 @@ test(`renders a score even if side has no "contestantId"`, () => {
 })
 
 
-test(`renders as much <single-score-wrapper>s as the longest score length of both sides
+test(`renders as much <single-score-wrapper>s as the longest scores length of both sides
 (regardless of validity of single score entries)`, () => {
     const data = {
         rounds: [{}],
@@ -123,7 +123,7 @@ test(`renders as much <single-score-wrapper>s as the longest score length of bot
             roundIndex: 0, order: 0, sides: [
                 {
                     contestantId: 'c1',
-                    score: [
+                    scores: [
                         { mainScore: '1' },
                         NaN,
                         {},
@@ -132,7 +132,7 @@ test(`renders as much <single-score-wrapper>s as the longest score length of bot
                 },
                 {
                     contestantId: 'c2',
-                    score: [
+                    scores: [
                         { mainScore: '1' },
                         { mainScore: '4' },
                     ]
@@ -147,7 +147,7 @@ test(`renders as much <single-score-wrapper>s as the longest score length of bot
 
 
 
-test(`renders player title if side has no score array`, () => {
+test(`renders player title if side has no scores array`, () => {
     expect.assertions(1)
 
     const data = {
@@ -163,11 +163,11 @@ test(`renders player title if side has no score array`, () => {
     expect(wrapper.querySelector('.player-title').textContent).toBe('josh')
 })
 
-test(`renders tie break if there is a valid one`, () => {
+test(`renders subscore if there is a valid one`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', subscore: 7 }] }]
+            roundIndex: 0, order: 0, sides: [{ scores: [{ mainScore: '6', subscore: 7 }] }]
         }]
     }
     const { wrapper } = init(data)
@@ -178,7 +178,7 @@ test(`renders tie break if there is a valid one`, () => {
 test(`should not render 'NaN' for mainScore`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: NaN }] }] }]
+        matches: [{ roundIndex: 0, order: 0, sides: [{ scores: [{ mainScore: NaN }] }] }]
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.main-score').textContent).toBe('')
@@ -190,8 +190,8 @@ test(`renders empty <side-own-single-score>s for undefined score entries, does n
         rounds: [{}],
         matches: [{
             roundIndex: 0, order: 0, sides: [
-                { contestantId: 'c1', score: [undefined, { mainScore: '4' }] },
-                { contestantId: 'c2', score: [{ mainScore: '2' }, undefined] }
+                { contestantId: 'c1', scores: [undefined, { mainScore: '4' }] },
+                { contestantId: 'c2', scores: [{ mainScore: '2' }, undefined] }
             ]
         }]
     }
@@ -215,7 +215,7 @@ test(`renders empty <side-own-single-score> for other invalid entries, does not 
         matches: [{
             roundIndex: 0, order: 0, sides: [
                 {
-                    score: [
+                    scores: [
                         undefined,
                         NaN,
                         null,
@@ -290,7 +290,7 @@ test(`renders numeric subscore even without mainScore`, () => {
     const data = {
         rounds: [{}],
         matches: [
-            { roundIndex: 0, order: 0, sides: [{ score: [{ subscore: 32 }] }] }
+            { roundIndex: 0, order: 0, sides: [{ scores: [{ subscore: 32 }] }] }
         ]
     }
     const { wrapper } = init(data)
@@ -301,7 +301,7 @@ test(`renders string subscore even without mainScore`, () => {
     const data = {
         rounds: [{}],
         matches: [
-            { roundIndex: 0, order: 0, sides: [{ score: [{ subscore: '32%' }] }] }
+            { roundIndex: 0, order: 0, sides: [{ scores: [{ subscore: '32%' }] }] }
         ]
     }
     const { wrapper } = init(data)
@@ -312,7 +312,7 @@ test(`renders valid subscore even if mainScore is invalid`, () => {
     const data = {
         rounds: [{}],
         matches: [
-            { roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: Object, subscore: 32 }] }] }
+            { roundIndex: 0, order: 0, sides: [{ scores: [{ mainScore: Object, subscore: 32 }] }] }
         ]
     }
     const { wrapper } = init(data)
@@ -325,7 +325,7 @@ test(`renders a contentful match without .subscore if score.subscore is of inval
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', subscore: Array }] }]
+            roundIndex: 0, order: 0, sides: [{ scores: [{ mainScore: '6', subscore: Array }] }]
         }]
     }
     const { wrapper } = init(data)
@@ -341,7 +341,7 @@ test(`renders mainScore if subscore is invalid`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', subscore: Array }] }]
+            roundIndex: 0, order: 0, sides: [{ scores: [{ mainScore: '6', subscore: Array }] }]
         }]
     }
     const { wrapper } = init(data)
@@ -354,7 +354,7 @@ test(`does not render <subscore> if subscore is NaN`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [{ score: [{ mainScore: '6', subscore: NaN }] }]
+            roundIndex: 0, order: 0, sides: [{ scores: [{ mainScore: '6', subscore: NaN }] }]
         }]
     }
     const { wrapper } = init(data)
@@ -374,7 +374,7 @@ test(`renders <single-score-wrapper> semi-transparent when score entry HAS NOT {
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{ mainScore: '6' }] }]
+            roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', scores: [{ mainScore: '6' }] }]
         }]
     }
     const { wrapper } = init(data)
@@ -389,7 +389,7 @@ test(`renders <single-score-wrapper> opaque when score entry HAS { isWinner: tru
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{ isWinner: true, mainScore: '6' }] }]
+            roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', scores: [{ isWinner: true, mainScore: '6' }] }]
         }]
     }
     const { wrapper } = init(data)

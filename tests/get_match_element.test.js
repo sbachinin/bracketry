@@ -99,14 +99,14 @@ test(`renders a contentful match if match.sides contains empty objects`, () => {
 
 
 
-test(`renders a contentful match if side.score is an empty array`, () => {
+test(`renders a contentful match if side.scores is an empty array`, () => {
     expect.assertions(2)
 
     const data = {
         rounds: [{}],
         matches: [{
             roundIndex: 0, order: 0,
-            sides: [{ contestantId: 'contestant1', score: [] }]
+            sides: [{ contestantId: 'contestant1', scores: [] }]
         }
         ],
         contestants: {
@@ -116,7 +116,7 @@ test(`renders a contentful match if side.score is an empty array`, () => {
     const { wrapper } = init(data)
 
     expect(consoleWarn.mock.calls[0][0]).toMatch(
-        `side.score is provided but it's an empty array`
+        `side.scores is provided but it's an empty array`
     )
     expect(wrapper.querySelector('.player-title').textContent).toBe('john')
 });
@@ -180,7 +180,7 @@ test(`does not add "contestant-id" attribute to .side-wrapper when match.sides[i
         rounds: [{}],
         matches: [{
             roundIndex: 0, order: 0, sides: [
-                { score: [{ mainScore: 'Walkover' }] }
+                { scores: [{ mainScore: 'Walkover' }] }
             ]
         }],
     }

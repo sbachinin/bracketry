@@ -17,7 +17,7 @@ test(`does not mutate data which wass passed to createPlayoffs`, () => {
 test(`ignores subsequent mutations of user data passed to createPlayoffs`, () => {
     const dumb_test_data = {
         rounds: [{ name: 'round 1' }],
-        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{ mainScore: 1 }] }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', scores: [{ mainScore: 1 }] }] }],
         contestants: { c1: { players: [] } }
     }
 
@@ -25,11 +25,11 @@ test(`ignores subsequent mutations of user data passed to createPlayoffs`, () =>
 
     dumb_test_data.contestants = NaN
     dumb_test_data.rounds[0].name = 'bad round name'
-    dumb_test_data.matches[0].sides[0].score[0].mainScore = 100000000
+    dumb_test_data.matches[0].sides[0].scores[0].mainScore = 100000000
 
     expect(pl.getAllData()).toEqual({
         rounds: [{ name: 'round 1' }],
-        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', score: [{ mainScore: 1 }] }] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', scores: [{ mainScore: 1 }] }] }],
         contestants: { c1: { players: [] } }
     })
 
@@ -74,7 +74,7 @@ test(`Mutating an object returned from getAllData does not change the internal d
     const { playoffs: pl } = init(finished_ucl)
     const data = pl.getAllData()
     Object.assign(data, { some_external_stuff: true, rounds: [] })
-    data.matches[0].sides[0].score[0].mainScore = '12312312312321'
+    data.matches[0].sides[0].scores[0].mainScore = '12312312312321'
     expect(pl.getAllData()).toEqual(finished_ucl)
 })
 
@@ -86,7 +86,7 @@ test(`Mutating an object passed to getMatchElement does not change the internal 
         {
             getMatchElement: (r, m, data) => {
                 Object.assign(data, { some_external_stuff: true, rounds: [] })
-                data.matches[0].sides[0].score[0].mainScore = '12312312312321'
+                data.matches[0].sides[0].scores[0].mainScore = '12312312312321'
             }
         }
     )

@@ -82,13 +82,13 @@ test('renders match-wrapper without body when match.order is NaN', () => {
 
 
 
-test('renders score and no title when player has no title', () => {
+test('renders scores and no title when player has no title', () => {
     expect.assertions(2)
     const data = {
         rounds: [{}],
         matches: [{
             roundIndex: 0, order: 0,
-            sides: [{ contestantId: 'contestant1', score: [ { mainScore: '6' } ] }]
+            sides: [{ contestantId: 'contestant1', scores: [ { mainScore: '6' } ] }]
         }],
         contestants: { contestant1: { players: [{}] } }
     }
@@ -98,13 +98,13 @@ test('renders score and no title when player has no title', () => {
 })
 
 
-test('renders score and no title when player has non-string title', () => {
+test('renders scores and no title when player has non-string title', () => {
     expect.assertions(2)
     const data = {
         rounds: [{}],
         matches: [{
             roundIndex: 0, order: 0,
-            sides: [{ contestantId: 'contestant1', score: [ { mainScore: '6' } ] }]
+            sides: [{ contestantId: 'contestant1', scores: [ { mainScore: '6' } ] }]
         }],
         contestants: { contestant1: { players: [{ title: {} }] } }
     }
