@@ -139,10 +139,3 @@ test(`calls getMatchElement with an updated match data on applyMatchesUpdates`, 
         something_new: true
     })
 })
-
-
-// TODO think of other vulnerable features of this custom element which must be preserved
-
-
-// TODO resume
-

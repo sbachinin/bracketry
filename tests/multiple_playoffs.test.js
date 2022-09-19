@@ -68,17 +68,3 @@ test(`two coexisting playoffs don't intervene in each other's "highlighted" stat
     expect(wrapper2.querySelectorAll(benfica_side_selector + '.highlighted').length).toBe(0)
 })
 
-
-
-// TODO unfinished case
-test(`calls returned functions without errors after playoff's element was removed from the DOM`, () => {
-    const wrapper = create_wrapper()
-
-    const old_pl = createPlayoffs({ rounds: [] }, wrapper)
-    const new_pl = createPlayoffs({ rounds: [] }, wrapper)
-
-    // new_pl.getNavigationState()
-})
-
-
-// TODO resume?

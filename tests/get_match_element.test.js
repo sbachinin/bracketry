@@ -295,23 +295,6 @@ test(`does not render a match with irrelevant roundIndex and order`, () => {
 
 
 
-// TODO split this file
-
-
-
-
 
 
 // TODO (in case of duplicate matches in a given position) render only 1st match in such position
-
-
-
-// TODO draws a winner mark for a side which has { isWinner: true }
-
-
-// TODO does not draw a winner mark when neither side has { isWinner: true }
-
-
-
-
-

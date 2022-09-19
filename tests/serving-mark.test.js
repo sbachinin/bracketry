@@ -5,9 +5,6 @@
 global.ResizeObserver = require('resize-observer-polyfill')
 const { init } = require('./utils.js')
 
-const consoleWarn = jest.spyOn(console, 'warn')
-afterEach(jest.clearAllMocks)
-
 
 test(`hides both serving-marks when neither side is serving`, () => {
     const data = {
