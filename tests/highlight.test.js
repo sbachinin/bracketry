@@ -346,3 +346,21 @@ test(`applies highlighted color to <player-title>`, () => {
         ).color
     ).toBe('pink')
 })
+
+
+
+
+
+
+
+
+
+
+
+
+test(`does not highlight on click if options.disableHighlight === true`, () => {
+    const { wrapper, playoffs: pl } = init(finished_ucl, { disableHighlight: true })
+    wrapper.querySelector(`.side-wrapper[contestant-id='benfica']`)
+        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+    expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
+})
