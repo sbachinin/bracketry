@@ -31,10 +31,18 @@ test('does not call onMatchSideClick when clicked somewhere else', () => {
 
 
 
-test(`pointer-events of everything inside .side_wrapper are disabled (even if onMatchSideClick is not provided)`, () => {
-    const { wrapper } = init(finished_ucl)
-    expect(getComputedStyle(wrapper.querySelector(`.player-title`)).pointerEvents).toBe('none')
-    expect(getComputedStyle(wrapper.querySelector(`.side-info-item`)).pointerEvents).toBe('none')
+test('calls onMatchSideClick when anything within .side-wrapper is clicked', () => {
+    const onMatchSideClick = jest.fn()
+    const { wrapper } = init(finished_ucl, { onMatchSideClick })
+
+    const side = wrapper.querySelector('.side-wrapper[contestant-id="inter"]')
+    side.querySelector('.player-title').dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+
+    expect(onMatchSideClick).toBeCalledWith(
+        expect.objectContaining(finished_ucl.matches[1]),
+        expect.objectContaining(finished_ucl.contestants.inter),
+        'inter'
+    )
 })
 
 

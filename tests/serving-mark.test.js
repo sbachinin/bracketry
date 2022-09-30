@@ -9,7 +9,7 @@ const { init } = require('./utils.js')
 test(`hides both serving-marks when neither side is serving`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ roundIndex: 0, order: 0, sides: [ {}, {} ] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [ { contestantId: 'c1' }, {} ] }],
     }
     const { wrapper } = init(data)
     expect(getComputedStyle(wrapper.querySelectorAll('.serving-mark')[0]).display).toBe('none')

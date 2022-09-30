@@ -64,6 +64,40 @@ test(`does not render .sides when match.sides is undefined`, () => {
 })
 
 
+test(`does not render .sides when match.sides is an empty array`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [{ roundIndex: 0, order: 0, sides: [] }],
+    }
+    const { wrapper } = init(data)
+    expect(wrapper.querySelector('.sides')).toBe(null)
+})
+
+
+
+test(`does not render .sides when match.sides contains non-objects`, () => {
+    // (actually it renders an empty shell in such case)
+    const data = {
+        rounds: [{}],
+        matches: [{ roundIndex: 0, order: 0, sides: [1, 2] }],
+    }
+    const { wrapper } = init(data)
+    expect(wrapper.querySelector('.sides')).toBe(null)
+})
+
+
+
+test(`does not render .sides when match.sides contains only empty objects`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [{ roundIndex: 0, order: 0, sides: [{}, {}] }],
+    }
+    const { wrapper } = init(data)
+    expect(wrapper.querySelector('.sides')).toBe(null)
+})
+
+
+
 test(`disables pointer-events for a .match-body that has data but no actual content`, () => {
     const data = {
         rounds: [{}],
@@ -147,11 +181,11 @@ test(`renders a contentful match if contestant.players is an empty array`, () =>
 });
 
 
-test(`renders 2 .side-wrapper elements if match.sides contains only 1 object`, () => {
+test(`renders 2 .side-wrapper elements if match.sides contains only 1 non-empty object`, () => {
     // (two side-wrappers are necessary for vertical alignment)
     const data = {
         rounds: [{}],
-        matches: [{ roundIndex: 0, order: 0, sides: [{}] }],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelectorAll('.match-body .side-wrapper').length).toBe(2)
@@ -203,21 +237,6 @@ test(`allows clicks on a .side-wrapper which has a contestantId (even if no cont
         ).pointerEvents
     ).toBe('auto')
 })
-
-
-test(`forbids clicks on a side-wrapper without contestantId`, () => {
-    const data = {
-        rounds: [{}],
-        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
-    }
-    const { wrapper } = init(data)
-    expect(
-        getComputedStyle(
-            wrapper.querySelectorAll('.side-wrapper')[1]
-        ).pointerEvents
-    ).toBe('none')
-})
-
 
 
 test(`renders side.title into .player-title element if side has no "contestantId"`, () => {

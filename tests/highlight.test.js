@@ -64,7 +64,7 @@ test(`does not highlight when something other than '.side-wrapper[contestant-id]
 test(`does not highlight when side-wrapper without [contestant-id] is clicked`, () => {
     const data = {
         rounds: [{}],
-        matches: [{ roundIndex: 0, order: 0, sides: [{}]}]
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }, {}]}]
     }
     
     const { wrapper } = init(data)
@@ -271,7 +271,7 @@ test(`can highlight contestant's matches on highlightContestantHistory() call
 
 
 const spoilt_ucl = deep_clone_object(finished_ucl)
-spoilt_ucl.matches.forEach(m => { // i need matches with some contestant_ids missing
+spoilt_ucl.matches.forEach(m => { // i need matches with some contestantIds missing
     m.sides.forEach(s => {
         if (s.contestantId === 'villarreal') {
             delete s.contestantId
