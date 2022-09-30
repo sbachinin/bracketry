@@ -104,7 +104,7 @@ test(`renders html provided as player's nationality (when no options.getNational
 
 // How getNationalityHTML is called
 
-test(`calls getNationalityHTML with nationality of a player`, () => {
+test(`calls getNationalityHTML with a player object`, () => {
     getNationalityHTML = jest.fn()
     const data = {
         rounds: [{}],
@@ -116,11 +116,11 @@ test(`calls getNationalityHTML with nationality of a player`, () => {
 
     init(data, { getNationalityHTML })
 
-    expect(getNationalityHTML.mock.calls[0][0]).toBe('US')
+    expect(getNationalityHTML.mock.calls[0][0]).toEqual({ title: 'Pete', nationality: 'US' })
 })
 
 
-test(`calls getNationalityHTML with nationality of a player, even if it's not a string`, () => {
+test(`calls getNationalityHTML with a player object, even if its nationality is not a string`, () => {
     getNationalityHTML = jest.fn()
     const data = {
         rounds: [{}],
@@ -132,7 +132,9 @@ test(`calls getNationalityHTML with nationality of a player, even if it's not a 
 
     init(data, { getNationalityHTML })
 
-    expect(getNationalityHTML.mock.calls[0][0]).toEqual({ value: 'asshole' })
+    expect(getNationalityHTML.mock.calls[0][0]).toEqual(
+        { title: 'Pete', nationality: { value: 'asshole' } }
+    )
 })
 
 

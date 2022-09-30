@@ -1,16 +1,22 @@
-import { Data, Match, Contestant } from "./lib/data/data"
+import { Data, Match, Contestant, Player } from "./lib/data/data"
 
 type Options = {
     mainBorderColor: string,
     rootBackgroundColor: string,
     mainVerticalPadding: number,
     visibleRoundsCount: number,
+    displayWholeRounds: boolean,
+    useClassicalLayout: boolean,
+    resetScrollOnNavigation: boolean,
     showScrollbar: boolean,
     scrollbarWidth: number,
     scrollbarColor: string,
+    disableHighlight: boolean,
     roundTitlesHeight: number,
     roundTitlesBorderBottomColor: string,
     roundTitleColor: string,
+    hoveredMatchBorderColor: string,
+    matchStatusBackgroundColor: string,
     navButtonsPosition: string,
     navigationButtonsTopDistance: string,
     navigationGutterBorderColor: string,
@@ -52,6 +58,11 @@ type Options = {
     getEntryStatusHTML: (
         entryStatus: any,
         context: { roundIndex: number, matchOrder: number, contestantId: string },
+        data: Data
+    ) => string,
+    getPlayerTitleHTML: (
+        player: Player,
+        context: { roundIndex: number, matchOrder: number, contestantId: string, playerIndex: number },
         data: Data
     ) => string
 }

@@ -47,7 +47,7 @@ export type Contestant = {
 
 // Player is an individual player - one of the guys/teams which constitute a Contestant
 // (e.g., single tennis player or a member of tennis' double team)
-type Player = {
+export type Player = {
     title: string,
     nationality?: string
 }
