@@ -16,7 +16,7 @@ test(`highlights team history (add "highlighted" class to .match-wrapper and .si
     expect(wrapper.querySelectorAll(benfica_selector + '.highlighted').length).toBe(0)
 
     wrapper.querySelector(benfica_selector)
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(2)
     expect(wrapper.querySelectorAll(benfica_selector + '.highlighted').length).toBe(2)
@@ -30,10 +30,10 @@ test(`highlights next contestant's history after next click`, () => {
     const real_selector = `.side-wrapper[contestant-id='real']`
 
     wrapper.querySelector(benfica_selector)
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     wrapper.querySelector(real_selector)
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(4)
     expect(wrapper.querySelectorAll(real_selector + '.highlighted').length).toBe(4)
@@ -46,17 +46,17 @@ test(`does not highlight when something other than '.side-wrapper[contestant-id]
     const { wrapper } = init(finished_ucl)
 
     wrapper.querySelector('.matches-positioner')
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
 
     wrapper.querySelector('.match-wrapper')
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
     
     wrapper.querySelector('.navigation-button')
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
 })
@@ -69,7 +69,7 @@ test(`does not highlight when side-wrapper without [contestant-id] is clicked`, 
     
     const { wrapper } = init(data)
     wrapper.querySelector('.side-wrapper:not([contestant-id])')
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
     expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
 })
 
@@ -79,12 +79,12 @@ test(`unhighlights history after click within .matches-positioner but not .side-
 
     const benfica_selector = `.side-wrapper[contestant-id='benfica']`
     wrapper.querySelector(benfica_selector)
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(wrapper.querySelectorAll(benfica_selector + '.highlighted').length).toBe(2)
 
     wrapper.querySelector('.round-wrapper')
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(wrapper.querySelectorAll(benfica_selector + '.highlighted').length).toBe(0)
 })
@@ -95,12 +95,12 @@ test(`does not unhighlight history after click outside .matches-positioner`, () 
 
     const benfica_selector = `.side-wrapper[contestant-id='benfica']`
     wrapper.querySelector(benfica_selector)
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(wrapper.querySelectorAll(benfica_selector + '.highlighted').length).toBe(2)
 
     wrapper.querySelector('.all-but-buttons-header')
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(wrapper.querySelectorAll(benfica_selector + '.highlighted').length).toBe(2)
 })
@@ -234,7 +234,7 @@ test(`does not highlight contestant's matches ON CLICK when options.onMatchClick
     const { wrapper } = init(finished_ucl, { onMatchClick: () => {} })
 
     wrapper.querySelector(`.side-wrapper[contestant-id='benfica']`)
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(wrapper.querySelectorAll(`.side-wrapper[contestant-id='benfica'].highlighted`).length).toBe(0)
 })
@@ -243,7 +243,7 @@ test(`does not highlight contestant's matches ON CLICK when options.onMatchSideC
     const { wrapper } = init(finished_ucl, { onMatchSideClick: () => {} })
 
     wrapper.querySelector(`.side-wrapper[contestant-id='benfica']`)
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(wrapper.querySelectorAll(`.side-wrapper[contestant-id='benfica'].highlighted`).length).toBe(0)
 })
@@ -288,7 +288,7 @@ spoilt_ucl.matches.forEach(m => { // i need matches with some contestantIds miss
 test(`does not highlight anonymous (contestant-less) sides when a side without [contestant-id] is clicked`, () => {
     const { wrapper } = init(spoilt_ucl)
     const anonymous_side_wrapper = wrapper.querySelector('.side-wrapper:not([contestant-id])')
-    anonymous_side_wrapper.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+    anonymous_side_wrapper.dispatchEvent(new MouseEvent('click', { bubbles: true }))
     expect(wrapper.querySelectorAll('.side-wrapper.highlighted').length).toBe(0)
 })
 
@@ -312,7 +312,7 @@ test(`unhighlights when a side without [contestant-id] is clicked`, () => {
     expect(wrapper.querySelectorAll('.side-wrapper.highlighted').length).toBe(2)
 
     const anonymous_side_wrappers = wrapper.querySelectorAll('.side-wrapper:not([contestant-id])')
-    anonymous_side_wrappers[0].dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+    anonymous_side_wrappers[0].dispatchEvent(new MouseEvent('click', { bubbles: true }))
     expect(wrapper.querySelectorAll('.side-wrapper.highlighted').length).toBe(0)
 })
 
@@ -332,7 +332,7 @@ test(`click outside playoffs should not unhighlight`, () => {
 
     pl.highlightContestantHistory('benfica')
 
-    some_external_div.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+    some_external_div.dispatchEvent(new MouseEvent('click', { bubbles: true }))
     expect(wrapper.querySelectorAll('.side-wrapper.highlighted').length).toBe(2)
 })
 
@@ -361,6 +361,6 @@ test(`applies highlighted color to <player-title>`, () => {
 test(`does not highlight on click if options.disableHighlight === true`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl, { disableHighlight: true })
     wrapper.querySelector(`.side-wrapper[contestant-id='benfica']`)
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
     expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
 })

@@ -138,7 +138,7 @@ test(`moves to next round when right button is clicked`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
 
     wrapper.querySelector('.navigation-button.non-header-button.right')
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(pl.getNavigationState().baseRoundIndex).toBe(1)
 
@@ -208,7 +208,7 @@ test(`does nothing on navigation-buttons click if all rounds are visible`, () =>
     const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 4 })
 
     wrapper.querySelector('.navigation-button.non-header-button.right')
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(pl.getNavigationState().baseRoundIndex).toBe(0)
 })

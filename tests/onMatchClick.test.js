@@ -13,7 +13,7 @@ test('calls onMatchClick when .match-body is clicked', () => {
 
     wrapper.querySelector(
         '.round-wrapper[round-index="0"] .match-wrapper[match-order="1"] .match-body'
-    ).dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+    ).dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(onMatchClick).toBeCalledWith(expect.objectContaining(finished_ucl.matches[1]))
 })
@@ -23,7 +23,7 @@ test('does not call onMatchClick when clicked outside match-body', () => {
     const { wrapper } = init(finished_ucl, { onMatchClick })
 
     wrapper.querySelector('.round-wrapper')
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(onMatchClick).not.toBeCalled()
 })
@@ -40,12 +40,12 @@ test(`contestant's match history isn't highlighted on click when onMatchClick is
     const { wrapper } = init(finished_ucl, { onMatchClick: () => {} })
 
     wrapper.querySelector('.match-body')
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
 
     wrapper.querySelector(`.side-wrapper[contestant-id='benfica']`)
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
 })

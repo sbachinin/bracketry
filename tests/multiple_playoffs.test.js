@@ -62,7 +62,7 @@ test(`two coexisting playoffs don't intervene in each other's "highlighted" stat
     const benfica_side_selector = `.side-wrapper[contestant-id='benfica']`
 
     wrapper1.querySelector(benfica_side_selector)
-        .dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(wrapper1.querySelectorAll(benfica_side_selector + '.highlighted').length).toBe(2)
     expect(wrapper2.querySelectorAll(benfica_side_selector + '.highlighted').length).toBe(0)
