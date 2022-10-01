@@ -1,4 +1,4 @@
-import { Data, Match, Contestant, Player } from "./lib/data/data"
+import { Data, Round, Match, Contestant, Player } from "./lib/data/data"
 
 type Options = {
     mainBorderColor: string,
@@ -49,6 +49,8 @@ type Options = {
 
     // TODO so contestant and contestantId are not guaranteed?
     onMatchSideClick: (match: Partial<Match>, contestant?: Contestant, contestantId?: string) => void,
+
+    getRoundTitleElement: (roundData: Round) => Element | undefined,
     getMatchElement: (roundIndex: number, matchOrder: number, data: Data) => Element | undefined,
     getNationalityHTML: (
         nationality: any,

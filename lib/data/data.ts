@@ -6,7 +6,7 @@ export type Data = {
     }
 }
 
-type Round = {
+export type Round = {
     name?: string,
 }
 
