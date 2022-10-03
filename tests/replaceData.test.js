@@ -15,7 +15,7 @@ test(`draws new data supplied via replaceData`, () => {
     playoffs.replaceData(dumb_test_data)
 
     expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(1)
-    expect(wrapper.querySelectorAll('.round-name')[0].textContent).toBe('round 1')
+    expect(wrapper.querySelectorAll('.round-title')[0].textContent).toBe('round 1')
     expect(wrapper.querySelectorAll('.match-body').length).toBe(0)
 })
 
@@ -71,7 +71,7 @@ test(`ignores subsequent mutations of user data passed to replaceData`, () => {
         contestants: { c1: { players: [] } }
     })
 
-    expect(wrapper.querySelector('.round-name').textContent).toBe('round 1')
+    expect(wrapper.querySelector('.round-title').textContent).toBe('round 1')
     expect(wrapper.querySelector('.main-score').textContent).toBe('1')
 })
 

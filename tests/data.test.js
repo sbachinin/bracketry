@@ -33,7 +33,7 @@ test(`ignores subsequent mutations of user data passed to createPlayoffs`, () =>
         contestants: { c1: { players: [] } }
     })
 
-    expect(wrapper.querySelector('.round-name').textContent).toBe('round 1')
+    expect(wrapper.querySelector('.round-title').textContent).toBe('round 1')
     expect(wrapper.querySelector('.main-score').textContent).toBe('1')
 })
 
