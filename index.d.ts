@@ -50,22 +50,19 @@ type Options = {
     // TODO so contestant and contestantId are not guaranteed?
     onMatchSideClick: (match: Partial<Match>, contestant?: Contestant, contestantId?: string) => void,
 
-    getRoundTitleElement: (roundData: Round, roundIndex: number, data: Data) => Element,
-    getMatchElement: (roundIndex: number, matchOrder: number, data: Data) => Element | undefined,
+    getRoundTitleElement: (roundData: Round, roundIndex: number) => Element,
+    getMatchElement: (roundIndex: number, matchOrder: number) => Element | undefined,
     getNationalityHTML: (
         nationality: any,
-        context: { roundIndex: number, matchOrder: number, contestantId: string, playerIndex: number },
-        data: Data
+        context: { roundIndex: number, matchOrder: number, contestantId: string, playerIndex: number }
     ) => string,
     getEntryStatusHTML: (
         entryStatus: any,
-        context: { roundIndex: number, matchOrder: number, contestantId: string },
-        data: Data
+        context: { roundIndex: number, matchOrder: number, contestantId: string }
     ) => string,
     getPlayerTitleHTML: (
         player: Player,
-        context: { roundIndex: number, matchOrder: number, contestantId: string, playerIndex: number },
-        data: Data
+        context: { roundIndex: number, matchOrder: number, contestantId: string, playerIndex: number }
     ) => string
 }
 

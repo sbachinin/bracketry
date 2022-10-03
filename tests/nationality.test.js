@@ -196,7 +196,7 @@ test(`renders bare player.nationality if getNationalityHTML throws`, () => {
 })
 
 
-test(`calls getNationalityHTML with context object as 2nd arg and data as 3rd`, () => {
+test(`calls getNationalityHTML with context object as 2nd arg`, () => {
     getNationalityHTML = jest.fn()
     const data = {
         rounds: [{}],
@@ -214,7 +214,6 @@ test(`calls getNationalityHTML with context object as 2nd arg and data as 3rd`, 
         contestantId: 'c1',
         playerIndex: 0
     })
-    expect(getNationalityHTML.mock.calls[0][2]).toEqual(data)
 })
 
 
@@ -297,6 +296,23 @@ test(`Falls back to bare player's nationality (valid one) IF getNationalityHTML 
     expect(wrapper.querySelector('.player-wrapper .nationality').innerHTML).toBe(`CAN`)
     expect(consoleWarn.mock.calls[0][0]).toMatch('Failed to get a string from getNationalityHTML')
 })
+
+
+
+test(`Falls back to bare player's nationality (valid one) IF getNationalityHTML returns undefined`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        contestants: {
+            c1: { players: [{ title: 'Pete', nationality: 'CAN' }] }
+        }
+    }
+
+    const { wrapper } = init(data, { getNationalityHTML: () => {} })
+    expect(wrapper.querySelector('.player-wrapper .nationality').innerHTML).toBe(`CAN`)
+    expect(consoleWarn.mock.calls[0][0]).toMatch('Failed to get a string from getNationalityHTML')
+})
+
 
 test(`renders empty .nationality if both player's nationality and getNationalityHTML's return value are invalid`, () => {
     const data = {

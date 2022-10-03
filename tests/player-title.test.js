@@ -62,7 +62,7 @@ test(`fills .player-title element with a string returned from getPlayerTitleHTML
 })
 
 
-test(`passes player data, contestantId and all_data to getPlayerTitleHTML`, () => {
+test(`passes player data and 'context' to getPlayerTitleHTML`, () => {
 
     const data = {
         rounds: [{}],
@@ -75,8 +75,7 @@ test(`passes player data, contestantId and all_data to getPlayerTitleHTML`, () =
     init(data, { getPlayerTitleHTML })
     expect(getPlayerTitleHTML).toHaveBeenCalledWith(
         { nationality: 'US', title: 'Pete' },
-        { contestantId: 'c1', matchOrder: 0, playerIndex: 0, roundIndex: 0 },
-        data
+        { contestantId: 'c1', matchOrder: 0, playerIndex: 0, roundIndex: 0 }
     )
 })
 
@@ -212,8 +211,7 @@ test(`calls getPlayerTitleHTML even if player.title is undefined`, () => {
     init(data, { getPlayerTitleHTML })
     expect(getPlayerTitleHTML).toHaveBeenCalledWith(
         { id: 'pl1' },
-        { contestantId: 'c1', matchOrder: 0, playerIndex: 0, roundIndex: 0 },
-        data
+        { contestantId: 'c1', matchOrder: 0, playerIndex: 0, roundIndex: 0 }
     )
 })
 

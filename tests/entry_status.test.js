@@ -158,7 +158,7 @@ test(`renders bare contestant.entryStatus if getEntryStatusHTML throws`, async (
 })
 
 
-test(`calls getEntryStatusHTML with context object as 2nd arg and data as 3rd`, () => {
+test(`calls getEntryStatusHTML with context object as 2nd arg`, () => {
     getEntryStatusHTML = jest.fn()
     const data = {
         rounds: [{}],
@@ -173,7 +173,6 @@ test(`calls getEntryStatusHTML with context object as 2nd arg and data as 3rd`, 
         matchOrder: 0,
         contestantId: 'c1'
     })
-    expect(getEntryStatusHTML.mock.calls[0][2]).toEqual(data)
 })
 
 
@@ -229,6 +228,19 @@ test(`injects a valid return value of getEntryStatusHTML to ALL sides`, () => {
 })
 
 
+test(`Falls back to bare contestant.entryStatus (valid one) IF getEntryStatusHTML returns undefined`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        contestants: { c1: { entryStatus: 'WC', players: [{title: ''}] } }
+    }
+
+    const { wrapper } = init(data, { getEntryStatusHTML: () => {} })
+    expect(wrapper.querySelector('.entry-status').innerHTML).toBe(`WC`)
+    expect(consoleWarn.mock.calls[0][0]).toMatch('Failed to get a string from getEntryStatusHTML')
+})
+
+
 test(`Falls back to bare contestant.entryStatus (valid one) IF getEntryStatusHTML returns invalid value`, () => {
     const data = {
         rounds: [{}],
@@ -252,8 +264,3 @@ test(`renders empty .entry-status if both contestant.entryStatus and getEntrySta
     const { wrapper } = init(data, { getNationalityHTML: () => 23232 })
     expect(wrapper.querySelector('.entry-status').innerHTML).toBe('')
 })
-
-
-
-// TODO should it be called if there is no data for contestantId? (now it's not called)
-

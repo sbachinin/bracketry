@@ -93,9 +93,6 @@ Contatins following properties:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contestantId (string)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; playerIndex (number)
 
-`data`
-
-All data that you provided to easy-playoffs
 
 ### Return value
 
@@ -151,10 +148,6 @@ Contatins following properties:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; roundIndex (number)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; matchOrder (number)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contestantId (string)  
-
-`data`
-
-All data that you provided to easy-playoffs
 
 ### Return value
 

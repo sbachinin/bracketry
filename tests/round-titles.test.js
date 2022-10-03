@@ -47,7 +47,7 @@ test(`calls getRoundTitleElement for each round`, () => {
 })
 
 
-test(`calls getRoundTitleElement with round data (with extra data too), round index and all_data`, () => {
+test(`calls getRoundTitleElement with round data (with extra data too) and round index`, () => {
 
     const getRoundTitleElement = jest.fn()
 
@@ -56,8 +56,7 @@ test(`calls getRoundTitleElement with round data (with extra data too), round in
     init(data, { getRoundTitleElement })
     expect(getRoundTitleElement).toHaveBeenCalledWith(
         { name: 'first', id: '01' },
-        0,
-        data
+        0
     )
 })
 

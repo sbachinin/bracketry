@@ -31,12 +31,10 @@ test(`options.getMatchElement gets called with certain arguments`, () => {
         1,
         0, // round index
         0, // match order
-        data
     )
     expect(getMatchElement).toHaveBeenLastCalledWith(
         3, // round index
         0, // match order
-        data
     )
 })
 
@@ -120,27 +118,4 @@ test(`renders default match layout if getMatchElement throws`, () => {
     const { wrapper } = init(data, { getMatchElement: () => { very.bad() } })
     expect(wrapper.querySelector('.match-body').innerHTML).toBe('<div class=\"match-status\">Scheduled</div>')
     expect(consoleWarn.mock.calls[0][0]).toMatch(`Failed to get a valid return from getMatchElement`)
-})
-
-
-test(`calls getMatchElement with an updated match data on applyMatchesUpdates`, () => {
-
-    const getMatchElement = jest.fn(() => { })
-    const data = {
-        rounds: [{}],
-        matches: [{ roundIndex: 0, order: 0, matchStatus: 'Scheduled' }],
-    }
-
-    const { playoffs: pl } = init(data, { getMatchElement })
-    getMatchElement.mockClear()
-
-    pl.applyMatchesUpdates([{ roundIndex: 0, order: 0, something_new: true }])
-
-    const new_data = getMatchElement.mock.calls[0][2]
-    expect(new_data.matches[0]).toEqual({
-        roundIndex: 0,
-        order: 0,
-        matchStatus: 'Scheduled',
-        something_new: true
-    })
 })
