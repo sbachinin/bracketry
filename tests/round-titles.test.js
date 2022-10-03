@@ -65,17 +65,33 @@ test(`calls getRoundTitleElement with round data (with extra data too), round in
 test(`appends  to the DOM all Elements returned from getRoundTitleElement`, () => {
 
     const data = { rounds: [{ name: 'first' }, { name: 'second' }] }
-    const { wrapper } = init(data, { getRoundTitleElement: (r) => `<div class="custom-round-title">${r.name}</div>` })
+    const options = {
+        getRoundTitleElement: (r) => {
+            const el = document.createElement('div')
+            el.className = 'custom-round-title'
+            el.innerHTML = r.name
+            return el
+        }
+    }
+    const { wrapper } = init(data, options)
     expect(wrapper.querySelector('.round-title:first-child .custom-round-title').textContent).toBe('first')
     expect(wrapper.querySelector('.round-title:nth-child(2) .custom-round-title').textContent).toBe('second')
 })
 
 
-test(`renders bare round.name if getRoundTitleElement returns invalid stuff`, () => {
+test(`renders bare round.name if getRoundTitleElement returns a string`, () => {
 
     const data = { rounds: [{ name: '1' }] }
-    const { wrapper } = init(data, { getRoundTitleElement: (r) => true })
-    expect(wrapper.querySelector('.round-title').textContent).toBe('1')
+    const { wrapper } = init(data, { getRoundTitleElement: (r) => 'oops' })
+    expect(wrapper.querySelector('.round-title').innerHTML).toBe('1')
+})
+
+
+test(`renders bare round.name if getRoundTitleElement returns null`, () => {
+
+    const data = { rounds: [{ name: '1' }] }
+    const { wrapper } = init(data, { getRoundTitleElement: (r) => null })
+    expect(wrapper.querySelector('.round-title').innerHTML).toBe('1')
 })
 
 
@@ -83,7 +99,7 @@ test(`renders bare round.name if getRoundTitleElement returns undefined`, () => 
 
     const data = { rounds: [{ name: '1' }] }
     const { wrapper } = init(data, { getRoundTitleElement: () => {} })
-    expect(wrapper.querySelector('.round-title').textContent).toBe('1')
+    expect(wrapper.querySelector('.round-title').innerHTML).toBe('1')
 })
 
 
@@ -91,7 +107,7 @@ test(`renders default round name if no round.name was given and getRoundTitleELe
 
     const data = { rounds: [{}] }
     const { wrapper } = init(data, { getRoundTitleElement: (r) => true })
-    expect(wrapper.querySelector('.round-title').textContent).toBe('Final')
+    expect(wrapper.querySelector('.round-title').innerHTML).toBe('Final')
 })
 
 
@@ -103,5 +119,5 @@ test(`catches exceptions thrown from getRoundTitleElement and renders bare round
         wrapper = init(data, { getRoundTitleElement: () => very.bad() }).wrapper
     }
     expect(risky_fn).not.toThrow()
-    expect(wrapper.querySelector('.round-title').textContent).toBe('first')
+    expect(wrapper.querySelector('.round-title').innerHTML).toBe('first')
 })

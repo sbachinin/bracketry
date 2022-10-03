@@ -186,11 +186,20 @@ You can use getEntryStatusHTML as just a way to _inject something into the leftm
 `getEntryStatusHTML will not be updated if a new getEntryStatusHTML is passed to **applyNewOptions**`
 
 
+## getRoundTitleElement
+&nbsp;&nbsp;&nbsp;    <sup>function</sup>
+
+Should return an Element
+If returns anything differen from an Element, a bare round.name will be rendered (as if getRoundTitleElement wasn't provided)
+
 
 ## getMatchElement
 &nbsp;&nbsp;&nbsp;    <sup>function</sup>
 
-Should return an Element or undefined
+Should return an Element or null
+
+If returns null, empty match will be rendered
+If returns anything different from an Element or null, a default match layout will be rendered from a given data
 
 ### notes on sizes
     Please set explicit width and height to your images and other content which may change its size afterwards.

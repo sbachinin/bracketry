@@ -50,7 +50,7 @@ type Options = {
     // TODO so contestant and contestantId are not guaranteed?
     onMatchSideClick: (match: Partial<Match>, contestant?: Contestant, contestantId?: string) => void,
 
-    getRoundTitleElement: (roundData: Round, roundIndex: number, data: Data) => Element | undefined,
+    getRoundTitleElement: (roundData: Round, roundIndex: number, data: Data) => Element,
     getMatchElement: (roundIndex: number, matchOrder: number, data: Data) => Element | undefined,
     getNationalityHTML: (
         nationality: any,
