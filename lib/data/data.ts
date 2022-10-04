@@ -25,7 +25,7 @@ type Score = {
 }
 
 // Side is a match-specific data for contestant: his id, his scores ...
-type Side = {
+export type Side = {
     title?: string,
     contestantId?: string,
     scores?: Score[]

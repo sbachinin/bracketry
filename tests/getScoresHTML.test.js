@@ -18,7 +18,7 @@ test(`fills .side-scores element with a string returned from getScoresHTML`, () 
 })
 
 
-test(`passes side data, match data and all_data to getScoresHTML`, () => {
+test(`passes side data and match data to getScoresHTML`, () => {
 
     const data = {
         rounds: [{}],
@@ -28,8 +28,7 @@ test(`passes side data, match data and all_data to getScoresHTML`, () => {
     init(data, { getScoresHTML })
     expect(getScoresHTML).toHaveBeenCalledWith(
         data.matches[0].sides[0],
-        data.matches[0],
-        data
+        data.matches[0]
     )
 })
 
@@ -121,8 +120,7 @@ test(`calls getScoresHTML even if side.scores is undefined`, () => {
     init(data, { getScoresHTML })
     expect(getScoresHTML).toHaveBeenCalledWith(
         data.matches[0].sides[0],
-        data.matches[0],
-        data
+        data.matches[0]
     )
 })
 
@@ -140,7 +138,21 @@ test(`calls getScoresHTML even if side.scores is an empty array`, () => {
     init(data, { getScoresHTML })
     expect(getScoresHTML).toHaveBeenCalledWith(
         data.matches[0].sides[0],
-        data.matches[0],
-        data
+        data.matches[0]
     )
+})
+
+
+test(`side and match objects passed to getScoresHTML are protected from modification by a user`, () => {
+    
+    const data = {
+        rounds: [{}],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', scores: [] }] }],
+    }
+    const getScoresHTML = (side, match) => {
+        side.contestantId = 'crap'
+        match.roundIndex = 1212
+    }
+    const { playoffs: pl } = init(data, { getScoresHTML })
+    expect(pl.getAllData()).toEqual(data)
 })

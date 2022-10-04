@@ -97,7 +97,7 @@ test(`renders bare round.name if getRoundTitleElement returns null`, () => {
 test(`renders bare round.name if getRoundTitleElement returns undefined`, () => {
 
     const data = { rounds: [{ name: '1' }] }
-    const { wrapper } = init(data, { getRoundTitleElement: () => {} })
+    const { wrapper } = init(data, { getRoundTitleElement: () => { } })
     expect(wrapper.querySelector('.round-title').innerHTML).toBe('1')
 })
 
@@ -119,4 +119,15 @@ test(`catches exceptions thrown from getRoundTitleElement and renders bare round
     }
     expect(risky_fn).not.toThrow()
     expect(wrapper.querySelector('.round-title').innerHTML).toBe('first')
+})
+
+
+test(`round object passed to getRoundTitleElement is protected from modification by a user`, () => {
+
+    const data = { rounds: [{ name: 'Final' }] }
+    const getRoundTitleElement = (round) => {
+        round.name = 'Crap'
+    }
+    const { playoffs: pl } = init(data, { getRoundTitleElement })
+    expect(pl.getAllData()).toEqual(data)
 })

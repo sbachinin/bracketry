@@ -215,3 +215,19 @@ test(`calls getPlayerTitleHTML even if player.title is undefined`, () => {
     )
 })
 
+
+test(`player object passed to getPlayerTitleHTML is protected from modification by a user`, () => {
+    
+    const data = {
+        rounds: [{}],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', scores: [] }] }],
+        contestants: {
+            c1: { players: [{ title: 'Pete' }] }
+        }
+    }
+    const getPlayerTitleHTML = (player) => {
+        player.title = 'Crap'
+    }
+    const { playoffs: pl } = init(data, { getPlayerTitleHTML })
+    expect(pl.getAllData()).toEqual(data)
+})

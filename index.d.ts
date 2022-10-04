@@ -1,4 +1,4 @@
-import { Data, Round, Match, Contestant, Player } from "./lib/data/data"
+import { Data, Round, Match, Side, Contestant, Player } from "./lib/data/data"
 
 type Options = {
     mainBorderColor: string,
@@ -63,6 +63,10 @@ type Options = {
     getPlayerTitleHTML: (
         player: Player,
         context: { roundIndex: number, matchOrder: number, contestantId: string, playerIndex: number }
+    ) => string,
+    getScoresHTML: (
+        side: Side,
+        match: Match
     ) => string
 }
 

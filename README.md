@@ -179,6 +179,11 @@ You can use getEntryStatusHTML as just a way to _inject something into the leftm
 `getEntryStatusHTML will not be updated if a new getEntryStatusHTML is passed to **applyNewOptions**`
 
 
+
+## getScoresHTML
+
+
+
 ## getRoundTitleElement
 &nbsp;&nbsp;&nbsp;    <sup>function</sup>
 
