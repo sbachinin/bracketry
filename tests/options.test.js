@@ -191,3 +191,32 @@ test(`getUserOptions returns object which is a merge of initial options and thos
     pl.applyNewOptions({ matchMaxWidth: '333px' })
     expect(pl.getUserOptions()).toEqual({ roundTitlesHeight: 30, matchMaxWidth: '333px' })
 })
+
+
+
+test(`does not merge nor applies new options of functional type`, () => {
+
+    const { wrapper, playoffs: pl } = init(
+        finished_ucl,
+        {
+            getMatchElement: () => {
+                const el = document.createElement('div')
+                el.className = 'old-match-element'
+                return el
+            },
+            roundTitlesHeight: 30
+        }
+    )
+
+    pl.applyNewOptions({
+        getMatchElement: () => {
+            const el = document.createElement('div')
+            el.className = 'new-match-element'
+            return el
+        }
+    })
+
+    expect(pl.getUserOptions().getMatchElement().className).toBe('old-match-element')
+    expect(wrapper.querySelectorAll('.old-match-element').length).toBe(15)
+    expect(wrapper.querySelector('.new-match-element')).toBe(null)
+})
