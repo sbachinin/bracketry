@@ -306,14 +306,21 @@ test(`does not render match-status if match.matchStatus is an empty string`, () 
 test(`does not render a match with irrelevant roundIndex and order`, () => {
     const data = {
         rounds: [{}],
-        matches: [ { roundIndex: 12, order: 12, matchStatus: 'WC' } ],
+        matches: [ { roundIndex: 12, order: 12 } ],
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.match-body')).toBe(null)
 })
 
 
-
-
-
-// TODO (in case of duplicate matches in a given position) render only 1st match in such position
+test(`(in case of duplicate matches in a given position) render only 1st match in such position`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [
+            { roundIndex: 0, order: 0, matchStatus: 'Scheduled' },
+            { roundIndex: 0, order: 0, matchStatus: 'Cancelled' }
+        ],
+    }
+    const { wrapper } = init(data)
+    expect(wrapper.querySelector('.match-status').textContent).toBe('Scheduled')
+})

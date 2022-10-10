@@ -3,24 +3,13 @@
  */
 
 global.ResizeObserver = require('resize-observer-polyfill')
-const { createPlayoffs } = require('../index.js').easyPlayoffs
+const { init } = require('./utils.js')
 const finished_ucl = require('./ucl-finished.js').default
-
-const init = () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-    return wrapper
-}
 
 
 test('disables left navigation buttons on initialization', () => {
-    const wrapper = init()
 
-    createPlayoffs(
-        finished_ucl,
-        wrapper,
-        { visibleRoundsCount: 2 }
-    )
+    const { wrapper } = init(finished_ucl, { visibleRoundsCount: 2 })
 
     const left_header_button = wrapper.querySelector('.buttons-header .navigation-button.left')
     expect(left_header_button.classList.contains('active')).toBe(false)
@@ -33,13 +22,8 @@ test('disables left navigation buttons on initialization', () => {
 
 
 test('enables right nav buttons on initialization if rounds count is greater than options.visibleRoundsCount', () => {
-    const wrapper = init()
 
-    createPlayoffs(
-        finished_ucl,
-        wrapper,
-        { visibleRoundsCount: 2 }
-    )
+    const { wrapper } = init(finished_ucl, { visibleRoundsCount: 2 })
 
     const right_header_button = wrapper.querySelector('.buttons-header .navigation-button.right')
     expect(right_header_button.classList.contains('active')).toBe(true)
@@ -50,49 +34,33 @@ test('enables right nav buttons on initialization if rounds count is greater tha
     expect(getComputedStyle(right_non_header_button).pointerEvents).toBe('auto')
 })
 
-// TODO: fix this. started to fail, perhaps because of changes to html shell
-/* test('hides nav buttons on initialization if rounds count is <= options.visibleRoundsCount', () => {
-    const wrapper = init()
 
-    createPlayoffs(
-        finished_ucl,
-        wrapper,
-        { visibleRoundsCount: 4 }
-    )
+test('hides nav buttons on initialization if rounds count is <= options.visibleRoundsCount', () => {
+
+    const { wrapper } = init(finished_ucl, { visibleRoundsCount: 4 })
 
     const first_visible_button = [...wrapper.querySelectorAll('.navigation-button')]
         .find(button => getComputedStyle(button).display !== 'none')
 
-
     expect(first_visible_button instanceof Node).toBe(false)
 })
- */
 
-// TODO: fix this. started to fail, perhaps because of changes to html shell
-/* test('hides nav buttons when applyNewOptions is called with a greater visibleRoundsCount which becomes >= actual rounds count', () => {
-    const wrapper = init()
 
-    const pl = createPlayoffs(
-        finished_ucl,
-        wrapper,
-        { visibleRoundsCount: 2 }
-    )
+test('hides nav buttons when applyNewOptions is called with visibleRoundsCount which is >= rounds.length', () => {
+
+    const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
 
     pl.applyNewOptions({ visibleRoundsCount: 4 })
 
     const first_visible_button = [...wrapper.querySelectorAll('.navigation-button')]
         .find(button => getComputedStyle(button).display !== 'none')
     expect(first_visible_button instanceof Node).toBe(false)
-}) */
+})
+
 
 test('enables left nav button when base_round_index becomes more than 0', () => {
-    const wrapper = init()
 
-    const pl = createPlayoffs(
-        finished_ucl,
-        wrapper,
-        { visibleRoundsCount: 2 }
-    )
+    const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
 
     pl.setBaseRoundIndex(1)
 
@@ -103,14 +71,10 @@ test('enables left nav button when base_round_index becomes more than 0', () => 
     expect(left_non_header_button.classList.contains('active')).toBe(true)
 })
 
-test('disables right nav button when right edge is reached', () => {
-    const wrapper = init()
 
-    const pl = createPlayoffs(
-        finished_ucl,
-        wrapper,
-        { visibleRoundsCount: 2 }
-    )
+test('disables right nav button when right edge is reached', () => {
+
+    const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
 
     const right_header_button = wrapper.querySelector('.buttons-header .navigation-button.right')
     const right_non_header_button = wrapper.querySelector('.all-but-buttons-header .navigation-button.right')
@@ -125,14 +89,10 @@ test('disables right nav button when right edge is reached', () => {
     expect(right_non_header_button.classList.contains('active')).toBe(false)
 })
 
-test('injects leftNavigationButtonHTML to left buttons on initialization', () => {
-    const wrapper = init()
 
-    createPlayoffs(
-        finished_ucl,
-        wrapper,
-        { leftNavigationButtonHTML: '<p>PREVIOUS ROUND</p>' }
-    )
+test('injects leftNavigationButtonHTML to left buttons on initialization', () => {
+
+    const { wrapper } = init(finished_ucl, { leftNavigationButtonHTML: '<p>PREVIOUS ROUND</p>' })
 
     const left_header_button = wrapper.querySelector('.buttons-header .navigation-button.left')
     expect(left_header_button.innerHTML).toBe('<p>PREVIOUS ROUND</p>')
@@ -140,14 +100,10 @@ test('injects leftNavigationButtonHTML to left buttons on initialization', () =>
     expect(left_non_header_button.innerHTML).toBe('<p>PREVIOUS ROUND</p>')
 })
 
-test('injects rightNavigationButtonHTML to right buttons on initialization', () => {
-    const wrapper = init()
 
-    createPlayoffs(
-        finished_ucl,
-        wrapper,
-        { rightNavigationButtonHTML: '<p>NEXT ROUND</p>' }
-    )
+test('injects rightNavigationButtonHTML to right buttons on initialization', () => {
+
+    const { wrapper } = init(finished_ucl, { rightNavigationButtonHTML: '<p>NEXT ROUND</p>' })
 
     const right_header_button = wrapper.querySelector('.buttons-header .navigation-button.right')
     expect(right_header_button.innerHTML).toBe('<p>NEXT ROUND</p>')
@@ -155,14 +111,10 @@ test('injects rightNavigationButtonHTML to right buttons on initialization', () 
     expect(right_non_header_button.innerHTML).toBe('<p>NEXT ROUND</p>')
 })
 
-test('injects leftNavigationButtonHTML to left buttons on applyNewOptions', () => {
-    const wrapper = init()
 
-    const pl = createPlayoffs(
-        finished_ucl,
-        wrapper,
-        {}
-    )
+test('injects leftNavigationButtonHTML to left buttons on applyNewOptions', () => {
+
+    const { wrapper, playoffs: pl } = init(finished_ucl)
 
     pl.applyNewOptions({ leftNavigationButtonHTML: '<p>PREVIOUS ROUND</p>' })
 
@@ -172,14 +124,10 @@ test('injects leftNavigationButtonHTML to left buttons on applyNewOptions', () =
     expect(left_non_header_button.innerHTML).toBe('<p>PREVIOUS ROUND</p>')
 })
 
-test('injects rightNavigationButtonHTML to right buttons on applyNewOptions', () => {
-    const wrapper = init()
 
-    const pl = createPlayoffs(
-        finished_ucl,
-        wrapper,
-        {}
-    )
+test('injects rightNavigationButtonHTML to right buttons on applyNewOptions', () => {
+
+    const { wrapper, playoffs: pl } = init(finished_ucl)
 
     pl.applyNewOptions({ rightNavigationButtonHTML: '<p>NEXT ROUND</p>' })
 
@@ -190,22 +138,11 @@ test('injects rightNavigationButtonHTML to right buttons on applyNewOptions', ()
 })
 
 
-
-
-
-
-
-
 test('applies certain styles when options.navButtonsPosition is "gutters"', () => {
-    const wrapper = init()
 
-    createPlayoffs(
+    const { wrapper } = init(
         finished_ucl,
-        wrapper,
-        {
-            navButtonsPosition: 'gutters',
-            navigationGutterBorderColor: 'red'
-        }
+        { navButtonsPosition: 'gutters', navigationGutterBorderColor: 'red' }
     )
 
     // 1. .buttons-header is hidden
@@ -235,14 +172,10 @@ test('applies certain styles when options.navButtonsPosition is "gutters"', () =
         })
 })
 
-test('applies certain styles when options.navButtonsPosition is "overMatches"', () => {
-    const wrapper = init()
 
-    createPlayoffs(
-        finished_ucl,
-        wrapper,
-        { navButtonsPosition: 'overMatches' }
-    )
+test('applies certain styles when options.navButtonsPosition is "overMatches"', () => {
+
+    const { wrapper } = init(finished_ucl, { navButtonsPosition: 'overMatches' })
 
     // 1. .buttons-header is hidden
     const headerStyles = getComputedStyle(wrapper.querySelector('.buttons-header'))
@@ -267,16 +200,12 @@ test('applies certain styles when options.navButtonsPosition is "overMatches"', 
 
 
 test('applies certain styles when options.navButtonsPosition is "overTitles"', () => {
-    const wrapper = init()
+
     const roundTitlesHeight = 66
 
-    createPlayoffs(
+    const { wrapper } = init(
         finished_ucl,
-        wrapper,
-        {
-            navButtonsPosition: 'overTitles',
-            roundTitlesHeight
-        }
+        { navButtonsPosition: 'overTitles', roundTitlesHeight }
     )
 
     // 1. non-header buttons are hidden
@@ -298,13 +227,8 @@ test('applies certain styles when options.navButtonsPosition is "overTitles"', (
 
 
 test('applies certain styles when options.navButtonsPosition is "beforeTitles"', () => {
-    const wrapper = init()
 
-    createPlayoffs(
-        finished_ucl,
-        wrapper,
-        { navButtonsPosition: 'beforeTitles' }
-    )
+    const { wrapper } = init(finished_ucl, { navButtonsPosition: 'beforeTitles' })
 
     // 1. non-header buttons are hidden
     const visible_non_header_buttons = [...wrapper.querySelectorAll('.non-header-button')]
@@ -322,13 +246,7 @@ test('applies certain styles when options.navButtonsPosition is "beforeTitles"',
 
 
 test('hides navigation buttons when options.navButtonsPosition is "hidden"', () => {
-    const wrapper = init()
-
-    createPlayoffs(
-        finished_ucl,
-        wrapper,
-        { navButtonsPosition: 'hidden' }
-    )
+    const { wrapper } = init(finished_ucl, { navButtonsPosition: 'hidden' })
 
     // 1. non-header buttons are hidden
     const visible_non_header_buttons = [...wrapper.querySelectorAll('.non-header-button')]
