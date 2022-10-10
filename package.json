@@ -22,6 +22,12 @@
     "engines": {
         "node": " >=14.13.1 || >=16.0.0"
     },
+    "keywords": [
+        "visualization",
+        "diagram",
+        "sports",
+        "play"
+    ],
     "devDependencies": {
         "jest": "^28.1.3",
         "jest-environment-jsdom": "^28.1.3",
