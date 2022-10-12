@@ -1,5 +1,5 @@
 {
-    "name": "easy-playoffs",
+    "name": "@sbachinin/easy-playoffs",
     "version": "1.0.3",
     "description": "Low-pain tool to visualize the 'draws' of a knockout tournament",
     "types": "./index.d.ts",
