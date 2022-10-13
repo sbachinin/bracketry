@@ -75,7 +75,7 @@ type OptionsMap = Partial<Options>
 export function createPlayoffs(
     data: Data,
     wrapperElement: Element,
-    options: OptionsMap
+    options?: OptionsMap
 ): {
     moveToPreviousRound: () => void
     moveToNextRound: () => void
