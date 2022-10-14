@@ -1,6 +1,6 @@
 "use strict";
 
-const { createPlayoffs } = require('../index.js').easyPlayoffs
+const { createPlayoffs } = require('../dist/cjs/index.js')
 
 const deep_clone_object = obj => {
     if (obj === null || typeof obj !== 'object') {

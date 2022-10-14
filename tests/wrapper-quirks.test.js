@@ -3,7 +3,7 @@
  */
 
 global.ResizeObserver = require('resize-observer-polyfill')
-const { createPlayoffs } = require('../index.js').easyPlayoffs
+const { createPlayoffs } = require('../dist/cjs/index.js')
 const { init } = require('./utils.js')
 const finished_ucl = require('./ucl-finished.js').default
 

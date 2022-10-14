@@ -3,96 +3,69 @@
  */
 
 global.ResizeObserver = require('resize-observer-polyfill')
-const { createPlayoffs } = require('../index.js').easyPlayoffs
+const { init } = require('./utils.js')
 const finished_ucl = require('./ucl-finished.js').default
 
 
 test('survives non-object options', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
 
     expect.assertions(1)
-
-    createPlayoffs(
-        { rounds: [{}] },
-        wrapper,
-        null
-    )
-    expect(true).toBe(true);
+    init({ rounds: [{}] }, null)
+    expect(true).toBe(true)
 })
 
-test('survives non-existent options', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
+
+test('survives non-existent options keys', () => {
 
     expect.assertions(1)
-
-    createPlayoffs(
+    init(
         {
             rounds: [{}],
-            matches: [{ roundIndex: 0, order: 0,
-                sides: [{ contestantId: 'contestant1', scores: [] }] }
+            matches: [{
+                roundIndex: 0, order: 0,
+                sides: [{ contestantId: 'contestant1', scores: [] }]
+            }
             ],
             contestants: {
-                contestant1: { players: [ { title: 'Josh' } ] }
+                contestant1: { players: [{ title: 'Josh' }] }
             }
         },
-        wrapper,
-        { fsdfsd: false}
+        { fsdfsd: false }
     )
     expect(true).toBe(true);
 })
-
-
-
 
 
 test('returns the same set of functions if createPlayoffs is called with invalid arguments', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
 
-    const successful_playoffs = createPlayoffs(
-        finished_ucl,
-        wrapper,
-        {}
-    )
+    const { playoffs: pl1 } = init(finished_ucl)
 
-    const failed_playoffs = createPlayoffs(
-        'invalid data',
-        'invalid wrapper',
-        'invalid options'
-    )
+    const { playoffs: pl2 } = init('invalid data', 'invalid options')
 
-    expect(Object.keys(successful_playoffs)).toEqual(Object.keys(failed_playoffs))
+    expect(Object.keys(pl1)).toEqual(Object.keys(pl2))
 
-    const all_return_values_are_functions = Object.values(failed_playoffs).every(v => typeof v === 'function')
+    const all_return_values_are_functions = Object.values(pl2).every(v => typeof v === 'function')
     expect(all_return_values_are_functions).toBe(true)
 })
 
 
 test('returns the same set of functions if 0 rounds', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
 
-    const roundful_playoffs = createPlayoffs(finished_ucl, wrapper)
-
-    const roundless_playoffs = createPlayoffs({ rounds: [] }, wrapper)
-
-    expect(Object.keys(roundful_playoffs)).toEqual(Object.keys(roundless_playoffs))
+    const { playoffs: pl1 } = init(finished_ucl)
+    const { playoffs: pl2 } = init({ rounds: [] })
+    expect(Object.keys(pl1)).toEqual(Object.keys(pl2))
 })
 
 
 test('after initialization has failed, returned functions may be called without unhandled errors', () => {
+
     expect.assertions(2)
 
-    const failed_playoffs = createPlayoffs(
+    const { playoffs: pl } = init(
         'invalid data',
-        'invalid wrapper',
         'invalid options'
     )
-
-    Object.values(failed_playoffs).forEach(v => v())
-
-    expect(failed_playoffs.getAllData()).toBe('invalid data')
-    expect(failed_playoffs.getUserOptions()).toBe('invalid options')
+    Object.values(pl).forEach(v => v())
+    expect(pl.getAllData()).toBe('invalid data')
+    expect(pl.getUserOptions()).toBe('invalid options')
 })

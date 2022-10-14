@@ -3,17 +3,12 @@
  */
 
 global.ResizeObserver = require('resize-observer-polyfill')
-const { createPlayoffs } = require('../index.js').easyPlayoffs
+const { init } = require('./utils.js')
 
-const create_wrapper = () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-    return wrapper
-}
 
-test('for a missing match renders a stub .match-wrapper without body', () => {
-    const wrapper = create_wrapper()
-    createPlayoffs({ rounds: [{}] }, wrapper)
+test(`for a missing match renders a stub .match-wrapper without body`, () => {
+
+    const { wrapper } = init({ rounds: [{}] })
 
     expect(wrapper.querySelector('.match-wrapper')).not.toBe(null)
     expect(wrapper.querySelector('.match-body')).toBe(null)
@@ -21,32 +16,27 @@ test('for a missing match renders a stub .match-wrapper without body', () => {
 
 test(`.match-wrapper is always clickable, even if there was no match data for it
     (because an underlying custom match element must be clickable)`, () => {
-        const wrapper = create_wrapper()
 
-        createPlayoffs({ rounds: [ {} ] }, wrapper)
+    const { wrapper } = init({ rounds: [{}] })
 
-        expect(
-            getComputedStyle(wrapper.querySelector('.match-wrapper')).pointerEvents
-        ).not.toBe('none')
+    expect(
+        getComputedStyle(wrapper.querySelector('.match-wrapper')).pointerEvents
+    ).not.toBe('none')
 })
 
 test(`stub .match-wrapper contains only connection lines
     (unless smth is rendered from custom getMatchElement)`, () => {
-        const wrapper = create_wrapper()
 
-        createPlayoffs({ rounds: [ {} ] }, wrapper)
+    const { wrapper } = init({ rounds: [{}] })
 
-        expect(wrapper.querySelector('.match-wrapper').children.length).toBe(1)
-        expect(wrapper.querySelector('.match-lines-area')).not.toBe(null)
+    expect(wrapper.querySelector('.match-wrapper').children.length).toBe(1)
+    expect(wrapper.querySelector('.match-lines-area')).not.toBe(null)
 })
 
-test('fills upcoming (match-less) 4-round tournament with stub matches', () => {
-    const wrapper = create_wrapper()
+test(`fills upcoming (match-less) 4-round tournament with stub matches`, () => {
 
-    createPlayoffs(
-        { rounds: [ {}, {}, {}, {} ], matches: [], contestants: {} },
-        wrapper,
-        {}
+    const { wrapper } = init(
+        { rounds: [{}, {}, {}, {}], matches: [], contestants: {} }
     )
     expect(wrapper.querySelectorAll('.match-wrapper')).toHaveLength(15)
 })

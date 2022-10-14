@@ -3,24 +3,16 @@
  */
 
 global.ResizeObserver = require('resize-observer-polyfill')
-const { createPlayoffs } = require('../index.js').easyPlayoffs
-
-const create_wrapper = () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-    return wrapper
-}
+const { init } = require('./utils.js')
 
 const consoleWarn = jest.spyOn(console, 'warn')
 afterEach(jest.clearAllMocks)
 
 
+test(`renders empty shell if no data`, () => {
 
-test('renders empty shell if no data', () => {
-    const wrapper = create_wrapper()
     expect.assertions(3)
-
-    createPlayoffs(undefined, wrapper)
+    const { wrapper } = init(undefined)
 
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
@@ -28,22 +20,10 @@ test('renders empty shell if no data', () => {
 })
 
 
+test(`renders empty shell if data is an empty object`, () => {
 
-test('renders empty shell if data is an empty object', () => {
-    const wrapper = create_wrapper()
-    createPlayoffs({}, wrapper)
     expect.assertions(3)
-    
-    expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
-    expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
-    expect(consoleWarn.mock.calls[0][0]).toMatch(`Data must contain "rounds" property and it must be an array`)
-})
-
-
-test('renders empty shell if data.rounds is undefined', () => {
-    const wrapper = create_wrapper()
-    createPlayoffs({ matches: [], contestants: {} }, wrapper)
-    expect.assertions(3)
+    const { wrapper } = init({})
 
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
@@ -51,12 +31,21 @@ test('renders empty shell if data.rounds is undefined', () => {
 })
 
 
+test(`renders empty shell if data.rounds is undefined`, () => {
 
-test('renders empty shell if "rounds" is an empty array', () => {
-    const wrapper = create_wrapper()
     expect.assertions(3)
+    const { wrapper } = init({ matches: [], contestants: {} })
 
-    createPlayoffs({ rounds: [], matches: [], contestants: {} }, wrapper)
+    expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
+    expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
+    expect(consoleWarn.mock.calls[0][0]).toMatch(`Data must contain "rounds" property and it must be an array`)
+})
+
+
+test(`renders empty shell if "rounds" is an empty array`, () => {
+
+    expect.assertions(3)
+    const { wrapper } = init({ rounds: [], matches: [], contestants: {} })
 
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
@@ -64,11 +53,10 @@ test('renders empty shell if "rounds" is an empty array', () => {
 })
 
 
+test(`renders empty shell if "rounds" contains non-object element`, () => {
 
-test('renders empty shell if "rounds" contains non-object element', () => {
-    const wrapper = create_wrapper()
-    createPlayoffs({ rounds: [{}, 3], matches: [], contestants: {} }, wrapper)
     expect.assertions(3)
+    const { wrapper } = init({ rounds: [{}, 3], matches: [], contestants: {} })
 
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
@@ -76,92 +64,69 @@ test('renders empty shell if "rounds" contains non-object element', () => {
 })
 
 
+test(`renders empty shell when "matches" are not an array`, () => {
 
-test('renders empty shell when "matches" are not an array', () => {
     expect.assertions(1)
-
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-    createPlayoffs(
-        { rounds: [{}], matches: true, contestants: {} },
-        wrapper
-    )
+    const { wrapper } = init({ rounds: [{}], matches: true, contestants: {} })
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
 })
 
-test('renders empty shell when string is given for a match', () => {
+
+test(`renders empty shell when string is given for a match`, () => {
+
     expect.assertions(1)
-
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-
-    createPlayoffs(
+    const { wrapper } = init(
         {
             rounds: [],
             matches: ['i am an diot'],
             contestants: {}
         },
-        wrapper,
-        {}
     )
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
 })
 
 
-test('renders empty shell when match.sides is not an array', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-    expect.assertions(3)
+test(`renders empty shell when match.sides is not an array`, () => {
 
-    createPlayoffs(
+    expect.assertions(3)
+    const { wrapper } = init(
         {
             rounds: [{}],
             matches: [{ roundIndex: 0, order: 0, sides: true }],
             contestants: {}
-        },
-        wrapper
+        }
     )
-
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
     expect(consoleWarn.mock.calls[0][0]).toMatch(`Match.sides is required and must be an array`)
 })
 
 
-test('renders empty shell if match.sides contains non-object items', () => {
-    const wrapper = create_wrapper()
-    expect.assertions(3)
+test(`renders empty shell if match.sides contains non-object items`, () => {
 
-    createPlayoffs(
+    expect.assertions(3)
+    const { wrapper } = init(
         {
             rounds: [{}],
             matches: [{ roundIndex: 0, order: 0, sides: ['crap'], matchStatus: 'Scheduled' }],
-        },
-        wrapper
+        }
     )
-
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
     expect(consoleWarn.mock.calls[0][0]).toMatch(`Match's side must be an object`)
 })
 
 
+test(`renders empty shell if match.sides[0].contestantId is not a string`, () => {
 
-
-test('renders empty shell if match.sides[0].contestantId is not a string', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
     expect.assertions(3)
-
-    createPlayoffs(
+    const { wrapper } = init(
         {
             rounds: [{}],
             matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: [] }] }],
             contestants: {}
-        },
-        wrapper
+        }
     )
-
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
     expect(consoleWarn.mock.calls[0][0]).toMatch(
@@ -170,22 +135,17 @@ test('renders empty shell if match.sides[0].contestantId is not a string', () =>
 })
 
 
+test(`renders empty shell when contestant is not an object`, () => {
 
-
-test('renders empty shell when contestant is not an object', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
     expect.assertions(3)
-
-    createPlayoffs(
+    const { wrapper } = init(
         {
             rounds: [{}],
             matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
             contestants: {
                 c1: 333
             }
-        },
-        wrapper
+        }
     )
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
@@ -193,36 +153,27 @@ test('renders empty shell when contestant is not an object', () => {
 })
 
 
+test(`renders matches when contestant is an empty object`, () => {
 
-
-test('renders matches when contestant is an empty object', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
     expect.assertions(3)
-
-    createPlayoffs(
+    const { wrapper } = init(
         {
             rounds: [{}],
             matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'contestant1' }] }],
             contestants: {
                 contestant1: {}
             }
-        },
-        wrapper
+        }
     )
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.match-wrapper')).not.toBe(null)
     expect(consoleWarn.mock.calls[0][0]).toMatch(`contestant.players is required`)
 })
 
+test(`renders empty shell when side.scores is not an array`, () => {
 
-
-test('renders empty shell when side.scores is not an array', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
     expect.assertions(3)
-
-    createPlayoffs(
+    const { wrapper } = init(
         {
             rounds: [{}],
             matches: [{
@@ -233,10 +184,8 @@ test('renders empty shell when side.scores is not an array', () => {
             contestants: {
                 contestant1: { players: [{ title: 'john' }] }
             }
-        },
-        wrapper
+        }
     )
-    
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
     expect(consoleWarn.mock.calls[0][0]).toMatch(`If side.scores is provided, it must be an array`)
@@ -256,12 +205,10 @@ test('renders empty shell when side.scores is not an array', () => {
 
 
 
-test('renders empty shell when contestant.players is not an array', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
-    expect.assertions(3)
+test(`renders empty shell when contestant.players is not an array`, () => {
 
-    createPlayoffs(
+    expect.assertions(3)
+    const { wrapper } = init(
         {
             rounds: [{}],
             matches: [{
@@ -272,23 +219,18 @@ test('renders empty shell when contestant.players is not an array', () => {
             contestants: {
                 contestant1: { players: 3232 }
             }
-        },
-        wrapper,
-        {}
+        }
     )
-    
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
     expect(consoleWarn.mock.calls[0][0]).toMatch(`contestant.players must be an array`)
 })
 
-test('renders empty shell when contestant.players contains non-objects', () => {
-    const wrapper = document.createElement('div')
-    document.body.append(wrapper)
+
+test(`renders empty shell when contestant.players contains non-objects`, () => {
 
     expect.assertions(3)
-
-    createPlayoffs(
+    const { wrapper } = init(
         {
             rounds: [{}],
             matches: [{
@@ -299,11 +241,8 @@ test('renders empty shell when contestant.players contains non-objects', () => {
             contestants: {
                 contestant1: { players: ['3232'] }
             }
-        },
-        wrapper,
-        {}
+        }
     )
-    
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
     expect(consoleWarn.mock.calls[0][0]).toMatch(`contestant.players array must contain only objects`)
