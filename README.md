@@ -61,7 +61,7 @@ yarn add easy-playoffs
 
 ---
 
-Minified bundle is 49k, gzipped is 12k.
+Minified bundle is 48k, gzipped is 12k.
 
 ---
 
