@@ -2,12 +2,15 @@
     "name": "@sbachinin/easy-playoffs",
     "version": "1.0.3",
     "description": "Low-pain tool to visualize the 'draws' of a knockout tournament",
+    "type": "module",
     "types": "./index.d.ts",
-    "module": "./lib/lib.mjs",
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
     "mode": "production",
     "scripts": {
         "test": "jest",
-        "btest": "webpack && jest --silent"
+        "btest": "rollup -c && jest --silent",
+        "rollup": "rollup -c"
     },
     "repository": {
         "type": "git",
@@ -20,7 +23,7 @@
     },
     "homepage": "https://github.com/sbachinin/easy-playoffs#readme",
     "engines": {
-        "node": " >=14.13.1 || >=16.0.0"
+        "node": ">=16.2.0"
     },
     "keywords": [
         "visualization",
@@ -32,7 +35,8 @@
         "jest": "^28.1.3",
         "jest-environment-jsdom": "^28.1.3",
         "resize-observer-polyfill": "^1.5.1",
-        "webpack": "^5.74.0",
-        "webpack-cli": "^4.10.0"
+        "rollup": "^3.1.0",
+        "@rollup/plugin-commonjs": "^23.0.0",
+        "@rollup/plugin-node-resolve": "^15.0.0"
     }
 }
