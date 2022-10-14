@@ -13,7 +13,7 @@ test(`replaces old playoffs with new playoffs when createPlayoffs is called agai
     const { wrapper } = init(finished_ucl)
     createPlayoffs({ rounds: [{}, {}] }, wrapper)
 
-    expect(wrapper.querySelectorAll('.easy-playoffs-root').length).toBe(1)
+    expect(wrapper.querySelectorAll('.playoffs-root').length).toBe(1)
     expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(2)
     expect(wrapper.querySelectorAll('.side-wrapper[contestant-id]').length).toBe(0)
 })
