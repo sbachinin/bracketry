@@ -1,0 +1,195 @@
+.playoffs-root {
+    .round-wrapper {
+        position: relative;
+        display: grid;
+        grid-auto-rows: minmax(0, 1fr);
+        align-items: stretch;
+        min-width: 100px;
+        max-width: 100%;
+
+        &:last-of-type {
+            /* overflow: hidden for earlier rounds will hide the vertical part of connecting lines.
+                for last round it's unnecessary
+                    + content that overflows it may mess up the calculations like 'is all content visible within content_area?'
+            */
+            overflow: hidden;
+        }
+    }
+
+    .match-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        position: relative;
+        min-height: 40px;
+        box-sizing: border-box;
+    }
+    
+
+
+    .round-wrapper .match-body {
+        width: 100%;
+        transition: border-color 0.1s ease-out;
+        display: flex;
+        justify-content: flex-end; /* it pushes lonely match-status to very right */
+        z-index: 2;
+        pointer-events: auto;
+
+        &:empty {
+            pointer-events: none; /* otherwise, when onMatchClick is set, a border will appear around an empty match :hover */
+        }
+
+        .sides {
+            flex: 1;
+            display: grid;
+            grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); /* two sides will always be of same height */
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .match-status {
+            z-index: 2;        
+            align-self: center;
+            transition: border-color 0.1s ease-out;
+
+            &:empty {
+                display: none;
+            }
+        }
+    }
+
+
+
+
+
+    
+    
+/* LINES */
+
+/* regular lines */
+    .match-wrapper .match-lines-area {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        pointer-events: none;
+        z-index: 1;
+        .line-wrapper {
+            flex: 1; /* each of 2 empty guys takes 50% height */
+            transition: color 0.1s ease-out, border-color 0.1s ease-out;
+            color: transparent;
+        }
+    }
+
+    .round-wrapper:last-of-type .line-wrapper {
+        box-shadow: none !important;
+    }
+
+
+
+
+
+
+    .side-wrapper {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        pointer-events: auto;
+    }
+
+
+    .side-info-item {
+        display: grid;
+        grid-auto-rows: minmax(0, 1fr); /* equal height rows */
+        grid-template-columns: auto;
+        align-items: center;
+
+        &.players-info {
+            flex: 1;
+            min-width: 0;
+        }
+    }
+
+
+    .player-wrapper {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+        overflow: hidden;
+        .nationality {
+            flex-shrink: 0;
+        }
+        .player-title {
+            flex: 1;
+            transition: color 0.1s ease-out, opacity 0.1s ease-out;
+            white-space: nowrap;
+            text-align: left;
+            text-overflow: ellipsis;
+            min-width: 0; /* it will make it shrink in case of narrow .player-wrapper */
+            overflow: hidden;
+        }
+    }
+
+    .side-wrapper.looser:not(.highlighted) .player-title,
+    .side-wrapper .single-score-wrapper:not(.winner) {
+        opacity: 0.54;
+    }
+    
+
+
+    .side-info-item {
+        &.serving-mark {
+            border-radius: 50%;
+            background-color: #b7cf15;
+            &.hidden {
+                display: none;
+            }
+            &.transparent {
+                opacity: 0;
+            }
+        }
+        
+        &.side-scores {
+            grid-auto-flow: column;
+        }
+
+        &.current_score {
+            border-width: 1px;
+            border-style: solid;
+            text-align: center;
+            &:empty {
+                display: none;
+            }
+        }
+    }
+
+    .single-score-wrapper {
+        display: flex;
+        overflow: visible;
+        flex-direction: column;
+        align-items: center;
+
+        .side-own-single-score {
+            display: flex;
+        }
+    
+        .opponent-single-score {
+            display: flex;
+            height: 0;
+            overflow: hidden;
+        }
+    }
+
+    .subscore {
+        padding-left: 1px;
+    }
+
+
+
+    svg.default-winner-svg {
+        width: auto;
+    }
+}

@@ -1,0 +1,62 @@
+.playoffs-root {
+    .buttons-header {
+        align-items: center;
+        justify-content: space-between;
+        position: static;
+        height: auto;
+        border-width: 1px;
+        border-style: solid;
+        border-color: transparent;
+
+        .navigation-button {
+            display: flex;
+            align-items: center;
+        }
+    }
+    
+    .navigation-button {
+        max-height: 100%;
+        pointer-events: none;
+        border-color: transparent;
+        &.non-header-button {
+            cursor: auto;
+            user-select: none;
+            z-index: 3;
+            border-width: 1px;
+            border-style: solid;
+            justify-content: center;
+            align-items: center;
+            &.left {
+                left: 0;
+            }
+            &.right {
+                right: 0;
+            }
+        }
+
+        &.hidden {
+            display: none;
+        }
+
+        &.active {
+            cursor: pointer;
+            pointer-events: auto;
+            & > * {
+                opacity: 0.65;
+            }
+            &:hover > * {
+                opacity: 1;
+            }
+        }
+
+        & > * {
+            transition: opacity ease-in-out 0.2s;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+    }
+    
+    .default-navigation-svg {
+        height: auto;
+    }
+}
