@@ -1,6 +1,10 @@
 import { Data, Round, Match, Side, Contestant, Player } from "./lib/data/data"
 
 type Options = {
+    width: string,
+    height: string,
+    fullscreen: boolean,
+    fullscreenBackgroundColor: string,
     mainBorderColor: string,
     rootBackgroundColor: string,
     mainVerticalPadding: number,
