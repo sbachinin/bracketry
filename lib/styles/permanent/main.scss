@@ -111,7 +111,7 @@
 
     .content-area {
         flex: 1;
-        height: 100%;
+        /* height: 100%; */ /* TODO test this with diff options and data */
         min-width: 0;
         /* to make it shrink to the free width of the parent */
         overflow: hidden;

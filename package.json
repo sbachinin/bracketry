@@ -10,7 +10,8 @@
     "scripts": {
         "test": "jest",
         "btest": "rollup -c && jest --silent",
-        "rollup": "rollup -c"
+        "rollup": "rollup -c",
+        "rollupw": "rollup -c --watch"
     },
     "repository": {
         "type": "git",

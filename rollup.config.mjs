@@ -24,6 +24,8 @@ export default [
             resolve(),
             commonjs(),
             terser(),
+
+            // TODO do i need an es5 bundle?
             // getBabelOutputPlugin({ presets: ['@babel/preset-env'] }),
             scss({
                 output: false,
