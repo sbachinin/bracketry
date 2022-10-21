@@ -26,11 +26,13 @@ _You only need a wrapper element and (yes, this is the tricky part) some <a href
 
 ## Some lovely features
 
-&nbsp;&nbsp;🎾 Tennis: doubles, tiebreak, points within a game (15:30 etc), "serving" dot  
+[//]: # TODO add links to site here  
+&nbsp;&nbsp; 🎾 Tennis: doubles, tiebreak, points within a game (15:30 etc), "serving" dot  
 &nbsp;&nbsp; 🍏 live updates (and special "live" appearance of a match)  
 &nbsp;&nbsp; 🔦 Team's path within a tournament is highlighted on click (if you want)  
 &nbsp;&nbsp; 👯 Multiple instances of playoffs on a page  
-&nbsp;&nbsp; 📱 Can be easily tuned for mobile devices (<a href="https://sbachinin.github.io/playoffs-site/mobile-solutions">how</a>)
+&nbsp;&nbsp; 📱 Can be easily tuned for mobile devices (<a href="https://sbachinin.github.io/playoffs-site/mobile-solutions">how</a>)  
+&nbsp;&nbsp; 📺 "Fullscreen" (full browser viewport) mode  
 
 <br>
 
