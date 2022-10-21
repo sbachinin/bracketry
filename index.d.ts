@@ -57,7 +57,7 @@ type Options = {
     getRoundTitleElement: (roundData: Round, roundIndex: number) => Element,
     getMatchElement: (roundIndex: number, matchOrder: number) => Element | undefined,
     getNationalityHTML: (
-        nationality: any,
+        player: Player,
         context: { roundIndex: number, matchOrder: number, contestantId: string, playerIndex: number }
     ) => string,
     getEntryStatusHTML: (
@@ -98,5 +98,6 @@ export function createPlayoffs(
     replaceData: (newData: Data) => void
     applyMatchesUpdates: (matches: Match[]) => void
     getAllData: () => Data
-    highlightContestantHistory: (contestantId: string | null) => void
+    highlightContestantHistory: (contestantId: string | null) => void,
+    uninstall: () => void
 }

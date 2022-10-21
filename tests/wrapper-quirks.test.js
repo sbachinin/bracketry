@@ -52,9 +52,9 @@ test('Returned methods are called without errors after another playoffs are inst
 
 test('Nothing changes after wrapper is reassigned', () => {
     let { wrapper, playoffs: pl } = init(finished_ucl)
+    pl.setBaseRoundIndex(2)
     wrapper = 'something else'
-    const run_all = () => Object.values(pl).forEach(v => v())
-    expect(run_all).not.toThrow()
+    expect(pl.getNavigationState().baseRoundIndex).toBe(2)
     expect(document.querySelectorAll('.round-wrapper').length).toBe(4)
 })
 
