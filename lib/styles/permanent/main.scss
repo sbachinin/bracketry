@@ -156,6 +156,11 @@
         justify-content: center;
     }
 
+    .vertical-scroll-button {
+        height: 36px;
+        background: tomato;
+        cursor: pointer;
+    }
 
     .matches-wrapper {
         flex: 1;
