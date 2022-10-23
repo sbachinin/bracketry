@@ -190,12 +190,6 @@
         position: absolute;
         right: 0;
         left: 0;
-        opacity: 0.7;
-
-        &:hover,
-        &.dragged {
-            opacity: 1;
-        }
     }
 
 }
