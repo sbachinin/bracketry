@@ -180,9 +180,7 @@
         display: grid;
         grid-template-rows: 100%;
         overflow: hidden;
-        transform: translateY(0);
-        transition: transform 0.2s ease-out;
-        /* width: max-content; */
+        transition: margin-top 0.2s ease-out;
     }
 
     .scrollbar-parent {
