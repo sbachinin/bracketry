@@ -3,6 +3,7 @@ import { Data, Round, Match, Side, Contestant, Player } from "./lib/data/data"
 type Options = {
     verticalScrollMode: 'buttons' | 'mousewheel',
     verticalScrollButtonsPosition: 'gutters' | 'overMatches',
+    syntheticScrollAmount: number,
     width: string,
     height: string,
     fullscreen: boolean,
