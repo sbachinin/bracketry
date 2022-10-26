@@ -1,8 +1,10 @@
 import { Data, Round, Match, Side, Contestant, Player } from "./lib/data/data"
 
+// TODO check if all options present here
+
 type Options = {
     verticalScrollMode: 'buttons' | 'mousewheel',
-    verticalScrollButtonsPosition: 'gutters' | 'overMatches',
+    scrollButtonsPosition: 'gutters' | 'overMatches',
     syntheticScrollAmount: number,
     width: string,
     height: string,
@@ -33,6 +35,9 @@ type Options = {
     rightNavigationButtonBackground: string,
     leftNavigationButtonHTML: string,
     rightNavigationButtonHTML: string,
+    scrollUpButtonHTML: string,
+    scrollDownButtonHTML: string,
+    defaultScrollSvgSize: number,
     rootFontFamily: string,
     roundTitlesFontFamily: string,
     roundTitlesFontSize: number,

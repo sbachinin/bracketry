@@ -1,4 +1,46 @@
 .playoffs-root {
+
+    .navigation-button,
+    .vertical-scroll-button {
+        justify-content: center;
+        align-items: center;
+
+        border-width: 1px;
+        border-style: solid;
+        border-color: transparent;
+
+        cursor: auto;
+        pointer-events: none;
+        user-select: none;
+
+        z-index: 3;
+
+        &.active {
+            cursor: pointer;
+            pointer-events: auto;
+
+            &>* {
+                opacity: 0.65;
+            }
+
+            &:hover>* {
+                opacity: 1;
+            }
+        }
+
+        &.hidden {
+            display: none;
+        }
+
+        &>* {
+            transition: opacity ease-in-out 0.2s;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+    }
+
+
+
     .buttons-header {
         align-items: center;
         justify-content: space-between;
@@ -10,53 +52,30 @@
 
         .navigation-button {
             display: flex;
-            align-items: center;
         }
     }
-    
+
     .navigation-button {
         max-height: 100%;
-        pointer-events: none;
-        border-color: transparent;
+
         &.non-header-button {
-            cursor: auto;
-            user-select: none;
-            z-index: 3;
-            border-width: 1px;
-            border-style: solid;
-            justify-content: center;
-            align-items: center;
             &.left {
                 left: 0;
             }
+
             &.right {
                 right: 0;
             }
         }
-
-        &.hidden {
-            display: none;
-        }
-
-        &.active {
-            cursor: pointer;
-            pointer-events: auto;
-            & > * {
-                opacity: 0.65;
-            }
-            &:hover > * {
-                opacity: 1;
-            }
-        }
-
-        & > * {
-            transition: opacity ease-in-out 0.2s;
-            opacity: 0.15;
-            pointer-events: none;
-        }
     }
-    
-    .default-navigation-svg {
-        height: auto;
+
+
+    .default-nav-icon,
+    .default-scroll-icon {
+        display: flex;
+
+        svg {
+            box-sizing: content-box;
+        }
     }
 }
