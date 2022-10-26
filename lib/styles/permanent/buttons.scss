@@ -49,11 +49,13 @@
         border-width: 1px;
         border-style: solid;
         border-color: transparent;
+        border-bottom-color: var(--navigationGutterBorderColor, var(--rootBorderColor));
 
         .navigation-button {
             display: flex;
         }
     }
+
 
     .navigation-button {
         max-height: 100%;
@@ -61,10 +63,16 @@
         &.non-header-button {
             &.left {
                 left: 0;
+                &.gutter {
+                    border-right-color: var(--navigationGutterBorderColor, var(--rootBorderColor));
+                }
             }
 
             &.right {
                 right: 0;
+                &.gutter {
+                    border-left-color: var(--navigationGutterBorderColor, var(--rootBorderColor));
+                }
             }
         }
     }
@@ -76,6 +84,22 @@
 
         svg {
             box-sizing: content-box;
+        }
+    }
+
+
+        
+    .button-up {
+        border-bottom-color: transparent;
+        &.gutter {
+            border-bottom-color: var(--scrollGutterBorderColor, var(--rootBorderColor));
+        }
+    }
+
+    .button-down {
+        border-top-color: transparent;
+        &.gutter {
+            border-top-color: var(--scrollGutterBorderColor, var(--rootBorderColor));
         }
     }
 }

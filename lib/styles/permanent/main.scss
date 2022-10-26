@@ -72,6 +72,7 @@
     text-align: left;
     border-width: 1px;
     border-style: solid;
+    border-color: var(--wrapperBorderColor, var(--rootBorderColor));
     box-sizing: border-box;
 
     /* "SHIELD AGAINST EXTERNAL STYLES" */
@@ -165,6 +166,13 @@
         }
     }
 
+            
+    .round-titles-wrapper:after {
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: var(--roundTitlesBorderBottomColor, var(--rootBorderColor));
+    }
+
     .round-title {
         display: flex;
         align-items: center;
@@ -179,7 +187,7 @@
         position: relative;
     }
 
-    .matches-vertical-scroller {
+    .matches-scroller {
         position: relative;
         overflow-y: scroll;
         overflow-x: hidden;
