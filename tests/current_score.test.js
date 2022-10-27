@@ -28,7 +28,7 @@ test(`renders valid current_score.subscore (even without mainScore)`, () => {
     expect(wrapper.querySelector('.current_score .side-own-single-score .subscore').textContent).toBe('2')
 })
 
-test(`renders empty <current_score> if not an object`, () => {
+test(`renders empty .current-score if not an object`, () => {
     const data = {
         rounds: [{}, {}],
         matches: [
@@ -38,7 +38,7 @@ test(`renders empty <current_score> if not an object`, () => {
         ]
     }
     const { wrapper } = init(data)
-    expect(wrapper.querySelectorAll('.current_score:empty').length).toBe(6)
+    expect(wrapper.querySelectorAll('.current-score:empty').length).toBe(6)
 })
 
 
@@ -51,7 +51,7 @@ test(`renders empty <main-score> if it's invalid`, () => {
         ]
     }
     const { wrapper } = init(data)
-    expect(wrapper.querySelectorAll('.current_score .side-own-single-score .main-score:empty').length).toBe(4)
+    expect(wrapper.querySelectorAll('.current-score .side-own-single-score .main-score:empty').length).toBe(4)
 })
 
 
@@ -64,11 +64,11 @@ test(`renders no <subscore> if it's invalid`, () => {
         ]
     }
     const { wrapper } = init(data)
-    expect(wrapper.querySelectorAll('.current_score .side-own-single-score .subscore').length).toBe(0)
+    expect(wrapper.querySelectorAll('.current-score .side-own-single-score .subscore').length).toBe(0)
 })
 
 
-test(`<opponent-single-score> in <current_score> is made invisible`, () => {
+test(`.opponent-single-score in .current-score is made invisible`, () => {
     const data = {
         rounds: [{}],
         matches: [{
@@ -80,9 +80,9 @@ test(`<opponent-single-score> in <current_score> is made invisible`, () => {
     }
     const { wrapper } = init(data)
     expect(getComputedStyle(
-        wrapper.querySelectorAll('.current_score .opponent-single-score')[0]
+        wrapper.querySelectorAll('.current-score .opponent-single-score')[0]
     ).height).toBe('0px')
     expect(getComputedStyle(
-        wrapper.querySelectorAll('.current_score .opponent-single-score')[1]
+        wrapper.querySelectorAll('.current-score .opponent-single-score')[1]
     ).height).toBe('0px')
 })

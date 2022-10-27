@@ -50,6 +50,7 @@
         border-style: solid;
         border-color: transparent;
         border-bottom-color: var(--navigationGutterBorderColor, var(--rootBorderColor));
+        display: none;
 
         .navigation-button {
             display: flex;
@@ -61,19 +62,22 @@
         max-height: 100%;
 
         &.non-header-button {
+            position: absolute;
+            transform: translate(0, -50%);
+            top: var(--navButtonsTopDistance);
+            display: none;
+
             &.left {
                 left: 0;
-                &.gutter {
-                    border-right-color: var(--navigationGutterBorderColor, var(--rootBorderColor));
-                }
             }
 
             &.right {
                 right: 0;
-                &.gutter {
-                    border-left-color: var(--navigationGutterBorderColor, var(--rootBorderColor));
-                }
             }
+        }
+
+        svg {
+            fill: var(--navigationSvgColor);
         }
     }
 
@@ -88,18 +92,109 @@
     }
 
 
-        
-    .button-up {
-        border-bottom-color: transparent;
-        &.gutter {
-            border-bottom-color: var(--scrollGutterBorderColor, var(--rootBorderColor));
+    .default-nav-icon svg {
+        padding: calc(var(--defaultNavigationIconSize) / 15);
+        width: var(--defaultNavigationIconSize);
+        height: var(--defaultNavigationIconSize);
+    }
+
+    .default-scroll-icon svg {
+        padding: calc(var(--defaultScrollIconSize) / 15);
+        width: var(--defaultScrollIconSize);
+        height: var(--defaultScrollIconSize);
+    }
+
+
+    .vertical-scroll-button {
+        display: none;
+        &.button-up {
+            border-bottom-color: transparent;
+        }
+        &.button-down {
+            border-top-color: transparent;
         }
     }
 
-    .button-down {
-        border-top-color: transparent;
-        &.gutter {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* FEATURE STYLES */
+
+    &.with-gutter-scroll-buttons {
+        .button-up {
+            border-bottom-color: var(--scrollGutterBorderColor, var(--rootBorderColor));
+        }
+        .button-down {
             border-top-color: var(--scrollGutterBorderColor, var(--rootBorderColor));
+        }
+    }
+
+    &.fullscreen,
+    &.with-buttons-vertical-scroll {
+        .vertical-scroll-button {
+            display: flex;
+        }
+        .scrollbar {
+            transition: top 0.2s ease-out, height 0.2s ease-out;
+        }
+    }
+
+
+
+
+    &.with-nav-buttons-before-titles {
+        .buttons-header {
+            display: flex;
+        }
+    }
+
+    &.with-nav-buttons-over-titles {
+        .buttons-header {
+            display: flex;
+            position: absolute;
+            z-index: 1;
+            left: 0px;
+            right: 0px;
+            height: calc(var(--roundTitlesHeight) + 1px);
+            border-color: transparent;
+        }
+    }
+
+    &.with-gutter-nav-buttons {
+        .navigation-button.non-header-button {
+            position: static;
+            transform: none;
+            min-height: 100%;
+
+            &:not(.hidden) {
+                display: flex;
+            }
+
+            &.left {
+                border-right-color: var(--navigationGutterBorderColor, var(--rootBorderColor));
+            }
+            &.right {
+                border-left-color: var(--navigationGutterBorderColor, var(--rootBorderColor));
+            }
+        }
+    }
+
+    &.with-nav-buttons-over_matches {
+        .navigation-button.non-header-button {
+            &:not(.hidden) {
+                display: flex;
+            }
         }
     }
 }

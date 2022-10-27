@@ -15,6 +15,7 @@
     align-items: center;
     justify-content: center;
 
+    background-color: var(--fullscreenBgColor);
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
 
@@ -30,6 +31,8 @@
     position: fixed;
     right: 0;
     top: 0;
+    width: calc((100% - var(--width)) / 2);
+    height: calc((100% - var(--height)) / 2);
     z-index: 4;
     cursor: pointer;
     align-items: center;
@@ -51,6 +54,7 @@
         display: flex;
         padding: 6px;
         border-radius: 50%;
+        background: var(--rootBgColor);
 
         svg {
             opacity: 0.65;
@@ -68,12 +72,16 @@
     position: relative;
     min-width: 260px;
     display: flex;
+    width: var(--width);
+    height: var(--height);
     flex-direction: column;
     text-align: left;
     border-width: 1px;
     border-style: solid;
     border-color: var(--wrapperBorderColor, var(--rootBorderColor));
     box-sizing: border-box;
+    font-family: var(--rootFontFamily);
+    background-color: var(--rootBgColor);
 
     /* "SHIELD AGAINST EXTERNAL STYLES" */
     * {
@@ -110,14 +118,14 @@
         width: 0;
     }
 
-    .with-hidden-scrollbar {
+    .with-hidden-native-scrollbar {
         scrollbar-width: none;
         /* For Firefox */
         -ms-overflow-style: none;
         /* For Internet Explorer and Edge */
     }
 
-    .with-hidden-scrollbar::-webkit-scrollbar {
+    .with-hidden-native-scrollbar::-webkit-scrollbar {
         width: 0px;
         /* For Chrome, Safari, and Opera */
     }
@@ -151,6 +159,10 @@
 
     .round-titles-wrapper {
         width: 100%;
+        height: var(--roundTitlesHeight);
+        font-size: var(--roundTitlesFontSize);
+        font-family: var(--roundTitlesFontFamily, var(--rootFontFamily));
+        color: var(--roundTitleColor);
         position: relative;
 
         /* trick to draw border that stretches outside the parent
@@ -197,9 +209,13 @@
     .matches-positioner {
         position: relative;
         display: grid;
+        min-height: 100%;
         grid-template-rows: 100%;
         overflow: hidden;
         transition: margin-top 0.2s ease-out;
+
+        padding: var(--mainVerticalPadding, 0) 0;
+        font-size: var(--matchFontSize);
     }
 
     .scrollbar-parent {
@@ -208,12 +224,21 @@
         top: 0;
         bottom: 0;
         z-index: 3;
+        display: none;
+        width: var(--scrollbarWidth);
     }
 
     .scrollbar {
         position: absolute;
         right: 0;
         left: 0;
+        background: var(--scrollbarColor);
     }
 
+
+    &.with-visible-scrollbar {
+        .scrollbar-parent {
+            display: block;
+        }
+    }
 }

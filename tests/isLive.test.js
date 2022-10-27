@@ -21,7 +21,7 @@ test(`applies certain styles to a match element which { isLive: true }`, () => {
     const { wrapper } = init(data, options)
     expect(getComputedStyle(wrapper.querySelector('.match-body')).borderColor).toBe('red')
     expect(getComputedStyle(wrapper.querySelector('.match-body')).backgroundColor).toBe('blue')
-    expect(getComputedStyle(wrapper.querySelector('.current_score:not(:empty)')).borderColor).toBe('red')
+    expect(getComputedStyle(wrapper.querySelector('.current-score:not(:empty)')).borderColor).toBe('red')
 })
 
 
@@ -37,7 +37,7 @@ test(`does not apply live styles to a match element which { isLive: false }`, ()
     const { wrapper } = init(data, options)
     expect(getComputedStyle(wrapper.querySelector('.match-body')).borderColor).not.toBe('red')
     expect(getComputedStyle(wrapper.querySelector('.match-body')).backgroundColor).not.toBe('blue')
-    expect(getComputedStyle(wrapper.querySelector('.current_score:not(:empty)')).borderColor).not.toBe('red')
+    expect(getComputedStyle(wrapper.querySelector('.current-score:not(:empty)')).borderColor).not.toBe('red')
 })
 
 test(`does not apply live styles to a match element which has no 'isLive' property`, () => {
@@ -52,7 +52,7 @@ test(`does not apply live styles to a match element which has no 'isLive' proper
     const { wrapper } = init(data, options)
     expect(getComputedStyle(wrapper.querySelector('.match-body')).borderColor).not.toBe('red')
     expect(getComputedStyle(wrapper.querySelector('.match-body')).backgroundColor).not.toBe('blue')
-    expect(getComputedStyle(wrapper.querySelector('.current_score:not(:empty)')).borderColor).not.toBe('red')
+    expect(getComputedStyle(wrapper.querySelector('.current-score:not(:empty)')).borderColor).not.toBe('red')
 })
 
 
@@ -68,7 +68,7 @@ test(`does not apply live styles to a match element which has non-boolean 'isLiv
     const { wrapper } = init(data, options)
     expect(getComputedStyle(wrapper.querySelector('.match-body')).borderColor).not.toBe('red')
     expect(getComputedStyle(wrapper.querySelector('.match-body')).backgroundColor).not.toBe('blue')
-    expect(getComputedStyle(wrapper.querySelector('.current_score:not(:empty)')).borderColor).not.toBe('red')
+    expect(getComputedStyle(wrapper.querySelector('.current-score:not(:empty)')).borderColor).not.toBe('red')
     expect(consoleWarn.mock.calls[0][0]).toMatch(`Match.isLive must be a boolean`)
 })
 

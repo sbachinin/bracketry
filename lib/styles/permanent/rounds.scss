@@ -7,12 +7,24 @@
         min-width: 180px;
         max-width: 100%;
 
+        &:first-of-type .match-lines-area {
+            /* reduce the connection lines of marginal rounds to indicate that they are marginal  */
+            left: var(--matchHorMargin);
+        }
+
         &:last-of-type {
             /* overflow: hidden for earlier rounds will hide the vertical part of connecting lines.
                 for last round it's unnecessary
                     + content that overflows it may mess up the calculations like 'is all content visible within content_area?'
             */
             overflow: hidden;
+            .match-lines-area {
+                right: var(--matchHorMargin);
+            }
+        }
+
+        &.collapsed {
+            visibility: hidden;
         }
     }
 
@@ -24,6 +36,17 @@
         position: relative;
         min-height: 40px;
         box-sizing: border-box;
+        padding: calc(var(--matchMinVerticalGap) / 2) var(--matchHorMargin);
+
+
+        &.odd .line-wrapper.upper {
+            box-shadow: var(--connectionLinesWidth) 0px 0px 0px;
+            border-bottom: var(--connectionLinesWidth) solid var(--connectionLinesColor);
+        }
+        &.even .line-wrapper.lower {
+            box-shadow: var(--connectionLinesWidth) 0px 0px 0px;
+            border-top: var(--connectionLinesWidth) solid var(--connectionLinesColor);
+        }
 
 
         &.live {
@@ -32,49 +55,74 @@
                 background-color: var(--liveMatchBackgroundColor);
             }
 
-            .current_score {
+            .current-score {
                 border-color: var(--liveMatchBorderColor, var(--rootBorderColor));
             }
         }
 
-
-
-        .match-body {
-            display: flex;
-            width: 100%;
-            justify-content: flex-end; /* it pushes lonely match-status to very right */
-            z-index: 2;
-
-            transition: border-color 0.1s ease-out;
-            pointer-events: auto;
-
-            border-width: var(--connectionLinesWidth, 2);
-            border-style: solid;
-            border-color: transparent;
-
-            &:empty {
-                pointer-events: none; /* otherwise, when onMatchClick is set, a border will appear around an empty match :hover */
-            }
-
-            .sides {
-                flex: 1;
-                display: grid;
-                grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); /* two sides will always be of same height */
-                grid-template-columns: minmax(0, 1fr);
-            }
-
+        &.highlighted {
             .match-status {
-                z-index: 2;
-                align-self: center;
-                transition: border-color 0.1s ease-out;
+                border-color: var(--highlightedConnectionLinesColor);
+            }
+            .match-lines-area .line-wrapper {
+                color: var(--highlightedConnectionLinesColor); /* for box-shadow color, not text */
+                border-color: var(--highlightedConnectionLinesColor);
+            }
+        }
 
-                &:empty {
-                    display: none;
-                }
+        &.last-highlighted {
+            .match-lines-area .line-wrapper {
+                color: var(--connectionLinesColor);
             }
         }
     }
 
+    .match-status {
+        z-index: 2;
+        align-self: center;
+        transition: border-color 0.1s ease-out;
+
+        font-size: calc(var(--matchFontSize) * 0.85);
+        padding: calc(var(--matchFontSize) / 6) calc(var(--matchFontSize) / 2);
+        margin: 0 calc(var(--matchFontSize) / 2);
+        border-width: var(--connectionLinesWidth);
+        border-style: solid;
+        border-color: var(--connectionLinesColor);
+        background: #fff; /* "fallback" color if background option is invalid */
+        box-shadow: 0 0 0 1000px var(--matchStatusBackgroundColor) inset;
+
+        &:empty {
+            display: none;
+        }
+    }
+
+
+    .match-body {
+        display: flex;
+        width: 100%;
+        max-width: var(--matchMaxWidth);
+        justify-content: flex-end; /* it pushes lonely match-status to very right */
+        z-index: 2;
+
+        transition: border-color 0.1s ease-out;
+        pointer-events: auto;
+
+        border-width: var(--connectionLinesWidth, 2);
+        border-style: solid;
+        border-color: transparent;
+
+        &:empty {
+            pointer-events: none; /* otherwise, when onMatchClick is set, a border will appear around an empty match :hover */
+        }
+
+        .sides {
+            flex: 1;
+            display: grid;
+            grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); /* two sides will always be of same height */
+            grid-template-columns: minmax(0, 1fr);
+            grid-row-gap: var(--connectionLinesWidth);
+        }
+    }
 
 
 
@@ -83,7 +131,7 @@
 /* LINES */
 
 /* regular lines */
-    .match-wrapper .match-lines-area {
+    .match-lines-area {
         position: absolute;
         left: 0;
         right: 0;
@@ -97,7 +145,7 @@
         .line-wrapper {
             flex: 1; /* each of 2 empty guys takes 50% height */
             transition: color 0.1s ease-out, border-color 0.1s ease-out;
-            color: transparent;
+            color: var(--connectionLinesColor); /* for box-shadow color, not text */
         }
     }
 
@@ -115,52 +163,41 @@
         display: flex;
         align-items: center;
         pointer-events: auto;
+
+        padding-top: var(--matchAxisMargin);
+        padding-bottom: var(--matchAxisMargin);
+        padding-right: calc(var(--matchFontSize) / 3 * 2);
+        padding-left: calc(var(--matchFontSize) / 2);
+        color: var(--matchTextColor); /* difined at this depth because on upper levels color property is used for box-shadow tricks */
+
+        &.highlighted {
+            .player-title {
+                color: var(--highlightedPlayerTitleColor);
+            }
+        }
+
+        &.looser:not(.highlighted) .player-title,
+        & .single-score-wrapper:not(.winner) {
+            opacity: 0.54;
+        }
+
+        &:not(.winner) .winner-mark {
+            display: none;
+        }
     }
 
 
     .side-info-item {
+
         display: grid;
         grid-auto-rows: minmax(0, 1fr); /* equal height rows */
         grid-template-columns: auto;
         align-items: center;
 
-        &.players-info {
-            flex: 1;
-            min-width: 0;
-        }
-    }
-
-
-    .player-wrapper {
-        display: flex;
-        align-items: center;
-        min-width: 0;
-        overflow: hidden;
-
-        .nationality {
-            flex-shrink: 0;
-        }
-
-        .player-title {
-            flex: 1;
-            transition: color 0.1s ease-out, opacity 0.1s ease-out;
-            white-space: nowrap;
-            text-align: left;
-            text-overflow: ellipsis;
-            min-width: 0; /* it will make it shrink in case of narrow .player-wrapper */
-            overflow: hidden;
-        }
-    }
-
-    .side-wrapper.looser:not(.highlighted) .player-title,
-    .side-wrapper .single-score-wrapper:not(.winner) {
-        opacity: 0.54;
-    }
-
-
-
-    .side-info-item {
         &.serving-mark {
+            width: calc(var(--matchFontSize) / 2.5);
+            height: calc(var(--matchFontSize) / 2.5);
+            margin-left: calc(var(--distanceBetweenScorePairs) * 0.8);
             border-radius: 50%;
             background-color: #b7cf15;
 
@@ -175,18 +212,68 @@
 
         &.side-scores {
             grid-auto-flow: column;
+            font-family: var(--scoreFontFamily, var(--rootFontFamily));
+            grid-column-gap: var(--distanceBetweenScorePairs);
         }
 
-        &.current_score {
+        &.current-score {
             border-width: 1px;
             border-style: solid;
             text-align: center;
+
+            border-color: var(--matchTextColor);
+            padding: 0 calc(var(--matchFontSize) / 3);
+            margin-left: calc(var(--distanceBetweenScorePairs) * 0.8);
 
             &:empty {
                 display: none;
             }
         }
+
+        &.entry-status:not(:empty) {
+            margin-right: calc(var(--matchFontSize) / 2);
+        }
+
+        &.players-info {
+            flex: 1;
+            min-width: 0;
+            grid-row-gap: var(--oneSidePlayersGap);
+        }
+
+        &.winner-mark {
+            padding-right: var(--distanceBetweenScorePairs);
+        }
     }
+
+
+    
+    .player-wrapper {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+        overflow: hidden;
+
+        .nationality {
+            flex-shrink: 0;
+            &:not(:empty) {
+                margin-right: calc(var(--matchFontSize) / 2);
+            }
+        }
+
+        .player-title {
+            flex: 1;
+            transition: color 0.1s ease-out, opacity 0.1s ease-out;
+            white-space: nowrap;
+            text-align: left;
+            text-overflow: ellipsis;
+            min-width: 0; /* it will make it shrink in case of narrow .player-wrapper */
+            overflow: hidden;
+            padding-right: calc(var(--matchFontSize) * 1.5);
+            font-family: var(--playerTitleFontFamily, var(--rootFontFamily));
+        }
+    }
+
+
 
     .single-score-wrapper {
         display: flex;
@@ -207,11 +294,59 @@
 
     .subscore {
         padding-left: 1px;
+        font-size: calc(var(--matchFontSize) / 3 * 2);
+        margin-top: calc(var(--matchFontSize) / 5 * -1);
+        margin-right: calc(var(--matchFontSize) / 5 * -1);
     }
 
 
 
     svg.default-winner-svg {
         width: auto;
+        height: var(--matchFontSize);
+    }
+
+
+
+
+
+
+
+
+
+
+
+// FEATURE STYLES
+    
+    &.with-onMatchClick {
+        .match-body:not(:empty) {
+            cursor: pointer;
+
+            &:hover {
+                border-color: var(--hoveredMatchBorderColor, var(--rootBorderColor));
+                .player-title {
+                    color: var(--highlightedPlayerTitleColor);
+                }
+            }
+
+            * {
+                pointer-events: none; /* handle click/hover only on whole body */
+            }
+        }
+    }
+
+    &:not(.with-classical-layout) {
+        .round-wrapper.collapsed {
+            height: 0; overflow: hidden;
+        }
+    }
+
+    &.with-clickable-sides {
+        .side-wrapper {
+            cursor: pointer;
+            &:hover .player-title {
+                color: var(--highlightedPlayerTitleColor);
+            }
+        }
     }
 }
