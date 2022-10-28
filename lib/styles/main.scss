@@ -142,6 +142,10 @@
         grid-auto-columns: minmax(0, 1fr);
     }
 
+    .notransition {
+        transition: none !important;
+    }
+
     .content-area {
         height: 100%;
         display: flex;
@@ -212,7 +216,6 @@
         min-height: 100%;
         grid-template-rows: 100%;
         overflow: hidden;
-        transition: margin-top 0.2s ease-out;
 
         padding: var(--mainVerticalPadding, 0) 0;
         font-size: var(--matchFontSize);
@@ -239,6 +242,13 @@
     &.with-visible-scrollbar {
         .scrollbar-parent {
             display: block;
+        }
+    }
+
+    &.fullscreen,
+    &.with-buttons-vertical-scroll {
+        .matches-positioner {
+            transition: margin-top 0.2s ease-out;
         }
     }
 }
