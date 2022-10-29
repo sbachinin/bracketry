@@ -16,8 +16,6 @@
     justify-content: center;
 
     background-color: var(--fullscreenBgColor);
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
 
     transition: opacity 0.3s ease-out;
 
@@ -144,6 +142,10 @@
 
     .notransition {
         transition: none !important;
+    }
+
+    .noscroll-y {
+        overflow-y: hidden !important;
     }
 
     .content-area {
