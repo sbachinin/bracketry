@@ -107,11 +107,13 @@
 
     .vertical-scroll-button {
         display: none;
+
         &.button-up {
-            border-bottom-color: transparent;
+            border-bottom-color: var(--scrollGutterBorderColor, var(--rootBorderColor));
         }
+
         &.button-down {
-            border-top-color: transparent;
+            border-top-color: var(--scrollGutterBorderColor, var(--rootBorderColor));
         }
     }
 
@@ -131,12 +133,20 @@
 
     /* FEATURE STYLES */
 
-    &.with-gutter-scroll-buttons {
-        .button-up {
-            border-bottom-color: var(--scrollGutterBorderColor, var(--rootBorderColor));
-        }
-        .button-down {
-            border-top-color: var(--scrollGutterBorderColor, var(--rootBorderColor));
+    &.with-scroll-buttons-over-matches {
+        .vertical-scroll-button {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            border-color: transparent;
+
+            &.button-up {
+                top: var(--roundTitlesHeight);
+            }
+
+            &.button-down {
+                bottom: 0;
+            }
         }
     }
 
@@ -145,6 +155,7 @@
         .vertical-scroll-button {
             display: flex;
         }
+
         .scrollbar {
             transition: top 0.2s ease-out, height 0.2s ease-out;
         }
@@ -184,6 +195,7 @@
             &.left {
                 border-right-color: var(--navigationGutterBorderColor, var(--rootBorderColor));
             }
+
             &.right {
                 border-left-color: var(--navigationGutterBorderColor, var(--rootBorderColor));
             }
