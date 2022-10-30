@@ -103,22 +103,15 @@ test(`draws a new matchStatus for a match updated by applyMatchesUpdates`, () =>
 
 
 
-test(`applies live styles to a match which had { isLive: true } in applyMatchesUpdates`, () => {
+test(`adds "live" class to a match-wrapper which had { isLive: true } in applyMatchesUpdates`, () => {
 
-    const options = { liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }
-    const { wrapper, playoffs: pl } = init(finished_ucl, options)
-
-    const get_body_style = () => getComputedStyle(
-        wrapper.querySelector(`.round-wrapper[round-index="0"] .match-wrapper[match-order="1"] .match-body`)
-    )
-
-    expect(get_body_style().borderColor).not.toBe('red')
-    expect(get_body_style().backgroundColor).not.toBe('blue')
+    const { wrapper, playoffs: pl } = init(finished_ucl, {})
+    const selector = `.round-wrapper[round-index="0"] .match-wrapper[match-order="1"]`
+    expect(wrapper.querySelector(selector).classList.contains('live')).toBe(false)
 
     pl.applyMatchesUpdates([{ roundIndex: 0, order: 1, isLive: true }])
 
-    expect(get_body_style().borderColor).toBe('red')
-    expect(get_body_style().backgroundColor).toBe('blue')
+    expect(wrapper.querySelector(selector).classList.contains('live')).toBe(true)
 })
 
 

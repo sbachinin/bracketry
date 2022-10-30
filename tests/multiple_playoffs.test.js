@@ -8,10 +8,14 @@ const { createPlayoffs } = require('../dist/cjs/index.js')
 const finished_ucl = require('./ucl-finished.js').default
 
 
-test(`replaces old playoffs with new playoffs when createPlayoffs is called again with the same wrapper`, () => {
+test(`uninstalls old playoffs when new playoffs are installed into the same wrapper`, () => {
 
-    const { wrapper } = init(finished_ucl)
+    const { wrapper, playoffs: first_playoffs } = init(finished_ucl)
+    const uninstSpy = jest.spyOn(first_playoffs, 'uninstall')
+
     createPlayoffs({ rounds: [{}, {}] }, wrapper)
+
+    expect(uninstSpy).toBeCalled();
 
     expect(wrapper.querySelectorAll('.playoffs-root').length).toBe(1)
     expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(2)

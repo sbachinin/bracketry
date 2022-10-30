@@ -44,8 +44,9 @@ test('returns the same set of functions if createPlayoffs is called with invalid
 
     expect(Object.keys(pl1)).toEqual(Object.keys(pl2))
 
-    const all_return_values_are_functions = Object.values(pl2).every(v => typeof v === 'function')
-    expect(all_return_values_are_functions).toBe(true)
+    const pl1_functions_count = Object.values(pl1).filter(v => typeof v === 'function').length
+    const pl2_functions_count = Object.values(pl2).filter(v => typeof v === 'function').length
+    expect(pl1_functions_count).toBe(pl2_functions_count)
 })
 
 
@@ -65,7 +66,7 @@ test('after initialization has failed, returned functions may be called without 
         'invalid data',
         'invalid options'
     )
-    Object.values(pl).forEach(v => v())
+    Object.values(pl).forEach(v => typeof v === 'function' && v())
     expect(pl.getAllData()).toBe('invalid data')
     expect(pl.getUserOptions()).toBe('invalid options')
 })

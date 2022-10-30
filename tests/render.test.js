@@ -74,14 +74,3 @@ test('does not insert match-body element if there is no data for a match', () =>
     expect(wrapper.querySelectorAll('.match-body').length).toBe(0)
 })
 
-
-test(`applies width and height options`, () => {
-    const { wrapper } = init({ rounds: [{}] }, {
-        width: '700px',
-        height: '500px'
-    })
-
-    const styles = getComputedStyle(wrapper.querySelector('.fullscreen-wrapper'))
-    expect(styles.width).toBe('700px')
-    expect(styles.height).toBe('500px')
-})

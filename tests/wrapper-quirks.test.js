@@ -38,14 +38,18 @@ test('does not throw if wrapper is of bad type', () => {
 test('Returned methods are called without errors after user wrapper is removed', () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
     wrapper.remove()
-    const run_all = () => Object.values(pl).forEach(v => v())
+    const run_all = () => Object.values(pl).forEach(v => {
+        typeof v === 'function' && v()
+    })
     expect(run_all).not.toThrow()
 })
 
 test('Returned methods are called without errors after another playoffs are installed into the same wrapper', () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
     createPlayoffs({ rounds: [{}] }, wrapper)
-    const run_all = () => Object.values(pl).forEach(v => v())
+    const run_all = () => Object.values(pl).forEach(v => {
+        typeof v === 'function' && v()
+    })
     expect(run_all).not.toThrow()
 })
 

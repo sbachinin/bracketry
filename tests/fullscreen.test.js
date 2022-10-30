@@ -8,31 +8,31 @@ const { init } = require('./utils.js')
 const finished_ucl = require('./ucl-finished.js').default
 
 
-test(`with options.fullscreen === true root_element is rendered fixed to full viewport`, () => {
+test(`with options.fullscreen === true .playoffs-root is wrapped in .playoffs-fullscreen-wrapper`, () => {
 
     createPlayoffs(finished_ucl, document.body, { fullscreen: true })
-    const pl_root_styles = getComputedStyle(document.body.querySelector(`:scope > .playoffs-root`))
-    expect(pl_root_styles).toMatchObject({
-        position: 'fixed',
-        top: '0px',
-        left: '0px',
-        right: '0px',
-        bottom: '0px'
-    })
+    expect(
+        document.body.querySelector(`:scope > .playoffs-fullscreen-wrapper > .playoffs-root`)
+    ).not.toBe(null)
+})
+
+
+test(`.playoffs-fullscreen-wrapper is fixed to full viewport`, () => {
+
+    createPlayoffs(finished_ucl, document.body, { fullscreen: true })
+    const fullscreen_styles = getComputedStyle(document.body.querySelector(`.playoffs-fullscreen-wrapper`))
+    expect(fullscreen_styles).toMatchObject({ position: 'fixed', inset: "0" })
 })
 
 
 test(`when rendered to anything other than document.body, fullscreen playoffs are rendered as expected`, () => {
 
     const { wrapper } = init(finished_ucl, { fullscreen: true })
-    const pl_root_styles = getComputedStyle(wrapper.querySelector(`:scope > .playoffs-root`))
-    expect(pl_root_styles).toMatchObject({
-        position: 'fixed',
-        top: '0px',
-        left: '0px',
-        right: '0px',
-        bottom: '0px'
-    })
+    expect(
+        wrapper.querySelector(`:scope > .playoffs-fullscreen-wrapper > .playoffs-root`)
+    ).not.toBe(null)
+    const fullscreen_styles = getComputedStyle(wrapper.querySelector(`.playoffs-fullscreen-wrapper`))
+    expect(fullscreen_styles).toMatchObject({ position: 'fixed', inset: "0" })
 })
 
 
@@ -44,19 +44,10 @@ test(`with non-boolean (but truthy) options.fullscreen root_element is rendered 
 })
 
 
-test(`exit-fullscreen-button is rendered invisible by default`, () => {
+test(`without {fullscreen: true} .exit-fullscreen-button isn't rendered`, () => {
 
     const { wrapper } = init(finished_ucl)
-    const button_styles = getComputedStyle(wrapper.querySelector(`.exit-fullscreen-button`))
-    expect(button_styles.display).toBe('none')
-})
-
-
-test(`with options.fullscreen === true exit-fullscreen-button is rendered visible`, () => {
-
-    const { wrapper } = init(finished_ucl, { fullscreen: true })
-    const button_styles = getComputedStyle(wrapper.querySelector(`.exit-fullscreen-button`))
-    expect(button_styles.display).toBe('flex')
+    expect(wrapper.querySelector(`.exit-fullscreen-button`)).toBe(null)
 })
 
 
@@ -64,10 +55,10 @@ test(`click anywhere outside fullscreen-wrapper uninstalls playoffs`, async () =
 
     const { wrapper } = init(finished_ucl, { fullscreen: true })
 
-    wrapper.querySelector(`.playoffs-root`)
+    wrapper.querySelector(`.playoffs-fullscreen-wrapper`)
         .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
-    await new Promise(r => setTimeout(r, 500)) // playoffs are removed after 300 ms animation
+    await new Promise(r => setTimeout(r, 200)) // playoffs are removed after 150 ms animation
 
     expect(wrapper.querySelector(`.playoffs-root`)).toBe(null)
 })
@@ -80,7 +71,7 @@ test(`click on exit-fullscreen-button uninstalls playoffs`, async () => {
     wrapper.querySelector(`.exit-fullscreen-button`)
         .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
-    await new Promise(r => setTimeout(r, 500)) // playoffs are removed after 300 ms animation
+    await new Promise(r => setTimeout(r, 200)) // playoffs are removed after 150 ms animation
 
     expect(wrapper.querySelector(`.playoffs-root`)).toBe(null)
 })
@@ -93,7 +84,7 @@ test(`clicks within playoffs-root don't uninstall fullscreen playoffs`, async ()
     wrapper.querySelector(`.round-wrapper`)
         .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
-    await new Promise(r => setTimeout(r, 500)) // playoffs are removed after 300 ms animation
+    await new Promise(r => setTimeout(r, 200)) // playoffs are removed after 150 ms animation
 
     expect(wrapper.querySelector(`.playoffs-root`)).not.toBe(null)
 })
@@ -108,7 +99,7 @@ test(`highlights team history on fullscreen`, async () => {
     wrapper.querySelector(benfica_selector)
         .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
-    await new Promise(r => setTimeout(r, 500)) // make sure it did not uninstall on click
+    await new Promise(r => setTimeout(r, 200)) // make sure it did not uninstall on click
 
     expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(2)
     expect(wrapper.querySelectorAll(benfica_selector + '.highlighted').length).toBe(2)
@@ -122,7 +113,7 @@ test(`clicks on navigation buttons work in fullscreen mode`, async () => {
     wrapper.querySelector('.navigation-button.non-header-button.right')
         .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
-    await new Promise(r => setTimeout(r, 500)) // make sure it did not uninstall on click
+    await new Promise(r => setTimeout(r, 200)) // make sure it did not uninstall on click
 
     expect(pl.getNavigationState().baseRoundIndex).toBe(1)
 
@@ -130,3 +121,5 @@ test(`clicks on navigation buttons work in fullscreen mode`, async () => {
     expect(getComputedStyle(all_rounds[0]).visibility).toBe('hidden')
     expect(getComputedStyle(all_rounds[2]).visibility).toBe('visible')
 })
+
+// TODO ?? {verticalScrollMode: "buttons"} is forced on fullscreen

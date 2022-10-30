@@ -38,11 +38,7 @@ test('enables right nav buttons on initialization if rounds count is greater tha
 test('hides nav buttons on initialization if rounds count is <= options.visibleRoundsCount', () => {
 
     const { wrapper } = init(finished_ucl, { visibleRoundsCount: 4 })
-
-    const first_visible_button = [...wrapper.querySelectorAll('.navigation-button')]
-        .find(button => getComputedStyle(button).display !== 'none')
-
-    expect(first_visible_button instanceof Node).toBe(false)
+    expect(wrapper.querySelectorAll('.navigation-button.hidden').length).toBe(4)
 })
 
 
@@ -52,9 +48,7 @@ test('hides nav buttons when applyNewOptions is called with visibleRoundsCount w
 
     pl.applyNewOptions({ visibleRoundsCount: 4 })
 
-    const first_visible_button = [...wrapper.querySelectorAll('.navigation-button')]
-        .find(button => getComputedStyle(button).display !== 'none')
-    expect(first_visible_button instanceof Node).toBe(false)
+    expect(wrapper.querySelectorAll('.navigation-button.hidden').length).toBe(4)
 })
 
 
@@ -142,7 +136,7 @@ test('applies certain styles when options.navButtonsPosition is "gutters"', () =
 
     const { wrapper } = init(
         finished_ucl,
-        { navButtonsPosition: 'gutters', navigationGutterBorderColor: 'red' }
+        { navButtonsPosition: 'gutters' }
     )
 
     // 1. .buttons-header is hidden
@@ -161,15 +155,9 @@ test('applies certain styles when options.navButtonsPosition is "gutters"', () =
     const right_main_button = wrapper.querySelector('.non-header-button.right')
 
     expect(getComputedStyle(left_main_button))
-        .toMatchObject({
-            ...expected_non_header_buttons_styles,
-            'border-right-color': 'red'
-        })
+        .toMatchObject(expected_non_header_buttons_styles)
     expect(getComputedStyle(right_main_button))
-        .toMatchObject({
-            ...expected_non_header_buttons_styles,
-            'border-left-color': 'red'
-        })
+        .toMatchObject(expected_non_header_buttons_styles)
 })
 
 
@@ -185,8 +173,7 @@ test('applies certain styles when options.navButtonsPosition is "overMatches"', 
     const expected_non_header_buttons_styles = {
         display: 'flex',
         position: 'absolute',
-        transform: 'translate(0, -50%)',
-        'min-height': '0'
+        transform: 'translate(0, -50%)'
     }
 
     const left_main_button = wrapper.querySelector('.non-header-button.left')
@@ -220,8 +207,7 @@ test('applies certain styles when options.navButtonsPosition is "overTitles"', (
         position: 'absolute',
         'z-index': '1',
         left: '0px',
-        right: '0px',
-        height: (roundTitlesHeight + 1) + 'px'
+        right: '0px'
     })
 })
 
