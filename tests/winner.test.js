@@ -6,24 +6,7 @@ global.ResizeObserver = require('resize-observer-polyfill')
 const { init } = require('./utils.js')
 
 
-test(`draws a winner mark without {display: none} for a side which has { isWinner: true }`, () => {
-
-    const data = {
-        rounds: [{}],
-        matches: [{
-            roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', isWinner: true }]
-        }]
-    }
-    const { wrapper } = init(data)
-    expect(
-        getComputedStyle(
-            wrapper.querySelector('.side-wrapper[contestant-id="c1"] .winner-mark')
-        ).display
-    ).not.toBe('none')
-})
-
-
-test(`applies { display: none } to a <winner-mark> of a side which has no 'isWinner' property`, () => {
+test(`does not add a "winner" class to a side-wrapper for which isWinner is false`, () => {
 
     const data = {
         rounds: [{}],
@@ -32,45 +15,20 @@ test(`applies { display: none } to a <winner-mark> of a side which has no 'isWin
         }]
     }
     const { wrapper } = init(data)
-    expect(
-        getComputedStyle(
-            wrapper.querySelector('.side-wrapper[contestant-id="c1"] .winner-mark')
-        ).display
-    ).toBe('none')
+    expect(wrapper.querySelector('.side-wrapper[contestant-id="c1"].winner')).toBe(null)
 })
 
 
-test(`applies { display: none } to a <winner-mark> of a side which has { isWinner: false }`, () => {
+test(`adds "winner" class to a side-wrapper for which isWinner is true`, () => {
 
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', isWinner: false }]
+            roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', isWinner: true }]
         }]
     }
     const { wrapper } = init(data)
-    expect(
-        getComputedStyle(
-            wrapper.querySelector('.side-wrapper[contestant-id="c1"] .winner-mark')
-        ).display
-    ).toBe('none')
-})
-
-
-test(`applies { display: none } to a <winner-mark> of a side which has a non-boolean truthy 'isWinner' property`, () => {
-
-    const data = {
-        rounds: [{}],
-        matches: [{
-            roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', isWinner: 3123213 }]
-        }]
-    }
-    const { wrapper } = init(data)
-    expect(
-        getComputedStyle(
-            wrapper.querySelector('.side-wrapper[contestant-id="c1"] .winner-mark')
-        ).display
-    ).toBe('none')
+    expect(wrapper.querySelector('.side-wrapper[contestant-id="c1"].winner')).not.toBe(null)
 })
 
 
