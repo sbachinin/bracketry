@@ -5,66 +5,29 @@
 global.ResizeObserver = require('resize-observer-polyfill')
 const { init } = require('./utils.js')
 
-test(`renders valid current_score`, () => {
+test(`renders valid currentScore`, () => {
     const data = {
         rounds: [{}],
         matches: [{
-            roundIndex: 0, order: 0, sides: [{ current_score: { mainScore: '15' } }]
+            roundIndex: 0, order: 0, sides: [{ currentScore: '15' }]
         }]
     }
     const { wrapper } = init(data)
-    expect(wrapper.querySelector('.current_score .side-own-single-score .main-score').textContent).toBe('15')
+    expect(wrapper.querySelector('.current-score .side-own-single-score .main-score').textContent).toBe('15')
 })
 
 
-test(`renders valid current_score.subscore (even without mainScore)`, () => {
-    const data = {
-        rounds: [{}],
-        matches: [{
-            roundIndex: 0, order: 0, sides: [{ current_score: { subscore: '2' } }]
-        }]
-    }
-    const { wrapper } = init(data)
-    expect(wrapper.querySelector('.current_score .side-own-single-score .subscore').textContent).toBe('2')
-})
-
-test(`renders empty .current-score if not an object`, () => {
+test(`renders empty .current-score if invalid`, () => {
     const data = {
         rounds: [{}, {}],
         matches: [
-            { roundIndex: 0, order: 0, sides: [{ current_score: NaN }, { current_score: 'i am an idiot' }] },
-            { roundIndex: 0, order: 1, sides: [{ current_score: Array }, { current_score: 433 }] },
-            { roundIndex: 1, order: 0, sides: [{ current_score: null }, { current_score: true }] }
+            { roundIndex: 0, order: 0, sides: [{ currentScore: NaN }, { currentScore: {} }] },
+            { roundIndex: 0, order: 1, sides: [{ currentScore: Array }, { currentScore: () => { } }] },
+            { roundIndex: 1, order: 0, sides: [{ currentScore: null }, { currentScore: true }] }
         ]
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelectorAll('.current-score:empty').length).toBe(6)
-})
-
-
-test(`renders empty <main-score> if it's invalid`, () => {
-    const data = {
-        rounds: [{}, {}],
-        matches: [
-            { roundIndex: 0, order: 0, sides: [{ current_score: { mainScore: NaN } }, { current_score: { mainScore: Array } }] },
-            { roundIndex: 0, order: 1, sides: [{ current_score: { mainScore: null } }, { current_score: { mainScore: true } }] },
-        ]
-    }
-    const { wrapper } = init(data)
-    expect(wrapper.querySelectorAll('.current-score .side-own-single-score .main-score:empty').length).toBe(4)
-})
-
-
-test(`renders no <subscore> if it's invalid`, () => {
-    const data = {
-        rounds: [{}, {}],
-        matches: [
-            { roundIndex: 0, order: 0, sides: [{ current_score: { subscore: NaN } }, { current_score: { subscore: Array } }] },
-            { roundIndex: 0, order: 1, sides: [{ current_score: { subscore: null } }, { current_score: { subscore: true } }] },
-        ]
-    }
-    const { wrapper } = init(data)
-    expect(wrapper.querySelectorAll('.current-score .side-own-single-score .subscore').length).toBe(0)
 })
 
 
@@ -73,9 +36,7 @@ test(`.opponent-single-score in .current-score is made invisible`, () => {
         rounds: [{}],
         matches: [{
             roundIndex: 0, order: 0,
-            sides: [
-                { current_score: { mainScore: '12' } }, { current_score: { mainScore: '7' } }
-            ]
+            sides: [{ currentScore: '12' }, { currentScore: '7' }]
         }]
     }
     const { wrapper } = init(data)

@@ -9,7 +9,9 @@ const consoleWarn = jest.spyOn(console, 'warn')
 afterEach(jest.clearAllMocks)
 
 
+
 test(`renders a string for mainScore`, () => {
+
     const data = {
         rounds: [{}],
         matches: [{
@@ -22,7 +24,9 @@ test(`renders a string for mainScore`, () => {
     expect(wrapper.querySelector('.side-own-single-score .main-score').textContent).toBe('Rt')
 })
 
+
 test(`renders a number for mainScore`, () => {
+
     const data = {
         rounds: [{}],
         matches: [{
@@ -36,9 +40,8 @@ test(`renders a number for mainScore`, () => {
 })
 
 
-
-
 test(`renders no <side-own-single-score>s when neither side has a scores array`, () => {
+
     const data = {
         rounds: [{}],
         matches: [{
@@ -52,8 +55,8 @@ test(`renders no <side-own-single-score>s when neither side has a scores array`,
 })
 
 
-
 test(`renders no <side-own-single-score>s when both sides have EMPTY scores arrays`, () => {
+
     const data = {
         rounds: [{}],
         matches: [{
@@ -67,21 +70,8 @@ test(`renders no <side-own-single-score>s when both sides have EMPTY scores arra
 })
 
 
-test(`renders <side-own-single-score>s for both sides when ONLY 1 side has a scores array`, () => {
-    const data = {
-        rounds: [{}],
-        matches: [{
-            roundIndex: 0,
-            order: 0,
-            sides: [{}, { scores: [{ mainScore: 'Rt' }] }]
-        }],
-    }
-    const { wrapper } = init(data)
-    expect(wrapper.querySelectorAll('.side-own-single-score').length).toBe(2)
-})
-
-
 test(`renders empty <side-own-single-score> for an empty side.scores when other side has a scores entry`, () => {
+
     const data = {
         rounds: [{}],
         matches: [{
@@ -102,8 +92,8 @@ test(`renders empty <side-own-single-score> for an empty side.scores when other 
 })
 
 
-
 test(`renders scores even if side has no "contestantId"`, () => {
+
     const data = {
         rounds: [{}],
         matches: [{
@@ -115,8 +105,8 @@ test(`renders scores even if side has no "contestantId"`, () => {
 })
 
 
-test(`renders as much <single-score-wrapper>s as the longest scores length of both sides
-(regardless of validity of single score entries)`, () => {
+test(`renders as much <single-score-wrapper>s as the longest scores length of both sides`, () => {
+
     const data = {
         rounds: [{}],
         matches: [{
@@ -125,7 +115,6 @@ test(`renders as much <single-score-wrapper>s as the longest scores length of bo
                     contestantId: 'c1',
                     scores: [
                         { mainScore: '1' },
-                        NaN,
                         {},
                         { mainScore: '3' }
                     ]
@@ -141,13 +130,13 @@ test(`renders as much <single-score-wrapper>s as the longest scores length of bo
         }],
     }
     const { wrapper } = init(data)
-    expect(wrapper.querySelectorAll('.side-wrapper[contestant-id="c1"] .single-score-wrapper').length).toBe(4)
-    expect(wrapper.querySelectorAll('.side-wrapper[contestant-id="c2"] .single-score-wrapper').length).toBe(4)
+    expect(wrapper.querySelectorAll('.side-wrapper[contestant-id="c1"] .single-score-wrapper').length).toBe(3)
+    expect(wrapper.querySelectorAll('.side-wrapper[contestant-id="c2"] .single-score-wrapper').length).toBe(3)
 })
 
 
-
 test(`renders player title if side has no scores array`, () => {
+
     expect.assertions(1)
 
     const data = {
@@ -163,7 +152,9 @@ test(`renders player title if side has no scores array`, () => {
     expect(wrapper.querySelector('.player-title').textContent).toBe('josh')
 })
 
-test(`renders subscore if there is a valid one`, () => {
+
+test(`renders subscore if there's valid mainScore and valid subscore`, () => {
+
     const data = {
         rounds: [{}],
         matches: [{
@@ -175,41 +166,8 @@ test(`renders subscore if there is a valid one`, () => {
 })
 
 
-test(`should not render 'NaN' for mainScore`, () => {
-    const data = {
-        rounds: [{}],
-        matches: [{ roundIndex: 0, order: 0, sides: [{ scores: [{ mainScore: NaN }] }] }]
-    }
-    const { wrapper } = init(data)
-    expect(wrapper.querySelector('.main-score').textContent).toBe('')
-})
+test(`renders no .single-score-wrapper for various invalid score entries`, () => {
 
-
-test(`renders empty <side-own-single-score>s for undefined score entries, does not throw`, () => {
-    const data = {
-        rounds: [{}],
-        matches: [{
-            roundIndex: 0, order: 0, sides: [
-                { contestantId: 'c1', scores: [undefined, { mainScore: '4' }] },
-                { contestantId: 'c2', scores: [{ mainScore: '2' }, undefined] }
-            ]
-        }]
-    }
-
-    let pl = null
-    const try_init = () => { pl = init(data) }
-
-    expect(try_init).not.toThrow()
-
-    const first_side_own_scores = pl.wrapper.querySelectorAll('.side-wrapper[contestant-id="c1"] .side-own-single-score')
-    const second_side_own_scores = pl.wrapper.querySelectorAll('.side-wrapper[contestant-id="c2"] .side-own-single-score')
-    expect(first_side_own_scores[0].textContent.trim()).toBe('')
-    expect(first_side_own_scores[1].textContent.trim()).toBe('4')
-    expect(second_side_own_scores[0].textContent.trim()).toBe('2')
-    expect(second_side_own_scores[1].textContent.trim()).toBe('')
-})
-
-test(`renders empty <side-own-single-score> for other invalid entries, does not throw`, () => {
     const data = {
         rounds: [{}],
         matches: [{
@@ -250,9 +208,7 @@ test(`renders empty <side-own-single-score> for other invalid entries, does not 
 
     expect(try_init).not.toThrow()
 
-    expect(pl.wrapper.querySelectorAll('.side-own-single-score').length).toBe(23)
-    expect(pl.wrapper.querySelectorAll('.side-own-single-score .main-score:empty').length).toBe(23)
-    expect(pl.wrapper.querySelectorAll('.side-own-single-score .subscore').length).toBe(0)
+    expect(pl.wrapper.querySelectorAll('.side-own-single-score').length).toBe(0)
 })
 
 
@@ -286,7 +242,8 @@ test(`renders empty <side-own-single-score> for other invalid entries, does not 
 
 // SUBSCORE
 
-test(`renders numeric subscore even without mainScore`, () => {
+test(`renders no subscore if no mainScore`, () => {
+
     const data = {
         rounds: [{}],
         matches: [
@@ -294,50 +251,31 @@ test(`renders numeric subscore even without mainScore`, () => {
         ]
     }
     const { wrapper } = init(data)
-    expect(wrapper.querySelector('.subscore').textContent).toBe('32')
-})
-
-test(`renders string subscore even without mainScore`, () => {
-    const data = {
-        rounds: [{}],
-        matches: [
-            { roundIndex: 0, order: 0, sides: [{ scores: [{ subscore: '32%' }] }] }
-        ]
-    }
-    const { wrapper } = init(data)
-    expect(wrapper.querySelector('.subscore').textContent).toBe('32%')
-})
-
-test(`renders valid subscore even if mainScore is invalid`, () => {
-    const data = {
-        rounds: [{}],
-        matches: [
-            { roundIndex: 0, order: 0, sides: [{ scores: [{ mainScore: Object, subscore: 32 }] }] }
-        ]
-    }
-    const { wrapper } = init(data)
-    expect(wrapper.querySelector('.subscore').textContent).toBe('32')
-})
-
-
-
-test(`renders a contentful match without .subscore if score.subscore is of invalid type`, () => {
-    const data = {
-        rounds: [{}],
-        matches: [{
-            roundIndex: 0, order: 0, sides: [{ scores: [{ mainScore: '6', subscore: Array }] }]
-        }]
-    }
-    const { wrapper } = init(data)
-    expect(wrapper.querySelector('.main-score')).not.toBe(null)
     expect(wrapper.querySelector('.subscore')).toBe(null)
-    expect(consoleWarn.mock.calls[0][0]).toMatch(
-        `If you provide "subscore", it must be a number or a string`
-    )
 })
 
 
-test(`renders mainScore if subscore is invalid`, () => {
+test(`renders .single-score-wrapper for both sides if one of them has mainScore`, () => {
+
+    const data = {
+        rounds: [{}],
+        matches: [
+            {
+                roundIndex: 0, order: 0, sides: [
+                    { contestantId: 'c1' },
+                    { contestantId: 'c2', scores: [{ mainScore: 32 }] }
+                ]
+            }
+        ]
+    }
+    const { wrapper } = init(data)
+    expect(wrapper.querySelector('.side-wrapper[contestant-id="c1"] .main-score')).not.toBe(null)
+    expect(wrapper.querySelector('.side-wrapper[contestant-id="c2"] .main-score')).not.toBe(null)
+})
+
+
+test(`renders valid mainScore even if subscore is invalid`, () => {
+
     const data = {
         rounds: [{}],
         matches: [{
@@ -346,11 +284,16 @@ test(`renders mainScore if subscore is invalid`, () => {
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.main-score').textContent).toBe('6')
+    expect(wrapper.querySelector('.subscore')).toBe(null)
+    expect(consoleWarn.mock.calls[0][0]).toMatch(
+        `If you provide "subscore", it must be a number or a string`
+    )
 })
 
 
 // does not render NaN subscore
 test(`does not render <subscore> if subscore is NaN`, () => {
+
     const data = {
         rounds: [{}],
         matches: [{
@@ -371,6 +314,7 @@ test(`does not render <subscore> if subscore is NaN`, () => {
 // WINNER SCORE
 
 test(`renders <single-score-wrapper> semi-transparent when score entry HAS NOT { isWinner: true }`, () => {
+
     const data = {
         rounds: [{}],
         matches: [{
@@ -385,7 +329,9 @@ test(`renders <single-score-wrapper> semi-transparent when score entry HAS NOT {
     ).toBe('0.54')
 })
 
+
 test(`renders <single-score-wrapper> opaque when score entry HAS { isWinner: true }`, () => {
+
     const data = {
         rounds: [{}],
         matches: [{

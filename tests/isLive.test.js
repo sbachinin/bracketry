@@ -15,7 +15,7 @@ test(`applies certain styles to a match element which { isLive: true }`, () => {
         rounds: [{}],
         matches: [{
             roundIndex: 0, order: 0, isLive: true,
-            sides: [{ current_score: { mainScore: '1' } }, {}]
+            sides: [{ currentScore: '1' }, {}]
         }],
     }
     const options = { liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }
@@ -31,7 +31,7 @@ test(`does not apply live styles to a match element which { isLive: false }`, ()
         rounds: [{}],
         matches: [{
             roundIndex: 0, order: 0, isLive: false,
-            sides: [{ current_score: { mainScore: '1' } }, {}]
+            sides: [{ currentScore: '1' }, {}]
         }],
     }
     const options = { liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }
@@ -46,7 +46,7 @@ test(`does not apply live styles to a match element which has no 'isLive' proper
         rounds: [{}],
         matches: [{
             roundIndex: 0, order: 0,
-            sides: [{ current_score: { mainScore: '1' } }, {}]
+            sides: [{ currentScore: '1' }, {}]
         }],
     }
     const options = { liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }
@@ -62,7 +62,7 @@ test(`does not apply live styles to a match element which has non-boolean 'isLiv
         rounds: [{}],
         matches: [{
             roundIndex: 0, order: 0, isLive: 'yes',
-            sides: [{ current_score: { mainScore: '1' } }, {}]
+            sides: [{ currentScore: '1' }, {}]
         }],
     }
     const options = { liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }

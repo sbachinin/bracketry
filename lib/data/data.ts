@@ -34,7 +34,7 @@ export type Side = {
         E.g., points within a game in tennis: this number is drawn after 'scores',
         is surrounded by border and is higlighted with green if match 'isLive'
     */
-    current_score?: Score,
+    currentScore?: number | string,
     isServing?: boolean, // (for tennis) If 'true', a tennis ball icon will be drawn on the very left of a side
     isWinner?: boolean
 }
