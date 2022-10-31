@@ -9,7 +9,7 @@ type Options = {
     wrapperBorderColor: string,
     fullscreen: boolean,
     fullscreenBgColor: string,
-    verticalScrollMode: 'buttons' | 'mousewheel',
+    verticalScrollMode: 'buttons' | 'mousewheel' | 'mixed',
     scrollButtonsPosition: 'gutters' | 'overMatches',
     syntheticScrollAmount: number,
     rootBgColor: string,

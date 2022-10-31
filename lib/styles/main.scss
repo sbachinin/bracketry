@@ -144,10 +144,6 @@
         transition: none !important;
     }
 
-    .noscroll-y {
-        overflow-y: hidden !important;
-    }
-
     .content-area {
         height: 100%;
         display: flex;
@@ -207,9 +203,12 @@
 
     .matches-scroller {
         position: relative;
-        overflow-y: scroll;
+        overflow-y: hidden;
         overflow-x: hidden;
         height: 100%;
+        &.scroll-y-enabled {
+            overflow-y: scroll;
+        }
     }
 
     .matches-positioner {
@@ -248,7 +247,7 @@
     }
 
     &.fullscreen,
-    &.with-buttons-vertical-scroll {
+    &.with-vertical-scroll-buttons {
         .matches-positioner {
             will-change: transform;
             transition: transform 0.2s ease-out;
