@@ -206,9 +206,6 @@
         overflow-y: hidden;
         overflow-x: hidden;
         height: 100%;
-        &.scroll-y-enabled {
-            overflow-y: scroll;
-        }
     }
 
     .matches-positioner {
@@ -243,6 +240,12 @@
     &.with-visible-scrollbar {
         .scrollbar-parent {
             display: block;
+        }
+    }
+
+    &.with-native-scroll {
+        .matches-scroller.scroll-y-enabled {
+            overflow-y: scroll;
         }
     }
 
