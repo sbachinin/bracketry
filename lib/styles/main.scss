@@ -12,6 +12,7 @@
     opacity: 0;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
@@ -21,16 +22,22 @@
 
 
     .playoffs-root {
-        max-height: 100vh;
+        max-height: calc(100% - 42px);
+        max-width: 100%;
     }
 }
 
+.fullscreen-top, .fullscreen-bottom {
+    flex-basis: 42px;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
 .exit-fullscreen-button {
-    position: fixed;
-    right: 0;
-    top: 0;
     width: calc((100% - var(--width)) / 2);
-    height: calc((100% - var(--height)) / 2);
+    height: 100%;
     z-index: 4;
     cursor: pointer;
     align-items: center;
@@ -40,17 +47,15 @@
 
 
     /* these min-* prevent button from being pushed away on small screen: */
-    min-width: 46px;
-    min-height: 46px;
+    min-width: 42px;
 
     align-items: self-end;
     justify-content: flex-start;
-    padding: 4px;
     box-sizing: border-box;
 
     .circle-button {
         display: flex;
-        padding: 6px;
+        padding: 8px;
         border-radius: 50%;
         background: var(--rootBgColor);
 
