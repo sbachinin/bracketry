@@ -17,22 +17,12 @@ test(`with options.fullscreen === true .playoffs-root is wrapped in .playoffs-fu
 })
 
 
-test(`.playoffs-fullscreen-wrapper is fixed to full viewport`, () => {
-
-    createPlayoffs(finished_ucl, document.body, { fullscreen: true })
-    const fullscreen_styles = getComputedStyle(document.body.querySelector(`.playoffs-fullscreen-wrapper`))
-    expect(fullscreen_styles).toMatchObject({ position: 'fixed', inset: "0" })
-})
-
-
 test(`when rendered to anything other than document.body, fullscreen playoffs are rendered as expected`, () => {
 
     const { wrapper } = init(finished_ucl, { fullscreen: true })
     expect(
         wrapper.querySelector(`:scope > .playoffs-fullscreen-wrapper > .playoffs-root`)
     ).not.toBe(null)
-    const fullscreen_styles = getComputedStyle(wrapper.querySelector(`.playoffs-fullscreen-wrapper`))
-    expect(fullscreen_styles).toMatchObject({ position: 'fixed', inset: "0" })
 })
 
 
@@ -121,5 +111,6 @@ test(`clicks on navigation buttons work in fullscreen mode`, async () => {
     expect(getComputedStyle(all_rounds[0]).visibility).toBe('hidden')
     expect(getComputedStyle(all_rounds[2]).visibility).toBe('visible')
 })
+
 
 // TODO ?? {verticalScrollMode: "buttons"} is forced on fullscreen
