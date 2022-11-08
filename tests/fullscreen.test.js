@@ -111,6 +111,3 @@ test(`clicks on navigation buttons work in fullscreen mode`, async () => {
     expect(getComputedStyle(all_rounds[0]).visibility).toBe('hidden')
     expect(getComputedStyle(all_rounds[2]).visibility).toBe('visible')
 })
-
-
-// TODO ?? {verticalScrollMode: "buttons"} is forced on fullscreen
