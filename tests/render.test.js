@@ -53,7 +53,7 @@ test('renders 4 empty rounds with only "rounds" array of 4 empty objects and wit
 test('renders contentful matches without options', () => {
 
     const { wrapper } = init(finished_ucl)
-    expect(wrapper.querySelectorAll('.match-body').length).toBe(15)
+    expect(wrapper.querySelectorAll('.side-wrapper[contestant-id="benfica"]').length).toBe(2)
 })
 
 

@@ -240,7 +240,7 @@ exports.default = {
 
 
 
-        {
+        /* {
             "roundIndex": 0,
             "order": 6,
             "matchStatus": "Complete",
@@ -274,7 +274,7 @@ exports.default = {
                     "isWinner": false
                 }
             ]
-        },
+        }, */
 
 
         {

@@ -61,7 +61,7 @@ test(`appends to .match-body an Element returned from options.getMatchElement`, 
 test(`Renders default match layout if options.getMatchElement is not a function`, () => {
 
     const { wrapper } = init(finished_ucl, { getMatchElement: NaN })
-    expect(wrapper.querySelectorAll('.match-body').length).toBe(15)
+    expect(wrapper.querySelectorAll('.side-wrapper[contestant-id="benfica"]').length).toBe(2)
 })
 
 

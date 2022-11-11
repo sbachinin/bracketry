@@ -48,18 +48,6 @@
             border-top: var(--connectionLinesWidth) solid var(--connectionLinesColor);
         }
 
-
-        &.live {
-            .match-body:not(:empty) {
-                border-color: var(--liveMatchBorderColor, var(--rootBorderColor));
-                background-color: var(--liveMatchBackgroundColor);
-            }
-
-            .current-score {
-                border-color: var(--liveMatchBorderColor, var(--rootBorderColor));
-            }
-        }
-
         &.highlighted {
             .match-status {
                 border-color: var(--highlightedConnectionLinesColor);
@@ -122,6 +110,16 @@
             grid-template-columns: minmax(0, 1fr);
             grid-row-gap: var(--connectionLinesWidth);
         }
+
+        &.live:not(:empty) {
+            border-color: var(--liveMatchBorderColor, var(--rootBorderColor));
+            background-color: var(--liveMatchBackgroundColor);
+
+            .current-score {
+                border-color: var(--liveMatchBorderColor, var(--rootBorderColor));
+            }
+        }
+
     }
 
 
