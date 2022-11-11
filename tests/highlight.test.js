@@ -195,44 +195,6 @@ test(`"last-highlighted" class is removed from match-wrapper after unhighlight`,
 })
 
 
-/* broke after introduction of css vars
-test(`".line-wrapper" elements of a .highlighted (but not .last-highlighted) match
-    have style.color === options.highlightedConnectionLinesColor`, () => {
-    const { wrapper, playoffs: pl } = init(finished_ucl, { highlightedConnectionLinesColor: 'navy' })
-
-    pl.highlightContestantHistory('villarreal')
-
-    const highlighted_match_wrappers = wrapper.querySelectorAll(`.match-wrapper.highlighted`)
-
-    expect(
-        getComputedStyle(
-            highlighted_match_wrappers[0].querySelector('.line-wrapper:first-child')
-        ).color
-    ).toBe('navy')
-
-    expect(
-        getComputedStyle(
-            highlighted_match_wrappers[1].querySelector('.line-wrapper:last-child')
-        ).color
-    ).toBe('navy')
-})
-*/
-
-
-/* broke after introduction of css vars
-test(`".line-wrapper" elements of last highlighted match have style.color === options.connectionLinesColor
-(it unhighlights a right pseudo border which is actually a box-shadow)`, () => {
-    const { wrapper, playoffs: pl } = init(finished_ucl, { connectionLinesColor: 'red' })
-
-    pl.highlightContestantHistory('villarreal')
-
-    const last_highlighted_line_wrappers = wrapper.querySelectorAll(`.match-wrapper.last-highlighted .line-wrapper`)
-    expect(getComputedStyle(last_highlighted_line_wrappers[0]).color).toBe('red')
-    expect(getComputedStyle(last_highlighted_line_wrappers[1]).color).toBe('red')
-})
-*/
-
-
 test(`does not highlight contestant's matches ON CLICK when options.onMatchClick is defined`, () => {
     const { wrapper } = init(finished_ucl, { onMatchClick: () => {} })
 
@@ -340,19 +302,6 @@ test(`click outside playoffs should not unhighlight`, () => {
     expect(wrapper.querySelectorAll('.side-wrapper.highlighted').length).toBe(2)
 })
 
-
-/* broke after introduction of css vars
-test(`applies highlighted color to <player-title>`, () => {
-    const { wrapper, playoffs: pl } = init(finished_ucl, { highlightedPlayerTitleColor: 'pink' })
-
-    pl.highlightContestantHistory('benfica')
-    expect(
-        getComputedStyle(
-            wrapper.querySelector('.side-wrapper.highlighted .player-title')
-        ).color
-    ).toBe('pink')
-})
-*/
 
 
 
