@@ -260,7 +260,8 @@ test(`can highlight contestant's matches on highlightContestantHistory() call
     const benfica_sides = wrapper.querySelectorAll(`.side-wrapper[contestant-id='benfica']`)
     const highligted_benfica_sides = wrapper.querySelectorAll(`.side-wrapper[contestant-id='benfica'].highlighted`)
 
-    expect(highligted_benfica_sides.length).toBe(benfica_sides.length)
+    expect(benfica_sides.length).toBe(2)
+    expect(highligted_benfica_sides.length).toBe(2)
 })
 
 
@@ -364,8 +365,59 @@ test(`applies highlighted color to <player-title>`, () => {
 
 
 test(`does not highlight on click if options.disableHighlight === true`, () => {
-    const { wrapper, playoffs: pl } = init(finished_ucl, { disableHighlight: true })
+    const { wrapper } = init(finished_ucl, { disableHighlight: true })
     wrapper.querySelector(`.side-wrapper[contestant-id='benfica']`)
         .dispatchEvent(new MouseEvent('click', { bubbles: true }))
     expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
+})
+
+
+test.only(`keeps highlighted match highlighted after it was updated via applyMatchesUpdates`, () => {
+    const { wrapper, playoffs: pl } = init(finished_ucl)
+
+    pl.highlightContestantHistory('villarreal')
+
+    pl.applyMatchesUpdates([{
+        "roundIndex": 0,
+        "order": 2,
+        "matchStatus": "Complete",
+        "sides": [
+            {
+                "contestantId": "villarreal",
+                "scores": [
+                    {
+                        "mainScore": "1",
+                        "isWinner": false
+                    },
+                    {
+                        "mainScore": "3",
+                        "isWinner": true
+                    },
+                ],
+                "isWinner": true
+            },
+            {
+                "contestantId": "juventus",
+                "scores": [
+                    {
+                        "mainScore": "11111",
+                        "isWinner": false
+                    },
+                    {
+                        "mainScore": "0",
+                        "isWinner": false
+                    },
+                ],
+                "isWinner": false
+            }
+        ]
+    }])
+
+    expect(wrapper.querySelector(
+        `.round-wrapper[round-index="0"] .match-wrapper[match-order="2"].highlighted`
+    )).not.toBe(null)
+
+    expect(
+        wrapper.querySelectorAll(`.side-wrapper[contestant-id='villarreal'].highlighted`).length
+    ).toBe(3)
 })
