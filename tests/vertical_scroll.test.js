@@ -6,6 +6,11 @@ global.ResizeObserver = require('resize-observer-polyfill')
 const { init } = require('./utils.js')
 const finished_ucl = require('./ucl-finished.js').default
 
+// testing native scroll in action here appears impossible because there is no real wheel/mousewheel
+
+// testing synthetic (buttons or mixed) scroll in action here appears impossible
+// because measurements tell that all heights are 0 and thus maximum "scrollTop" is 0
+
 test(`Scroll is "native" by default`, () => {
 
     const { wrapper } = init(finished_ucl)
@@ -99,6 +104,15 @@ test(`resets (synthetic) scroll on navigation when resetScrollOnNavigation is tr
     expect(getComputedStyle(poser).transform).toBe('translateY(-0px)')
 })
 
+test(`resets (synthetic) scroll on replaceData()`, () => {
+    
+    const { wrapper, playoffs: pl } = init(finished_ucl, { verticalScrollMode: 'buttons', resetScrollOnNavigation: true })
+    
+    const poser = wrapper.querySelector('.matches-positioner')
+    poser.style.transform = 'translateY(-500px)'
+    pl.replaceData({ rounds: [{}] })
+    expect(getComputedStyle(poser).transform).toBe('translateY(-0px)')
+})
 
 test(`vertical scroll buttons are positioned static when scrollButtonsPosition is "gutters"`, () => {
 
