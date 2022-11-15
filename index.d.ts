@@ -63,7 +63,7 @@ type Options = {
     onMatchSideClick: (match: Partial<Match>, contestant?: Contestant, contestantId?: string) => void,
 
     getRoundTitleElement: (roundData: Round, roundIndex: number) => Element,
-    getMatchElement: (roundIndex: number, matchOrder: number) => Element | undefined,
+    getMatchElement: (roundIndex: number, matchOrder: number) => Element | null,
     getNationalityHTML: (
         player: Player,
         context: { roundIndex: number, matchOrder: number, contestantId: string, playerIndex: number }

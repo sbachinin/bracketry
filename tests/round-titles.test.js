@@ -51,11 +51,11 @@ test(`calls getRoundTitleElement with round data (with extra data too) and round
 
     const getRoundTitleElement = jest.fn()
 
-    const data = { rounds: [{ name: 'first', id: '01' }] }
+    const data = { rounds: [{ name: 'first', prizeMoney: '01' }] }
 
     init(data, { getRoundTitleElement })
     expect(getRoundTitleElement).toHaveBeenCalledWith(
-        { name: 'first', id: '01' },
+        { name: 'first', prizeMoney: '01' },
         0
     )
 })
