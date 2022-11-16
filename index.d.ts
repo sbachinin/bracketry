@@ -27,7 +27,7 @@ type Options = {
     roundTitleColor: string,
     hoveredMatchBorderColor: string,
     matchStatusBackgroundColor: string,
-    navButtonsPosition: string,
+    navButtonsPosition: 'overMatches' | 'gutters' | 'beforeTitles' | 'overTitles' | 'hidden',
     navButtonsTopDistance: string,
     navigationGutterBorderColor: string,
     scrollGutterBorderColor: string,

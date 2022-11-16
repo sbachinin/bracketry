@@ -89,7 +89,7 @@
         display: flex;
         width: 100%;
         max-width: var(--matchMaxWidth);
-        justify-content: flex-end; /* it pushes lonely match-status to very right */
+        justify-content: center;
         z-index: 2;
 
         transition: border-color 0.1s ease-out;

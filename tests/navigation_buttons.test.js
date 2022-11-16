@@ -212,6 +212,11 @@ test('applies certain styles when options.navButtonsPosition is "overTitles"', (
 })
 
 
+// these tests proved to meaningless & were moved to cypress
+// Because buttons were hidden not because of navButtonsPosition option but
+// perhaps because of some bad calculations of rounds' visibility
+// TODO check other tests here for false "hidden" buttons
+/*
 test('applies certain styles when options.navButtonsPosition is "beforeTitles"', () => {
 
     const { wrapper } = init(finished_ucl, { navButtonsPosition: 'beforeTitles' })
@@ -243,3 +248,4 @@ test('hides navigation buttons when options.navButtonsPosition is "hidden"', () 
     const headerStyles = getComputedStyle(wrapper.querySelector('.buttons-header'))
     expect(headerStyles.display).toBe('none')
 })
+ */

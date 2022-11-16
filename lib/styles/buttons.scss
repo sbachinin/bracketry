@@ -182,6 +182,12 @@
         }
     }
 
+    &.with-hidden-nav-buttons {
+        .navigation-button {
+            display: none !important;
+        }
+    }
+
     &.with-gutter-nav-buttons {
         .navigation-button.non-header-button {
             position: static;
