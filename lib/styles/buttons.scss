@@ -55,6 +55,10 @@
         .navigation-button {
             display: flex;
         }
+
+        &.hidden {
+            display: none !important;
+        }
     }
 
 

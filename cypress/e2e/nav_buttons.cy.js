@@ -21,6 +21,9 @@ describe('Navigation buttons', () => {
             .and('have.css', 'position', 'static')
     })
 
+    // shows buttons-header when 'beforeTitles'
+    // shows buttons-header when 'overTitles'
+
     it('hides navigation buttons when options.navButtonsPosition is "hidden"', () => {
         cy.visit(`http://localhost:8080?${get_query({
             navButtonsPosition: 'hidden'
@@ -29,6 +32,26 @@ describe('Navigation buttons', () => {
         cy.get(`.navigation-button`).each($b => {
             cy.wrap($b).should('have.css', 'display', 'none')
         })
+        cy.get(`.buttons-header`).should('have.css', 'display', 'none')
+    })
+
+
+    it('hides non-header navigation buttons when tournament fits the drawing area', () => {
+        
+        cy.viewport(5000, 2000)
+        cy.visit(`http://localhost:8080`)
+
+        cy.get(`.navigation-button.non-header-button`).each($b => {
+            cy.wrap($b).should('have.css', 'display', 'none')
+        })
+    })
+
+    it('hides buttons-header when tournament fits the drawing area', () => {
+
+        cy.viewport(5000, 2000)
+        cy.visit(`http://localhost:8080?${get_query({
+            navButtonsPosition: 'beforeTitles'
+        })}`)
         cy.get(`.buttons-header`).should('have.css', 'display', 'none')
     })
 
@@ -45,7 +68,7 @@ describe('Navigation buttons', () => {
         cy.get('.navigation-button.left').eq(0).should('have.class', 'active')
         cy.get('.navigation-button.left').eq(1).should('have.class', 'active')
     })
-  
+
     it('right nav button should be active at the beginning if content is wide enough', () => {
         cy.visit(`http://localhost:8080`)
         cy.get('.navigation-button.right').eq(0).should('have.class', 'active')

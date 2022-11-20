@@ -10,7 +10,7 @@ describe('Highlight contestant history', () => {
             highlightedPlayerTitleColor: 'rgb(255, 192, 203)'
         })}`)
 
-        cy.get(`.side-wrapper[contestant-id='199291']`).eq(0).click()
+        cy.get(`.side-wrapper[contestant-id='163911']`).eq(0).click()
         cy.get('.side-wrapper.highlighted .player-title').should('have.css', 'color', 'rgb(255, 192, 203)')
     })
 
@@ -22,7 +22,7 @@ describe('Highlight contestant history', () => {
             highlightedConnectionLinesColor: 'rgb(10, 10, 10)'
         })}`)
 
-        cy.get(`.side-wrapper[contestant-id='199291']`).eq(0).click()
+        cy.get(`.side-wrapper[contestant-id='163911']`).eq(0).click()
         cy.get(`.match-wrapper.highlighted .line-wrapper`).eq(0)
             .should('have.css', 'color', 'rgb(10, 10, 10)')
     })
@@ -36,7 +36,7 @@ describe('Highlight contestant history', () => {
             connectionLinesColor: 'rgb(100, 100, 100)',
         })}`)
 
-        cy.get(`.side-wrapper[contestant-id='199291']`).eq(0).click()
+        cy.get(`.side-wrapper[contestant-id='163911']`).eq(0).click()
 
         cy.get(`.match-wrapper.last-highlighted .line-wrapper`).eq(0)
             .should('have.css', 'color', 'rgb(100, 100, 100)')

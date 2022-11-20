@@ -97,7 +97,7 @@ describe('Vertical scroll on button clicks', () => {
         cy.visit(`http://localhost:8080?${query}`)
         cy.get('.button-down').click()
         cy.get('.navigation-button.non-header-button.right').click()
-        cy.get('.matches-positioner').should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, -414)')
+        cy.get('.matches-positioner').should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, -387)')
     })
 })
 
@@ -110,7 +110,7 @@ describe('Native scroll mode', () => {
         cy.get('.matches-scroller').scrollTo(0, 2000)
         cy.get('.navigation-button.non-header-button.right').click()
         cy.get('.matches-scroller').should($s => {
-            expect($s[0].scrollTop).to.equal(920)
+            expect($s[0].scrollTop).to.equal(870)
         })
     })
 })
@@ -146,14 +146,15 @@ describe('Scrollbar', () => {
         cy.get('.navigation-button.non-header-button.right').click()
         cy.get('.scrollbar').should(($s) => {
             const { top, height } = getComputedStyle($s[0])
-            expect(top).to.match(/163\.\d*px/)
-            expect(height).to.match(/97\.\d*px/)
+            expect(top).to.match(/161\.\d*px/)
+            expect(height).to.match(/101\.\d*px/)
         })
     })
 
     it(`is hidden when base round is fully visible`, () => {
 
         cy.visit(`http://localhost:8080`)
+        cy.get('.navigation-button.non-header-button.right').click()
         cy.get('.navigation-button.non-header-button.right').click()
         cy.get('.navigation-button.non-header-button.right').click()
         cy.get('.navigation-button.non-header-button.right').click()
