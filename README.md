@@ -20,34 +20,34 @@ import { createPlayoffs } from 'playoffs'
 createPlayoffs(your_data, your_wrapper_element)
 ```
 
-_You only need a wrapper element and (yes, this is the tricky part) some <a href="https://sbachinin.github.io/playoffs-site/data">properly formatted data</a>_
+_You only need a wrapper element and (yes, it's the tricky part) some <a href="https://sbachinin.github.io/playoffs-site/data-shape">properly formatted data</a>_
 
 <br>
 
 ## Some lovely features
 
-[//]: # TODO add links to site here  
 &nbsp;&nbsp; 🎾 Tennis: doubles, tiebreak, points within a game (15:30 etc), "serving" dot  
-&nbsp;&nbsp; 🍏 live updates (and special "live" appearance of a match)  
-&nbsp;&nbsp; 🔦 Team's path within a tournament is highlighted on click (if you want)  
+&nbsp;&nbsp; 🍏 <a href="https://sbachinin.github.io/playoffs-site/live-updates">Live updates</a> (and special "live" appearance of a match)  
+&nbsp;&nbsp; 🔦 Team's path within a tournament is <a href="https://sbachinin.github.io/playoffs-site/highlight-history">highlighted</a> on click (if you want)  
 &nbsp;&nbsp; 👯 Multiple instances of playoffs on a page  
-&nbsp;&nbsp; 📱 Can be easily tuned for mobile devices (<a href="https://sbachinin.github.io/playoffs-site/mobile-solutions">how</a>)  
-&nbsp;&nbsp; 📺 "Fullscreen" (full browser viewport) mode  
+&nbsp;&nbsp; 📱 Can be easily tuned for <a href="https://sbachinin.github.io/playoffs-site/mobile">mobile</a> devices  
+&nbsp;&nbsp; 📺 "<a href="https://sbachinin.github.io/playoffs-site/fullscreen">Fullscreen</a>" (full browser viewport) mode  
+&nbsp;&nbsp; 📜 <a href="https://sbachinin.github.io/playoffs-site/scroll-modes">Vertical scroll</a> can work with mousewheel or buttons or both
 
 <br>
 
 ## Plenty of options (<a href="https://sbachinin.github.io/playoffs-site/options">try</a>)
 
-* Sizes, margins and fonts are quite flexible
-* <a href="https://sbachinin.github.io/playoffs-site/navigation">Navigation</a> between rounds can be adjusted or built from scratch  
-* You can <a href="https://sbachinin.github.io/playoffs-site/custom-markup">inject</a> your own markup here and there  
+* Sizes, margins and fonts are quite <a href="https://sbachinin.github.io/playoffs-site/fonts-colors-sizes">flexible</a>
+* Navigation between rounds can be <a href="https://sbachinin.github.io/playoffs-site/adjust-nav-buttons">adjusted</a> or <a href="https://sbachinin.github.io/playoffs-site/external-navigation">built from scratch</a>  
+* You can <a href="https://sbachinin.github.io/playoffs-site/inject-markup">inject</a> your own markup here and there  
   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;you may choose to render matches yourself and use playoffs to position the matches and rounds
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;you may choose to render matches yourself and use playoffs only as a positioning mechanism
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![alt text](https://github.com/sbachinin/playoffs/raw/main/images/your-match-element.jpg)
 
-* You can specify what happens when a match (or a side of a match) is clicked  
-* You may opt to display a specific <a href="https://sbachinin.github.io/playoffs-site/layout-options">number of rounds</a> at a time
+* You can specify what happens when a match (or a side of a match) is <a href="https://sbachinin.github.io/playoffs-site/click-handlers">clicked</a>  
+* You may opt to display a specific <a href="https://sbachinin.github.io/playoffs-site/n-rounds">number of rounds</a> at a time
 
 <br>
 
@@ -61,15 +61,12 @@ yarn add playoffs
 
 <br>
 
----
 
-Minified bundle is 48k, gzipped is 12k.
+Minified bundle is 49k, gzipped is 12k.
 
----
 
 Includes a __d.ts__ file for ease of TypeScript development
 
----
 <br>
 
 ## Licensing
