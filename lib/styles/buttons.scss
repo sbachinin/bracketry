@@ -81,7 +81,7 @@
         }
 
         svg {
-            fill: var(--navigationSvgColor);
+            fill: var(--navButtonSvgColor);
         }
     }
 
@@ -118,6 +118,10 @@
 
         &.button-down {
             border-top-color: var(--scrollGutterBorderColor, var(--rootBorderColor));
+        }
+
+        svg {
+            fill: var(--scrollButtonSvgColor);
         }
     }
 
