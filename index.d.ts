@@ -26,7 +26,7 @@ type Options = {
     roundTitlesBorderBottomColor: string,
     roundTitleColor: string,
     hoveredMatchBorderColor: string,
-    matchStatusBackgroundColor: string,
+    matchStatusBgColor: string,
     navButtonsPosition: 'overMatches' | 'gutters' | 'beforeTitles' | 'overTitles' | 'hidden',
     navButtonsTopDistance: string,
     navigationGutterBorderColor: string,
@@ -56,7 +56,7 @@ type Options = {
     matchAxisMargin: number,
     oneSidePlayersGap: number,
     liveMatchBorderColor: string,
-    liveMatchBackgroundColor: string,
+    liveMatchBgColor: string,
     distanceBetweenScorePairs: number,
     onMatchClick: (match: Partial<Match>) => void,
 

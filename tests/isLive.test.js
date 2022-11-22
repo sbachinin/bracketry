@@ -18,7 +18,7 @@ test(`applies certain styles to a match element which { isLive: true }`, () => {
             sides: [{ currentScore: '1' }, {}]
         }],
     }
-    const options = { liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }
+    const options = { liveMatchBorderColor: 'red', liveMatchBgColor: 'blue' }
     const { wrapper } = init(data, options)
     expect(getComputedStyle(wrapper.querySelector('.match-body')).borderColor).toBe('red')
     expect(getComputedStyle(wrapper.querySelector('.match-body')).backgroundColor).toBe('blue')
@@ -34,7 +34,7 @@ test(`does not apply live styles to a match element which { isLive: false }`, ()
             sides: [{ currentScore: '1' }, {}]
         }],
     }
-    const options = { liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }
+    const options = { liveMatchBorderColor: 'red', liveMatchBgColor: 'blue' }
     const { wrapper } = init(data, options)
     expect(getComputedStyle(wrapper.querySelector('.match-body')).borderColor).not.toBe('red')
     expect(getComputedStyle(wrapper.querySelector('.match-body')).backgroundColor).not.toBe('blue')
@@ -49,7 +49,7 @@ test(`does not apply live styles to a match element which has no 'isLive' proper
             sides: [{ currentScore: '1' }, {}]
         }],
     }
-    const options = { liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }
+    const options = { liveMatchBorderColor: 'red', liveMatchBgColor: 'blue' }
     const { wrapper } = init(data, options)
     expect(getComputedStyle(wrapper.querySelector('.match-body')).borderColor).not.toBe('red')
     expect(getComputedStyle(wrapper.querySelector('.match-body')).backgroundColor).not.toBe('blue')
@@ -65,7 +65,7 @@ test(`does not apply live styles to a match element which has non-boolean 'isLiv
             sides: [{ currentScore: '1' }, {}]
         }],
     }
-    const options = { liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }
+    const options = { liveMatchBorderColor: 'red', liveMatchBgColor: 'blue' }
     const { wrapper } = init(data, options)
     expect(getComputedStyle(wrapper.querySelector('.match-body')).borderColor).not.toBe('red')
     expect(getComputedStyle(wrapper.querySelector('.match-body')).backgroundColor).not.toBe('blue')
@@ -79,7 +79,7 @@ test(`does not apply live styles to a match element WITHOUT sides, even if { isL
         rounds: [{}],
         matches: [{ roundIndex: 0, order: 0, isLive: true }],
     }
-    const options = { liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }
+    const options = { liveMatchBorderColor: 'red', liveMatchBgColor: 'blue' }
     const { wrapper } = init(data, options)
     expect(getComputedStyle(wrapper.querySelector('.match-body')).borderColor).not.toBe('red')
     expect(getComputedStyle(wrapper.querySelector('.match-body')).backgroundColor).not.toBe('blue')
@@ -90,7 +90,7 @@ test(`does not apply live styles to match element if options.getMatchElement is 
         rounds: [{}],
         matches: [{ roundIndex: 0, order: 0, isLive: true, sides: [{}, {}] }],
     }
-    const options = { getMatchElement: () => { }, liveMatchBorderColor: 'red', liveMatchBackgroundColor: 'blue' }
+    const options = { getMatchElement: () => { }, liveMatchBorderColor: 'red', liveMatchBgColor: 'blue' }
     const { wrapper } = init(data, options)
     expect(getComputedStyle(wrapper.querySelector('.match-body')).borderColor).not.toBe('red')
     expect(getComputedStyle(wrapper.querySelector('.match-body')).backgroundColor).not.toBe('blue')

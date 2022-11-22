@@ -77,7 +77,7 @@
         border-style: solid;
         border-color: var(--connectionLinesColor);
         background: #fff; /* "fallback" color if background option is invalid */
-        box-shadow: 0 0 0 1000px var(--matchStatusBackgroundColor) inset;
+        box-shadow: 0 0 0 1000px var(--matchStatusBgColor) inset;
 
         &:empty {
             display: none;
@@ -113,7 +113,7 @@
 
         &.live:not(:empty) {
             border-color: var(--liveMatchBorderColor, var(--rootBorderColor));
-            background-color: var(--liveMatchBackgroundColor);
+            background-color: var(--liveMatchBgColor);
 
             .current-score {
                 border-color: var(--liveMatchBorderColor, var(--rootBorderColor));
