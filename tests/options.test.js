@@ -46,24 +46,13 @@ test(`sets feature classes according to options`, () => {
         useClassicalLayout: true,
         fullscreen: true
     })
-    
+
     const root_classes = wrapper.querySelector('.playoffs-root').classList
     expect(root_classes.contains('with-nav-buttons-before-titles')).toBe(true)
     expect(root_classes.contains('with-classical-layout')).toBe(true)
     expect(root_classes.contains('fullscreen')).toBe(true)
     expect(root_classes.contains('with-onMatchClick')).toBe(false)
 })
-
-
-/* broke after introduction of css vars
-test(`applies options.matchMaxWidth to .match-body`, () => {
-
-    const { wrapper } = init(finished_ucl, { matchMaxWidth: '250px' })
-    expect(
-        getComputedStyle(wrapper.querySelector('.match-body')).maxWidth
-    ).toBe('250px')
-})
-*/
 
 
 test(`applies new visibleRoundsCount via applyNewOptions`, () => {
@@ -114,57 +103,6 @@ test(`ignores non-object options passed to applyNewOptions`, () => {
     expect(pl.getUserOptions()).toEqual({ roundTitlesHeight: 300 })
 })
 
-
-
-/* broke after introduction of css vars
-test(`falls back to default options in case of EMPTY options`, () => {
-
-    const { wrapper } = init(finished_ucl)
-    expect(
-        getComputedStyle(wrapper.querySelector('.round-titles-wrapper')).height
-    ).toBe('50px')
-    expect(
-        getComputedStyle(wrapper.querySelector('.match-wrapper')).paddingLeft
-    ).toBe('20px')
-    expect(
-        getComputedStyle(wrapper.querySelector('.match-body')).maxWidth
-    ).toBe('unset')
-})
-*/
-
-/* broke after introduction of css vars
-test(`falls back to default option if NaN is provided for an option of type "number"`, () => {
-
-    const { wrapper } = init(finished_ucl, {
-        roundTitlesHeight: NaN, matchHorMargin: NaN
-    })
-    expect(
-        getComputedStyle(wrapper.querySelector('.round-titles-wrapper')).height
-    ).toBe('50px')
-    expect(
-        getComputedStyle(wrapper.querySelector('.match-wrapper')).paddingLeft
-    ).toBe('20px')
-})
-*/
-
-
-/* broke after introduction of css vars
-test(`falls back to default options in case of INVALID options`, () => {
-
-    const { wrapper } = init(finished_ucl, {
-        roundTitlesHeight: {}, matchHorMargin: [], matchMaxWidth: Object
-    })
-    expect(
-        getComputedStyle(wrapper.querySelector('.round-titles-wrapper')).height
-    ).toBe('50px')
-    expect(
-        getComputedStyle(wrapper.querySelector('.match-wrapper')).paddingLeft
-    ).toBe('20px')
-    expect(
-        getComputedStyle(wrapper.querySelector('.match-body')).maxWidth
-    ).toBe('unset')
-})
-*/
 
 
 test(`Ignores subsequent mutations of an options object by a user`, () => {
@@ -234,3 +172,40 @@ test(`does not merge nor applies new options of functional type`, () => {
     expect(wrapper.querySelectorAll('.old-match-element').length).toBe(15)
     expect(wrapper.querySelector('.new-match-element')).toBe(null)
 })
+
+
+/* broke after introduction of css vars
+test(`falls back to default option if NaN is provided for an option of type "number"`, () => {
+
+    const { wrapper } = init(finished_ucl, {
+        roundTitlesHeight: NaN, matchHorMargin: NaN
+    })
+    expect(
+        getComputedStyle(wrapper.querySelector('.round-titles-wrapper')).height
+    ).toBe('50px')
+    expect(
+        getComputedStyle(wrapper.querySelector('.match-wrapper')).paddingLeft
+    ).toBe('20px')
+})
+*/
+
+
+/* broke after introduction of css vars
+test(`falls back to default options in case of INVALID options`, () => {
+
+    const { wrapper } = init(finished_ucl, {
+        roundTitlesHeight: {}, matchHorMargin: [], matchMaxWidth: Object
+    })
+    expect(
+        getComputedStyle(wrapper.querySelector('.round-titles-wrapper')).height
+    ).toBe('50px')
+    expect(
+        getComputedStyle(wrapper.querySelector('.match-wrapper')).paddingLeft
+    ).toBe('20px')
+    expect(
+        getComputedStyle(wrapper.querySelector('.match-body')).maxWidth
+    ).toBe('unset')
+})
+*/
+
+

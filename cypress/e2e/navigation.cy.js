@@ -10,7 +10,7 @@ describe('Navigation', () => {
 
     it(`changes the matches-scroller's margin-left on navigation (free width)`, () => {
 
-        cy.visit(`http://localhost:8080`)
+        cy.visit(`http://localhost:3000`)
 
         cy.get('.navigation-button.non-header-button.right').eq(0).click()
         cy.get('.matches-scroller').should($s => {
@@ -36,22 +36,22 @@ describe('Navigation', () => {
 
     it(`changes the matches-scroller's margin-left on navigation (with displayWholeRounds)`, () => {
 
-        cy.visit(`http://localhost:8080?${get_query({
+        cy.visit(`http://localhost:3000?${get_query({
             displayWholeRounds: true
         })}`)
 
         cy.get('.navigation-button.non-header-button.right').eq(0).click()
         cy.get('.matches-scroller').should($s => {
             const { marginLeft } = getComputedStyle($s[0])
-            expect(parseFloat(marginLeft)).to.be.lt(-500)
-            expect(parseFloat(marginLeft)).to.be.gt(-600)
+            expect(parseFloat(marginLeft)).to.be.lt(-300)
+            expect(parseFloat(marginLeft)).to.be.gt(-400)
         })
 
         cy.get('.navigation-button.non-header-button.right').eq(0).click()
         cy.get('.matches-scroller').should($s => {
             const { marginLeft } = getComputedStyle($s[0])
-            expect(parseFloat(marginLeft)).to.be.lt(-1100)
-            expect(parseFloat(marginLeft)).to.be.gt(-1200)
+            expect(parseFloat(marginLeft)).to.be.lt(-700)
+            expect(parseFloat(marginLeft)).to.be.gt(-800)
         })
 
         cy.get('.navigation-button.non-header-button.left').eq(0).click().click()
@@ -63,7 +63,7 @@ describe('Navigation', () => {
 
 
     it(`applies certain width to matches-scroller when visibleRoundsCount is automatic`, () => {
-        cy.visit(`http://localhost:8080`)
+        cy.visit(`http://localhost:3000`)
         cy.get('.matches-scroller').should($s => {
             const { width } = $s[0].style
             expect(width.slice(-1)).to.equal('%')
@@ -74,7 +74,7 @@ describe('Navigation', () => {
 
     it(`applies certain width to matches-scroller when visibleRoundsCount is set to a specific number`, () => {
         
-        cy.visit(`http://localhost:8080?${get_query({
+        cy.visit(`http://localhost:3000?${get_query({
             visibleRoundsCount: 4
         })}`)
 
@@ -85,12 +85,12 @@ describe('Navigation', () => {
 
     it(`applies certain width to matches-scroller when displayWholeRounds is set to true`, () => {
         
-        cy.visit(`http://localhost:8080?${get_query({
+        cy.visit(`http://localhost:3000?${get_query({
             displayWholeRounds: true
         })}`)
 
         cy.get('.matches-scroller').should($s => {
-            expect($s[0].style.width).to.equal('350%')
+            expect(parseInt($s[0].style.width)).to.equal(233)
         })
     })
 })

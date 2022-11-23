@@ -6,7 +6,7 @@ const get_query = (o) => {
 
 describe('Vertical scroll on button clicks', () => {
     it('scrolls down on button click', () => {
-        cy.visit(`http://localhost:8080?${get_query({
+        cy.visit(`http://localhost:3000?${get_query({
             verticalScrollMode: 'buttons',
         })}`)
         cy.get('.button-down').click()
@@ -19,7 +19,7 @@ describe('Vertical scroll on button clicks', () => {
             verticalScrollMode: 'buttons',
             syntheticScrollAmount: 100,
         })
-        cy.visit(`http://localhost:8080?${query}`)
+        cy.visit(`http://localhost:3000?${query}`)
         cy.get('.button-down').click()
         cy.get('.matches-positioner').should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, -100)')
     })
@@ -30,7 +30,7 @@ describe('Vertical scroll on button clicks', () => {
             verticalScrollMode: 'buttons',
             syntheticScrollAmount: 100,
         })
-        cy.visit(`http://localhost:8080?${query}`)
+        cy.visit(`http://localhost:3000?${query}`)
         cy.get('.button-up').should('have.css', 'pointer-events', 'none')
         cy.get('.button-up').not('.active')
     })
@@ -41,7 +41,7 @@ describe('Vertical scroll on button clicks', () => {
             verticalScrollMode: 'buttons',
             syntheticScrollAmount: 100,
         })
-        cy.visit(`http://localhost:8080?${query}`)
+        cy.visit(`http://localhost:3000?${query}`)
         cy.get('.button-down').click()
         cy.get('.button-up').should('have.css', 'pointer-events', 'auto')
         cy.get('.button-up.active')
@@ -53,7 +53,7 @@ describe('Vertical scroll on button clicks', () => {
             verticalScrollMode: 'buttons',
             syntheticScrollAmount: 100,
         })
-        cy.visit(`http://localhost:8080?${query}`)
+        cy.visit(`http://localhost:3000?${query}`)
         cy.get('.button-down').click()
         cy.get('.button-down').click()
         cy.get('.button-down').click()
@@ -67,7 +67,7 @@ describe('Vertical scroll on button clicks', () => {
             verticalScrollMode: 'buttons',
             syntheticScrollAmount: 1000000,
         })
-        cy.visit(`http://localhost:8080?${query}`)
+        cy.visit(`http://localhost:3000?${query}`)
         cy.get('.button-down').click()
         cy.wait(300)
 
@@ -83,7 +83,7 @@ describe('Vertical scroll on button clicks', () => {
             verticalScrollMode: 'buttons',
             syntheticScrollAmount: 1000000,
         })
-        cy.visit(`http://localhost:8080?${query}`)
+        cy.visit(`http://localhost:3000?${query}`)
         cy.get('.button-down').click()
         cy.get('.button-down').should('have.css', 'pointer-events', 'none')
     })
@@ -94,7 +94,7 @@ describe('Vertical scroll on button clicks', () => {
             verticalScrollMode: 'buttons',
             syntheticScrollAmount: 1000
         })
-        cy.visit(`http://localhost:8080?${query}`)
+        cy.visit(`http://localhost:3000?${query}`)
         cy.get('.button-down').click()
         cy.get('.navigation-button.non-header-button.right').click()
         cy.get('.matches-positioner').should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, -387)')
@@ -106,7 +106,7 @@ describe('Native scroll mode', () => {
     
     it(`matches-scroller's scrollTop is adjusted after navigation`, () => {
 
-        cy.visit(`http://localhost:8080`)
+        cy.visit(`http://localhost:3000`)
         cy.get('.matches-scroller').scrollTo(0, 2000)
         cy.get('.navigation-button.non-header-button.right').click()
         cy.get('.matches-scroller').should($s => {
@@ -119,7 +119,7 @@ describe('Native scroll mode', () => {
 describe('Scrollbar', () => {
     it('attains certain height accoring to content height', () => {
 
-        cy.visit(`http://localhost:8080`)
+        cy.visit(`http://localhost:3000`)
 
         cy.get('.scrollbar').should(($s) => {
             const { height } = getComputedStyle($s[0])
@@ -129,7 +129,7 @@ describe('Scrollbar', () => {
 
     it(`attains "top" style according to matches-scroller's scrollTop`, () => {
 
-        cy.visit(`http://localhost:8080`)
+        cy.visit(`http://localhost:3000`)
 
         cy.get('.matches-scroller').scrollTo(0, 2000)
         cy.get('.scrollbar').should(($s) => {
@@ -140,7 +140,7 @@ describe('Scrollbar', () => {
 
     it(`attains new height and top after navigation`, () => {
 
-        cy.visit(`http://localhost:8080`)
+        cy.visit(`http://localhost:3000`)
 
         cy.get('.matches-scroller').scrollTo(0, 2000)
         cy.get('.navigation-button.non-header-button.right').click()
@@ -153,7 +153,7 @@ describe('Scrollbar', () => {
 
     it(`is hidden when base round is fully visible`, () => {
 
-        cy.visit(`http://localhost:8080`)
+        cy.visit(`http://localhost:3000`)
         cy.get('.navigation-button.non-header-button.right').click()
         cy.get('.navigation-button.non-header-button.right').click()
         cy.get('.navigation-button.non-header-button.right').click()
