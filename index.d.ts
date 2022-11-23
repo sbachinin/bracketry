@@ -50,7 +50,7 @@ type Options = {
     connectionLinesWidth: number,
     connectionLinesColor: string,
     highlightedConnectionLinesColor: string,
-    matchMaxWidth: string,
+    matchMaxWidth: number,
     matchMinVerticalGap: number,
     matchHorMargin: number,
     matchAxisMargin: number,

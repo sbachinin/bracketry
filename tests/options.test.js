@@ -140,8 +140,8 @@ test(`ignores mutations of object returned by getUserOptions`, () => {
 test(`getUserOptions returns object which is a merge of initial options and those changed by applyNewOptions`, () => {
 
     const { playoffs: pl } = init(finished_ucl, { roundTitlesHeight: 30 })
-    pl.applyNewOptions({ matchMaxWidth: '333px' })
-    expect(pl.getUserOptions()).toEqual({ roundTitlesHeight: 30, matchMaxWidth: '333px' })
+    pl.applyNewOptions({ matchMaxWidth: 333 })
+    expect(pl.getUserOptions()).toEqual({ roundTitlesHeight: 30, matchMaxWidth: 333 })
 })
 
 

@@ -11,7 +11,7 @@ describe(`matchMaxWidth`, () => {
     it(`reduces the width of match-bodies to matchMaxWidth when visibleRoundsCount is small`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             visibleRoundsCount: 1,
-            matchMaxWidth: '500px'
+            matchMaxWidth: 500
         })}`)
 
         cy.get('.match-body').eq(0).should('have.css', 'width', '500px')
