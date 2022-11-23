@@ -88,10 +88,12 @@ test('injects leftNavigationButtonHTML to left buttons on initialization', () =>
 
     const { wrapper } = init(finished_ucl, { leftNavigationButtonHTML: '<p>PREVIOUS ROUND</p>' })
 
-    const left_header_button = wrapper.querySelector('.buttons-header .navigation-button.left')
-    expect(left_header_button.innerHTML).toBe('<p>PREVIOUS ROUND</p>')
-    const left_non_header_button = wrapper.querySelector('.all-but-buttons-header .navigation-button.left')
-    expect(left_non_header_button.innerHTML).toBe('<p>PREVIOUS ROUND</p>')
+    const left_header_icon = wrapper.querySelector(
+        '.buttons-header .navigation-button.left .button-icon-wrapper')
+    expect(left_header_icon.innerHTML).toBe('<p>PREVIOUS ROUND</p>')
+    const left_non_header_icon = wrapper.querySelector(
+        '.all-but-buttons-header .navigation-button.left .button-icon-wrapper')
+    expect(left_non_header_icon.innerHTML).toBe('<p>PREVIOUS ROUND</p>')
 })
 
 
@@ -112,10 +114,12 @@ test('injects leftNavigationButtonHTML to left buttons on applyNewOptions', () =
 
     pl.applyNewOptions({ leftNavigationButtonHTML: '<p>PREVIOUS ROUND</p>' })
 
-    const left_header_button = wrapper.querySelector('.buttons-header .navigation-button.left')
-    expect(left_header_button.innerHTML).toBe('<p>PREVIOUS ROUND</p>')
-    const left_non_header_button = wrapper.querySelector('.all-but-buttons-header .navigation-button.left')
-    expect(left_non_header_button.innerHTML).toBe('<p>PREVIOUS ROUND</p>')
+    const left_header_icon = wrapper.querySelector(
+        '.buttons-header .navigation-button.left .button-icon-wrapper')
+    expect(left_header_icon.innerHTML).toBe('<p>PREVIOUS ROUND</p>')
+    const left_non_header_icon = wrapper.querySelector(
+        '.all-but-buttons-header .navigation-button.left .button-icon-wrapper')
+    expect(left_non_header_icon.innerHTML).toBe('<p>PREVIOUS ROUND</p>')
 })
 
 

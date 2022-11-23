@@ -66,18 +66,7 @@
         max-height: 100%;
 
         &.non-header-button {
-            position: absolute;
-            transform: translate(0, -50%);
-            top: var(--navButtonsTopDistance);
             display: none;
-
-            &.left {
-                left: 0;
-            }
-
-            &.right {
-                right: 0;
-            }
         }
 
         svg {
@@ -198,12 +187,10 @@
 
     &.with-gutter-nav-buttons {
         .navigation-button.non-header-button {
-            position: static;
-            transform: none;
-            min-height: 100%;
 
             &:not(.hidden) {
                 display: flex;
+                min-height: 100%;
             }
 
             &.left {
@@ -220,6 +207,25 @@
         .navigation-button.non-header-button {
             &:not(.hidden) {
                 display: flex;
+                border: none;
+                width: 0;
+                margin-top: var(--roundTitlesHeight);
+                position: relative;
+
+                &.left .button-icon-wrapper {
+                        left: 0;
+                    }
+
+                &.right .button-icon-wrapper {
+                    right: 0;
+                }
+
+                .button-icon-wrapper {
+                    position: absolute;
+                    cursor: pointer;
+                    top: var(--navButtonsTopDistance, 50%);
+                    transform: translate(0, -50%);
+                }
             }
         }
     }
