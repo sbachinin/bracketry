@@ -7,18 +7,20 @@ const { init } = require('./utils.js')
 const finished_ucl = require('./ucl-finished.js').default
 
 
-test(`sets <horizontal-scroller> width according to options.visibleRoundsCount`, () => {
+test(`sets width according to options.visibleRoundsCount`, () => {
 
     const { wrapper } = init(finished_ucl, { visibleRoundsCount: 2 })
-    expect(wrapper.querySelector('.matches-scroller').style.width).toBe('200%')
+    expect(wrapper.querySelector('.matches-positioner').style.width).toBe('200%')
+    expect(wrapper.querySelector('.round-titles-wrapper').style.width).toBe('200%')
 })
 
 
-test(`sets <horizontal-scroller> marginLeft according to base round index`, () => {
+test(`sets marginLeft according to base round index`, () => {
 
     const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
     pl.setBaseRoundIndex(1)
-    expect(wrapper.querySelector('.matches-scroller').style.marginLeft).toBe('-50%')
+    expect(wrapper.querySelector('.matches-positioner').style.marginLeft).toBe('-50%')
+    expect(wrapper.querySelector('.round-titles-wrapper').style.marginLeft).toBe('-50%')
 })
 
 
@@ -26,7 +28,8 @@ test(`sets <horizontal-scroller> marginLeft according to base round index`, () =
 test(`renders fractional number of rounds if fractional visibleRoundsCount`, () => {
 
     const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2.5 })
-    expect(wrapper.querySelector('.matches-scroller').style.width).toBe('160%')
+    expect(wrapper.querySelector('.matches-positioner').style.width).toBe('160%')
+    expect(wrapper.querySelector('.round-titles-wrapper').style.width).toBe('160%')
 })
 
 
@@ -34,7 +37,8 @@ test(`renders fractional number of rounds if fractional visibleRoundsCount`, () 
 test(`limits number of visible rounds if visibleRoundsCount is greater than actual rounds.length `, () => {
     const { wrapper } = init(finished_ucl, { visibleRoundsCount: 250 })
     expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(4)
-    expect(wrapper.querySelector('.matches-scroller').style.width).toBe('100%')
+    expect(wrapper.querySelector('.matches-positioner').style.width).toBe('100%')
+    expect(wrapper.querySelector('.round-titles-wrapper').style.width).toBe('100%')
 })
 
 
@@ -43,31 +47,36 @@ test(`renders content with negative visibleRoundsCount`, () => {
 
     const { wrapper } = init(finished_ucl, { visibleRoundsCount: -2.5 })
     expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(4)
-    expect(wrapper.querySelector('.matches-scroller').style.width).toBe('')
+    expect(wrapper.querySelector('.matches-positioner').style.width).toBe('')
+    expect(wrapper.querySelector('.round-titles-wrapper').style.width).toBe('')
 })
 
 
 
-test(`shows more rounds (sets smaller width for <horizontal-scroller>)
+test(`shows more rounds (sets smaller width)
     when a greater visibleRoundsCount is supplied via applyNewOptions`, () => {
 
     const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
-    expect(wrapper.querySelector('.matches-scroller').style.width).toBe('200%')
+    expect(wrapper.querySelector('.matches-positioner').style.width).toBe('200%')
+    expect(wrapper.querySelector('.round-titles-wrapper').style.width).toBe('200%')
 
     pl.applyNewOptions({ visibleRoundsCount: 4 })
-    expect(wrapper.querySelector('.matches-scroller').style.width).toBe('100%')
+    expect(wrapper.querySelector('.matches-positioner').style.width).toBe('100%')
+    expect(wrapper.querySelector('.round-titles-wrapper').style.width).toBe('100%')
 })
 
 
 
-test(`shows less rounds (sets greater width for <horizontal-scroller>)
+test(`shows less rounds (sets greater width)
     when a lesser visibleRoundsCount is supplied via applyNewOptions`, () => {
 
     const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 4 })
-    expect(wrapper.querySelector('.matches-scroller').style.width).toBe('100%')
+    expect(wrapper.querySelector('.matches-positioner').style.width).toBe('100%')
+    expect(wrapper.querySelector('.round-titles-wrapper').style.width).toBe('100%')
 
     pl.applyNewOptions({ visibleRoundsCount: 2 })
-    expect(wrapper.querySelector('.matches-scroller').style.width).toBe('200%')
+    expect(wrapper.querySelector('.matches-positioner').style.width).toBe('200%')
+    expect(wrapper.querySelector('.round-titles-wrapper').style.width).toBe('200%')
 })
 
 
@@ -114,7 +123,8 @@ test(`allows to set fractional base round index`, () => {
 
     const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
     pl.setBaseRoundIndex(1.5)
-    expect(wrapper.querySelector('.matches-scroller').style.marginLeft).toBe('-75%')
+    expect(wrapper.querySelector('.matches-positioner').style.marginLeft).toBe('-75%')
+    expect(wrapper.querySelector('.round-titles-wrapper').style.marginLeft).toBe('-75%')
 })
 
 
@@ -137,7 +147,7 @@ test(`moves to next round when right button is clicked`, () => {
 
     const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
 
-    wrapper.querySelector('.navigation-button.non-header-button.right')
+    wrapper.querySelector('.navigation-button.right')
         .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(pl.getNavigationState().baseRoundIndex).toBe(1)
@@ -207,7 +217,7 @@ test(`does nothing on navigation-buttons click if all rounds are visible`, () =>
 
     const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 4 })
 
-    wrapper.querySelector('.navigation-button.non-header-button.right')
+    wrapper.querySelector('.navigation-button.right')
         .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(pl.getNavigationState().baseRoundIndex).toBe(0)
@@ -265,6 +275,3 @@ test(`getNavigationState tells if allRoundsAreVisible`, () => {
     expect(pl.getNavigationState().allRoundsAreVisible).toBe(false)
 })
 
-
-
-// sets marginLeft for content_horizontal_scroller according to base_round_index

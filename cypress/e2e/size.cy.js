@@ -1,8 +1,4 @@
-const get_query = (o) => {
-    return Object.entries(o).map(([name, value]) => {
-        return `${name}=${value}`
-    }).join('&')
-}
+import { get_query } from './get_query.js'
 
 describe(`Playoffs' size`, () => {
 

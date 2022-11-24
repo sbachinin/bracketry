@@ -1,8 +1,4 @@
-const get_query = (o) => {
-    return Object.entries(o).map(([name, value]) => {
-        return `${name}=${value}`
-    }).join('&')
-}
+import { get_query } from './get_query.js'
 
 describe('Vertical scroll on button clicks', () => {
     it('scrolls down on button click', () => {
@@ -96,8 +92,8 @@ describe('Vertical scroll on button clicks', () => {
         })
         cy.visit(`http://localhost:3000?${query}`)
         cy.get('.button-down').click()
-        cy.get('.navigation-button.non-header-button.right').click()
-        cy.get('.matches-positioner').should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, -387)')
+        cy.get('.navigation-button.right').click()
+        cy.get('.matches-positioner').should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, -389)')
     })
 })
 
@@ -108,9 +104,9 @@ describe('Native scroll mode', () => {
 
         cy.visit(`http://localhost:3000`)
         cy.get('.matches-scroller').scrollTo(0, 2000)
-        cy.get('.navigation-button.non-header-button.right').click()
+        cy.get('.navigation-button.right').click()
         cy.get('.matches-scroller').should($s => {
-            expect($s[0].scrollTop).to.equal(870)
+            expect($s[0].scrollTop).to.equal(872)
         })
     })
 })
@@ -123,7 +119,7 @@ describe('Scrollbar', () => {
 
         cy.get('.scrollbar').should(($s) => {
             const { height } = getComputedStyle($s[0])
-            expect(height).to.match(/51\.\d*px/)
+            expect(height).to.match(/49\.\d*px/)
         })
     })
 
@@ -134,7 +130,7 @@ describe('Scrollbar', () => {
         cy.get('.matches-scroller').scrollTo(0, 2000)
         cy.get('.scrollbar').should(($s) => {
             const { top } = getComputedStyle($s[0])
-            expect(top).to.match(/186\.\d*px/)
+            expect(top).to.match(/183\.\d*px/)
         })
     })
 
@@ -143,21 +139,21 @@ describe('Scrollbar', () => {
         cy.visit(`http://localhost:3000`)
 
         cy.get('.matches-scroller').scrollTo(0, 2000)
-        cy.get('.navigation-button.non-header-button.right').click()
+        cy.get('.navigation-button.right').click()
         cy.get('.scrollbar').should(($s) => {
             const { top, height } = getComputedStyle($s[0])
-            expect(top).to.match(/161\.\d*px/)
-            expect(height).to.match(/101\.\d*px/)
+            expect(top).to.match(/159\.\d*px/)
+            expect(height).to.match(/98\.\d*px/)
         })
     })
 
     it(`is hidden when base round is fully visible`, () => {
 
         cy.visit(`http://localhost:3000`)
-        cy.get('.navigation-button.non-header-button.right').click()
-        cy.get('.navigation-button.non-header-button.right').click()
-        cy.get('.navigation-button.non-header-button.right').click()
-        cy.get('.navigation-button.non-header-button.right').click()
+        cy.get('.navigation-button.right').click()
+        cy.get('.navigation-button.right').click()
+        cy.get('.navigation-button.right').click()
+        cy.get('.navigation-button.right').click()
 
         cy.get('.scrollbar').should(($s) => {
             const { visibility } = getComputedStyle($s[0])

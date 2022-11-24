@@ -113,16 +113,3 @@ test(`resets (synthetic) scroll on replaceData()`, () => {
     pl.replaceData({ rounds: [{}] })
     expect(getComputedStyle(poser).transform).toBe('translateY(-0px)')
 })
-
-test(`vertical scroll buttons are positioned static when scrollButtonsPosition is "gutters"`, () => {
-
-    const { wrapper } = init(finished_ucl, { scrollButtonsPosition: 'gutters' })
-    expect(getComputedStyle(wrapper.querySelector('.button-up')).position).not.toBe('absolute')
-})
-
-
-test(`vertical scroll buttons are positioned absolute when scrollButtonsPosition is "overMatches"`, () => {
-
-    const { wrapper } = init(finished_ucl, { scrollButtonsPosition: 'overMatches' })
-    expect(getComputedStyle(wrapper.querySelector('.button-up')).position).toBe('absolute')
-})

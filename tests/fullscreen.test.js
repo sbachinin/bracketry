@@ -100,7 +100,7 @@ test(`clicks on navigation buttons work in fullscreen mode`, async () => {
 
     const { wrapper, playoffs: pl } = init(finished_ucl, { fullscreen: true, visibleRoundsCount: 2 })
 
-    wrapper.querySelector('.navigation-button.non-header-button.right')
+    wrapper.querySelector('.navigation-button.right')
         .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     await new Promise(r => setTimeout(r, 200)) // make sure it did not uninstall on click

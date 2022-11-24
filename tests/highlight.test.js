@@ -99,7 +99,7 @@ test(`does not unhighlight history after click outside .matches-positioner`, () 
 
     expect(wrapper.querySelectorAll(benfica_selector + '.highlighted').length).toBe(2)
 
-    wrapper.querySelector('.all-but-buttons-header')
+    wrapper.querySelector('.round-titles-wrapper')
         .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(wrapper.querySelectorAll(benfica_selector + '.highlighted').length).toBe(2)
