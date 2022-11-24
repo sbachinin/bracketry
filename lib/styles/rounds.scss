@@ -15,7 +15,7 @@
         &:last-of-type {
             /* overflow: hidden for earlier rounds will hide the vertical part of connecting lines.
                 for last round it's unnecessary
-                    + content that overflows it may mess up the calculations like 'is all content visible within content_area?'
+                    + content that overflows it may mess up the calculations like 'is all content visible within matches area?'
             */
             overflow: hidden;
             .match-lines-area {
