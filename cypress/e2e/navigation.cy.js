@@ -89,9 +89,36 @@ describe('Navigation', () => {
             expect(parseInt($s[0].style.width)).to.equal(233)
         })
     })
-})
 
-// TODO matches-positioner's height is reduced on every next base round
-// TODO matches-positioner's height is not changed on navigation when useClassicalLayout
-// TODO synthetic scroll top is not changed on navigation when useClassicalLayout
-// TODO synthetic scroll top is reset to 0 on navigation if resetScrollOnNavigation is true
+    it(`matches-positioner's height is reduced almost twice on every next base round`, () => {
+        cy.visit(`http://localhost:3000`)
+        
+        let height1
+        cy.get('.matches-positioner').then($p => {
+            height1 = $p[0].getBoundingClientRect().height
+        })
+        cy.get('.navigation-button.right').click()
+        cy.get('.matches-positioner').should($p => {
+            const height2 = $p[0].getBoundingClientRect().height
+            const ratio = height1 / height2
+            expect(ratio).to.be.gt(1.8)
+            expect(ratio).to.be.lt(2)
+        })
+    })
+
+    it.only(`matches-positioner's height is not changed on navigation when useClassicalLayout`, () => {
+        cy.visit(`http://localhost:3000?${get_query({
+            useClassicalLayout: true
+        })}`)
+        
+        let height1
+        cy.get('.matches-positioner').then($p => {
+            height1 = $p[0].getBoundingClientRect().height
+        })
+        cy.get('.navigation-button.right').click()
+        cy.get('.matches-positioner').should($p => {
+            const height2 = $p[0].getBoundingClientRect().height
+            expect(height2).to.equal(height1)
+        })
+    })
+})

@@ -95,12 +95,37 @@ describe('Vertical scroll on button clicks', () => {
         cy.get('.navigation-button.right').click()
         cy.get('.matches-positioner').should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, -389)')
     })
+
+    it('translateY (synthetic scroll position) is NOT changed after navigation if useClassicalLayout', () => {
+
+        cy.visit(`http://localhost:3000?${get_query({
+            verticalScrollMode: 'buttons',
+            syntheticScrollAmount: 1000,
+            useClassicalLayout: true
+        })}`)
+        cy.get('.button-down').click()
+        cy.get('.navigation-button.right').click()
+        cy.get('.matches-positioner').should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, -1000)')
+    })
+
+
+    it.only('translateY (synthetic scroll position) is reset to 0 on navigation if resetScrollOnNavigation', () => {
+
+        cy.visit(`http://localhost:3000?${get_query({
+            verticalScrollMode: 'buttons',
+            syntheticScrollAmount: 1000,
+            resetScrollOnNavigation: true
+        })}`)
+        cy.get('.button-down').click()
+        cy.get('.navigation-button.right').click()
+        cy.get('.matches-positioner').should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, 0)')
+    })
 })
 
 
 describe('Native scroll mode', () => {
     
-    it(`matches-scroller's scrollTop is adjusted after navigation`, () => {
+    it(`scrollTop is adjusted after navigation (if not useClassicalLayout)`, () => {
 
         cy.visit(`http://localhost:3000`)
         cy.get('.matches-scroller').scrollTo(0, 2000)
@@ -109,55 +134,30 @@ describe('Native scroll mode', () => {
             expect($s[0].scrollTop).to.equal(872)
         })
     })
-})
 
+    it(`scrollTop is NOT adjusted after navigation if useClassicalLayout`, () => {
 
-describe('Scrollbar', () => {
-    it('attains certain height accoring to content height', () => {
-
-        cy.visit(`http://localhost:3000`)
-
-        cy.get('.scrollbar').should(($s) => {
-            const { height } = getComputedStyle($s[0])
-            expect(height).to.match(/49\.\d*px/)
-        })
-    })
-
-    it(`attains "top" style according to matches-scroller's scrollTop`, () => {
-
-        cy.visit(`http://localhost:3000`)
-
-        cy.get('.matches-scroller').scrollTo(0, 2000)
-        cy.get('.scrollbar').should(($s) => {
-            const { top } = getComputedStyle($s[0])
-            expect(top).to.match(/183\.\d*px/)
-        })
-    })
-
-    it(`attains new height and top after navigation`, () => {
-
-        cy.visit(`http://localhost:3000`)
+        cy.visit(`http://localhost:3000?${get_query({
+            useClassicalLayout: true
+        })}`)
 
         cy.get('.matches-scroller').scrollTo(0, 2000)
         cy.get('.navigation-button.right').click()
-        cy.get('.scrollbar').should(($s) => {
-            const { top, height } = getComputedStyle($s[0])
-            expect(top).to.match(/159\.\d*px/)
-            expect(height).to.match(/98\.\d*px/)
+        cy.get('.matches-scroller').should($s => {
+            expect($s[0].scrollTop).to.equal(2000)
         })
     })
 
-    it(`is hidden when base round is fully visible`, () => {
+    it(`scrollTop is reset to 0 on navigation if resetScrollOnNavigation`, () => {
 
-        cy.visit(`http://localhost:3000`)
-        cy.get('.navigation-button.right').click()
-        cy.get('.navigation-button.right').click()
-        cy.get('.navigation-button.right').click()
-        cy.get('.navigation-button.right').click()
+        cy.visit(`http://localhost:3000?${get_query({
+            resetScrollOnNavigation: true
+        })}`)
 
-        cy.get('.scrollbar').should(($s) => {
-            const { visibility } = getComputedStyle($s[0])
-            expect(visibility).to.equal('hidden')
+        cy.get('.matches-scroller').scrollTo(0, 2000)
+        cy.get('.navigation-button.right').click()
+        cy.get('.matches-scroller').should($s => {
+            expect($s[0].scrollTop).to.equal(0)
         })
     })
 })
