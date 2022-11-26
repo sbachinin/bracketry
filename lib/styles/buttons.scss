@@ -43,8 +43,6 @@
 
 
     .navigation-button {
-        padding: calc(var(--defaultNavigationIconSize)/10) 0;
-
         &.left {
             grid-column: 1;
         }
@@ -53,10 +51,13 @@
             grid-column: 5;
         }
 
+        /* this wrapper is to move the icon vertically according to navButtonsTopDistance (using 'top' style) */
+        /* applying this style to an 'icon' isn't reliable because there can be a custom content not wrapped in html tag */
         .button-icon-wrapper {
             width: max-content;
             display: flex;
             align-items: center;
+            padding: var(--navButtonPadding, 0);
         }
 
         svg {
@@ -77,19 +78,19 @@
 
 
     .default-nav-icon svg {
-        padding: calc(var(--defaultNavigationIconSize) / 15);
         width: var(--defaultNavigationIconSize);
         height: var(--defaultNavigationIconSize);
     }
 
     .default-scroll-icon svg {
-        padding: calc(var(--defaultScrollIconSize) / 15);
         width: var(--defaultScrollIconSize);
         height: var(--defaultScrollIconSize);
     }
 
 
     .vertical-scroll-button {
+
+        padding: var(--scrollButtonPadding, 0);
         grid-column: 2/span 2;
         display: none;
 

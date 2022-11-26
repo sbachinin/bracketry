@@ -175,6 +175,7 @@ test(`does not merge or apply new options of functional type`, () => {
 
 
 /* broke after introduction of css vars
+TODO no protection agains NaN now
 test(`falls back to default option if NaN is provided for an option of type "number"`, () => {
 
     const { wrapper } = init(finished_ucl, {

@@ -1,4 +1,4 @@
-import { Data, Round, Match, Side, Contestant, Player } from "./lib/data/data"
+import { Contestant, Data, Match, Player, Round, Side } from "./lib/data/data"
 
 // TODO check if all options present here
 
@@ -9,36 +9,42 @@ type Options = {
     wrapperBorderColor: string,
     fullscreen: boolean,
     fullscreenBgColor: string,
+
     verticalScrollMode: 'buttons' | 'native' | 'mixed',
     scrollButtonsPosition: 'gutters' | 'overMatches',
+    showScrollbar: boolean,
+    scrollbarWidth: number,
+    scrollbarColor: string,
+    scrollButtonSvgColor: string,
+    scrollGutterBorderColor: string,
+    scrollButtonPadding: string,
+    scrollUpButtonHTML: string,
+    scrollDownButtonHTML: string,
+    resetScrollOnNavigation: boolean,
     syntheticScrollAmount: number,
+    defaultScrollIconSize: number,
+    
     rootBgColor: string,
     mainVerticalPadding: number,
     visibleRoundsCount: number,
     displayWholeRounds: boolean,
     useClassicalLayout: boolean,
-    resetScrollOnNavigation: boolean,
-    showScrollbar: boolean,
-    scrollbarWidth: number,
-    scrollbarColor: string,
     disableHighlight: boolean,
     roundTitlesVerticalPadding: number,
     roundTitlesBorderColor: string,
     roundTitleColor: string,
     hoveredMatchBorderColor: string,
     matchStatusBgColor: string,
+
     navButtonsPosition: 'overMatches' | 'gutters' | 'beforeTitles' | 'overTitles' | 'hidden',
     navButtonsTopDistance: string,
     navigationGutterBorderColor: string,
-    scrollGutterBorderColor: string,
     defaultNavigationIconSize: number,
     navButtonSvgColor: string,
-    scrollButtonSvgColor: string,
     leftNavigationButtonHTML: string,
     rightNavigationButtonHTML: string,
-    scrollUpButtonHTML: string,
-    scrollDownButtonHTML: string,
-    defaultScrollIconSize: number,
+    navButtonPadding: string,
+    
     rootFontFamily: string,
     roundTitlesFontFamily: string,
     roundTitlesFontSize: number,
