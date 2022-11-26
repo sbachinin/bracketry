@@ -10,3 +10,5 @@ describe(`Options`, () => {
         cy.get('.match-body').should('have.css', 'max-width', '1000px')
     })
 })
+
+// TODO still unprotected agains NaN passed to numeric options; but NaN is not passable via url

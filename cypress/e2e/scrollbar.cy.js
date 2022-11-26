@@ -41,11 +41,10 @@ describe('Scrollbar', () => {
             verticalScrollMode: 'buttons'
         })}`)
         cy.get('.button-down').click().click()
-        cy.wait(300)
+        cy.wait(500)
         cy.get('.scrollbar').then($s => {
             const top1 = $s[0].offsetTop
             cy.get('.navigation-button.right').click()
-            cy.wait(300)
             cy.get('.scrollbar').then($sb => {
                 expect($sb[0].offsetTop).to.be.lt(top1)
             })
@@ -57,16 +56,16 @@ describe('Scrollbar', () => {
             verticalScrollMode: 'buttons'
         })}`)
         cy.get('.button-down').click().click()
-        cy.wait(300)
+        cy.wait(500)
         cy.get('.scrollbar').then($s => {
             const height1 = $s[0].clientHeight
             cy.get('.navigation-button.right').click()
-            cy.wait(300)
             cy.get('.scrollbar').then($sb => {
                 expect($sb[0].clientHeight).to.be.gt(height1)
             })
         })
     })
 
-
+    // TODO scrollbar's height and top don't change on navigation when 'use classical layout'
+    // TODO scrollbar's top is reset to 0 on navigation if resetScrollOnNavigation is true
 })

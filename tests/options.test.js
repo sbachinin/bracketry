@@ -17,7 +17,7 @@ test(`tells user options via getUserOptions`, () => {
 test(`sets options of types "string" or "pixels" (but not other types) as css variables on root`, () => {
 
     const { wrapper } = init(finished_ucl, {
-        roundTitlesHeight: 40,
+        roundTitlesVerticalPadding: 40,
         rootFontFamily: 'somefamily',
         rootBgColor: 'red',
         visibleRoundsCount: 3,
@@ -28,7 +28,7 @@ test(`sets options of types "string" or "pixels" (but not other types) as css va
     })
 
     const style = getComputedStyle(wrapper.querySelector('.playoffs-root'))
-    expect(style.getPropertyValue('--roundTitlesHeight')).toBe('40px')
+    expect(style.getPropertyValue('--roundTitlesVerticalPadding')).toBe('40px')
     expect(style.getPropertyValue('--rootFontFamily')).toBe('somefamily')
     expect(style.getPropertyValue('--rootBgColor')).toBe('red')
     expect(style.getPropertyValue('--visibleRoundsCount')).toBe('')
@@ -59,16 +59,16 @@ test(`applies new visibleRoundsCount via applyNewOptions`, () => {
 
     const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
     pl.applyNewOptions({ visibleRoundsCount: 1 })
-    expect(wrapper.querySelector('.matches-scroller').style.width).toBe('400%')
+    expect(wrapper.querySelector('.matches-positioner').style.width).toBe('400%')
 })
 
 
 
 test(`does not apply invalid options supplied by applyNewOptions`, () => {
 
-    const { wrapper, playoffs: pl } = init(finished_ucl, { roundTitlesHeight: 38 })
-    pl.applyNewOptions({ roundTitlesHeight: 'poop', scrollbarWidth: NaN })
-    expect(pl.getUserOptions()).toEqual({ roundTitlesHeight: 38 })
+    const { playoffs: pl } = init(finished_ucl, { roundTitlesVerticalPadding: 38 })
+    pl.applyNewOptions({ roundTitlesVerticalPadding: 'poop', scrollbarWidth: NaN })
+    expect(pl.getUserOptions()).toEqual({ roundTitlesVerticalPadding: 38 })
 })
 
 
@@ -76,7 +76,7 @@ test(`does not apply invalid options supplied by applyNewOptions`, () => {
 test(`getUserOptions returns only valid options supplied to createPlayoffs`, () => {
 
     const { playoffs: pl } = init(finished_ucl, {
-        roundTitlesHeight: 'poop',
+        roundTitlesVerticalPadding: 'poop',
         scrollbarWidth: NaN,
         visibleRoundsCount: 2
     })
@@ -88,36 +88,36 @@ test(`getUserOptions returns only valid options supplied to createPlayoffs`, () 
 
 test(`getUserOptions returns only valid options supplied by applyNewOptions`, () => {
 
-    const { playoffs: pl } = init(finished_ucl, { roundTitlesHeight: 38 })
+    const { playoffs: pl } = init(finished_ucl, { roundTitlesVerticalPadding: 38 })
 
-    pl.applyNewOptions({ roundTitlesHeight: 'poop', scrollbarWidth: NaN, visibleRoundsCount: 2 })
+    pl.applyNewOptions({ roundTitlesVerticalPadding: 'poop', scrollbarWidth: NaN, visibleRoundsCount: 2 })
 
-    expect(pl.getUserOptions()).toMatchObject({ roundTitlesHeight: 38, visibleRoundsCount: 2 })
+    expect(pl.getUserOptions()).toMatchObject({ roundTitlesVerticalPadding: 38, visibleRoundsCount: 2 })
 })
 
 
 test(`ignores non-object options passed to applyNewOptions`, () => {
 
-    const { playoffs: pl } = init(finished_ucl, { roundTitlesHeight: 300 })
+    const { playoffs: pl } = init(finished_ucl, { roundTitlesVerticalPadding: 300 })
     pl.applyNewOptions('i am an idiot')
-    expect(pl.getUserOptions()).toEqual({ roundTitlesHeight: 300 })
+    expect(pl.getUserOptions()).toEqual({ roundTitlesVerticalPadding: 300 })
 })
 
 
 
 test(`Ignores subsequent mutations of an options object by a user`, () => {
 
-    const options = { roundTitlesHeight: 30 }
+    const options = { roundTitlesVerticalPadding: 30 }
     const { playoffs: pl } = init(finished_ucl, options)
-    options.roundTitlesHeight = 50
-    expect(pl.getUserOptions()).toEqual({ roundTitlesHeight: 30 })
+    options.roundTitlesVerticalPadding = 50
+    expect(pl.getUserOptions()).toEqual({ roundTitlesVerticalPadding: 30 })
 })
 
 
 
 test(`does not mutate an options object supplied by a user`, () => {
 
-    const options = { roundTitlesHeight: 30 }
+    const options = { roundTitlesVerticalPadding: 30 }
     init(finished_ucl, options)
     expect(options).toEqual(options)
 })
@@ -126,27 +126,27 @@ test(`does not mutate an options object supplied by a user`, () => {
 
 test(`ignores mutations of object returned by getUserOptions`, () => {
 
-    const options = { roundTitlesHeight: 30 }
+    const options = { roundTitlesVerticalPadding: 30 }
     const { playoffs: pl } = init(finished_ucl, options)
 
     const returned_options = pl.getUserOptions()
-    returned_options.roundTitlesHeight = 5000
+    returned_options.roundTitlesVerticalPadding = 5000
 
-    expect(pl.getUserOptions()).toEqual({ roundTitlesHeight: 30 })
+    expect(pl.getUserOptions()).toEqual({ roundTitlesVerticalPadding: 30 })
 })
 
 
 
 test(`getUserOptions returns object which is a merge of initial options and those changed by applyNewOptions`, () => {
 
-    const { playoffs: pl } = init(finished_ucl, { roundTitlesHeight: 30 })
+    const { playoffs: pl } = init(finished_ucl, { roundTitlesVerticalPadding: 30 })
     pl.applyNewOptions({ matchMaxWidth: 333 })
-    expect(pl.getUserOptions()).toEqual({ roundTitlesHeight: 30, matchMaxWidth: 333 })
+    expect(pl.getUserOptions()).toEqual({ roundTitlesVerticalPadding: 30, matchMaxWidth: 333 })
 })
 
 
 
-test(`does not merge nor applies new options of functional type`, () => {
+test(`does not merge or apply new options of functional type`, () => {
 
     const { wrapper, playoffs: pl } = init(
         finished_ucl,
@@ -156,7 +156,7 @@ test(`does not merge nor applies new options of functional type`, () => {
                 el.className = 'old-match-element'
                 return el
             },
-            roundTitlesHeight: 30
+            roundTitlesVerticalPadding: 30
         }
     )
 

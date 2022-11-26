@@ -90,3 +90,8 @@ describe('Navigation', () => {
         })
     })
 })
+
+// TODO matches-positioner's height is reduced on every next base round
+// TODO matches-positioner's height is not changed on navigation when useClassicalLayout
+// TODO synthetic scroll top is not changed on navigation when useClassicalLayout
+// TODO synthetic scroll top is reset to 0 on navigation if resetScrollOnNavigation is true

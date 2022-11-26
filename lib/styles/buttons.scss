@@ -145,7 +145,7 @@
             display: flex;
         }
 
-        .scrollbar {
+        .scrollbar.animated {
             transition: top 0.2s ease-out, height 0.2s ease-out;
         }
     }

@@ -30,7 +30,7 @@ test('enables right nav buttons on initialization if rounds count is greater tha
 test('hides nav buttons on initialization if rounds count is <= options.visibleRoundsCount', () => {
 
     const { wrapper } = init(finished_ucl, { visibleRoundsCount: 4 })
-    expect(wrapper.querySelectorAll('.navigation-button.hidden').length).toBe(4)
+    expect(wrapper.querySelectorAll('.navigation-button.hidden').length).toBe(2)
 })
 
 
@@ -40,7 +40,7 @@ test('hides nav buttons when applyNewOptions is called with visibleRoundsCount w
 
     pl.applyNewOptions({ visibleRoundsCount: 4 })
 
-    expect(wrapper.querySelectorAll('.navigation-button.hidden').length).toBe(4)
+    expect(wrapper.querySelectorAll('.navigation-button.hidden').length).toBe(2)
 })
 
 
@@ -86,7 +86,7 @@ test('injects rightNavigationButtonHTML to right buttons on initialization', () 
 
     const { wrapper } = init(finished_ucl, { rightNavigationButtonHTML: '<p>NEXT ROUND</p>' })
     expect(
-        wrapper.querySelector('.navigation-button.right').innerHTML
+        wrapper.querySelector('.navigation-button.right .button-icon-wrapper').innerHTML
     ).toBe('<p>NEXT ROUND</p>')
 })
 
@@ -99,7 +99,7 @@ test('injects leftNavigationButtonHTML to left buttons on applyNewOptions', () =
 
     expect(
         wrapper.querySelector('.navigation-button.left .button-icon-wrapper'
-        ).innerHTML).toBe('<p>PREVIOUS ROUND</p>')
+    ).innerHTML).toBe('<p>PREVIOUS ROUND</p>')
 })
 
 
@@ -110,30 +110,6 @@ test('injects rightNavigationButtonHTML to right button on applyNewOptions', () 
     pl.applyNewOptions({ rightNavigationButtonHTML: '<p>NEXT ROUND</p>' })
 
     expect(
-        wrapper.querySelector('.navigation-button.right').innerHTML
+        wrapper.querySelector('.navigation-button.right .button-icon-wrapper').innerHTML
     ).toBe('<p>NEXT ROUND</p>')
-})
-
-
-test('applies certain styles when options.navButtonsPosition is "gutters"', () => {
-
-    const { wrapper } = init(
-        finished_ucl,
-        { navButtonsPosition: 'gutters' }
-    )
-
-    const expected_non_header_buttons_styles = {
-        display: 'flex',
-        position: 'static',
-        transform: 'none',
-        'min-height': '100%'
-    }
-
-    const left_button = wrapper.querySelector('.navigation-button.left')
-    const right_button = wrapper.querySelector('.navigation-button.right')
-
-    expect(getComputedStyle(left_button))
-        .toMatchObject(expected_non_header_buttons_styles)
-    expect(getComputedStyle(right_button))
-        .toMatchObject(expected_non_header_buttons_styles)
 })
