@@ -11,14 +11,12 @@
         border-color: transparent;
 
         cursor: auto;
-        pointer-events: none;
         user-select: none;
 
         z-index: 3;
 
         &.active {
             cursor: pointer;
-            pointer-events: auto;
 
             &>* {
                 opacity: 0.65;
@@ -36,7 +34,6 @@
         &>* {
             transition: opacity ease-in-out 0.2s;
             opacity: 0.15;
-            /* TODO WHY? pointer-events: none; */
         }
     }
 
