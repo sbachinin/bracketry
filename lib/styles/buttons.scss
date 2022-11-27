@@ -52,6 +52,7 @@
         /* applying this style to an 'icon' isn't reliable because there can be a custom content not wrapped in html tag */
         .button-icon-wrapper {
             width: max-content;
+            height: max-content;
             display: flex;
             align-items: center;
             padding: var(--navButtonPadding, 0);
@@ -87,9 +88,18 @@
 
     .vertical-scroll-button {
 
-        padding: var(--scrollButtonPadding, 0);
         grid-column: 2/span 2;
         display: none;
+
+        /* this wrapper is only to apply padding */
+        /* (padding on a root button element creates problems when "overMatches" */
+        .button-icon-wrapper {
+            width: max-content;
+            height: max-content;
+            display: flex;
+            align-items: center;
+            padding: var(--scrollButtonPadding, 0);
+        }
 
         &.button-up {
             grid-row: 3;
