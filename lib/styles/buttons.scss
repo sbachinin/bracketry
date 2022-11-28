@@ -6,10 +6,6 @@
         justify-content: center;
         align-items: center;
 
-        border-width: 1px;
-        border-style: solid;
-        border-color: transparent;
-
         cursor: auto;
         user-select: none;
 
@@ -73,12 +69,12 @@
 
         &.button-up {
             grid-row: 3;
-            border-bottom-color: var(--scrollGutterBorderColor, var(--rootBorderColor));
+            border-bottom: 1px solid var(--scrollGutterBorderColor, var(--rootBorderColor));
         }
 
         &.button-down {
             grid-row: 5;
-            border-top-color: var(--scrollGutterBorderColor, var(--rootBorderColor));
+            border-top: 1px solid var(--scrollGutterBorderColor, var(--rootBorderColor));
         }
     }
 
@@ -175,11 +171,11 @@
             }
 
             &.left {
-                border-right-color: var(--navGutterBorderColor, var(--rootBorderColor));
+                border-right: 1px solid var(--navGutterBorderColor, var(--rootBorderColor));
             }
 
             &.right {
-                border-left-color: var(--navGutterBorderColor, var(--rootBorderColor));
+                border-left: 1px solid var(--navGutterBorderColor, var(--rootBorderColor));
             }
         }
     }
