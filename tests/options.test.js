@@ -23,7 +23,7 @@ test(`sets options of types "string" or "pixels" (but not other types) as css va
         visibleRoundsCount: 3,
         onMatchClick: console.log,
         showScrollbar: true,
-        leftNavigationButtonHTML: 'button',
+        leftNavButtonHTML: 'button',
         verticalScrollMode: 'buttons'
     })
 
@@ -34,7 +34,7 @@ test(`sets options of types "string" or "pixels" (but not other types) as css va
     expect(style.getPropertyValue('--visibleRoundsCount')).toBe('')
     expect(style.getPropertyValue('--onMatchClick')).toBe('')
     expect(style.getPropertyValue('--showScrollbar')).toBe('')
-    expect(style.getPropertyValue('--leftNavigationButtonHTML')).toBe('')
+    expect(style.getPropertyValue('--leftNavButtonHTML')).toBe('')
     expect(style.getPropertyValue('--verticalScrollMode')).toBe('')
 
 })

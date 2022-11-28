@@ -18,7 +18,7 @@ describe('Borders', () => {
             rootBorderColor: 'rgb(1, 1, 1)',
             wrapperBorderColor: 'rgb(2, 2, 2)',
             scrollGutterBorderColor: 'rgb(3, 3, 3)',
-            navigationGutterBorderColor: 'rgb(4, 4, 4)',
+            navGutterBorderColor: 'rgb(4, 4, 4)',
             liveMatchBorderColor: 'rgb(5, 5, 5)'
         })}`)
 

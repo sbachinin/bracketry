@@ -1,8 +1,8 @@
 .playoffs-root {
 
     .navigation-button,
-    .vertical-scroll-button {
-        display: flex;
+    .scroll-button {
+        display: grid;
         justify-content: center;
         align-items: center;
 
@@ -27,10 +27,6 @@
             }
         }
 
-        &.hidden {
-            display: none;
-        }
-
         &>* {
             transition: opacity ease-in-out 0.2s;
             opacity: 0.15;
@@ -47,59 +43,33 @@
         &.right {
             grid-column: 5;
         }
-
-        /* this wrapper is to move the icon vertically according to navButtonsTopDistance (using 'top' style) */
-        /* applying this style to an 'icon' isn't reliable because there can be a custom content not wrapped in html tag */
-        .button-icon-wrapper {
-            width: max-content;
-            height: max-content;
-            display: flex;
-            align-items: center;
-            padding: var(--navButtonPadding, 0);
-        }
-
-        svg {
-            fill: var(--navButtonSvgColor);
-        }
-
-    }
-
-
-    .default-nav-icon,
-    .default-scroll-icon {
-        display: flex;
-
-        svg {
-            box-sizing: content-box;
+        
+        &.hidden {
+            display: none;
         }
     }
 
 
-    .default-nav-icon svg {
-        width: var(--defaultNavigationIconSize);
-        height: var(--defaultNavigationIconSize);
+    svg.default-nav-icon  {
+        fill: var(--navButtonSvgColor);
+        box-sizing: content-box;
+        padding: var(--navButtonPadding, 0);
+        width: var(--navButtonSize);
+        height: var(--navButtonSize);
     }
 
-    .default-scroll-icon svg {
-        width: var(--defaultScrollIconSize);
-        height: var(--defaultScrollIconSize);
+    svg.default-scroll-icon  {
+        fill: var(--scrollButtonSvgColor);
+        box-sizing: content-box;
+        padding: var(--scrollButtonPadding, 0);
+        width: var(--scrollIconSize);
+        height: var(--scrollIconSize);
     }
 
 
-    .vertical-scroll-button {
-
+    .scroll-button {
         grid-column: 2/span 2;
         display: none;
-
-        /* this wrapper is only to apply padding */
-        /* (padding on a root button element creates problems when "overMatches" */
-        .button-icon-wrapper {
-            width: max-content;
-            height: max-content;
-            display: flex;
-            align-items: center;
-            padding: var(--scrollButtonPadding, 0);
-        }
 
         &.button-up {
             grid-row: 3;
@@ -109,10 +79,6 @@
         &.button-down {
             grid-row: 5;
             border-top-color: var(--scrollGutterBorderColor, var(--rootBorderColor));
-        }
-
-        svg {
-            fill: var(--scrollButtonSvgColor);
         }
     }
 
@@ -133,7 +99,7 @@
     /* FEATURE STYLES */
 
     &.with-scroll-buttons-over-matches {
-        .vertical-scroll-button {
+        .scroll-button {
             border: none;
             height: 0;
         }
@@ -149,12 +115,12 @@
 
     &.fullscreen,
     &.with-vertical-scroll-buttons {
-        .vertical-scroll-button {
+        .scroll-button {
             display: flex;
         }
 
         .scrollbar.animated {
-            transition: top 0.2s ease-out, height 0.2s ease-out;
+            transition: top 0.3s ease-out, height 0.3s ease-out;
         }
     }
 
@@ -209,11 +175,11 @@
             }
 
             &.left {
-                border-right-color: var(--navigationGutterBorderColor, var(--rootBorderColor));
+                border-right-color: var(--navGutterBorderColor, var(--rootBorderColor));
             }
 
             &.right {
-                border-left-color: var(--navigationGutterBorderColor, var(--rootBorderColor));
+                border-left-color: var(--navGutterBorderColor, var(--rootBorderColor));
             }
         }
     }
@@ -227,18 +193,17 @@
                 position: relative;
                 grid-row: 4;
 
-                .button-icon-wrapper {
+                & > *:first-child {
                     position: absolute;
-                    cursor: pointer;
                     top: var(--navButtonsTopDistance, 50%);
                     transform: translate(0, -50%);
                 }
 
-                &.left .button-icon-wrapper {
+                &.left > *:first-child {
                     left: 0;
                 }
 
-                &.right .button-icon-wrapper {
+                &.right > *:first-child {
                     right: 0;
                 }
             }

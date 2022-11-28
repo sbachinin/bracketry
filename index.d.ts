@@ -22,7 +22,7 @@ type Options = {
     scrollDownButtonHTML: string,
     resetScrollOnNavigation: boolean,
     syntheticScrollAmount: number,
-    defaultScrollIconSize: number,
+    scrollIconSize: number,
     
     rootBgColor: string,
     mainVerticalPadding: number,
@@ -38,11 +38,11 @@ type Options = {
 
     navButtonsPosition: 'overMatches' | 'gutters' | 'beforeTitles' | 'overTitles' | 'hidden',
     navButtonsTopDistance: string,
-    navigationGutterBorderColor: string,
-    defaultNavigationIconSize: number,
+    navGutterBorderColor: string,
+    navButtonSize: number,
     navButtonSvgColor: string,
-    leftNavigationButtonHTML: string,
-    rightNavigationButtonHTML: string,
+    leftNavButtonHTML: string,
+    rightNavButtonHTML: string,
     navButtonPadding: string,
     
     rootFontFamily: string,

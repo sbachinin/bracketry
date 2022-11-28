@@ -55,11 +55,11 @@ describe('Vertical scroll buttons', () => {
         cy.get('.matches-positioner').should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, 0)')
     })
 
-    it(`"gutters" scroll buttons attain a height of defaultScrollIconSize + scrollButtonPadding + borders`, () => {
+    it(`"gutters" scroll buttons attain a height of scrollIconSize + scrollButtonPadding + borders`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             verticalScrollMode: 'buttons',
             scrollButtonsPosition: 'gutters',
-            defaultScrollIconSize: 29,
+            scrollIconSize: 29,
             scrollButtonPadding: '7px'
         })}`)
         cy.get('.button-up').should('have.css', 'height', 29 + 14 + 2 + 'px')
@@ -123,7 +123,7 @@ describe('Vertical scroll buttons', () => {
             verticalScrollMode: 'buttons',
             scrollButtonsPosition: 'gutters',
             height: 600,
-            defaultScrollIconSize: 300
+            scrollIconSize: 300
         })}`)
         cy.get('.matches-scroller').should('have.css', 'height', '0px')
     })
@@ -133,7 +133,7 @@ describe('Vertical scroll buttons', () => {
             verticalScrollMode: 'buttons',
             scrollButtonsPosition: 'overMatches',
             height: 600,
-            defaultScrollIconSize: 300
+            scrollIconSize: 300
         })}`)
         cy.get('.matches-scroller').should($s => {
             expect($s[0].clientHeight).to.be.gt(400)

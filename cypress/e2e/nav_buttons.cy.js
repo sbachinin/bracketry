@@ -60,11 +60,11 @@ describe('Navigation buttons: "gutters"', () => {
         cy.get('.navigation-button.right').should('have.css', 'height', '698px')
     })
 
-    it(`attain a width which is = defaultNavigationIconSize + navButtonPadding + borders
+    it(`attain a width which is = navButtonSize + navButtonPadding + borders
     (if no custom html is provided for nav buttons)`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             navButtonsPosition: 'gutters',
-            defaultNavigationIconSize: 50,
+            navButtonSize: 50,
             navButtonPadding: '0 10px'
         })}`)
 
@@ -73,11 +73,11 @@ describe('Navigation buttons: "gutters"', () => {
     })
 
 
-    it(`attain a width of left/rightNavigationButtonHTML + navButtonPadding + borders`, () => {
+    it(`attain a width of left/rightNavButtonHTML + navButtonPadding + borders`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             navButtonsPosition: 'gutters',
-            leftNavigationButtonHTML: `<div style="width: 140px">☠️</div>`,
-            rightNavigationButtonHTML: `<div style="width: 60px">🤬</div>`,
+            leftNavButtonHTML: `<div style="width: 140px">☠️</div>`,
+            rightNavButtonHTML: `<div style="width: 60px">🤬</div>`,
             navButtonPadding: '15px'
         })}`)
 
@@ -89,8 +89,8 @@ describe('Navigation buttons: "gutters"', () => {
     it(`consume the width of matches-scroller, making it narrower`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             navButtonsPosition: 'gutters',
-            leftNavigationButtonHTML: `<div style="width: 140px">☠️</div>`,
-            rightNavigationButtonHTML: `<div style="width: 60px">🤬</div>`,
+            leftNavButtonHTML: `<div style="width: 140px">☠️</div>`,
+            rightNavButtonHTML: `<div style="width: 60px">🤬</div>`,
             navButtonPadding: '15px',
             width: '1000px'
         })}`)
@@ -168,8 +168,8 @@ describe('Navigation buttons: "overMatches"', () => {
     it(`do not make matches-scroller narrower`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             navButtonsPosition: 'overMatches',
-            leftNavigationButtonHTML: `<div style="width: 140px">☠️</div>`,
-            rightNavigationButtonHTML: `<div style="width: 60px">🤬</div>`,
+            leftNavButtonHTML: `<div style="width: 140px">☠️</div>`,
+            rightNavButtonHTML: `<div style="width: 60px">🤬</div>`,
             width: '1000px'
         })}`)
 
@@ -228,7 +228,7 @@ describe('Navigation buttons: "overTitles"', () => {
 
         cy.visit(`http://localhost:3000?${get_query({
             navButtonsPosition: 'overTitles',
-            defaultNavigationIconSize: 300,
+            navButtonSize: 300,
             navButtonPadding: '15px'
         })}`)
 
@@ -242,8 +242,8 @@ describe('Navigation buttons: "overTitles"', () => {
     it(`do not make round-titles-grid-item narrower`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             navButtonsPosition: 'overTitles',
-            leftNavigationButtonHTML: `<div style="width: 140px">☠️</div>`,
-            rightNavigationButtonHTML: `<div style="width: 60px">🤬</div>`
+            leftNavButtonHTML: `<div style="width: 140px">☠️</div>`,
+            rightNavButtonHTML: `<div style="width: 60px">🤬</div>`
         })}`)
 
         let full_width = null
@@ -304,11 +304,11 @@ describe('Navigation buttons: "beforeTitles"', () => {
     })
 
 
-    it(`attain a height of defaultNavigationIconSize + navButtonPadding + borders
+    it(`attain a height of navButtonSize + navButtonPadding + borders
     (if no custom html is provided)`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             navButtonsPosition: 'beforeTitles',
-            defaultNavigationIconSize: 200,
+            navButtonSize: 200,
             navButtonPadding: '16px'
         })}`)
 
@@ -316,11 +316,11 @@ describe('Navigation buttons: "beforeTitles"', () => {
         cy.get('.navigation-button.right').should('have.css', 'height', '234px')
     })
 
-    it(`attain a height of the greater left/rightNavigationButtonHTML + navButtonPadding + borders`, () => {
+    it(`attain a height of the greater left/rightNavButtonHTML + navButtonPadding + borders`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             navButtonsPosition: 'beforeTitles',
-            leftNavigationButtonHTML: `<div style="height: 70px">☠️</div>`,
-            rightNavigationButtonHTML: `<div style="height: 120px">🤬</div>`,
+            leftNavButtonHTML: `<div style="height: 70px">☠️</div>`,
+            rightNavButtonHTML: `<div style="height: 120px">🤬</div>`,
             navButtonPadding: '16px'
         })}`)
 

@@ -73,43 +73,43 @@ test('disables right nav button when right edge is reached', () => {
 })
 
 
-test('injects leftNavigationButtonHTML to left buttons on initialization', () => {
+test('injects leftNavButtonHTML to left buttons on initialization', () => {
 
-    const { wrapper } = init(finished_ucl, { leftNavigationButtonHTML: '<p>PREVIOUS ROUND</p>' })
+    const { wrapper } = init(finished_ucl, { leftNavButtonHTML: '<p>PREVIOUS ROUND</p>' })
     expect(
-        wrapper.querySelector('.navigation-button.left .button-icon-wrapper').innerHTML
+        wrapper.querySelector('.navigation-button.left').innerHTML
     ).toBe('<p>PREVIOUS ROUND</p>')
 })
 
 
-test('injects rightNavigationButtonHTML to right buttons on initialization', () => {
+test('injects rightNavButtonHTML to right buttons on initialization', () => {
 
-    const { wrapper } = init(finished_ucl, { rightNavigationButtonHTML: '<p>NEXT ROUND</p>' })
+    const { wrapper } = init(finished_ucl, { rightNavButtonHTML: '<p>NEXT ROUND</p>' })
     expect(
-        wrapper.querySelector('.navigation-button.right .button-icon-wrapper').innerHTML
+        wrapper.querySelector('.navigation-button.right').innerHTML
     ).toBe('<p>NEXT ROUND</p>')
 })
 
 
-test('injects leftNavigationButtonHTML to left buttons on applyNewOptions', () => {
+test('injects leftNavButtonHTML to left buttons on applyNewOptions', () => {
 
     const { wrapper, playoffs: pl } = init(finished_ucl)
 
-    pl.applyNewOptions({ leftNavigationButtonHTML: '<p>PREVIOUS ROUND</p>' })
+    pl.applyNewOptions({ leftNavButtonHTML: '<p>PREVIOUS ROUND</p>' })
 
     expect(
-        wrapper.querySelector('.navigation-button.left .button-icon-wrapper'
+        wrapper.querySelector('.navigation-button.left'
     ).innerHTML).toBe('<p>PREVIOUS ROUND</p>')
 })
 
 
-test('injects rightNavigationButtonHTML to right button on applyNewOptions', () => {
+test('injects rightNavButtonHTML to right button on applyNewOptions', () => {
 
     const { wrapper, playoffs: pl } = init(finished_ucl)
 
-    pl.applyNewOptions({ rightNavigationButtonHTML: '<p>NEXT ROUND</p>' })
+    pl.applyNewOptions({ rightNavButtonHTML: '<p>NEXT ROUND</p>' })
 
     expect(
-        wrapper.querySelector('.navigation-button.right .button-icon-wrapper').innerHTML
+        wrapper.querySelector('.navigation-button.right').innerHTML
     ).toBe('<p>NEXT ROUND</p>')
 })
