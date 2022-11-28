@@ -5,7 +5,7 @@
 global.ResizeObserver = require('resize-observer-polyfill')
 const { createPlayoffs } = require('../dist/cjs/index.js')
 const { init } = require('./utils.js')
-const finished_ucl = require('./ucl-finished.js').default
+const finished_ucl = require('./data/ucl-finished.js').default
 
 
 test(`with options.fullscreen === true .playoffs-root is wrapped in .playoffs-fullscreen-wrapper`, () => {

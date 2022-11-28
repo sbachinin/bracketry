@@ -60,11 +60,11 @@ describe('Navigation buttons: "gutters"', () => {
         cy.get('.navigation-button.right').should('have.css', 'height', '698px')
     })
 
-    it(`attain a width which is = navButtonSize + navButtonPadding + border
+    it(`attain a width which is = navButtonArrowSize + navButtonPadding + border
     (if no custom html is provided for nav buttons)`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             navButtonsPosition: 'gutters',
-            navButtonSize: 50,
+            navButtonArrowSize: 50,
             navButtonPadding: '0 10px'
         })}`)
 
@@ -227,11 +227,11 @@ describe('Navigation buttons: "overTitles"', () => {
 
         cy.visit(`http://localhost:3000?${get_query({
             navButtonsPosition: 'overTitles',
-            navButtonSize: 300,
+            navButtonArrowSize: 300,
             navButtonPadding: '15px'
         })}`)
 
-        cy.get('.round-titles-grid-item').should('have.css', 'height', '330px')
+        cy.get('.round-titles-grid-item').should('have.css', 'height', '331px')
         cy.get('.navigation-button.left').should('have.css', 'height', '330px')
         cy.get('.navigation-button.right').should('have.css', 'height', '330px')
 
@@ -303,11 +303,11 @@ describe('Navigation buttons: "beforeTitles"', () => {
     })
 
 
-    it(`attain a height of navButtonSize + navButtonPadding + border
+    it(`attain a height of navButtonArrowSize + navButtonPadding + border
     (if no custom html is provided)`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             navButtonsPosition: 'beforeTitles',
-            navButtonSize: 200,
+            navButtonArrowSize: 200,
             navButtonPadding: '16px'
         })}`)
 

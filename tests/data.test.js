@@ -3,7 +3,7 @@
  */
 
 global.ResizeObserver = require('resize-observer-polyfill')
-const finished_ucl = require('./ucl-finished.js').default
+const finished_ucl = require('./data/ucl-finished.js').default
 const { init, deep_clone_object } = require('./utils.js')
 
 

@@ -5,7 +5,7 @@
 global.ResizeObserver = require('resize-observer-polyfill')
 const { init } = require('./utils.js')
 const { createPlayoffs } = require('../dist/cjs/index.js')
-const finished_ucl = require('./ucl-finished.js').default
+const finished_ucl = require('./data/ucl-finished.js').default
 
 
 test(`uninstalls old playoffs when new playoffs are installed into the same wrapper`, () => {

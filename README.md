@@ -1,6 +1,6 @@
 <img src="https://github.com/sbachinin/playoffs/raw/main/images/logo.png" align="right" height="150px">
 
-# [playoffs](https://sbachinin.github.io/playoffs-site) &middot; [![test workflow](https://github.com/sbachinin/playoffs/actions/workflows/action.yml/badge.svg)](https://github.com/sbachinin/playoffs/actions/) [![npm](https://img.shields.io/npm/v/playoffs.svg?style=flat-square)](https://www.npmjs.com/package/playoffs) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/sbachinin/playoffs/blob/main/LICENSE.md)
+# [playoffs](https://sbachinin.github.io/playoffs-site) &middot; [![test workflow](https://github.com/sbachinin/playoffs/actions/workflows/main.yml/badge.svg)](https://github.com/sbachinin/playoffs/actions/) [![npm](https://img.shields.io/npm/v/playoffs.svg?style=flat-square)](https://www.npmjs.com/package/playoffs) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/sbachinin/playoffs/blob/main/LICENSE.md)
 
 JavaScript library that takes your data and draws the tree of a knockout tournament in the browser.  
 Suitable (hopefully) for any kind of sport

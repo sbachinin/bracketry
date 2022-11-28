@@ -30,7 +30,7 @@ describe('Scrollbar', () => {
         cy.get('.matches-scroller').scrollTo(0, 2000)
         cy.get('.scrollbar').should(($s) => {
             const { top } = getComputedStyle($s[0])
-            expect(top).to.match(/183\.\d*px/)
+            expect(parseInt(top)).to.be.gt(175).to.be.lt(225)
         })
     })
 
@@ -71,7 +71,7 @@ describe('Scrollbar', () => {
 
         cy.get('.scrollbar').should(($s) => {
             const { height } = getComputedStyle($s[0])
-            expect(height).to.match(/49\.\d*px/)
+            expect(parseInt(height)).to.be.gt(45).to.be.lt(60)
         })
     })
 

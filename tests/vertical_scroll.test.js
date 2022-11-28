@@ -4,7 +4,7 @@
 
 global.ResizeObserver = require('resize-observer-polyfill')
 const { init } = require('./utils.js')
-const finished_ucl = require('./ucl-finished.js').default
+const finished_ucl = require('./data/ucl-finished.js').default
 
 // testing native scroll in action here appears impossible because there is no real wheel/mousewheel
 

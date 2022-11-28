@@ -92,7 +92,12 @@ describe('Vertical scroll on button clicks', () => {
         cy.visit(`http://localhost:3000?${query}`)
         cy.get('.button-down').click()
         cy.get('.navigation-button.right').click()
-        cy.get('.matches-positioner').should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, -390)')
+        cy.get('.matches-positioner').should($p => {
+            const translateY = new DOMMatrix(
+                getComputedStyle($p[0]).transform
+            ).f
+            expect(translateY).to.be.gt(-400).to.be.lt(-380)
+        })
     })
 
     it('translateY (synthetic scroll position) is NOT changed after navigation if useClassicalLayout', () => {
@@ -130,7 +135,7 @@ describe('Native scroll mode', () => {
         cy.get('.matches-scroller').scrollTo(0, 2000)
         cy.get('.navigation-button.right').click()
         cy.get('.matches-scroller').should($s => {
-            expect($s[0].scrollTop).to.equal(872)
+            expect($s[0].scrollTop).to.be.gt(850).to.be.lt(900)
         })
     })
 
