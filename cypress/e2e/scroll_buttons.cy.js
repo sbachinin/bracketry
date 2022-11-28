@@ -55,15 +55,15 @@ describe('Vertical scroll buttons', () => {
         cy.get('.matches-positioner').should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, 0)')
     })
 
-    it(`"gutters" scroll buttons attain a height of scrollIconSize + scrollButtonPadding + borders`, () => {
+    it(`"gutters" scroll buttons attain a height of scrollIconSize + scrollButtonPadding + border`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             verticalScrollMode: 'buttons',
             scrollButtonsPosition: 'gutters',
             scrollIconSize: 29,
             scrollButtonPadding: '7px'
         })}`)
-        cy.get('.button-up').should('have.css', 'height', 29 + 14 + 2 + 'px')
-        cy.get('.button-down').should('have.css', 'height', 29 + 14 + 2 + 'px')
+        cy.get('.button-up').should('have.css', 'height', 29 + 14 + 1 + 'px')
+        cy.get('.button-down').should('have.css', 'height', 29 + 14 + 1 + 'px')
     })
 
 
@@ -78,7 +78,7 @@ describe('Vertical scroll buttons', () => {
     })
 
 
-    it(`"gutters" scroll buttons attain a height of scrollUp/DownButtonHTML + scrollButtonPadding + borders`, () => {
+    it(`"gutters" scroll buttons attain a height of scrollUp/DownButtonHTML + border (but without scrollButtonPadding)`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             verticalScrollMode: 'buttons',
             scrollButtonsPosition: 'gutters',
@@ -86,8 +86,8 @@ describe('Vertical scroll buttons', () => {
             scrollDownButtonHTML: `<div style="height: 19px">up</div>`,
             scrollButtonPadding: '7px'
         })}`)
-        cy.get('.button-up').should('have.css', 'height', 72 + 14 + 2 + 'px')
-        cy.get('.button-down').should('have.css', 'height', 19 + 14 + 2 + 'px')
+        cy.get('.button-up').should('have.css', 'height', 72 + 1 + 'px')
+        cy.get('.button-down').should('have.css', 'height', 19 + 1 + 'px')
     })
 
 

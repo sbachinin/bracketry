@@ -13,7 +13,6 @@ test('disables left navigation buttons on initialization', () => {
 
     const left_button = wrapper.querySelector('.navigation-button.left')
     expect(left_button.classList.contains('active')).toBe(false)
-    expect(getComputedStyle(left_button).pointerEvents).toBe('none')
 })
 
 
@@ -23,7 +22,6 @@ test('enables right nav buttons on initialization if rounds count is greater tha
 
     const right_button = wrapper.querySelector('.navigation-button.right')
     expect(right_button.classList.contains('active')).toBe(true)
-    expect(getComputedStyle(right_button).pointerEvents).toBe('auto')
 })
 
 

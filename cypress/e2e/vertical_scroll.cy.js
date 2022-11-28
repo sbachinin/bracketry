@@ -27,8 +27,7 @@ describe('Vertical scroll on button clicks', () => {
             syntheticScrollAmount: 100,
         })
         cy.visit(`http://localhost:3000?${query}`)
-        cy.get('.button-up').should('have.css', 'pointer-events', 'none')
-        cy.get('.button-up').not('.active')
+        cy.get('.button-up').not('not.have.class', 'active')
     })
 
     it('"scroll up" button is enabled after scrolling down', () => {
@@ -81,7 +80,7 @@ describe('Vertical scroll on button clicks', () => {
         })
         cy.visit(`http://localhost:3000?${query}`)
         cy.get('.button-down').click()
-        cy.get('.button-down').should('have.css', 'pointer-events', 'none')
+        cy.get('.button-down').should('not.have.class', 'active')
     })
 
     it('translateY (synthetic scroll position) is adjusted after navigation', () => {
@@ -93,7 +92,7 @@ describe('Vertical scroll on button clicks', () => {
         cy.visit(`http://localhost:3000?${query}`)
         cy.get('.button-down').click()
         cy.get('.navigation-button.right').click()
-        cy.get('.matches-positioner').should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, -389)')
+        cy.get('.matches-positioner').should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, -390)')
     })
 
     it('translateY (synthetic scroll position) is NOT changed after navigation if useClassicalLayout', () => {
@@ -109,7 +108,7 @@ describe('Vertical scroll on button clicks', () => {
     })
 
 
-    it.only('translateY (synthetic scroll position) is reset to 0 on navigation if resetScrollOnNavigation', () => {
+    it('translateY (synthetic scroll position) is reset to 0 on navigation if resetScrollOnNavigation', () => {
 
         cy.visit(`http://localhost:3000?${get_query({
             verticalScrollMode: 'buttons',

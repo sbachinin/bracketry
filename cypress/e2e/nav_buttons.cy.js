@@ -60,7 +60,7 @@ describe('Navigation buttons: "gutters"', () => {
         cy.get('.navigation-button.right').should('have.css', 'height', '698px')
     })
 
-    it(`attain a width which is = navButtonSize + navButtonPadding + borders
+    it(`attain a width which is = navButtonSize + navButtonPadding + border
     (if no custom html is provided for nav buttons)`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             navButtonsPosition: 'gutters',
@@ -68,12 +68,12 @@ describe('Navigation buttons: "gutters"', () => {
             navButtonPadding: '0 10px'
         })}`)
 
-        cy.get('.navigation-button.left').should('have.css', 'width', '72px') // +2px for borders
-        cy.get('.navigation-button.right').should('have.css', 'width', '72px') // +2px for borders
+        cy.get('.navigation-button.left').should('have.css', 'width', '71px')
+        cy.get('.navigation-button.right').should('have.css', 'width', '71px')
     })
 
 
-    it(`attain a width of left/rightNavButtonHTML + navButtonPadding + borders`, () => {
+    it(`attain a width of left/rightNavButtonHTML + border (but without navButtonPadding)`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             navButtonsPosition: 'gutters',
             leftNavButtonHTML: `<div style="width: 140px">☠️</div>`,
@@ -81,8 +81,8 @@ describe('Navigation buttons: "gutters"', () => {
             navButtonPadding: '15px'
         })}`)
 
-        cy.get('.navigation-button.left').should('have.css', 'width', '172px')
-        cy.get('.navigation-button.right').should('have.css', 'width', '92px')
+        cy.get('.navigation-button.left').should('have.css', 'width', '141px')
+        cy.get('.navigation-button.right').should('have.css', 'width', '61px')
     })
 
 
@@ -91,11 +91,10 @@ describe('Navigation buttons: "gutters"', () => {
             navButtonsPosition: 'gutters',
             leftNavButtonHTML: `<div style="width: 140px">☠️</div>`,
             rightNavButtonHTML: `<div style="width: 60px">🤬</div>`,
-            navButtonPadding: '15px',
             width: '1000px'
         })}`)
 
-        cy.get('.matches-scroller').should('have.css', 'width', 1000 - 140 - 60 - 15*4 - 6 + 'px')
+        cy.get('.matches-scroller').should('have.css', 'width', 1000 - 140 - 60 - 4 + 'px')
     })
 })
 
@@ -304,7 +303,7 @@ describe('Navigation buttons: "beforeTitles"', () => {
     })
 
 
-    it(`attain a height of navButtonSize + navButtonPadding + borders
+    it(`attain a height of navButtonSize + navButtonPadding + border
     (if no custom html is provided)`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             navButtonsPosition: 'beforeTitles',
@@ -312,11 +311,11 @@ describe('Navigation buttons: "beforeTitles"', () => {
             navButtonPadding: '16px'
         })}`)
 
-        cy.get('.navigation-button.left').should('have.css', 'height', '234px')
-        cy.get('.navigation-button.right').should('have.css', 'height', '234px')
+        cy.get('.navigation-button.left').should('have.css', 'height', '233px')
+        cy.get('.navigation-button.right').should('have.css', 'height', '233px')
     })
 
-    it(`attain a height of the greater left/rightNavButtonHTML + navButtonPadding + borders`, () => {
+    it(`attain a height of the greater left/rightNavButtonHTML + border (but without navButtonPadding)`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             navButtonsPosition: 'beforeTitles',
             leftNavButtonHTML: `<div style="height: 70px">☠️</div>`,
@@ -324,8 +323,8 @@ describe('Navigation buttons: "beforeTitles"', () => {
             navButtonPadding: '16px'
         })}`)
 
-        cy.get('.navigation-button.left').should('have.css', 'height', '154px')
-        cy.get('.navigation-button.right').should('have.css', 'height', '154px')
+        cy.get('.navigation-button.left').should('have.css', 'height', '121px')
+        cy.get('.navigation-button.right').should('have.css', 'height', '121px')
     })
 
     it(`nav buttons "beforeTitles" attain a bottom border color === roundTitlesBorderColor`, () => {

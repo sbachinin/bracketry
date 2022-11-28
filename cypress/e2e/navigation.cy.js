@@ -106,7 +106,7 @@ describe('Navigation', () => {
         })
     })
 
-    it.only(`matches-positioner's height is not changed on navigation when useClassicalLayout`, () => {
+    it(`matches-positioner's height is not changed on navigation when useClassicalLayout`, () => {
         cy.visit(`http://localhost:3000?${get_query({
             useClassicalLayout: true
         })}`)

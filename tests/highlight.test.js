@@ -321,7 +321,7 @@ test(`does not highlight on click if options.disableHighlight === true`, () => {
 })
 
 
-test.only(`keeps highlighted match highlighted after it was updated via applyMatchesUpdates`, () => {
+test(`keeps highlighted match highlighted after it was updated via applyMatchesUpdates`, () => {
     const { wrapper, playoffs: pl } = init(finished_ucl)
 
     pl.highlightContestantHistory('villarreal')
