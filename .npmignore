@@ -1,2 +1,7 @@
 tests
 webpack.config.js
+.github
+cypress
+cypress.config.js
+/index.html
+/index.js

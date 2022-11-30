@@ -308,7 +308,7 @@ test(`Falls back to bare player's nationality (valid one) IF getNationalityHTML 
         }
     }
 
-    const { wrapper } = init(data, { getNationalityHTML: () => {} })
+    const { wrapper } = init(data, { getNationalityHTML: () => { } })
     expect(wrapper.querySelector('.player-wrapper .nationality').innerHTML).toBe(`CAN`)
     expect(consoleWarn.mock.calls[0][0]).toMatch('Failed to get a string from getNationalityHTML')
 })
@@ -325,5 +325,22 @@ test(`renders empty .nationality if both player's nationality and getNationality
 
     const { wrapper } = init(data, { getNationalityHTML: () => 23232 })
     expect(wrapper.querySelector('.player-wrapper .nationality').innerHTML).toBe('')
+})
+
+
+test(`nationality element takes no space if empty string is returned from getNationalityHTML
+    (even if there is a valid nationality for a player)`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1' }] }],
+        contestants: { c1: { players: [{ nationality: 'GE', title: 'Josh' }] } }
+    }
+
+    const { wrapper } = init(data, { getNationalityHTML: () => '' })
+    const el = wrapper.querySelector('.side-wrapper[contestant-id="c1"] .nationality')
+    expect(el.innerHTML).toBe('')
+    expect(getComputedStyle(el).padding).toBe('0px')
+    expect(getComputedStyle(el).margin).toBe('0px')
+    expect(getComputedStyle(el).width).toBe('auto')
 })
 
