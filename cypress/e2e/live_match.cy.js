@@ -6,7 +6,7 @@ describe(`Live match`, () => {
     
     it(`applies certain styles to a match element which { isLive: true }`, () => {
         
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             liveMatchBorderColor: 'rgb(255, 0, 0)', liveMatchBgColor: 'rgb(0, 0, 255)'
         })}`)
 

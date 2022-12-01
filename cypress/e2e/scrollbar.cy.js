@@ -2,21 +2,21 @@ import { get_query } from './get_query.js'
 
 describe('Scrollbar', () => {
     it('applies options.scrollbarWidth', () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             scrollbarWidth: 15,
         })}`)
         cy.get('.scrollbar').should('have.css', 'width', '15px')
     })
 
     it('applies default scrollbar width when options.scrollbarWidth is nonsense', () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             scrollbarWidth: 'i am an idiot',
         })}`)
         cy.get('.scrollbar').should('have.css', 'width', '5px')
     })
 
     it('scrollbar-parent is as high as matches-scroller', () => {
-        cy.visit(`http://localhost:3000`)
+        cy.visit(`http://localhost:3000/cypress`)
         cy.get('.matches-scroller').then($s => {
             cy.get('.scrollbar-parent').should('have.css', 'height', $s[0].clientHeight + 'px')
         })
@@ -25,7 +25,7 @@ describe('Scrollbar', () => {
 
     it(`attains "top" style according to matches-scroller's scrollTop when verticalScrollMode is "native"`, () => {
 
-        cy.visit(`http://localhost:3000`)
+        cy.visit(`http://localhost:3000/cypress`)
 
         cy.get('.matches-scroller').scrollTo(0, 2000)
         cy.get('.scrollbar').should(($s) => {
@@ -37,21 +37,21 @@ describe('Scrollbar', () => {
 
 
     it(`moves down on scroll when verticalScrollMode is not native`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons'
         })}`)
-        cy.get('.button-down').click()
-        cy.get('.button-down').click()
+        cy.get('.button-down').click().click()
+        cy.wait(500)
         cy.get('.scrollbar').should($s => {
             expect(
                 parseFloat(getComputedStyle($s[0]).top)
-            ).to.be.gt(40).to.be.lt(50)
+            ).to.be.gt(45).to.be.lt(55)
         })
     })
 
 
     it('changes position on navigation (when useClassicalLayout === false)', () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons'
         })}`)
         cy.get('.button-down').click().click()
@@ -67,7 +67,7 @@ describe('Scrollbar', () => {
 
     it('attains certain height accoring to content height', () => {
 
-        cy.visit(`http://localhost:3000`)
+        cy.visit(`http://localhost:3000/cypress`)
 
         cy.get('.scrollbar').should(($s) => {
             const { height } = getComputedStyle($s[0])
@@ -76,7 +76,7 @@ describe('Scrollbar', () => {
     })
 
     it('changes height on navigation (when useClassicalLayout === false)', () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons'
         })}`)
         cy.get('.button-down').click().click()
@@ -93,7 +93,7 @@ describe('Scrollbar', () => {
 
     it(`is hidden when base round is fully visible`, () => {
 
-        cy.visit(`http://localhost:3000`)
+        cy.visit(`http://localhost:3000/cypress`)
         cy.get('.navigation-button.right').click()
         cy.get('.navigation-button.right').click()
         cy.get('.navigation-button.right').click()
@@ -107,7 +107,7 @@ describe('Scrollbar', () => {
 
 
     it(`does not change its height and top on navigation when 'use classical layout'`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             useClassicalLayout: true
         })}`)
         cy.get('.matches-scroller').scrollTo(0, 2000)
@@ -125,7 +125,7 @@ describe('Scrollbar', () => {
     })
 
     it(`resets its 'top' to 0 on navigation if resetScrollOnNavigation is true`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             resetScrollOnNavigation: true
         })}`)
         cy.get('.matches-scroller').scrollTo(0, 2000)

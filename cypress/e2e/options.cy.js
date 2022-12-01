@@ -2,7 +2,7 @@ describe(`Options`, () => {
 
     it(`falls back to default options in case of EMPTY options`, () => {
 
-        cy.visit(`http://localhost:3000`)
+        cy.visit(`http://localhost:3000/cypress`)
         cy.get('.navigation-button.left svg').should($s => {
             expect(getComputedStyle($s[0]).width).to.equal('34px')
         })

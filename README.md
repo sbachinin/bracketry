@@ -1,4 +1,4 @@
-<img src="https://github.com/sbachinin/playoffs/raw/main/images/logo.png" align="right" height="150px">
+<img src="https://github.com/sbachinin/playoffs/blob/main/images/logo.png?raw=true" align="right" height="150px">
 
 # [playoffs](https://sbachinin.github.io/playoffs-site) &middot; [![test workflow](https://github.com/sbachinin/playoffs/actions/workflows/main.yml/badge.svg)](https://github.com/sbachinin/playoffs/actions/) [![npm](https://img.shields.io/npm/v/playoffs.svg?style=flat-square)](https://www.npmjs.com/package/playoffs) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/sbachinin/playoffs/blob/main/LICENSE.md)
 
@@ -8,7 +8,7 @@ Suitable (hopefully) for any kind of sport
 <br>
 
 
-![alt text](https://github.com/sbachinin/playoffs/raw/main/images/example.jpg)
+![alt text](https://github.com/sbachinin/playoffs/blob/main/images/example.jpg?raw=true)
 
 <br>
 
@@ -20,7 +20,7 @@ import { createPlayoffs } from 'playoffs'
 createPlayoffs(your_data, your_wrapper_element)
 ```
 
-_You only need a wrapper element and (yes, it's the tricky part) some <a href="https://sbachinin.github.io/playoffs-site/data-shape">properly formatted data</a>_
+_You only need a wrapper element and some <a href="https://sbachinin.github.io/playoffs-site/data-shape">properly formatted data</a>_
 
 <br>
 
@@ -44,7 +44,7 @@ _You only need a wrapper element and (yes, it's the tricky part) some <a href="h
   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;you may choose to render matches yourself and use playoffs only as a positioning mechanism
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![alt text](https://github.com/sbachinin/playoffs/raw/main/images/your-match-element.jpg)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![alt text](https://github.com/sbachinin/playoffs/blob/main/images/your-match-element.jpg?raw=true)
 
 * You can specify what happens when a match (or a side of a match) is <a href="https://sbachinin.github.io/playoffs-site/click-handlers">clicked</a>  
 * You may opt to display a specific <a href="https://sbachinin.github.io/playoffs-site/n-rounds">number of rounds</a> at a time

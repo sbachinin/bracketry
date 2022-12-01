@@ -2,7 +2,7 @@ import { get_query } from './get_query.js'
 
 describe('Highlight contestant history', () => {
     it('applies highlighted color to .player-title', () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             highlightedPlayerTitleColor: 'rgb(255, 192, 203)'
         })}`)
 
@@ -14,7 +14,7 @@ describe('Highlight contestant history', () => {
     it(`".line-wrapper" elements of a .highlighted (but not .last-highlighted) match
         have style.color === options.highlightedConnectionLinesColor`, () => {
 
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             highlightedConnectionLinesColor: 'rgb(10, 10, 10)'
         })}`)
 
@@ -27,7 +27,7 @@ describe('Highlight contestant history', () => {
     it(`".line-wrapper" elements of last highlighted match have style.color === options.connectionLinesColor
         (it unhighlights a right pseudo border which is actually a box-shadow)`, () => {
 
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             highlightedConnectionLinesColor: 'rgb(10, 10, 10)',
             connectionLinesColor: 'rgb(100, 100, 100)',
         })}`)

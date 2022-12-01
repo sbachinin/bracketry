@@ -1,5 +1,5 @@
-import { createPlayoffs } from './dist/esm/index.js'
-import data from './tests/data/finished-singles-2021.js'
+import { createPlayoffs } from '../dist/esm/index.js'
+import data from './finished-singles-2021.js'
 
 let isnumstring = val => /^\d+$/.test(val)
 

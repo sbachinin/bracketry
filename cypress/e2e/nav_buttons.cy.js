@@ -6,7 +6,7 @@ describe('Navigation buttons', () => {
     it('hides navigation buttons when tournament fits the drawing area', () => {
 
         cy.viewport(5000, 2000)
-        cy.visit(`http://localhost:3000`)
+        cy.visit(`http://localhost:3000/cypress`)
 
         cy.get(`.navigation-button.left`).should('have.css', 'display', 'none')
         cy.get(`.navigation-button.right`).should('have.css', 'display', 'none')
@@ -14,23 +14,23 @@ describe('Navigation buttons', () => {
 
 
     it('left nav button should be non-active at the beginning', () => {
-        cy.visit(`http://localhost:3000`)
+        cy.visit(`http://localhost:3000/cypress`)
         cy.get('.navigation-button.left').should('not.have.class', 'active')
     })
 
     it('left nav button should become active after navigation', () => {
-        cy.visit(`http://localhost:3000`)
+        cy.visit(`http://localhost:3000/cypress`)
         cy.get('.navigation-button.right').click()
         cy.get('.navigation-button.left').should('have.class', 'active')
     })
 
     it('right nav button should be active at the beginning if content is wide enough', () => {
-        cy.visit(`http://localhost:3000`)
+        cy.visit(`http://localhost:3000/cypress`)
         cy.get('.navigation-button.right').should('have.class', 'active')
     })
 
     it('righ nav button becomes non-active when end of navigation is reached', () => {
-        cy.visit(`http://localhost:3000`)
+        cy.visit(`http://localhost:3000/cypress`)
         cy.get('.navigation-button.right').click().click().click().click().click().should('not.have.class', 'active')
         cy.get('.navigation-button.right').should('not.have.class', 'active')
     })
@@ -41,7 +41,7 @@ describe('Navigation buttons', () => {
 describe('Navigation buttons: "gutters"', () => {
 
     it(`are visible`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'gutters'
         })}`)
         
@@ -51,7 +51,7 @@ describe('Navigation buttons: "gutters"', () => {
 
     it(`take full height (minus borders)`, () => {
 
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'gutters',
             height: '700px'
         })}`)
@@ -62,7 +62,7 @@ describe('Navigation buttons: "gutters"', () => {
 
     it(`attain a width which is = navButtonArrowSize + navButtonPadding + border
     (if no custom html is provided for nav buttons)`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'gutters',
             navButtonArrowSize: 50,
             navButtonPadding: '0 10px'
@@ -74,7 +74,7 @@ describe('Navigation buttons: "gutters"', () => {
 
 
     it(`attain a width of left/rightNavButtonHTML + border (but without navButtonPadding)`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'gutters',
             leftNavButtonHTML: `<div style="width: 140px">☠️</div>`,
             rightNavButtonHTML: `<div style="width: 60px">🤬</div>`,
@@ -87,7 +87,7 @@ describe('Navigation buttons: "gutters"', () => {
 
 
     it(`consume the width of matches-scroller, making it narrower`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'gutters',
             leftNavButtonHTML: `<div style="width: 140px">☠️</div>`,
             rightNavButtonHTML: `<div style="width: 60px">🤬</div>`,
@@ -102,7 +102,7 @@ describe('Navigation buttons: "gutters"', () => {
 describe('Navigation buttons: "overMatches"', () => {
 
     it(`are visible`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'overMatches'
         })}`)
         
@@ -113,7 +113,7 @@ describe('Navigation buttons: "overMatches"', () => {
 
     it(`take same height as matches-scroller`, () => {
 
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'overMatches'
         })}`)
 
@@ -134,7 +134,7 @@ describe('Navigation buttons: "overMatches"', () => {
 
     it(`are at the same distance from top as matches-scroller`, () => {
 
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'overMatches'
         })}`)
 
@@ -155,7 +155,7 @@ describe('Navigation buttons: "overMatches"', () => {
 
     it(`attain a width of 0`, () => {
 
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'overMatches'
         })}`)
 
@@ -165,7 +165,7 @@ describe('Navigation buttons: "overMatches"', () => {
 
 
     it(`do not make matches-scroller narrower`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'overMatches',
             leftNavButtonHTML: `<div style="width: 140px">☠️</div>`,
             rightNavButtonHTML: `<div style="width: 60px">🤬</div>`,
@@ -181,7 +181,7 @@ describe('Navigation buttons: "overMatches"', () => {
 describe('Navigation buttons: "overTitles"', () => {
 
     it(`are visible`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'overTitles'
         })}`)
         
@@ -191,7 +191,7 @@ describe('Navigation buttons: "overTitles"', () => {
 
     it(`take the same distance from top as round titles`, () => {
 
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'overTitles'
         })}`)
 
@@ -214,7 +214,7 @@ describe('Navigation buttons: "overTitles"', () => {
 
     it(`attain a width of 0`, () => {
 
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'overTitles'
         })}`)
 
@@ -225,7 +225,7 @@ describe('Navigation buttons: "overTitles"', () => {
 
     it(`make round titles grow taller`, () => {
 
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'overTitles',
             navButtonArrowSize: 300,
             navButtonPadding: '15px'
@@ -239,7 +239,7 @@ describe('Navigation buttons: "overTitles"', () => {
 
 
     it(`do not make round-titles-grid-item narrower`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'overTitles',
             leftNavButtonHTML: `<div style="width: 140px">☠️</div>`,
             rightNavButtonHTML: `<div style="width: 60px">🤬</div>`
@@ -261,7 +261,7 @@ describe('Navigation buttons: "overTitles"', () => {
 describe('Navigation buttons: "beforeTitles"', () => {
     
     it(`are visible`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'beforeTitles'
         })}`)
         
@@ -271,7 +271,7 @@ describe('Navigation buttons: "beforeTitles"', () => {
 
     it(`are above round titles`, () => {
 
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'beforeTitles'
         })}`)
 
@@ -293,7 +293,7 @@ describe('Navigation buttons: "beforeTitles"', () => {
 
 
     it(`each nav button takes half the total playoffs' width (minus root border)`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'beforeTitles',
             width: '1000px'
         })}`)
@@ -305,7 +305,7 @@ describe('Navigation buttons: "beforeTitles"', () => {
 
     it(`attain a height of navButtonArrowSize + navButtonPadding + border
     (if no custom html is provided)`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'beforeTitles',
             navButtonArrowSize: 200,
             navButtonPadding: '16px'
@@ -316,7 +316,7 @@ describe('Navigation buttons: "beforeTitles"', () => {
     })
 
     it(`attain a height of the greater left/rightNavButtonHTML + border (but without navButtonPadding)`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'beforeTitles',
             leftNavButtonHTML: `<div style="height: 70px">☠️</div>`,
             rightNavButtonHTML: `<div style="height: 120px">🤬</div>`,
@@ -328,7 +328,7 @@ describe('Navigation buttons: "beforeTitles"', () => {
     })
 
     it(`nav buttons "beforeTitles" attain a bottom border color === roundTitlesBorderColor`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'beforeTitles',
             roundTitlesBorderColor: 'rgb(42, 125, 1)'
         })}`)
@@ -341,7 +341,7 @@ describe('Navigation buttons: "beforeTitles"', () => {
 
 describe('Navigation buttons: "hidden"', () => {
     it(`are hidden`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'hidden'
         })}`)
 

@@ -2,7 +2,7 @@ import { get_query } from './get_query.js'
 
 describe('Vertical scroll on button clicks', () => {
     it('scrolls down on button click', () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons',
         })}`)
         cy.get('.button-down').click()
@@ -15,7 +15,7 @@ describe('Vertical scroll on button clicks', () => {
             verticalScrollMode: 'buttons',
             syntheticScrollAmount: 100,
         })
-        cy.visit(`http://localhost:3000?${query}`)
+        cy.visit(`http://localhost:3000/cypress?${query}`)
         cy.get('.button-down').click()
         cy.get('.matches-positioner').should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, -100)')
     })
@@ -26,7 +26,7 @@ describe('Vertical scroll on button clicks', () => {
             verticalScrollMode: 'buttons',
             syntheticScrollAmount: 100,
         })
-        cy.visit(`http://localhost:3000?${query}`)
+        cy.visit(`http://localhost:3000/cypress?${query}`)
         cy.get('.button-up').not('not.have.class', 'active')
     })
 
@@ -36,7 +36,7 @@ describe('Vertical scroll on button clicks', () => {
             verticalScrollMode: 'buttons',
             syntheticScrollAmount: 100,
         })
-        cy.visit(`http://localhost:3000?${query}`)
+        cy.visit(`http://localhost:3000/cypress?${query}`)
         cy.get('.button-down').click()
         cy.get('.button-up').should('have.css', 'pointer-events', 'auto')
         cy.get('.button-up.active')
@@ -48,7 +48,7 @@ describe('Vertical scroll on button clicks', () => {
             verticalScrollMode: 'buttons',
             syntheticScrollAmount: 100,
         })
-        cy.visit(`http://localhost:3000?${query}`)
+        cy.visit(`http://localhost:3000/cypress?${query}`)
         cy.get('.button-down').click()
         cy.get('.button-down').click()
         cy.get('.button-down').click()
@@ -62,7 +62,7 @@ describe('Vertical scroll on button clicks', () => {
             verticalScrollMode: 'buttons',
             syntheticScrollAmount: 1000000,
         })
-        cy.visit(`http://localhost:3000?${query}`)
+        cy.visit(`http://localhost:3000/cypress?${query}`)
         cy.get('.button-down').click()
         cy.wait(300)
 
@@ -78,7 +78,7 @@ describe('Vertical scroll on button clicks', () => {
             verticalScrollMode: 'buttons',
             syntheticScrollAmount: 1000000,
         })
-        cy.visit(`http://localhost:3000?${query}`)
+        cy.visit(`http://localhost:3000/cypress?${query}`)
         cy.get('.button-down').click()
         cy.get('.button-down').should('not.have.class', 'active')
     })
@@ -89,7 +89,7 @@ describe('Vertical scroll on button clicks', () => {
             verticalScrollMode: 'buttons',
             syntheticScrollAmount: 1000
         })
-        cy.visit(`http://localhost:3000?${query}`)
+        cy.visit(`http://localhost:3000/cypress?${query}`)
         cy.get('.button-down').click()
         cy.get('.navigation-button.right').click()
         cy.get('.matches-positioner').should($p => {
@@ -102,7 +102,7 @@ describe('Vertical scroll on button clicks', () => {
 
     it('translateY (synthetic scroll position) is NOT changed after navigation if useClassicalLayout', () => {
 
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons',
             syntheticScrollAmount: 1000,
             useClassicalLayout: true
@@ -115,7 +115,7 @@ describe('Vertical scroll on button clicks', () => {
 
     it('translateY (synthetic scroll position) is reset to 0 on navigation if resetScrollOnNavigation', () => {
 
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons',
             syntheticScrollAmount: 1000,
             resetScrollOnNavigation: true
@@ -131,7 +131,7 @@ describe('Native scroll mode', () => {
     
     it(`scrollTop is adjusted after navigation (if not useClassicalLayout)`, () => {
 
-        cy.visit(`http://localhost:3000`)
+        cy.visit(`http://localhost:3000/cypress`)
         cy.get('.matches-scroller').scrollTo(0, 2000)
         cy.get('.navigation-button.right').click()
         cy.get('.matches-scroller').should($s => {
@@ -141,7 +141,7 @@ describe('Native scroll mode', () => {
 
     it(`scrollTop is NOT adjusted after navigation if useClassicalLayout`, () => {
 
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             useClassicalLayout: true
         })}`)
 
@@ -154,7 +154,7 @@ describe('Native scroll mode', () => {
 
     it(`scrollTop is reset to 0 on navigation if resetScrollOnNavigation`, () => {
 
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             resetScrollOnNavigation: true
         })}`)
 

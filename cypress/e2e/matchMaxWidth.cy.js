@@ -5,7 +5,7 @@ describe(`matchMaxWidth`, () => {
     beforeEach(() => cy.viewport(1280, 720))
     
     it(`reduces the width of match-bodies to matchMaxWidth when visibleRoundsCount is small`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             visibleRoundsCount: 1,
             matchMaxWidth: 500
         })}`)

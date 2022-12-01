@@ -6,7 +6,7 @@ describe('Navigation', () => {
 
     it(`changes the matches-scroller's margin-left on navigation (free width)`, () => {
 
-        cy.visit(`http://localhost:3000`)
+        cy.visit(`http://localhost:3000/cypress`)
 
         cy.get('.navigation-button.right').eq(0).click()
         cy.get('.matches-positioner').should($s => {
@@ -32,7 +32,7 @@ describe('Navigation', () => {
 
     it(`changes the matches-scroller's margin-left on navigation (with displayWholeRounds)`, () => {
 
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             displayWholeRounds: true
         })}`)
 
@@ -59,7 +59,7 @@ describe('Navigation', () => {
 
 
     it(`applies certain width to matches-scroller when visibleRoundsCount is automatic`, () => {
-        cy.visit(`http://localhost:3000`)
+        cy.visit(`http://localhost:3000/cypress`)
         cy.get('.matches-positioner').should($s => {
             const { width } = $s[0].style
             expect(width.slice(-1)).to.equal('%')
@@ -70,7 +70,7 @@ describe('Navigation', () => {
 
     it(`applies certain width to matches-scroller when visibleRoundsCount is set to a specific number`, () => {
         
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             visibleRoundsCount: 4
         })}`)
 
@@ -81,7 +81,7 @@ describe('Navigation', () => {
 
     it(`applies certain width to matches-scroller when displayWholeRounds is set to true`, () => {
         
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             displayWholeRounds: true
         })}`)
 
@@ -91,7 +91,7 @@ describe('Navigation', () => {
     })
 
     it(`matches-positioner's height is reduced almost twice on every next base round`, () => {
-        cy.visit(`http://localhost:3000`)
+        cy.visit(`http://localhost:3000/cypress`)
         
         let height1
         cy.get('.matches-positioner').then($p => {
@@ -107,7 +107,7 @@ describe('Navigation', () => {
     })
 
     it(`matches-positioner's height is not changed on navigation when useClassicalLayout`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             useClassicalLayout: true
         })}`)
         

@@ -3,13 +3,13 @@ import { get_query } from './get_query.js'
 describe('Vertical scroll buttons', () => {
 
     it(`Scroll buttons are hidden with "native" verticalScrollMode`, () => {
-        cy.visit(`http://localhost:3000`)
+        cy.visit(`http://localhost:3000/cypress`)
         cy.get('.button-up').should('not.be.visible')
         cy.get('.button-down').should('not.be.visible')
     })
 
     it(`Scroll buttons are visible and clickable with "buttons" verticalScrollMode`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons',
             syntheticScrollAmount: 200
         })}`)
@@ -24,7 +24,7 @@ describe('Vertical scroll buttons', () => {
     })
 
     it(`Scroll buttons are visible and clickable with "mixed" verticalScrollMode`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'mixed',
             syntheticScrollAmount: 200
         })}`)
@@ -39,7 +39,7 @@ describe('Vertical scroll buttons', () => {
     })
 
     it(`Scroll buttons attain the same width as matches-scroller`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'mixed'
         })}`)
         cy.get('.matches-scroller').then($s => {
@@ -48,7 +48,7 @@ describe('Vertical scroll buttons', () => {
     })
 
     it(`clicking the inactive scroll button doesn't change synthetic scroll position`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons'
         })}`)
         cy.get('.button-up:not(.active)').click()
@@ -56,7 +56,7 @@ describe('Vertical scroll buttons', () => {
     })
 
     it(`"gutters" scroll buttons attain a height of scrollButtonArrowSize + scrollButtonPadding + border`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons',
             scrollButtonsPosition: 'gutters',
             scrollButtonArrowSize: 29,
@@ -68,7 +68,7 @@ describe('Vertical scroll buttons', () => {
 
 
     it(`scrollUp/DownButtonHTML is inserted`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons',
             scrollUpButtonHTML: `<div class="up-html">up</div>`,
             scrollDownButtonHTML: `<div class="down-html">up</div>`,
@@ -79,7 +79,7 @@ describe('Vertical scroll buttons', () => {
 
 
     it(`"gutters" scroll buttons attain a height of scrollUp/DownButtonHTML + border (but without scrollButtonPadding)`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons',
             scrollButtonsPosition: 'gutters',
             scrollUpButtonHTML: `<div style="height: 72px">up</div>`,
@@ -92,7 +92,7 @@ describe('Vertical scroll buttons', () => {
 
 
     it(`scroll buttons are squashed to 0 height when scrollButtonsPosition is "overMatches"`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons',
             scrollButtonsPosition: 'overMatches'
         })}`)
@@ -101,7 +101,7 @@ describe('Vertical scroll buttons', () => {
     })
 
     it(`scroll icons are visible when "overMatches`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons',
             scrollButtonsPosition: 'overMatches'
         })}`)
@@ -110,7 +110,7 @@ describe('Vertical scroll buttons', () => {
     })
 
     it(`scroll icons are visible when "overMatches`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons',
             scrollButtonsPosition: 'overMatches'
         })}`)
@@ -119,7 +119,7 @@ describe('Vertical scroll buttons', () => {
     })
 
     it(`scroll buttons eat the height of matches if 'gutters'`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons',
             scrollButtonsPosition: 'gutters',
             height: 600,
@@ -129,7 +129,7 @@ describe('Vertical scroll buttons', () => {
     })
 
     it(`scroll buttons do NOT eat the height of matches if 'overMatches'`, () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons',
             scrollButtonsPosition: 'overMatches',
             height: 600,

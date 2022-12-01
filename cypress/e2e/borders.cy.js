@@ -2,7 +2,7 @@ import { get_query } from './get_query.js'
 
 describe('Borders', () => {
     it('applies rootBorderColor to all borders without color specified', () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             rootBorderColor: 'rgb(1, 1, 1)'
         })}`)
 
@@ -14,7 +14,7 @@ describe('Borders', () => {
     })
 
     it('applies subordinate border colors instead of rootBorderColor when such colors are provided', () => {
-        cy.visit(`http://localhost:3000?${get_query({
+        cy.visit(`http://localhost:3000/cypress?${get_query({
             rootBorderColor: 'rgb(1, 1, 1)',
             wrapperBorderColor: 'rgb(2, 2, 2)',
             scrollGutterBorderColor: 'rgb(3, 3, 3)',
