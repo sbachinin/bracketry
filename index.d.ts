@@ -21,7 +21,7 @@ type Options = {
     scrollUpButtonHTML: string,
     scrollDownButtonHTML: string,
     resetScrollOnNavigation: boolean,
-    syntheticScrollAmount: number,
+    buttonScrollAmount: number,
     scrollButtonArrowSize: number,
     
     rootBgColor: string,

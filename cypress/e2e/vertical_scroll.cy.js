@@ -9,11 +9,11 @@ describe('Vertical scroll on button clicks', () => {
         cy.get('.matches-positioner').should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, -300)')
     })
 
-    it('scrolls down on button click by an amount specified by syntheticScrollAmount', () => {
+    it('scrolls down on button click by an amount specified by buttonScrollAmount', () => {
 
         const query = get_query({
             verticalScrollMode: 'buttons',
-            syntheticScrollAmount: 100,
+            buttonScrollAmount: 100,
         })
         cy.visit(`http://localhost:3000/cypress?${query}`)
         cy.get('.button-down').click()
@@ -24,7 +24,7 @@ describe('Vertical scroll on button clicks', () => {
 
         const query = get_query({
             verticalScrollMode: 'buttons',
-            syntheticScrollAmount: 100,
+            buttonScrollAmount: 100,
         })
         cy.visit(`http://localhost:3000/cypress?${query}`)
         cy.get('.button-up').not('not.have.class', 'active')
@@ -34,7 +34,7 @@ describe('Vertical scroll on button clicks', () => {
 
         const query = get_query({
             verticalScrollMode: 'buttons',
-            syntheticScrollAmount: 100,
+            buttonScrollAmount: 100,
         })
         cy.visit(`http://localhost:3000/cypress?${query}`)
         cy.get('.button-down').click()
@@ -46,7 +46,7 @@ describe('Vertical scroll on button clicks', () => {
 
         const query = get_query({
             verticalScrollMode: 'buttons',
-            syntheticScrollAmount: 100,
+            buttonScrollAmount: 100,
         })
         cy.visit(`http://localhost:3000/cypress?${query}`)
         cy.get('.button-down').click()
@@ -60,7 +60,7 @@ describe('Vertical scroll on button clicks', () => {
 
         const query = get_query({
             verticalScrollMode: 'buttons',
-            syntheticScrollAmount: 1000000,
+            buttonScrollAmount: 1000000,
         })
         cy.visit(`http://localhost:3000/cypress?${query}`)
         cy.get('.button-down').click()
@@ -76,7 +76,7 @@ describe('Vertical scroll on button clicks', () => {
 
         const query = get_query({
             verticalScrollMode: 'buttons',
-            syntheticScrollAmount: 1000000,
+            buttonScrollAmount: 1000000,
         })
         cy.visit(`http://localhost:3000/cypress?${query}`)
         cy.get('.button-down').click()
@@ -87,7 +87,7 @@ describe('Vertical scroll on button clicks', () => {
 
         const query = get_query({
             verticalScrollMode: 'buttons',
-            syntheticScrollAmount: 1000
+            buttonScrollAmount: 1000
         })
         cy.visit(`http://localhost:3000/cypress?${query}`)
         cy.get('.button-down').click()
@@ -104,7 +104,7 @@ describe('Vertical scroll on button clicks', () => {
 
         cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons',
-            syntheticScrollAmount: 1000,
+            buttonScrollAmount: 1000,
             useClassicalLayout: true
         })}`)
         cy.get('.button-down').click()
@@ -117,7 +117,7 @@ describe('Vertical scroll on button clicks', () => {
 
         cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons',
-            syntheticScrollAmount: 1000,
+            buttonScrollAmount: 1000,
             resetScrollOnNavigation: true
         })}`)
         cy.get('.button-down').click()

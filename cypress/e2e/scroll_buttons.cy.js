@@ -11,7 +11,7 @@ describe('Vertical scroll buttons', () => {
     it(`Scroll buttons are visible and clickable with "buttons" verticalScrollMode`, () => {
         cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'buttons',
-            syntheticScrollAmount: 200
+            buttonScrollAmount: 200
         })}`)
         cy.get('.button-up')
             .should('be.visible')
@@ -26,7 +26,7 @@ describe('Vertical scroll buttons', () => {
     it(`Scroll buttons are visible and clickable with "mixed" verticalScrollMode`, () => {
         cy.visit(`http://localhost:3000/cypress?${get_query({
             verticalScrollMode: 'mixed',
-            syntheticScrollAmount: 200
+            buttonScrollAmount: 200
         })}`)
         cy.get('.button-up')
             .should('be.visible')
