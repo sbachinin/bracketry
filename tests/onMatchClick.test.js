@@ -30,14 +30,14 @@ test('does not call onMatchClick when clicked outside match-body', () => {
 
 test(`pointer-events of a .side_wrapper are disabled when onMatchClick is provided
     (clicks must be registered only on .match-body and not on its descendants)`, () => {
-    const { wrapper } = init(finished_ucl, { onMatchClick: () => {} })
+    const { wrapper } = init(finished_ucl, { onMatchClick: () => { } })
     expect(getComputedStyle(wrapper.querySelector(`.side-wrapper`)).pointerEvents).toBe('none')
     expect(getComputedStyle(wrapper.querySelector(`.match-body`)).pointerEvents).toBe('auto')
 })
 
 
 test(`contestant's match history isn't highlighted on click when onMatchClick is provided`, () => {
-    const { wrapper } = init(finished_ucl, { onMatchClick: () => {} })
+    const { wrapper } = init(finished_ucl, { onMatchClick: () => { } })
 
     wrapper.querySelector('.match-body')
         .dispatchEvent(new MouseEvent('click', { bubbles: true }))
@@ -49,3 +49,18 @@ test(`contestant's match history isn't highlighted on click when onMatchClick is
 
     expect(wrapper.querySelectorAll('.match-wrapper.highlighted').length).toBe(0)
 })
+
+test(`if no data for a match in such position, then there's no match body and clickin on match-wrapper doesn't call onMatchClick`, () => {
+
+    const onMatchClick = jest.fn()
+    
+    const { wrapper } = init({ rounds: [{}] }, { onMatchClick })
+
+    expect(wrapper.querySelector('.match-body')).toBe(null)
+
+    wrapper.querySelector(`.match-wrapper`)
+        .dispatchEvent(new MouseEvent('click', { bubbles: true }))
+
+    expect(onMatchClick).not.toHaveBeenCalled()
+})
+

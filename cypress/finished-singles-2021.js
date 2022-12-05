@@ -28,25 +28,6 @@ export default {
             "roundIndex": 6,
             "sides": [
                 {
-                    "contestantId": "163911",
-                    "scores": [
-                        {
-                            "mainScore": "7",
-                            "isWinner": true,
-                        },
-                        {
-                            "mainScore": "6",
-                            "isWinner": true
-                        },
-                        {
-                            "mainScore": "6",
-                            "isWinner": true
-                        }
-                    ],
-                    currentScore: '40',
-                    "isWinner": true
-                },
-                {
                     "contestantId": "163806",
                     "scores": [
                         {

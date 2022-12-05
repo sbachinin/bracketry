@@ -168,6 +168,10 @@
         padding-left: calc(var(--matchFontSize) / 2);
         color: var(--matchTextColor); /* difined at this depth because on upper levels color property is used for box-shadow tricks */
 
+        &.empty-side {
+            pointer-events: none;
+        }
+        
         &.highlighted {
             .player-title {
                 color: var(--highlightedPlayerTitleColor);
