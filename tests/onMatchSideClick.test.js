@@ -15,8 +15,7 @@ test('calls onMatchSideClick when .side-wrapper is clicked', () => {
 
     expect(onMatchSideClick).toBeCalledWith(
         expect.objectContaining(finished_ucl.matches[1]),
-        expect.objectContaining(finished_ucl.contestants.inter),
-        'inter'
+        0
     )
 })
 
@@ -40,8 +39,7 @@ test('calls onMatchSideClick when anything within .side-wrapper is clicked', () 
 
     expect(onMatchSideClick).toBeCalledWith(
         expect.objectContaining(finished_ucl.matches[1]),
-        expect.objectContaining(finished_ucl.contestants.inter),
-        'inter'
+        0
     )
 })
 

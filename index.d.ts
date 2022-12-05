@@ -66,8 +66,7 @@ type Options = {
     distanceBetweenScorePairs: number,
     onMatchClick: (match: Partial<Match>) => void,
 
-    // TODO so contestant and contestantId are not guaranteed?
-    onMatchSideClick: (match: Partial<Match>, contestant?: Contestant, contestantId?: string) => void,
+    onMatchSideClick: (match: Partial<Match>, sideIndex: number) => void,
 
     getRoundTitleElement: (roundData: Round, roundIndex: number) => Element,
     getMatchElement: (roundIndex: number, matchOrder: number) => Element | null,
