@@ -1,7 +1,9 @@
 tests
-webpack.config.js
-.github
 cypress
 cypress.config.js
+lib
+
+/rollup.config.mjs
 /index.html
 /index.js
+.github

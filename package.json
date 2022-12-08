@@ -1,6 +1,6 @@
 {
     "name": "playoffs",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Low-pain tool to visualize the 'draws' of a knockout tournament",
     "type": "module",
     "types": "./index.d.ts",
