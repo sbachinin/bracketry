@@ -196,6 +196,10 @@
         grid-template-columns: auto;
         align-items: center;
 
+        * {
+            white-space: nowrap;
+        }
+
         &.serving-mark {
             width: calc(var(--matchFontSize) / 2.5);
             height: calc(var(--matchFontSize) / 2.5);
@@ -268,7 +272,6 @@
         .player-title {
             flex: 1;
             transition: color 0.1s ease-out, opacity 0.1s ease-out;
-            white-space: nowrap;
             text-align: left;
             text-overflow: ellipsis;
             min-width: 0; /* it will make it shrink in case of narrow .player-wrapper */
