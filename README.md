@@ -1,4 +1,4 @@
-<img src="https://github.com/sbachinin/playoffs/blob/main/images/logo.png?raw=true" align="right" height="150px">
+<img src="https://github.com/sbachinin/playoffs/blob/main/images/logo1.png?raw=true" align="right" height="150px">
 
 # [playoffs](https://sbachinin.github.io/playoffs-site) &middot; [![test workflow](https://github.com/sbachinin/playoffs/actions/workflows/main.yml/badge.svg)](https://github.com/sbachinin/playoffs/actions/) [![npm](https://img.shields.io/npm/v/playoffs.svg?style=flat-square)](https://www.npmjs.com/package/playoffs) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/sbachinin/playoffs/blob/main/LICENSE.md)
 
