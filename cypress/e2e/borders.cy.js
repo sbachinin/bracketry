@@ -6,7 +6,7 @@ describe('Borders', () => {
             rootBorderColor: 'rgb(1, 1, 1)'
         })}`)
 
-        cy.get(`.playoffs-root`).should('have.css', 'border-color', 'rgb(1, 1, 1)')
+        cy.get(`.bracket-root`).should('have.css', 'border-color', 'rgb(1, 1, 1)')
         cy.get(`.button-up`).should('have.css', 'border-bottom-color', 'rgb(1, 1, 1)')
         cy.get(`.button-down`).should('have.css', 'border-top-color', 'rgb(1, 1, 1)')
         cy.get(`.navigation-button.left`).should('have.css', 'border-right-color', 'rgb(1, 1, 1)')
@@ -22,7 +22,7 @@ describe('Borders', () => {
             liveMatchBorderColor: 'rgb(5, 5, 5)'
         })}`)
 
-        cy.get(`.playoffs-root`).should('have.css', 'border-color', 'rgb(2, 2, 2)')
+        cy.get(`.bracket-root`).should('have.css', 'border-color', 'rgb(2, 2, 2)')
         cy.get(`.button-up`).should('have.css', 'border-bottom-color', 'rgb(3, 3, 3)')
         cy.get(`.button-down`).should('have.css', 'border-top-color', 'rgb(3, 3, 3)')
         cy.get(`.navigation-button.left`).should('have.css', 'border-right-color', 'rgb(4, 4, 4)')

@@ -5,7 +5,7 @@
 
 
 
-.playoffs-fullscreen-wrapper {
+.bracket-fullscreen-wrapper {
     position: fixed;
     z-index: 4;
     top: 0;
@@ -27,7 +27,7 @@
     transition: opacity 0.15s ease-in;
 
 
-    .playoffs-root {
+    .bracket-root {
         max-height: calc(100% - 42px);
         max-width: 100%;
     }
@@ -78,7 +78,7 @@
 }
 
 
-.playoffs-root {
+.bracket-root {
     display: grid;
 
     /* for default layout with navButtonsPosition === 'gutters': */

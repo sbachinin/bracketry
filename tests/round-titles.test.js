@@ -29,8 +29,8 @@ test(`renders as much round titles as data.rounds.length`, () => {
 
 test(`rerenders round titles on replaceData`, () => {
 
-    const { wrapper, playoffs: pl } = init({ rounds: [{}, {}, {}, {}, {}, {}] })
-    pl.replaceData({ rounds: [{}] })
+    const { wrapper, bracket: br } = init({ rounds: [{}, {}, {}, {}, {}, {}] })
+    br.replaceData({ rounds: [{}] })
     expect(wrapper.querySelectorAll('.round-title').length).toBe(1)
 })
 
@@ -128,6 +128,6 @@ test(`round object passed to getRoundTitleElement is protected from modification
     const getRoundTitleElement = (round) => {
         round.name = 'Crap'
     }
-    const { playoffs: pl } = init(data, { getRoundTitleElement })
-    expect(pl.getAllData()).toEqual(data)
+    const { bracket: br } = init(data, { getRoundTitleElement })
+    expect(br.getAllData()).toEqual(data)
 })

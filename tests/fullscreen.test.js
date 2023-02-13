@@ -3,33 +3,33 @@
  */
 
 global.ResizeObserver = require('resize-observer-polyfill')
-const { createPlayoffs } = require('../dist/cjs/index.js')
+const { createBracket } = require('../dist/cjs/index.js')
 const { init } = require('./utils.js')
 const finished_ucl = require('./data/ucl-finished.js').default
 
 
-test(`with options.fullscreen === true .playoffs-root is wrapped in .playoffs-fullscreen-wrapper`, () => {
+test(`with options.fullscreen === true .bracket-root is wrapped in .bracket-fullscreen-wrapper`, () => {
 
-    createPlayoffs(finished_ucl, document.body, { fullscreen: true })
+    createBracket(finished_ucl, document.body, { fullscreen: true })
     expect(
-        document.body.querySelector(`:scope > .playoffs-fullscreen-wrapper > .playoffs-root`)
+        document.body.querySelector(`:scope > .bracket-fullscreen-wrapper > .bracket-root`)
     ).not.toBe(null)
 })
 
 
-test(`when rendered to anything other than document.body, fullscreen playoffs are rendered as expected`, () => {
+test(`when rendered to anything other than document.body, fullscreen bracket is rendered as expected`, () => {
 
     const { wrapper } = init(finished_ucl, { fullscreen: true })
     expect(
-        wrapper.querySelector(`:scope > .playoffs-fullscreen-wrapper > .playoffs-root`)
+        wrapper.querySelector(`:scope > .bracket-fullscreen-wrapper > .bracket-root`)
     ).not.toBe(null)
 })
 
 
 test(`with non-boolean (but truthy) options.fullscreen root_element is rendered static`, () => {
 
-    createPlayoffs(finished_ucl, document.body, { fullscreen: 'i am an idiot' })
-    const pl_root_styles = getComputedStyle(document.body.querySelector(`:scope > .playoffs-root`))
+    createBracket(finished_ucl, document.body, { fullscreen: 'i am an idiot' })
+    const pl_root_styles = getComputedStyle(document.body.querySelector(`:scope > .bracket-root`))
     expect(pl_root_styles.position).not.toBe('fixed')
 })
 
@@ -41,42 +41,42 @@ test(`without {fullscreen: true} .exit-fullscreen-button isn't rendered`, () => 
 })
 
 
-test(`click anywhere outside fullscreen-wrapper uninstalls playoffs`, async () => {
+test(`click anywhere outside fullscreen-wrapper uninstalls bracket`, async () => {
 
     const { wrapper } = init(finished_ucl, { fullscreen: true })
 
-    wrapper.querySelector(`.playoffs-fullscreen-wrapper`)
+    wrapper.querySelector(`.bracket-fullscreen-wrapper`)
         .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
-    await new Promise(r => setTimeout(r, 200)) // playoffs are removed after 150 ms animation
+    await new Promise(r => setTimeout(r, 200)) // bracket is removed after 150 ms animation
 
-    expect(wrapper.querySelector(`.playoffs-root`)).toBe(null)
+    expect(wrapper.querySelector(`.bracket-root`)).toBe(null)
 })
 
 
-test(`click on exit-fullscreen-button uninstalls playoffs`, async () => {
+test(`click on exit-fullscreen-button uninstalls bracket`, async () => {
 
     const { wrapper } = init(finished_ucl, { fullscreen: true })
 
     wrapper.querySelector(`.exit-fullscreen-button`)
         .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
-    await new Promise(r => setTimeout(r, 200)) // playoffs are removed after 150 ms animation
+    await new Promise(r => setTimeout(r, 200)) // bracket is removed after 150 ms animation
 
-    expect(wrapper.querySelector(`.playoffs-root`)).toBe(null)
+    expect(wrapper.querySelector(`.bracket-root`)).toBe(null)
 })
 
 
-test(`clicks within playoffs-root don't uninstall fullscreen playoffs`, async () => {
+test(`clicks within bracket-root don't uninstall fullscreen bracket`, async () => {
 
     const { wrapper } = init(finished_ucl, { fullscreen: true })
 
     wrapper.querySelector(`.round-wrapper`)
         .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
-    await new Promise(r => setTimeout(r, 200)) // playoffs are removed after 150 ms animation
+    await new Promise(r => setTimeout(r, 200)) // bracket is removed after 150 ms animation
 
-    expect(wrapper.querySelector(`.playoffs-root`)).not.toBe(null)
+    expect(wrapper.querySelector(`.bracket-root`)).not.toBe(null)
 })
 
 
@@ -98,14 +98,14 @@ test(`highlights team history on fullscreen`, async () => {
 
 test(`clicks on navigation buttons work in fullscreen mode`, async () => {
 
-    const { wrapper, playoffs: pl } = init(finished_ucl, { fullscreen: true, visibleRoundsCount: 2 })
+    const { wrapper, bracket: br } = init(finished_ucl, { fullscreen: true, visibleRoundsCount: 2 })
 
     wrapper.querySelector('.navigation-button.right')
         .dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     await new Promise(r => setTimeout(r, 200)) // make sure it did not uninstall on click
 
-    expect(pl.getNavigationState().baseRoundIndex).toBe(1)
+    expect(br.getNavigationState().baseRoundIndex).toBe(1)
 
     const all_rounds = [...wrapper.querySelectorAll('.round-wrapper')]
     expect(getComputedStyle(all_rounds[0]).visibility).toBe('hidden')

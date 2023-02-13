@@ -1,4 +1,4 @@
-import { createPlayoffs } from '../dist/esm/index.js'
+import { createBracket } from '../dist/esm/index.js'
 import data from './finished-singles-2021.js'
 
 let isnumstring = val => /^\d+$/.test(val)
@@ -24,7 +24,7 @@ function getUrlQuery() {
     return entries
 }
 
-window.playoffs = createPlayoffs(
+window.bracket = createBracket(
     data,
     document.querySelector('.pl-wr'),
     getUrlQuery()

@@ -21,14 +21,14 @@ describe('applyMatchesUpdates', () => {
                 { roundIndex: 0, order: 0, matchStatus: 'Old status', isLive: true }
             ]
         }
-        const { playoffs: pl } = init(data)
+        const { bracket: br } = init(data)
 
         const match_update = { roundIndex: 0, order: 0, matchStatus: 'New status', isLive: false }
 
-        pl.applyMatchesUpdates([match_update])
+        br.applyMatchesUpdates([match_update])
 
-        expect(pl.getAllData().matches[0].matchStatus).toBe('New status')
-        expect(pl.getAllData().matches[0].isLive).toBe(false)
+        expect(br.getAllData().matches[0].matchStatus).toBe('New status')
+        expect(br.getAllData().matches[0].isLive).toBe(false)
     })
 
 
@@ -39,25 +39,25 @@ describe('applyMatchesUpdates', () => {
         const new_match = { roundIndex: 0, order: 0, matchStatus: 'New status' }
 
         const data = { rounds: [{}], matches: [old_match] }
-        const { playoffs: pl } = init(data)
+        const { bracket: br } = init(data)
 
-        pl.applyMatchesUpdates([new_match])
+        br.applyMatchesUpdates([new_match])
 
-        expect(pl.getAllData().matches[0].isLive).toBe(undefined)
-        expect(pl.getAllData().matches[0].sides).toBe(undefined)
+        expect(br.getAllData().matches[0].isLive).toBe(undefined)
+        expect(br.getAllData().matches[0].sides).toBe(undefined)
     })
 
 
     test(`keeps old matches elements untouched
         when applyMatchesUpdates did not contain updates for such matches`, () => {
 
-        const { wrapper, playoffs: pl } = init(finished_ucl)
+        const { wrapper, bracket: br } = init(finished_ucl)
 
         const old_match_html = wrapper.querySelector(
             `.round-wrapper[round-index="1"] .match-wrapper[match-order="0"]`
         ).innerHTML
 
-        pl.applyMatchesUpdates([{ roundIndex: 0, order: 0, matchStatus: 'New status' }])
+        br.applyMatchesUpdates([{ roundIndex: 0, order: 0, matchStatus: 'New status' }])
 
         const new_match_html = wrapper.querySelector(
             `.round-wrapper[round-index="1"] .match-wrapper[match-order="0"]`
@@ -69,9 +69,9 @@ describe('applyMatchesUpdates', () => {
 
     test(`removes .sides element when no sides were provided by applyMatchesUpdates`, () => {
 
-        const { wrapper, playoffs: pl } = init(finished_ucl)
+        const { wrapper, bracket: br } = init(finished_ucl)
 
-        pl.applyMatchesUpdates([{ roundIndex: 0, order: 0, matchStatus: 'New status' }])
+        br.applyMatchesUpdates([{ roundIndex: 0, order: 0, matchStatus: 'New status' }])
 
         const selector = `.round-wrapper[round-index="0"] .match-wrapper[match-order="0"] .sides`
         expect(wrapper.querySelector(selector)).toBe(null)
@@ -80,12 +80,12 @@ describe('applyMatchesUpdates', () => {
 
     test(`adds sides to a match which had no sides`, () => {
 
-        const { wrapper, playoffs: pl } = init({
+        const { wrapper, bracket: br } = init({
             rounds: [{}],
             matches: [{ roundIndex: 0, order: 0, matchStatus: 'Scheduled' }]
         })
 
-        pl.applyMatchesUpdates([{
+        br.applyMatchesUpdates([{
             roundIndex: 0,
             order: 0,
             sides: [
@@ -100,10 +100,10 @@ describe('applyMatchesUpdates', () => {
 
     test(`draws a new matchStatus for a match updated by applyMatchesUpdates`, () => {
 
-        const { wrapper, playoffs: pl } = init(finished_ucl)
+        const { wrapper, bracket: br } = init(finished_ucl)
 
         const update = { roundIndex: 1, order: 2, matchStatus: 'New status' }
-        pl.applyMatchesUpdates([update])
+        br.applyMatchesUpdates([update])
 
         expect(
             wrapper.querySelector(
@@ -115,11 +115,11 @@ describe('applyMatchesUpdates', () => {
 
     test(`adds "live" class to a match-wrapper which was previously non-live`, () => {
 
-        const { wrapper, playoffs: pl } = init(finished_ucl, {})
+        const { wrapper, bracket: br } = init(finished_ucl, {})
         const selector = `.round-wrapper[round-index="0"] .match-wrapper[match-order="1"] .match-body`
         expect(wrapper.querySelector(selector).classList.contains('live')).toBe(false)
 
-        pl.applyMatchesUpdates([{ roundIndex: 0, order: 1, sides: [{ contestantId: '123' }], isLive: true }])
+        br.applyMatchesUpdates([{ roundIndex: 0, order: 1, sides: [{ contestantId: '123' }], isLive: true }])
 
         expect(wrapper.querySelector(selector).classList.contains('live')).toBe(true)
     })
@@ -127,7 +127,7 @@ describe('applyMatchesUpdates', () => {
 
     test(`adds contentful match which was previously empty`, () => {
 
-        const { wrapper, playoffs: pl } = init(finished_ucl, {})
+        const { wrapper, bracket: br } = init(finished_ucl, {})
         const selector = `.round-wrapper[round-index="0"] .match-wrapper[match-order="6"] .match-body`
         expect(wrapper.querySelector(selector)).toBe(null)
 
@@ -139,7 +139,7 @@ describe('applyMatchesUpdates', () => {
             ]
         }
 
-        pl.applyMatchesUpdates([update])
+        br.applyMatchesUpdates([update])
 
         expect(
             wrapper.querySelector(selector + ' .side-wrapper[contestant-id="chelsea"] .main-score').textContent
@@ -149,7 +149,7 @@ describe('applyMatchesUpdates', () => {
 
     test(`adds "live" class to a match-wrapper which was previously empty`, () => {
 
-        const { wrapper, playoffs: pl } = init(finished_ucl, {})
+        const { wrapper, bracket: br } = init(finished_ucl, {})
         const selector = `.round-wrapper[round-index="0"] .match-wrapper[match-order="6"] .match-body`
         expect(wrapper.querySelector(selector)).toBe(null)
 
@@ -160,7 +160,7 @@ describe('applyMatchesUpdates', () => {
             isLive: true
         }
 
-        pl.applyMatchesUpdates([update])
+        br.applyMatchesUpdates([update])
 
         expect(wrapper.querySelector(selector).classList.contains('live')).toBe(true)
     })
@@ -168,7 +168,7 @@ describe('applyMatchesUpdates', () => {
 
     test(`draws new scores for a match updated by applyMatchesUpdates`, () => {
 
-        const { wrapper, playoffs: pl } = init(finished_ucl)
+        const { wrapper, bracket: br } = init(finished_ucl)
 
         const update = {
             roundIndex: 1,
@@ -176,7 +176,7 @@ describe('applyMatchesUpdates', () => {
             sides: [{ scores: [{ mainScore: '26' }] }]
         }
 
-        pl.applyMatchesUpdates([update])
+        br.applyMatchesUpdates([update])
 
         const updated_match_score_el = wrapper.querySelector(
             '.round-wrapper[round-index="1"] .match-wrapper[match-order="2"] .main-score'
@@ -188,7 +188,7 @@ describe('applyMatchesUpdates', () => {
 
     test(`new match data from applyMatchesUpdates gets injected into previously empty match-wrapper`, () => {
 
-        const { wrapper, playoffs: pl } = init({ rounds: [{}], matches: [] })
+        const { wrapper, bracket: br } = init({ rounds: [{}], matches: [] })
 
         const update = {
             roundIndex: 0,
@@ -196,7 +196,7 @@ describe('applyMatchesUpdates', () => {
             sides: [{ scores: [{ mainScore: '6' }] }]
         }
 
-        pl.applyMatchesUpdates([update])
+        br.applyMatchesUpdates([update])
         expect(wrapper.querySelector('.main-score').innerHTML).toBe('6');
     })
 
@@ -204,7 +204,7 @@ describe('applyMatchesUpdates', () => {
 
     test(`new match data from applyMatchesUpdates is returned from later calls to getAllData`, () => {
 
-        const { playoffs: pl } = init({ rounds: [{}], matches: [] })
+        const { bracket: br } = init({ rounds: [{}], matches: [] })
 
         const update = {
             roundIndex: 0,
@@ -212,15 +212,15 @@ describe('applyMatchesUpdates', () => {
             sides: [{ scores: [{ mainScore: '6' }] }]
         }
 
-        pl.applyMatchesUpdates([update])
-        expect(pl.getAllData().matches[0]).toEqual(update)
+        br.applyMatchesUpdates([update])
+        expect(br.getAllData().matches[0]).toEqual(update)
     })
 
 
 
     test(`does not mutate data passed to applyMatchesUpdate`, () => {
 
-        const { playoffs: pl } = init(finished_ucl)
+        const { bracket: br } = init(finished_ucl)
 
         const update = {
             roundIndex: 1,
@@ -228,7 +228,7 @@ describe('applyMatchesUpdates', () => {
             sides: [{ contestantId: 'villarreal' }]
         }
 
-        pl.applyMatchesUpdates([update])
+        br.applyMatchesUpdates([update])
 
         expect(update).toEqual({
             roundIndex: 1,
@@ -241,8 +241,8 @@ describe('applyMatchesUpdates', () => {
 
     test(`does not throw and does not spoil the dom if nothing is passed to applyMatchesUpdates`, () => {
 
-        const { wrapper, playoffs: pl } = init(finished_ucl)
-        const risky_fn = () => { pl.applyMatchesUpdates() }
+        const { wrapper, bracket: br } = init(finished_ucl)
+        const risky_fn = () => { br.applyMatchesUpdates() }
         expect(risky_fn).not.toThrow()
         expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
         expect(consoleWarn.mock.calls[0][0]).toMatch('applyMatchesUpdates must be called with an array of matches')
@@ -251,8 +251,8 @@ describe('applyMatchesUpdates', () => {
 
     test(`does not throw and does not spoil the dom if non-array stuff is passed to applyMatchesUpdates`, () => {
 
-        const { wrapper, playoffs: pl } = init(finished_ucl)
-        const risky_fn = () => { pl.applyMatchesUpdates('i am an idiot') }
+        const { wrapper, bracket: br } = init(finished_ucl)
+        const risky_fn = () => { br.applyMatchesUpdates('i am an idiot') }
         expect(risky_fn).not.toThrow()
         expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
         expect(consoleWarn.mock.calls[0][0]).toMatch('applyMatchesUpdates must be called with an array of matches')
@@ -261,8 +261,8 @@ describe('applyMatchesUpdates', () => {
 
     test(`does not throw and ignores match with missing roundIndex passed to applyMatchesUpdates`, () => {
 
-        const { wrapper, playoffs: pl } = init(finished_ucl)
-        const risky_fn = () => { pl.applyMatchesUpdates([{ order: 0 }]) }
+        const { wrapper, bracket: br } = init(finished_ucl)
+        const risky_fn = () => { br.applyMatchesUpdates([{ order: 0 }]) }
         expect(risky_fn).not.toThrow()
         expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
     })
@@ -270,8 +270,8 @@ describe('applyMatchesUpdates', () => {
 
     test(`does not throw and ignores match with non-string roundIndex passed to applyMatchesUpdates`, () => {
 
-        const { wrapper, playoffs: pl } = init(finished_ucl)
-        const risky_fn = () => { pl.applyMatchesUpdates([{ roundIndex: true, order: 0 }]) }
+        const { wrapper, bracket: br } = init(finished_ucl)
+        const risky_fn = () => { br.applyMatchesUpdates([{ roundIndex: true, order: 0 }]) }
         expect(risky_fn).not.toThrow()
         expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
     })
@@ -279,8 +279,8 @@ describe('applyMatchesUpdates', () => {
 
     test(`does not throw and ignores match with roundIndex === NaN passed to applyMatchesUpdates`, () => {
 
-        const { wrapper, playoffs: pl } = init(finished_ucl)
-        const risky_fn = () => { pl.applyMatchesUpdates([{ roundIndex: NaN, order: 0 }]) }
+        const { wrapper, bracket: br } = init(finished_ucl)
+        const risky_fn = () => { br.applyMatchesUpdates([{ roundIndex: NaN, order: 0 }]) }
         expect(risky_fn).not.toThrow()
         expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
     })
@@ -288,8 +288,8 @@ describe('applyMatchesUpdates', () => {
 
     test(`does not throw and ignores match with missing order passed to applyMatchesUpdates`, () => {
 
-        const { wrapper, playoffs: pl } = init(finished_ucl)
-        const risky_fn = () => { pl.applyMatchesUpdates([{ roundIndex: 0 }]) }
+        const { wrapper, bracket: br } = init(finished_ucl)
+        const risky_fn = () => { br.applyMatchesUpdates([{ roundIndex: 0 }]) }
         expect(risky_fn).not.toThrow()
         expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
     })
@@ -297,8 +297,8 @@ describe('applyMatchesUpdates', () => {
 
     test(`does not throw and ignores match with non-string order passed to applyMatchesUpdates`, () => {
 
-        const { wrapper, playoffs: pl } = init(finished_ucl)
-        const risky_fn = () => { pl.applyMatchesUpdates([{ roundIndex: 0, order: {} }]) }
+        const { wrapper, bracket: br } = init(finished_ucl)
+        const risky_fn = () => { br.applyMatchesUpdates([{ roundIndex: 0, order: {} }]) }
         expect(risky_fn).not.toThrow()
         expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
     })
@@ -306,8 +306,8 @@ describe('applyMatchesUpdates', () => {
 
     test(`does not throw and ignores match with order === NaN passed to applyMatchesUpdates`, () => {
 
-        const { wrapper, playoffs: pl } = init(finished_ucl)
-        const risky_fn = () => { pl.applyMatchesUpdates([{ roundIndex: 0, order: NaN }]) }
+        const { wrapper, bracket: br } = init(finished_ucl)
+        const risky_fn = () => { br.applyMatchesUpdates([{ roundIndex: 0, order: NaN }]) }
         expect(risky_fn).not.toThrow()
         expect(wrapper.querySelectorAll('.player-title')[0].textContent).toBe('Benfica')
     })

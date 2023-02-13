@@ -1,5 +1,5 @@
 {
-    "name": "playoffs",
+    "name": "bracketry",
     "version": "0.0.4",
     "description": "Low-pain tool to visualize the 'draws' of a knockout tournament",
     "type": "module",
@@ -16,14 +16,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/sbachinin/playoffs.git"
+        "url": "git+https://github.com/sbachinin/bracketry.git"
     },
     "author": "sbachinin",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/sbachinin/playoffs/issues"
+        "url": "https://github.com/sbachinin/bracketry/issues"
     },
-    "homepage": "https://github.com/sbachinin/playoffs#readme",
+    "homepage": "https://github.com/sbachinin/bracketry#readme",
     "engines": {
         "node": ">=16.2.0"
     },
@@ -31,7 +31,9 @@
         "visualization",
         "diagram",
         "sports",
-        "playoffs"
+        "playoffs",
+        "bracket",
+        "draws"
     ],
     "devDependencies": {
         "@rollup/plugin-commonjs": "^23.0.0",

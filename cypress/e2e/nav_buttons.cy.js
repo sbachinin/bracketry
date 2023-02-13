@@ -246,7 +246,7 @@ describe('Navigation buttons: "overTitles"', () => {
         })}`)
 
         let full_width = null
-        cy.get('.playoffs-root').then($b => {
+        cy.get('.bracket-root').then($b => {
             full_width = $b[0].clientWidth
         })
 
@@ -292,7 +292,7 @@ describe('Navigation buttons: "beforeTitles"', () => {
     })
 
 
-    it(`each nav button takes half the total playoffs' width (minus root border)`, () => {
+    it(`each nav button takes half the total bracket's width (minus root border)`, () => {
         cy.visit(`http://localhost:3000/cypress?${get_query({
             navButtonsPosition: 'beforeTitles',
             width: '1000px'

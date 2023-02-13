@@ -36,25 +36,25 @@ test('survives non-existent options keys', () => {
 })
 
 
-test('returns the same set of functions if createPlayoffs is called with invalid arguments', () => {
+test('returns the same set of functions if createBracket is called with invalid arguments', () => {
 
-    const { playoffs: pl1 } = init(finished_ucl)
+    const { bracket: br1 } = init(finished_ucl)
 
-    const { playoffs: pl2 } = init('invalid data', 'invalid options')
+    const { bracket: br2 } = init('invalid data', 'invalid options')
 
-    expect(Object.keys(pl1)).toEqual(Object.keys(pl2))
+    expect(Object.keys(br1)).toEqual(Object.keys(br2))
 
-    const pl1_functions_count = Object.values(pl1).filter(v => typeof v === 'function').length
-    const pl2_functions_count = Object.values(pl2).filter(v => typeof v === 'function').length
+    const pl1_functions_count = Object.values(br1).filter(v => typeof v === 'function').length
+    const pl2_functions_count = Object.values(br2).filter(v => typeof v === 'function').length
     expect(pl1_functions_count).toBe(pl2_functions_count)
 })
 
 
 test('returns the same set of functions if 0 rounds', () => {
 
-    const { playoffs: pl1 } = init(finished_ucl)
-    const { playoffs: pl2 } = init({ rounds: [] })
-    expect(Object.keys(pl1)).toEqual(Object.keys(pl2))
+    const { bracket: br1 } = init(finished_ucl)
+    const { bracket: br2 } = init({ rounds: [] })
+    expect(Object.keys(br1)).toEqual(Object.keys(br2))
 })
 
 
@@ -62,11 +62,11 @@ test('after initialization has failed, returned functions may be called without 
 
     expect.assertions(2)
 
-    const { playoffs: pl } = init(
+    const { bracket: br } = init(
         'invalid data',
         'invalid options'
     )
-    Object.values(pl).forEach(v => typeof v === 'function' && v())
-    expect(pl.getAllData()).toBe('invalid data')
-    expect(pl.getUserOptions()).toBe('invalid options')
+    Object.values(br).forEach(v => typeof v === 'function' && v())
+    expect(br.getAllData()).toBe('invalid data')
+    expect(br.getUserOptions()).toBe('invalid options')
 })

@@ -103,7 +103,7 @@ test(`inserts HTML returned by getPlayerTitleHTML to the DOM`, () => {
             c1: { players: [{ title: 'Pete' }] }
         }
     }
-    const { wrapper } = init(data, { getPlayerTitleHTML: (pl) => `<a class="user-link">${pl.title}</a>` })
+    const { wrapper } = init(data, { getPlayerTitleHTML: (br) => `<a class="user-link">${br.title}</a>` })
     expect(wrapper.querySelector('.player-title .user-link').textContent).toBe('Pete')
 })
 
@@ -228,6 +228,6 @@ test(`player object passed to getPlayerTitleHTML is protected from modification 
     const getPlayerTitleHTML = (player) => {
         player.title = 'Crap'
     }
-    const { playoffs: pl } = init(data, { getPlayerTitleHTML })
-    expect(pl.getAllData()).toEqual(data)
+    const { bracket: br } = init(data, { getPlayerTitleHTML })
+    expect(br.getAllData()).toEqual(data)
 })

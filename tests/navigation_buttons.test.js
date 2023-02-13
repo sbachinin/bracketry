@@ -34,9 +34,9 @@ test('hides nav buttons on initialization if rounds count is <= options.visibleR
 
 test('hides nav buttons when applyNewOptions is called with visibleRoundsCount which is >= rounds.length', () => {
 
-    const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
+    const { wrapper, bracket: br } = init(finished_ucl, { visibleRoundsCount: 2 })
 
-    pl.applyNewOptions({ visibleRoundsCount: 4 })
+    br.applyNewOptions({ visibleRoundsCount: 4 })
 
     expect(wrapper.querySelectorAll('.navigation-button.hidden').length).toBe(2)
 })
@@ -44,9 +44,9 @@ test('hides nav buttons when applyNewOptions is called with visibleRoundsCount w
 
 test('enables left nav button when base_round_index becomes more than 0', () => {
 
-    const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
+    const { wrapper, bracket: br } = init(finished_ucl, { visibleRoundsCount: 2 })
 
-    pl.setBaseRoundIndex(1)
+    br.setBaseRoundIndex(1)
 
     expect(
         wrapper.querySelector('.navigation-button.left').classList.contains('active')
@@ -56,15 +56,15 @@ test('enables left nav button when base_round_index becomes more than 0', () => 
 
 test('disables right nav button when right edge is reached', () => {
 
-    const { wrapper, playoffs: pl } = init(finished_ucl, { visibleRoundsCount: 2 })
+    const { wrapper, bracket: br } = init(finished_ucl, { visibleRoundsCount: 2 })
 
-    pl.moveToNextRound()
+    br.moveToNextRound()
 
     expect(
         wrapper.querySelector('.navigation-button.right').classList.contains('active')
     ).toBe(true)
 
-    pl.moveToLastRound()
+    br.moveToLastRound()
     expect(
         wrapper.querySelector('.navigation-button.right').classList.contains('active')
     ).toBe(false)
@@ -91,9 +91,9 @@ test('injects rightNavButtonHTML to right buttons on initialization', () => {
 
 test('injects leftNavButtonHTML to left buttons on applyNewOptions', () => {
 
-    const { wrapper, playoffs: pl } = init(finished_ucl)
+    const { wrapper, bracket: br } = init(finished_ucl)
 
-    pl.applyNewOptions({ leftNavButtonHTML: '<p>PREVIOUS ROUND</p>' })
+    br.applyNewOptions({ leftNavButtonHTML: '<p>PREVIOUS ROUND</p>' })
 
     expect(
         wrapper.querySelector('.navigation-button.left'
@@ -103,9 +103,9 @@ test('injects leftNavButtonHTML to left buttons on applyNewOptions', () => {
 
 test('injects rightNavButtonHTML to right button on applyNewOptions', () => {
 
-    const { wrapper, playoffs: pl } = init(finished_ucl)
+    const { wrapper, bracket: br } = init(finished_ucl)
 
-    pl.applyNewOptions({ rightNavButtonHTML: '<p>NEXT ROUND</p>' })
+    br.applyNewOptions({ rightNavButtonHTML: '<p>NEXT ROUND</p>' })
 
     expect(
         wrapper.querySelector('.navigation-button.right').innerHTML

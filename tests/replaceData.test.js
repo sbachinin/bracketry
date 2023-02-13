@@ -8,11 +8,11 @@ const { deep_clone_object, init } = require('./utils.js')
 
 
 test(`draws new data supplied via replaceData`, () => {
-    const { wrapper, playoffs } = init(finished_ucl)
+    const { wrapper, bracket } = init(finished_ucl)
 
     const dumb_test_data = { rounds: [{ name: 'round 1' }], matches: [], contestants: {} }
 
-    playoffs.replaceData(dumb_test_data)
+    bracket.replaceData(dumb_test_data)
 
     expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(1)
     expect(wrapper.querySelectorAll('.round-title')[0].textContent).toBe('round 1')
@@ -20,30 +20,30 @@ test(`draws new data supplied via replaceData`, () => {
 })
 
 test(`getAllData returns the latest data supplied via replaceData`, () => {
-    const { playoffs } = init(finished_ucl)
+    const { bracket } = init(finished_ucl)
 
     const dumb_test_data = { rounds: [{ name: 'round 1' }], matches: [], contestants: {} }
-    playoffs.replaceData(dumb_test_data)
+    bracket.replaceData(dumb_test_data)
 
-    expect(playoffs.getAllData()).toEqual(dumb_test_data)
+    expect(bracket.getAllData()).toEqual(dumb_test_data)
 })
 
 
 test(`does not keep old properties which aren't present in new data supplied via replaceData`, () => {
-    const { playoffs } = init(finished_ucl)
+    const { bracket } = init(finished_ucl)
 
     const dumb_test_data = { rounds: [{ name: 'round 1' }] }
-    playoffs.replaceData(dumb_test_data)
+    bracket.replaceData(dumb_test_data)
 
-    expect(playoffs.getAllData().matches).toBe(undefined)
-    expect(playoffs.getAllData().contestants).toBe(undefined)
+    expect(bracket.getAllData().matches).toBe(undefined)
+    expect(bracket.getAllData().contestants).toBe(undefined)
 })
 
 test(`does not mutate data passed to replaceData`, () => {
-    const { playoffs } = init({ rounds: [{ name: 'round 1' }] })
+    const { bracket } = init({ rounds: [{ name: 'round 1' }] })
 
     const cloned_ucl = deep_clone_object(finished_ucl)
-    playoffs.replaceData(finished_ucl)
+    bracket.replaceData(finished_ucl)
 
     expect(finished_ucl).toEqual(cloned_ucl)
 })
@@ -57,15 +57,15 @@ test(`ignores subsequent mutations of user data passed to replaceData`, () => {
         contestants: { c1: { players: [] } }
     }
 
-    const { wrapper, playoffs } = init(dumb_test_data)
+    const { wrapper, bracket } = init(dumb_test_data)
 
-    playoffs.replaceData(dumb_test_data)
+    bracket.replaceData(dumb_test_data)
 
     dumb_test_data.contestants = NaN
     dumb_test_data.rounds[0].name = 'bad round name'
     dumb_test_data.matches[0].sides[0].scores[0].mainScore = 100000000
 
-    expect(playoffs.getAllData()).toEqual({
+    expect(bracket.getAllData()).toEqual({
         rounds: [{ name: 'round 1' }],
         matches: [{ roundIndex: 0, order: 0, sides: [{ contestantId: 'c1', scores: [{ mainScore: 1 }] }] }],
         contestants: { c1: { players: [] } }
@@ -78,14 +78,14 @@ test(`ignores subsequent mutations of user data passed to replaceData`, () => {
 
 
 test(`keeps an old data when replaceData is called with critically invalid data (and keeps DOM intact)`, () => {
-    const { wrapper, playoffs } = init(finished_ucl)
+    const { wrapper, bracket } = init(finished_ucl)
 
-    playoffs.replaceData('')
-    playoffs.replaceData({ rounds: null })
-    playoffs.replaceData({ rounds: [], matches: '' })
-    playoffs.replaceData({ rounds: [], matches: [ { roundIndex: 1, order: 1, sides: NaN } ] })
+    bracket.replaceData('')
+    bracket.replaceData({ rounds: null })
+    bracket.replaceData({ rounds: [], matches: '' })
+    bracket.replaceData({ rounds: [], matches: [ { roundIndex: 1, order: 1, sides: NaN } ] })
 
-    expect(playoffs.getAllData()).toEqual(finished_ucl)
+    expect(bracket.getAllData()).toEqual(finished_ucl)
     expect(
         wrapper.querySelectorAll('.round-wrapper')[1]
             .querySelectorAll('.match-wrapper')[1]
@@ -97,14 +97,14 @@ test(`keeps an old data when replaceData is called with critically invalid data 
 
 
 test(`resets navigation state when calling replaceData`, () => {
-    const { wrapper, playoffs } = init(finished_ucl, { visibleRoundsCount: 2 })
+    const { wrapper, bracket } = init(finished_ucl, { visibleRoundsCount: 2 })
 
-    playoffs.moveToLastRound()
-    expect(playoffs.getNavigationState().baseRoundIndex).toBe(2)
+    bracket.moveToLastRound()
+    expect(bracket.getNavigationState().baseRoundIndex).toBe(2)
     
-    playoffs.replaceData({ rounds: [ {}, {}, {}, {}, {}, {} ]})
+    bracket.replaceData({ rounds: [ {}, {}, {}, {}, {}, {} ]})
     
-    expect(playoffs.getNavigationState().baseRoundIndex).toBe(0)
+    expect(bracket.getNavigationState().baseRoundIndex).toBe(0)
     expect(
         getComputedStyle(
             wrapper.querySelectorAll('.round-wrapper')[0]

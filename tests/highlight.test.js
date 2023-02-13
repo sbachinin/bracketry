@@ -107,9 +107,9 @@ test(`does not unhighlight history after click outside .matches-positioner`, () 
 
 
 test(`highlights a contestant history when highlightContestantHistory is called with a valid contestantId`, () => {
-    const { wrapper, playoffs } = init(finished_ucl)
+    const { wrapper, bracket } = init(finished_ucl)
 
-    playoffs.highlightContestantHistory('villarreal')
+    bracket.highlightContestantHistory('villarreal')
 
     expect(
         wrapper.querySelectorAll(`.side-wrapper[contestant-id='villarreal'].highlighted`).length
@@ -118,9 +118,9 @@ test(`highlights a contestant history when highlightContestantHistory is called 
 
 
 test(`highlights a contestant history when highlightContestantHistory is called with a valid contestantId`, () => {
-    const { wrapper, playoffs } = init(finished_ucl)
+    const { wrapper, bracket } = init(finished_ucl)
 
-    playoffs.highlightContestantHistory('villarreal')
+    bracket.highlightContestantHistory('villarreal')
 
     const highlighted_side_wrappers = wrapper.querySelectorAll(`.side-wrapper.highlighted`)
     expect(highlighted_side_wrappers.length).toBe(3)
@@ -129,42 +129,42 @@ test(`highlights a contestant history when highlightContestantHistory is called 
 })
 
 test(`unhighlights when highlightContestantHistory is called with null`, () => {
-    const { wrapper, playoffs } = init(finished_ucl)
+    const { wrapper, bracket } = init(finished_ucl)
 
-    playoffs.highlightContestantHistory('villarreal')
+    bracket.highlightContestantHistory('villarreal')
 
-    playoffs.highlightContestantHistory(null)
+    bracket.highlightContestantHistory(null)
 
     expect(wrapper.querySelectorAll(`.side-wrapper.highlighted`).length).toBe(0)
 })
 
 
 test(`unhighlights when highlightContestantHistory is called with irrelevant string`, () => {
-    const { wrapper, playoffs } = init(finished_ucl)
-    playoffs.highlightContestantHistory('villarreal')
-    playoffs.highlightContestantHistory('nonsense')
+    const { wrapper, bracket } = init(finished_ucl)
+    bracket.highlightContestantHistory('villarreal')
+    bracket.highlightContestantHistory('nonsense')
     expect(wrapper.querySelectorAll(`.side-wrapper.highlighted`).length).toBe(0)
 })
 
 
 
 test(`unhighlights when highlightContestantHistory is called with an empty string`, () => {
-    const { wrapper, playoffs } = init(finished_ucl)
-    playoffs.highlightContestantHistory('villarreal')
-    playoffs.highlightContestantHistory('')
+    const { wrapper, bracket } = init(finished_ucl)
+    bracket.highlightContestantHistory('villarreal')
+    bracket.highlightContestantHistory('')
     expect(wrapper.querySelectorAll(`.side-wrapper.highlighted`).length).toBe(0)
 })
 
 
 
 test(`highlighted contestant remains highlighted when highlightContestantHistory is called with invalid arg`, () => {
-    const { wrapper, playoffs: pl } = init(finished_ucl)
+    const { wrapper, bracket: br } = init(finished_ucl)
 
-    pl.highlightContestantHistory('villarreal')
+    br.highlightContestantHistory('villarreal')
 
-    pl.highlightContestantHistory(true)
-    pl.highlightContestantHistory(NaN)
-    pl.highlightContestantHistory([])
+    br.highlightContestantHistory(true)
+    br.highlightContestantHistory(NaN)
+    br.highlightContestantHistory([])
 
     const highlighted_side_wrappers = wrapper.querySelectorAll(`.side-wrapper.highlighted`)
     expect(highlighted_side_wrappers.length).toBe(3)
@@ -173,9 +173,9 @@ test(`highlighted contestant remains highlighted when highlightContestantHistory
 })
 
 test(`last highlighted match has a "last-highlighted" class (and there is only one such match)`, () => {
-    const { wrapper, playoffs: pl } = init(finished_ucl)
+    const { wrapper, bracket: br } = init(finished_ucl)
 
-    pl.highlightContestantHistory('villarreal')
+    br.highlightContestantHistory('villarreal')
 
     const highlighted_match_wrappers = wrapper.querySelectorAll(`.match-wrapper.highlighted`)
     const last_highlighted = highlighted_match_wrappers[highlighted_match_wrappers.length - 1]
@@ -186,10 +186,10 @@ test(`last highlighted match has a "last-highlighted" class (and there is only o
 
 
 test(`"last-highlighted" class is removed from match-wrapper after unhighlight`, () => {
-    const { wrapper, playoffs: pl } = init(finished_ucl)
+    const { wrapper, bracket: br } = init(finished_ucl)
 
-    pl.highlightContestantHistory('villarreal')
-    pl.highlightContestantHistory(null)
+    br.highlightContestantHistory('villarreal')
+    br.highlightContestantHistory(null)
 
     expect(wrapper.querySelectorAll(`.match-wrapper.last-highlighted`).length).toBe(0)
 })
@@ -215,9 +215,9 @@ test(`does not highlight contestant's matches ON CLICK when options.onMatchSideC
 
 test(`can highlight contestant's matches on highlightContestantHistory() call
     when options.onMatchClick and options.onMatchSideClick is provided`, () => {
-    const { wrapper, playoffs: pl } = init(finished_ucl, { onMatchClick: () => {}, onMatchSideClick: () => {} })
+    const { wrapper, bracket: br } = init(finished_ucl, { onMatchClick: () => {}, onMatchSideClick: () => {} })
 
-    pl.highlightContestantHistory('benfica')
+    br.highlightContestantHistory('benfica')
 
     const benfica_sides = wrapper.querySelectorAll(`.side-wrapper[contestant-id='benfica']`)
     const highligted_benfica_sides = wrapper.querySelectorAll(`.side-wrapper[contestant-id='benfica'].highlighted`)
@@ -259,22 +259,22 @@ test(`does not highlight anonymous (contestant-less) sides when a side without [
 })
 
 test(`does not highlight anonymous (contestant-less) sides when highlightContestantHistory is called with null`, () => {
-    const { wrapper, playoffs: pl } = init(spoilt_ucl)
-    pl.highlightContestantHistory(null)
+    const { wrapper, bracket: br } = init(spoilt_ucl)
+    br.highlightContestantHistory(null)
     expect(wrapper.querySelectorAll('.side-wrapper.highlighted').length).toBe(0)
 })
 
 test(`does not highlight anonymous (contestant-less) sides when highlightContestantHistory is called with empty string`, () => {
-    const { wrapper, playoffs: pl } = init(spoilt_ucl)
-    pl.highlightContestantHistory('')
+    const { wrapper, bracket: br } = init(spoilt_ucl)
+    br.highlightContestantHistory('')
     expect(wrapper.querySelectorAll('.side-wrapper.highlighted').length).toBe(0)
 })
 
 
 test(`unhighlights when a side without [contestant-id] is clicked`, () => {
-    const { wrapper, playoffs: pl } = init(spoilt_ucl)
+    const { wrapper, bracket: br } = init(spoilt_ucl)
 
-    pl.highlightContestantHistory('benfica')
+    br.highlightContestantHistory('benfica')
     expect(wrapper.querySelectorAll('.side-wrapper.highlighted').length).toBe(2)
 
     const anonymous_side_wrappers = wrapper.querySelectorAll('.side-wrapper:not([contestant-id])')
@@ -290,13 +290,13 @@ test(`unhighlights when a side without [contestant-id] is clicked`, () => {
 
 
 
-test(`click outside playoffs should not unhighlight`, () => {
+test(`click outside bracket should not unhighlight`, () => {
     expect.assertions(1)
 
-    const { wrapper, playoffs: pl } = init(finished_ucl)
+    const { wrapper, bracket: br } = init(finished_ucl)
     const some_external_div = create_wrapper()
 
-    pl.highlightContestantHistory('benfica')
+    br.highlightContestantHistory('benfica')
 
     some_external_div.dispatchEvent(new MouseEvent('click', { bubbles: true }))
     expect(wrapper.querySelectorAll('.side-wrapper.highlighted').length).toBe(2)
@@ -322,11 +322,11 @@ test(`does not highlight on click if options.disableHighlight === true`, () => {
 
 
 test(`keeps highlighted match highlighted after it was updated via applyMatchesUpdates`, () => {
-    const { wrapper, playoffs: pl } = init(finished_ucl)
+    const { wrapper, bracket: br } = init(finished_ucl)
 
-    pl.highlightContestantHistory('villarreal')
+    br.highlightContestantHistory('villarreal')
 
-    pl.applyMatchesUpdates([{
+    br.applyMatchesUpdates([{
         "roundIndex": 0,
         "order": 2,
         "matchStatus": "Complete",

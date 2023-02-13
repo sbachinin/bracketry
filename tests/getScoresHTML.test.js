@@ -153,6 +153,6 @@ test(`side and match objects passed to getScoresHTML are protected from modifica
         side.contestantId = 'crap'
         match.roundIndex = 1212
     }
-    const { playoffs: pl } = init(data, { getScoresHTML })
-    expect(pl.getAllData()).toEqual(data)
+    const { bracket: br } = init(data, { getScoresHTML })
+    expect(br.getAllData()).toEqual(data)
 })

@@ -1,13 +1,13 @@
 import { get_query } from './get_query.js'
 
-describe(`Playoffs' size`, () => {
+describe(`Bracket's size`, () => {
 
     beforeEach(() => cy.viewport(1280, 720))
     
     it(`stretches to full width of a wrapper when "width" option is not specified`, () => {
         cy.visit(`http://localhost:3000/cypress`)
 
-        cy.get('.playoffs-root')
+        cy.get('.bracket-root')
             .should('have.css', 'width')
             .and(width => {
                 expect(parseInt(width)).to.be.gt(1200)
@@ -19,7 +19,7 @@ describe(`Playoffs' size`, () => {
     it(`stretches to full height of a wrapper when "height" option is not specified`, () => {
         cy.visit(`http://localhost:3000/cypress`)
 
-        cy.get('.playoffs-root')
+        cy.get('.bracket-root')
             .should('have.css', 'height', '600px')
     })
 
@@ -29,7 +29,7 @@ describe(`Playoffs' size`, () => {
             width: '2000px'
         })}`)
 
-        cy.get('.playoffs-root')
+        cy.get('.bracket-root')
             .should('have.css', 'width', '2000px')
             .and($s => {
                 expect(getComputedStyle($s[0]).width).to.equal('2000px')
@@ -43,7 +43,7 @@ describe(`Playoffs' size`, () => {
             height: '2000px'
         })}`)
 
-        cy.get('.playoffs-root')
+        cy.get('.bracket-root')
             .should('have.css', 'height', '2000px')
             .and($s => {
                 expect(getComputedStyle($s[0]).height).to.equal('2000px')

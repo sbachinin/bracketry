@@ -203,12 +203,12 @@ test(`renders no .single-score-wrapper for various invalid score entries`, () =>
         }]
     }
 
-    let pl = null
-    const try_init = () => { pl = init(data) }
+    let br = null
+    const try_init = () => { br = init(data) }
 
     expect(try_init).not.toThrow()
 
-    expect(pl.wrapper.querySelectorAll('.side-own-single-score').length).toBe(0)
+    expect(br.wrapper.querySelectorAll('.side-own-single-score').length).toBe(0)
 })
 
 

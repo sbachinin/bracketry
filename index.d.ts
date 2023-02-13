@@ -1,4 +1,4 @@
-import { Contestant, Data, Match, Player, Round, Side } from "./lib/data/data"
+import { Data, Match, Player, Round, Side } from "./lib/data/data"
 
 // TODO check if all options present here
 
@@ -90,7 +90,7 @@ type Options = {
 
 type OptionsMap = Partial<Options>
 
-export function createPlayoffs(
+export function createBracket(
     data: Data,
     wrapperElement: Element,
     options?: OptionsMap

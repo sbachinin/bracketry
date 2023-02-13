@@ -4,55 +4,55 @@
 
 global.ResizeObserver = require('resize-observer-polyfill')
 const { init } = require('./utils.js')
-const { createPlayoffs } = require('../dist/cjs/index.js')
+const { createBracket } = require('../dist/cjs/index.js')
 const finished_ucl = require('./data/ucl-finished.js').default
 
 
-test(`uninstalls old playoffs when new playoffs are installed into the same wrapper`, () => {
+test(`uninstalls old bracket when new bracket is installed into the same wrapper`, () => {
 
-    const { wrapper, playoffs: first_playoffs } = init(finished_ucl)
-    const uninstSpy = jest.spyOn(first_playoffs, 'uninstall')
+    const { wrapper, bracket: br1 } = init(finished_ucl)
+    const uninstSpy = jest.spyOn(br1, 'uninstall')
 
-    createPlayoffs({ rounds: [{}, {}] }, wrapper)
+    createBracket({ rounds: [{}, {}] }, wrapper)
 
-    expect(uninstSpy).toBeCalled();
+    expect(uninstSpy).toBeCalled()
 
-    expect(wrapper.querySelectorAll('.playoffs-root').length).toBe(1)
+    expect(wrapper.querySelectorAll('.bracket-root').length).toBe(1)
     expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(2)
     expect(wrapper.querySelectorAll('.side-wrapper[contestant-id]').length).toBe(0)
 })
 
 
 
-test(`two coexisting playoffs don't intervene in each other's navigation state`, () => {
+test(`two coexisting brackets don't intervene in each other's navigation state`, () => {
 
-    const { playoffs: pl1 } = init(
+    const { bracket: br1 } = init(
         { rounds: [{}, {}, {}, {}, {}] },
         { visibleRoundsCount: 1 }
     )
-    const { playoffs: pl2 } = init(
+    const { bracket: br2 } = init(
         { rounds: [{}, {}, {}, {}] },
         { visibleRoundsCount: 2 }
     )
 
-    pl1.moveToLastRound()
-    expect(pl1.getNavigationState().baseRoundIndex).toBe(4)
-    expect(pl2.getNavigationState().baseRoundIndex).toBe(0)
+    br1.moveToLastRound()
+    expect(br1.getNavigationState().baseRoundIndex).toBe(4)
+    expect(br2.getNavigationState().baseRoundIndex).toBe(0)
 })
 
 
-test(`two coexisting playoffs don't intervene in each other's data`, () => {
+test(`two coexisting brackets don't intervene in each other's data`, () => {
 
-    const { playoffs: pl1 } = init({ rounds: [{}, {}, {}, {}, {}] })
-    const { playoffs: pl2 } = init({ rounds: [{}, {}, {}, {}] })
+    const { bracket: br1 } = init({ rounds: [{}, {}, {}, {}, {}] })
+    const { bracket: br2 } = init({ rounds: [{}, {}, {}, {}] })
 
-    pl1.replaceData({ rounds: [{}] })
-    expect(pl1.getAllData().rounds.length).toBe(1)
-    expect(pl2.getAllData().rounds.length).toBe(4)
+    br1.replaceData({ rounds: [{}] })
+    expect(br1.getAllData().rounds.length).toBe(1)
+    expect(br2.getAllData().rounds.length).toBe(4)
 })
 
 
-test(`two coexisting playoffs don't intervene in each other's "highlighted" state`, () => {
+test(`two coexisting brackets don't intervene in each other's "highlighted" state`, () => {
 
     const { wrapper: w1 } = init(finished_ucl)
     const { wrapper: w2 } = init(finished_ucl)

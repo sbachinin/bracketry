@@ -14,7 +14,7 @@ const finished_ucl = require('./data/ucl-finished.js').default
 test(`Scroll is "native" by default`, () => {
 
     const { wrapper } = init(finished_ucl)
-    expect(wrapper.querySelector('.playoffs-root.with-native-scroll')).not.toBe(null)
+    expect(wrapper.querySelector('.bracket-root.with-native-scroll')).not.toBe(null)
     expect(getComputedStyle(wrapper.querySelector('.matches-scroller')).overflowY).toBe('scroll')
 })
 
@@ -22,7 +22,7 @@ test(`Scroll is "native" by default`, () => {
 test('if verticalScrollMode is set to nonsense, it falls back to native', () => {
     
     const { wrapper } = init(finished_ucl, { verticalScrollMode: 123 })
-    expect(wrapper.querySelector('.playoffs-root.with-native-scroll')).not.toBe(null)
+    expect(wrapper.querySelector('.bracket-root.with-native-scroll')).not.toBe(null)
     expect(getComputedStyle(wrapper.querySelector('.matches-scroller')).overflowY).toBe('scroll')
 })
 
@@ -67,9 +67,9 @@ test(`Scroll buttons are visible when verticalScrollMode is "mixed"`, () => {
 
 test(`verticalScrollMode is not updatable by applyNewOptions`, () => {
 
-    const { wrapper, playoffs: pl } = init(finished_ucl, { verticalScrollMode: 'mixed' })
+    const { wrapper, bracket: br } = init(finished_ucl, { verticalScrollMode: 'mixed' })
 
-    pl.applyNewOptions({ verticalScrollMode: 'native' })
+    br.applyNewOptions({ verticalScrollMode: 'native' })
     expect(getComputedStyle(wrapper.querySelector('.button-up')).display).toBe('flex')
     expect(getComputedStyle(wrapper.querySelector('.button-down')).display).toBe('flex')
     expect(getComputedStyle(wrapper.querySelector('.matches-scroller')).overflowY).toBe('hidden')
@@ -96,20 +96,20 @@ test(`verticalScrollMode is forced to "mixed" when fullscreen`, () => {
 
 test(`resets (synthetic) scroll on navigation when resetScrollOnNavigation is true`, () => {
     
-    const { wrapper, playoffs: pl } = init(finished_ucl, { verticalScrollMode: 'buttons', resetScrollOnNavigation: true })
+    const { wrapper, bracket: br } = init(finished_ucl, { verticalScrollMode: 'buttons', resetScrollOnNavigation: true })
     
     const poser = wrapper.querySelector('.matches-positioner')
     poser.style.transform = 'translateY(-500px)'
-    pl.moveToNextRound()
+    br.moveToNextRound()
     expect(getComputedStyle(poser).transform).toBe('translateY(-0px)')
 })
 
 test(`resets (synthetic) scroll on replaceData()`, () => {
     
-    const { wrapper, playoffs: pl } = init(finished_ucl, { verticalScrollMode: 'buttons', resetScrollOnNavigation: true })
+    const { wrapper, bracket: br } = init(finished_ucl, { verticalScrollMode: 'buttons', resetScrollOnNavigation: true })
     
     const poser = wrapper.querySelector('.matches-positioner')
     poser.style.transform = 'translateY(-500px)'
-    pl.replaceData({ rounds: [{}] })
+    br.replaceData({ rounds: [{}] })
     expect(getComputedStyle(poser).transform).toBe('translateY(-0px)')
 })

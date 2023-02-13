@@ -1,6 +1,6 @@
 "use strict";
 
-const { createPlayoffs } = require('../dist/cjs/index.js')
+const { createBracket } = require('../dist/cjs/index.js')
 
 const deep_clone_object = obj => {
     if (obj === null || typeof obj !== 'object') {
@@ -25,7 +25,7 @@ const create_wrapper = () => {
 const init = (data, options) => {
     const wrapper = create_wrapper()
     return {
-        playoffs: createPlayoffs(data, wrapper, options),
+        bracket: createBracket(data, wrapper, options),
         wrapper
     }
 }
