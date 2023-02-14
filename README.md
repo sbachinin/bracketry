@@ -39,12 +39,7 @@ _You only need a wrapper element and some <a href="https://bracketry.app/data-sh
 * Sizes, margins and fonts are quite <a href="https://bracketry.app/fonts-colors-sizes">flexible</a>
 * Navigation between rounds can be <a href="https://bracketry.app/adjust-nav-buttons">adjusted</a> or <a href="https://bracketry.app/external-navigation">built from scratch</a>  
 * <a href="https://bracketry.app/scroll-modes">Vertical scroll</a> can work with mousewheel or buttons or both  
-* You can <a href="https://bracketry.app/inject-markup">inject</a> your own markup here and there  
-  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;you may choose to render matches yourself and use bracketry only as a positioning mechanism
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![alt text](https://github.com/sbachinin/bracketry/blob/main/images/your-match-element.jpg?raw=true)
-
+* You can <a href="https://bracketry.app/inject-markup">inject</a> your own markup here and there. You may also choose to render matches yourself and use bracketry only as a positioning mechanism  
 * You can attach <a href="https://bracketry.app/click-handlers">click handlers</a> to matches (or their sides)  
 * It's possible to specify a <a href="https://bracketry.app/rounds-count">number of rounds</a> visible at a time
 
