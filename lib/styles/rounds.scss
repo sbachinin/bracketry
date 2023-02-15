@@ -120,9 +120,17 @@
             }
         }
 
+        position: relative;
     }
 
-
+    .match-upper-info {
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        color: #c1c1c1;
+        padding-left: calc(var(--matchFontSize) / 2);
+        font-size: calc(var(--matchFontSize) * 0.7);
+    }
 
 
 

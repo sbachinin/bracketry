@@ -14,7 +14,8 @@ export type Match = {
     roundIndex: number,
     order: number, // 0-based!
     sides?: Side[],
-    matchStatus?: string // Meant for statuses like 'Cancelled' | 'Scheduled' | '19.05.2022 18:30'
+    matchUpperInfo?: string,
+    matchStatus?: string, // Meant for statuses like 'Cancelled' | 'Scheduled' | '19.05.2022 18:30'
     isLive?: boolean
 }
 
@@ -28,7 +29,7 @@ type Score = {
 export type Side = {
     title?: string,
     contestantId?: string,
-    scores?: Score[]
+    scores?: Score[],
 
     /* any score you want to appear highlighted to the right of the 'normal' scores.
         E.g., points within a game in tennis: this number is drawn after 'scores',
