@@ -20,7 +20,7 @@ test(`Scroll is "native" by default`, () => {
 
 
 test('if verticalScrollMode is set to nonsense, it falls back to native', () => {
-    
+
     const { wrapper } = init(finished_ucl, { verticalScrollMode: 123 })
     expect(wrapper.querySelector('.bracket-root.with-native-scroll')).not.toBe(null)
     expect(getComputedStyle(wrapper.querySelector('.matches-scroller')).overflowY).toBe('scroll')
@@ -95,21 +95,21 @@ test(`verticalScrollMode is forced to "mixed" when fullscreen`, () => {
 
 
 test(`resets (synthetic) scroll on navigation when resetScrollOnNavigation is true`, () => {
-    
+
     const { wrapper, bracket: br } = init(finished_ucl, { verticalScrollMode: 'buttons', resetScrollOnNavigation: true })
-    
+
     const poser = wrapper.querySelector('.matches-positioner')
-    poser.style.transform = 'translateY(-500px)'
+    poser.style.transform = 'translate3d(0, -500px, 0)'
     br.moveToNextRound()
-    expect(getComputedStyle(poser).transform).toBe('translateY(-0px)')
+    expect(getComputedStyle(poser).transform).toBe('translate3d(0, -0px, 0)')
 })
 
 test(`resets (synthetic) scroll on replaceData()`, () => {
-    
+
     const { wrapper, bracket: br } = init(finished_ucl, { verticalScrollMode: 'buttons', resetScrollOnNavigation: true })
-    
+
     const poser = wrapper.querySelector('.matches-positioner')
-    poser.style.transform = 'translateY(-500px)'
+    poser.style.transform = 'translate3d(0, -500px, 0)'
     br.replaceData({ rounds: [{}] })
-    expect(getComputedStyle(poser).transform).toBe('translateY(-0px)')
+    expect(getComputedStyle(poser).transform).toBe('translate3d(0, -0px, 0)')
 })
