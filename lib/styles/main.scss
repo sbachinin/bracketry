@@ -5,77 +5,6 @@
 
 
 
-.bracket-fullscreen-wrapper {
-    position: fixed;
-    z-index: 4;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    width: var(--window_width, 100%);
-    height: var(--window_height, 100%);
-
-    opacity: 0;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    background-color: var(--fullscreenBgColor);
-    box-shadow: 0px 0px 0 10vw var(--fullscreenBgColor);
-
-    transition: opacity 0.15s ease-in;
-
-
-    .bracket-root {
-        max-height: calc(100% - 42px);
-        max-width: 100%;
-    }
-}
-
-.fullscreen-top,
-.fullscreen-bottom {
-    flex-basis: 42px;
-    width: 100%;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-}
-
-.exit-fullscreen-button {
-    width: calc((100% - var(--width)) / 2);
-    height: 100%;
-    z-index: 4;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-    display: flex;
-
-
-    /* these min-* prevent button from being pushed away on small screen: */
-    min-width: 42px;
-
-    align-items: self-end;
-    justify-content: flex-start;
-    box-sizing: border-box;
-
-    .circle-button {
-        display: flex;
-        padding: 8px;
-        border-radius: 50%;
-        background: var(--rootBgColor);
-
-        svg {
-            opacity: 0.65;
-            transition: opacity ease-in-out 0.2s;
-
-            &:hover {
-                opacity: 1;
-            }
-        }
-    }
-}
 
 
 .bracket-root {
@@ -238,7 +167,6 @@
         }
     }
 
-    &.fullscreen,
     &.with-vertical-scroll-buttons {
         .matches-positioner {
             will-change: transform;

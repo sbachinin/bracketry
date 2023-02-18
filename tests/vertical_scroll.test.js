@@ -76,24 +76,6 @@ test(`verticalScrollMode is not updatable by applyNewOptions`, () => {
 })
 
 
-test(`verticalScrollMode is forced to "mixed" when fullscreen`, () => {
-    const { wrapper } = init(finished_ucl, { fullscreen: true })
-
-    expect(getComputedStyle(wrapper.querySelector('.button-up')).display).toBe('flex')
-    expect(getComputedStyle(wrapper.querySelector('.button-down')).display).toBe('flex')
-    expect(getComputedStyle(wrapper.querySelector('.matches-scroller')).overflowY).toBe('hidden')
-})
-
-
-test(`verticalScrollMode is forced to "mixed" when fullscreen`, () => {
-    const { wrapper } = init(finished_ucl, { fullscreen: true })
-
-    expect(getComputedStyle(wrapper.querySelector('.button-up')).display).toBe('flex')
-    expect(getComputedStyle(wrapper.querySelector('.button-down')).display).toBe('flex')
-    expect(getComputedStyle(wrapper.querySelector('.matches-scroller')).overflowY).toBe('hidden')
-})
-
-
 test(`resets (synthetic) scroll on navigation when resetScrollOnNavigation is true`, () => {
 
     const { wrapper, bracket: br } = init(finished_ucl, { verticalScrollMode: 'buttons', resetScrollOnNavigation: true })
@@ -103,6 +85,7 @@ test(`resets (synthetic) scroll on navigation when resetScrollOnNavigation is tr
     br.moveToNextRound()
     expect(getComputedStyle(poser).transform).toBe('translate3d(0, -0px, 0)')
 })
+
 
 test(`resets (synthetic) scroll on replaceData()`, () => {
 

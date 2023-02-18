@@ -7,8 +7,6 @@ type Options = {
     height: string,
     rootBorderColor: string,
     wrapperBorderColor: string,
-    fullscreen: boolean,
-    fullscreenBgColor: string,
 
     verticalScrollMode: 'buttons' | 'native' | 'mixed',
     scrollButtonsPosition: 'gutters' | 'overMatches',

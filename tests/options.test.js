@@ -44,13 +44,11 @@ test(`sets feature classes according to options`, () => {
     const { wrapper } = init(finished_ucl, {
         navButtonsPosition: 'beforeTitles',
         useClassicalLayout: true,
-        fullscreen: true
     })
 
     const root_classes = wrapper.querySelector('.bracket-root').classList
     expect(root_classes.contains('with-nav-buttons-before-titles')).toBe(true)
     expect(root_classes.contains('with-classical-layout')).toBe(true)
-    expect(root_classes.contains('fullscreen')).toBe(true)
     expect(root_classes.contains('with-onMatchClick')).toBe(false)
 })
 
