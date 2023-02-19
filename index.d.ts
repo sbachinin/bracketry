@@ -83,7 +83,13 @@ type Options = {
     getScoresHTML: (
         side: Side,
         match: Match
-    ) => string
+    ) => string,
+    getMatchTopHTML: (
+        match: Match
+    ) => string,
+    getMatchBottomHTML: (
+        match: Match
+    ) => string,
 }
 
 type OptionsMap = Partial<Options>
