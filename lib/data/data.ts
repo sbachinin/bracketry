@@ -14,7 +14,6 @@ export type Match = {
     roundIndex: number,
     order: number, // 0-based!
     sides?: Side[],
-    matchUpperInfo?: string,
     matchStatus?: string, // Meant for statuses like 'Cancelled' | 'Scheduled' | '19.05.2022 18:30'
     isLive?: boolean
 }

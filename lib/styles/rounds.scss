@@ -123,9 +123,9 @@
         position: relative;
     }
 
-    .match-upper-info {
+    .match-top {
         position: absolute;
-        bottom: 100%;
+        bottom: calc(100% + var(--connectionLinesWidth) + 1px);
         left: 0;
         color: #c1c1c1;
         padding-left: calc(var(--matchFontSize) / 2);
