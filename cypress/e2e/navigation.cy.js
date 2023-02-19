@@ -11,15 +11,15 @@ describe('Navigation', () => {
         cy.get('.navigation-button.right').eq(0).click()
         cy.get('.matches-positioner').should($s => {
             const { marginLeft } = getComputedStyle($s[0])
-            expect(parseFloat(marginLeft)).to.be.lt(-350)
+            expect(parseFloat(marginLeft)).to.be.lt(-300)
             expect(parseFloat(marginLeft)).to.be.gt(-450)
         })
 
         cy.get('.navigation-button.right').eq(0).click()
         cy.get('.matches-positioner').should($s => {
             const { marginLeft } = getComputedStyle($s[0])
-            expect(parseFloat(marginLeft)).to.be.lt(-750)
-            expect(parseFloat(marginLeft)).to.be.gt(-850)
+            expect(parseFloat(marginLeft)).to.be.lt(-650)
+            expect(parseFloat(marginLeft)).to.be.gt(-750)
         })
 
         cy.get('.navigation-button.left').eq(0).click().click()

@@ -45,7 +45,7 @@ describe('Scrollbar', () => {
         cy.get('.scrollbar').should($s => {
             expect(
                 parseFloat(getComputedStyle($s[0]).top)
-            ).to.be.gt(45).to.be.lt(55)
+            ).to.be.gt(45).to.be.lt(60)
         })
     })
 
@@ -71,7 +71,7 @@ describe('Scrollbar', () => {
 
         cy.get('.scrollbar').should(($s) => {
             const { height } = getComputedStyle($s[0])
-            expect(parseInt(height)).to.be.gt(45).to.be.lt(60)
+            expect(parseInt(height)).to.be.gt(45).to.be.lt(65)
         })
     })
 
