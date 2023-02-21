@@ -13,12 +13,6 @@
         }
 
         &:last-of-type {
-            /* overflow: hidden for earlier rounds will hide the vertical part of connecting lines.
-                for last round it's unnecessary
-                    + content that overflows it may mess up the calculations like 'is all content visible within matches area?'
-            */
-            overflow: hidden;
-
             .match-lines-area {
                 right: var(--matchHorMargin);
             }
@@ -28,6 +22,63 @@
             visibility: hidden;
         }
     }
+
+
+
+    .last-round-wrapper-wrapper {
+        display: flex;
+        overflow: hidden;
+
+        .pseudo-round-wrapper {
+            display: grid;
+            grid-auto-rows: minmax(0, 1fr);
+
+            /* to make its horizontal line appear on top of next vertical lines */
+            z-index: 2;
+
+            .match-wrapper {
+                padding: 0;
+            }
+
+            &:first-child {
+                width: 30px;
+                min-width: 0;
+
+                .match-wrapper {
+                    padding: 0;
+
+                    .match-lines-area {
+                        left: 0;
+                        width: 100%;
+
+                        .line-wrapper {
+                            box-shadow: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        .round-wrapper {
+            .match-wrapper {
+
+                &.odd .line-wrapper.upper,
+                &.even .line-wrapper.lower {
+                    box-shadow: calc(var(--connectionLinesWidth) * -1) 0px 0px 0px;
+                }
+
+                &.highlighted .line-wrapper {
+                    /* SHIT. It's to override the .last-highlighted style which tells not to highlight */
+                    color: var(--highlightedConnectionLinesColor);
+                }
+            }
+
+
+        }
+    }
+
+
+
 
     .match-wrapper {
         display: flex;
@@ -166,10 +217,6 @@
             /* for box-shadow color, not text */
             color: var(--connectionLinesColor);
         }
-    }
-
-    .round-wrapper:last-of-type .line-wrapper {
-        box-shadow: none !important;
     }
 
 
