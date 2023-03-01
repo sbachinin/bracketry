@@ -25,7 +25,7 @@
 
 
 
-    .last-round-wrapper-wrapper {
+    .bronze-round-wrapper {
         display: flex;
         overflow: hidden;
 
@@ -230,7 +230,10 @@
         }
     }
 
-
+    .matches-positioner > .round-wrapper:last-of-type .line-wrapper {
+        /* do not show right vertical line for last round */
+        color: transparent;
+    }
 
 
 

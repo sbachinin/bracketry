@@ -15,7 +15,8 @@ export type Match = {
     order: number, // 0-based!
     sides?: Side[],
     matchStatus?: string, // Meant for statuses like 'Cancelled' | 'Scheduled' | '19.05.2022 18:30'
-    isLive?: boolean
+    isLive?: boolean,
+    isBronze?: boolean,
 }
 
 type Score = {
