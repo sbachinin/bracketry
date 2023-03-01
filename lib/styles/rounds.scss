@@ -41,7 +41,7 @@
             }
 
             &:first-child {
-                width: 30px;
+                width: calc(var(--matchHorMargin) * 1.2);
                 min-width: 0;
 
                 .match-wrapper {
@@ -60,8 +60,19 @@
         }
 
         .round-wrapper {
-            .match-wrapper {
+            flex: 1;
 
+            .match-wrapper {
+                padding-top: var(--matchMinVerticalGap);
+                padding-bottom: var(--matchMinVerticalGap);
+                padding-left: calc(var(--matchHorMargin) * 0.3);
+                &.even {
+                    align-self: end;
+                }
+                &.odd {
+                    align-self: start;
+                }
+                
                 &.odd .line-wrapper.upper,
                 &.even .line-wrapper.lower {
                     box-shadow: calc(var(--connectionLinesWidth) * -1) 0px 0px 0px;
