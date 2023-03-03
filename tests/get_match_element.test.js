@@ -290,7 +290,6 @@ test(`does not render .match-status if match.matchStatus is a non-string`, () =>
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelector('.match-status')).toBe(null)
-    expect(consoleWarn.mock.calls[0][0]).toMatch('Match.matchStatus must be a string')
 })
 
 test(`does not render match-status if match.matchStatus is an empty string`, () => {

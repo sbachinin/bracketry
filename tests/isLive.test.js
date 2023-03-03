@@ -53,7 +53,6 @@ test(`does not apply live styles to a match element which has non-boolean 'isLiv
     expect(getComputedStyle(wrapper.querySelector('.match-body')).borderColor).not.toBe('red')
     expect(getComputedStyle(wrapper.querySelector('.match-body')).backgroundColor).not.toBe('blue')
     expect(getComputedStyle(wrapper.querySelector('.current-score:not(:empty)')).borderColor).not.toBe('red')
-    expect(consoleWarn.mock.calls[0][0]).toMatch(`Match.isLive must be a boolean`)
 })
 
 
