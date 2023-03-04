@@ -30,6 +30,7 @@ _You only need a wrapper element and some <a href="https://bracketry.app/data-sh
 &nbsp;&nbsp; 🔦 Team's path within a tournament is <a href="https://bracketry.app/highlight-history">highlighted</a> on click (if you want)  
 &nbsp;&nbsp; 👯 Multiple brackets on a page  
 &nbsp;&nbsp; 📱 Can be easily tuned for <a href="https://bracketry.app/mobile">mobile</a> devices  
+&nbsp;&nbsp; 📱 <a href="https://bracketry.app/bronze">Third place</a> match is possible
 
 <br>
 

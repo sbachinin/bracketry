@@ -102,3 +102,112 @@ test(`does not render default title for bronze match if getMatchTopHTML is speci
     const m_wrs = wrapper.querySelectorAll('.bronze-round-wrapper .round-wrapper .match-wrapper')
     expect(m_wrs[1].querySelector('.match-top')).toBe(null)
 })
+
+
+
+test(`does not render bronze-round-wrapper when bronze match has irrelevant roundIndex and order`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [
+            { roundIndex: 0, order: 0, sides: [{ contestantId: 'John' }] },
+            { roundIndex: 20, order: 31, sides: [{ contestantId: 'Pete' }], isBronzeMatch: true },
+        ]
+    }
+    const { wrapper } = init(data)
+    expect(wrapper.querySelector('.bronze-round-wrapper')).toBe(null)
+})
+
+test(`does not render bronze-round-wrapper when bronze match has no roundIndex`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [
+            { roundIndex: 0, order: 0, sides: [{ contestantId: 'John' }] },
+            { order: 1, sides: [{ contestantId: 'Pete' }], isBronzeMatch: true },
+        ]
+    }
+    const { wrapper } = init(data)
+    expect(wrapper.querySelector('.bronze-round-wrapper')).toBe(null)
+})
+
+
+test(`does not render bronze-round-wrapper when bronze match has no order`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [
+            { roundIndex: 0, order: 0, sides: [{ contestantId: 'John' }] },
+            { roundIndex: 0, sides: [{ contestantId: 'Pete' }], isBronzeMatch: true },
+        ]
+    }
+    const { wrapper } = init(data)
+    expect(wrapper.querySelector('.bronze-round-wrapper')).toBe(null)
+})
+
+
+test(`calls onMatchClick with a data of bronze match`, () => {
+
+    const onMatchClick = jest.fn()
+
+    const brnzm = { roundIndex: 0, order: 1, sides: [{ contestantId: 'Pete' }], isBronzeMatch: true }
+
+    const data = {
+        rounds: [{}],
+        matches: [
+            { roundIndex: 0, order: 0, sides: [{ contestantId: 'John' }] },
+            brnzm,
+        ]
+    }
+    const { wrapper } = init(data, { onMatchClick })
+
+    wrapper.querySelector(
+        '.round-wrapper[round-index="0"] .match-wrapper[match-order="1"] .match-body'
+    ).dispatchEvent(new MouseEvent('click', { bubbles: true }))
+
+    expect(onMatchClick).toBeCalledWith(expect.objectContaining(brnzm))
+})
+
+
+test(`bronze match is due updated when applyMatchesUpdates is called`, () => {
+
+    const brnzm = {
+        roundIndex: 0,
+        order: 1,
+        sides: [{ contestantId: 'Pete', scores: [ { mainScore: 1 }] }],
+        isBronzeMatch: true
+    }
+
+    const data = {
+        rounds: [{}],
+        matches: [
+            { roundIndex: 0, order: 0, sides: [{ contestantId: 'John' }] },
+            brnzm,
+        ]
+    }
+    const { wrapper, bracket: br } = init(data)
+
+    br.applyMatchesUpdates([{
+        ...brnzm,
+        sides: [{ contestantId: 'Pete', scores: [ { mainScore: 222 }] }],
+    }])
+
+    expect(wrapper.querySelector('.match-wrapper[match-order="1"] .main-score').textContent).toBe('222')
+})
+
+
+test(`bronze match is due highlighted when its side is clicked`, () => {
+
+    const data = {
+        rounds: [{}],
+        matches: [
+            { roundIndex: 0, order: 0, sides: [{ contestantId: 'John' }] },
+            { roundIndex: 0, order: 1, sides: [{ contestantId: 'Pete' }], isBronzeMatch: true },
+        ]
+    }
+
+    const { wrapper } = init(data)
+
+    wrapper.querySelector(
+        '.side-wrapper[contestant-id="Pete"]'
+    ).dispatchEvent(new MouseEvent('click', { bubbles: true }))
+
+    expect(wrapper.querySelector('.match-wrapper[match-order="1"].highlighted')).not.toBe(null)
+})
