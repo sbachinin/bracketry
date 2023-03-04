@@ -63,14 +63,16 @@
             flex: 1;
 
             .match-wrapper {
-                padding-top: var(--matchMinVerticalGap);
-                padding-bottom: var(--matchMinVerticalGap);
                 padding-left: calc(var(--matchHorMargin) * 0.3);
                 &.even {
                     align-self: end;
+                    padding-top: var(--matchMinVerticalGap);
+                    padding-bottom: var(--matchMinVerticalGap);
                 }
                 &.odd {
                     align-self: start;
+                    padding-top: calc(var(--matchMinVerticalGap) + var(--matchFontSize) * 1.5);
+                    padding-bottom: calc(var(--matchMinVerticalGap) + var(--matchFontSize) * 1.5);
                 }
                 
                 &.odd .line-wrapper.upper,

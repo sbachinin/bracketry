@@ -75,3 +75,30 @@ test(`first renders final match, then bronze match`, () => {
     expect(m_wrs[1].querySelector('.side-wrapper[contestant-id="Pete"]')).not.toBe(null)
 })
 
+
+test(`renders default title for bronze match`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [
+            { roundIndex: 0, order: 0, sides: [{ contestantId: 'John' }] },
+            { roundIndex: 0, order: 1, sides: [{ contestantId: 'Pete' }], isBronzeMatch: true },
+        ]
+    }
+    const { wrapper } = init(data)
+    const m_wrs = wrapper.querySelectorAll('.bronze-round-wrapper .round-wrapper .match-wrapper')
+    expect(m_wrs[1].querySelector('.match-top').textContent).toBe('3RD PLACE')
+})
+
+
+test(`does not render default title for bronze match if getMatchTopHTML is specified`, () => {
+    const data = {
+        rounds: [{}],
+        matches: [
+            { roundIndex: 0, order: 0, sides: [{ contestantId: 'John' }] },
+            { roundIndex: 0, order: 1, sides: [{ contestantId: 'Pete' }], isBronzeMatch: true },
+        ]
+    }
+    const { wrapper } = init(data, { getMatchTopHTML: () => '' })
+    const m_wrs = wrapper.querySelectorAll('.bronze-round-wrapper .round-wrapper .match-wrapper')
+    expect(m_wrs[1].querySelector('.match-top')).toBe(null)
+})
