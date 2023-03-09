@@ -56,7 +56,7 @@ yarn add bracketry
 <br>
 
 
-Minified bundle is 49k, gzipped is 12k.
+Minified bundle is 48k, gzipped is 12k.
 
 
 Includes a __d.ts__ file for ease of TypeScript development

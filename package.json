@@ -1,7 +1,7 @@
 {
     "name": "bracketry",
-    "version": "0.0.4",
-    "description": "Low-pain tool to visualize the 'draws' of a knockout tournament",
+    "version": "1.0.0",
+    "description": "JavaScript library that visualizes tournament brackets",
     "type": "module",
     "types": "./index.d.ts",
     "main": "dist/cjs/index.js",
