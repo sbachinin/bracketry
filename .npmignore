@@ -2,6 +2,7 @@ tests
 cypress
 cypress.config.js
 lib
+writings
 
 /rollup.config.mjs
 /index.html
