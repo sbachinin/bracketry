@@ -134,6 +134,7 @@
     }
 
     .match-status {
+        display: flex;
         z-index: 2;
         align-self: center;
         transition: border-color 0.1s ease-out;
