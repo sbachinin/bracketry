@@ -1,6 +1,6 @@
 {
     "name": "bracketry",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "JavaScript library that visualizes tournament brackets",
     "type": "module",
     "types": "./index.d.ts",
