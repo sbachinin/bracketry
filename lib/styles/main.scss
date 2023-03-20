@@ -91,14 +91,16 @@
         grid-column: 2/span 2;
         overflow: hidden;
         padding-bottom: 1px;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: var(--roundTitlesBorderColor, var(--rootBorderColor));
+        /* box-sizing: content-box; */
     }
 
     .round-titles-wrapper {
         height: 100%;
         min-width: 100%;
 
-        border-bottom: 1px solid var(--roundTitlesBorderColor, var(--rootBorderColor));
-        box-sizing: content-box;
 
         font-size: var(--roundTitlesFontSize);
         font-family: var(--roundTitlesFontFamily, var(--rootFontFamily));
