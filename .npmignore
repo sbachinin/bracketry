@@ -10,3 +10,5 @@ writings
 .github
 
 /images/logo1.tif
+
+*.js.map

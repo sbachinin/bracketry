@@ -15,6 +15,10 @@
     grid-template-rows: auto auto auto 1fr auto;
     min-width: 260px;
     min-height: 250px;
+
+    /* otherwise, if you set width option to "max-content", bracket will become non-responsive */
+    max-width: 100%;
+    
     width: var(--width);
     height: var(--height);
     text-align: left;
@@ -94,7 +98,6 @@
         min-width: 100%;
 
         border-bottom: 1px solid var(--roundTitlesBorderColor, var(--rootBorderColor));
-        padding-right: 2000px;
         box-sizing: content-box;
 
         font-size: var(--roundTitlesFontSize);
