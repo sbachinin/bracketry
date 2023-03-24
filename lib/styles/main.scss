@@ -87,6 +87,11 @@
 
     /* this wrapper was the only found solution to prevent overflow */
     .round-titles-grid-item {
+
+        /* forbid round titles to stretch the main content: */
+        width: 0;
+        min-width: 100%;
+
         grid-row: 2;
         grid-column: 2/span 2;
         overflow: hidden;
@@ -105,18 +110,14 @@
         font-size: var(--roundTitlesFontSize);
         font-family: var(--roundTitlesFontFamily, var(--rootFontFamily));
         color: var(--roundTitleColor);
-
-        * {
-            white-space: nowrap;
-        }
     }
 
     .round-title {
-        padding: var(--roundTitlesVerticalPadding) 0;
+        padding: var(--roundTitlesVerticalPadding) var(--matchHorMargin);
         display: flex;
-        align-items: center;
         overflow: hidden;
         justify-content: center;
+        white-space: nowrap;
     }
 
     .matches-scroller {
