@@ -9,6 +9,7 @@
     "mode": "production",
     "scripts": {
         "test": "jest",
+        "cypress": "npx cypress run",
         "btest": "rollup -c && jest --silent",
         "build": "rollup -c",
         "start": "http-server -p 3000",
