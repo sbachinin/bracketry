@@ -168,6 +168,7 @@
         border-width: var(--connectionLinesWidth, 2);
         border-style: solid;
         border-color: transparent;
+        position: relative;
 
         &:empty {
             /* otherwise, when onMatchClick is set, a border will appear around an empty match :hover */
@@ -191,8 +192,6 @@
                 border-color: var(--liveMatchBorderColor, var(--rootBorderColor));
             }
         }
-
-        position: relative;
     }
 
     .match-top,
