@@ -254,7 +254,7 @@
         /* defined at this depth because on upper levels color property is used for box-shadow tricks */
         color: var(--matchTextColor);
 
-        &.empty-side {
+        &.empty-side, &:not([contestant-id]) {
             pointer-events: none;
         }
 
