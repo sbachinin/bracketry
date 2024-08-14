@@ -11,3 +11,5 @@ writings
 
 *.js.map
 *.tgz
+
+CHANGELOG.md
