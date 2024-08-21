@@ -57,18 +57,6 @@
         width: 0;
     }
 
-    .with-hidden-native-scrollbar {
-        scrollbar-width: none;
-        /* For Firefox */
-        -ms-overflow-style: none;
-        /* For Internet Explorer and Edge */
-    }
-
-    .with-hidden-native-scrollbar::-webkit-scrollbar {
-        width: 0px;
-        /* For Chrome, Safari, and Opera */
-    }
-
     .full-width-grid-column {
         /* (a column that takes full width of the parent grid el) */
         grid-column: 1 / -1;
@@ -127,6 +115,14 @@
         overflow-y: hidden;
         overflow-x: hidden;
         pointer-events: none;
+
+        /* hide scrollbar */
+        scrollbar-width: none; /* For Firefox */
+        -ms-overflow-style: none; /* For Internet Explorer and Edge */
+        &::-webkit-scrollbar {
+            display: none;
+            /* For Chrome, Safari, and Opera */
+        }
     }
 
     .matches-scroller.scroll-y-enabled {
