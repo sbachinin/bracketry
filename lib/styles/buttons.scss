@@ -161,10 +161,6 @@
         .navigation-button {
             grid-row: 1/-1;
 
-            &:not(.hidden) {
-                min-height: 100%;
-            }
-
             &.left {
                 border-right: 1px solid var(--navGutterBorderColor, var(--rootBorderColor));
             }
