@@ -2,7 +2,6 @@
 
     .navigation-button,
     .scroll-button {
-        display: grid;
         justify-content: center;
         align-items: center;
 
@@ -27,6 +26,7 @@
 
 
     .navigation-button {
+        display: grid;
         &.left {
             grid-column: 1;
         }
