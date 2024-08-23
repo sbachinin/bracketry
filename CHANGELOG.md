@@ -10,3 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Number of displayed rounds is adjusted if necessary according to the number of matches in the 1st round.
 - Sides without contestantId are made unclickable (to prevent highlighing of the "BYE" sides).
+
+## [1.1.1] - 2024-08-???????
+
+### Fixed
+
+- Prevent double scrollbar in Safari
+- Fix "gradual height growth" in Safari
