@@ -9,6 +9,10 @@ JavaScript library that takes your data and draws the tree of a knockout tournam
 
 <br>
 
+Bracketry is designed to draw _single elimination_ brackets. Technically you can use it to make [double elimination](https://en.wikipedia.org/wiki/Double-elimination_tournament) brackets too but it won't be that easy and the result won't look very nice (a lot of screen space will be left unused).
+
+<br>
+
 ## Basic usage
 
 ```javascript
