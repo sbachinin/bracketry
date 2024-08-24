@@ -8,7 +8,7 @@
     "module": "dist/esm/index.js",
     "mode": "production",
     "scripts": {
-        "test": "jest",
+        "test": "jest --silent",
         "cypress": "npx cypress run",
         "btest": "rollup -c && jest --silent",
         "build": "rollup -c",
