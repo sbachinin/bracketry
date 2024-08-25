@@ -111,7 +111,6 @@
     .matches-scroller {
         grid-column: 2/span 2;
         grid-row: 4;
-        position: relative;
         overflow-y: hidden;
         overflow-x: hidden;
         pointer-events: none;
@@ -131,6 +130,7 @@
 
     .matches-positioner {
         position: relative;
+        z-index: 2; // makes no sense but happens to mitigate the "Chromium scrolling lagginess when >1 brackets"
         display: grid;
         min-width: 100%;
         min-height: 100%;
