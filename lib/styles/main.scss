@@ -145,10 +145,19 @@
         z-index: 3;
     }
 
+    .scrollbar-overflow-preventer {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: var(--scrollbarWidth);
+        overflow-y: hidden;
+    }
+
     .scrollbar {
         position: absolute;
         right: 0;
-        width: var(--scrollbarWidth);
+        width: 100%;
         background: var(--scrollbarColor);
     }
 

@@ -17,3 +17,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Prevent double scrollbar in Safari
 - Fix "gradual height growth" in Safari
+- Fix nasty lagginess on scroll in Chromium when >1 instance of bracketry on a page
+- Prevent scrollbar from overflowing from its parent (happened in iOS Safari)
