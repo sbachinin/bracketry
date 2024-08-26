@@ -69,10 +69,6 @@
         grid-auto-columns: minmax(0, 1fr);
     }
 
-    .notransition {
-        transition: none !important;
-    }
-
     /* this wrapper was the only found solution to prevent overflow */
     .round-titles-grid-item {
 
@@ -171,8 +167,11 @@
 
     &.with-vertical-scroll-buttons {
         .matches-positioner {
-            // will-change: transform;
-            transition: transform 0.3s ease-out;
+            // will-change: transform; // removed to mitigate chromium lagginess when >1 brackets
+
+            &.is-scrolling {
+                transition: transform var(--scroll-transition-duration) ease-out;
+            }
         }
     }
 }
