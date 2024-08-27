@@ -23,7 +23,9 @@
         }
     }
 
-
+    .matches-positioner.is-scrolling * {
+        cursor: auto !important;
+    }
 
     .bronze-round-wrapper {
         display: flex;
@@ -64,17 +66,19 @@
 
             .match-wrapper {
                 padding-left: calc(var(--matchHorMargin) * 0.3);
+
                 &.even {
                     align-self: end;
                     padding-top: var(--matchMinVerticalGap);
                     padding-bottom: var(--matchMinVerticalGap);
                 }
+
                 &.odd {
                     align-self: start;
                     padding-top: calc(var(--matchMinVerticalGap) + var(--matchFontSize) * 1.5);
                     padding-bottom: calc(var(--matchMinVerticalGap) + var(--matchFontSize) * 1.5);
                 }
-                
+
                 &.odd .line-wrapper.upper,
                 &.even .line-wrapper.lower {
                     box-shadow: calc(var(--connectionLinesWidth) * -1) 0px 0px 0px;
@@ -233,7 +237,7 @@
         }
     }
 
-    .matches-positioner > .round-wrapper:last-of-type .line-wrapper {
+    .matches-positioner>.round-wrapper:last-of-type .line-wrapper {
         /* do not show right vertical line for last round */
         color: transparent;
     }
@@ -254,7 +258,8 @@
         /* defined at this depth because on upper levels color property is used for box-shadow tricks */
         color: var(--matchTextColor);
 
-        &.empty-side, &:not([contestant-id]) {
+        &.empty-side,
+        &:not([contestant-id]) {
             pointer-events: none;
         }
 
