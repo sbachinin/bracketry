@@ -107,7 +107,9 @@ export function createBracket(
     getNavigationState: () => {
         lastRoundIsFullyVisible: boolean,
         allRoundsAreVisible: boolean,
-        baseRoundIndex: number
+        baseRoundIndex: number,
+        maxBaseRoundIndex: number,
+        visibleRoundsCount: number,
     }
 
     applyNewOptions: (newOptions: OptionsMap) => void
