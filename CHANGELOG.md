@@ -16,3 +16,9 @@
 - Prevent double scrollbar in Safari
 - Prevent scrollbar from overflowing from its parent (happened in iOS Safari)
 - Force default cursor while scrolling the bracket
+
+## [1.1.2] - 2024-08-28
+
+### Changed
+
+- Expose maxBaseRoundIndex and visibleRoundsCount from getNavigationState
