@@ -262,7 +262,13 @@ test(`returns stub values if getNavigationState is called after elements were re
 
     const { wrapper, bracket: br } = init(finished_ucl)
     wrapper.remove()
-    expect(br.getNavigationState()).toEqual({ lastRoundIsFullyVisible: false, allRoundsAreVisible: false, baseRoundIndex: 0 })
+    expect(br.getNavigationState()).toEqual({ 
+        lastRoundIsFullyVisible: false, 
+        allRoundsAreVisible: false, 
+        baseRoundIndex: 0 ,
+        maxBaseRoundIndex: 4,
+        visibleRoundsCount: 0
+    })
 })
 
 
