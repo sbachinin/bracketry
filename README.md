@@ -21,7 +21,7 @@ import { createBracket } from 'bracketry'
 createBracket(your_data, your_wrapper_element)
 ```
 
-_You only need a wrapper element and some <a href="https://bracketry.app/data-shape">properly formatted data</a>_
+_You only need a wrapper element (advisably with explicit <a href="https://bracketry.app/create-bracket/#problem-of-height">height</a>) and some properly formatted <a href="https://bracketry.app/data-shape">data</a>_
 
 <br>
 
