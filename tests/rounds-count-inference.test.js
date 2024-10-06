@@ -44,3 +44,16 @@ test(`renders as much round elements as necessary to display all matches of firs
     const { wrapper } = init(data)
     expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(7)
 })
+
+
+test(`renders an amount of round elements according to 1st round matches IF data.rounds is an empty array`, () => {
+    const data = {
+        rounds: [],
+        matches: [{
+            roundIndex: 0,
+            order: 52,
+        }],
+    }
+    const { wrapper } = init(data)
+    expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(7)
+})
