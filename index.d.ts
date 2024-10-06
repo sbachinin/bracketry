@@ -62,6 +62,8 @@ type Options = {
     liveMatchBorderColor: string,
     liveMatchBgColor: string,
     distanceBetweenScorePairs: number,
+    hideNLastRounds: number,
+
     onMatchClick: (match: Partial<Match>) => void,
 
     onMatchSideClick: (match: Partial<Match>, sideIndex: number) => void,
