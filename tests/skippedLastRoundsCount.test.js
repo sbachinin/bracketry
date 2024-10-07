@@ -36,7 +36,7 @@ test(`renders normal number of rounds and matches when skippedLastRoundsCount is
 })
 
 
-test(`does not change the number of round elements in the DOM when skippedLastRoundsCount is specified as non-0`, () => {
+test(`does not trim rounds from data.rounds`, () => {
 
     const data = {
         rounds: [{}, {}, {}],
@@ -47,6 +47,19 @@ test(`does not change the number of round elements in the DOM when skippedLastRo
     expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(3)
     expect(wrapper.querySelectorAll('.round-title').length).toBe(3)
 })
+
+
+test(`does not trim rounds from data.rounds when data.matches isn't provided`, () => {
+
+    const data = {
+        rounds: [{}, {}, {}],
+        skippedLastRoundsCount: 2
+    }
+    const { wrapper } = init(data)
+    expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(3)
+    expect(wrapper.querySelectorAll('.round-title').length).toBe(3)
+})
+
 
 test(`increases the "breadth" of a tree when skippedLastRoundsCount is specified as non-0`, () => {
 
