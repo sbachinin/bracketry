@@ -16,6 +16,7 @@ test(`renders normal number of rounds and matches when skippedLastRoundsCount is
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(3)
+    expect(wrapper.querySelectorAll('.round-title').length).toBe(3)
     expect(wrapper.querySelectorAll('.round-wrapper[round-index="0"] .match-wrapper').length).toBe(4)
 
 })
@@ -29,6 +30,7 @@ test(`renders normal number of rounds and matches when skippedLastRoundsCount is
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(3)
+    expect(wrapper.querySelectorAll('.round-title').length).toBe(3)
     expect(wrapper.querySelectorAll('.round-wrapper[round-index="0"] .match-wrapper').length).toBe(4)
 
 })
@@ -43,6 +45,7 @@ test(`does not change the number of round elements in the DOM when skippedLastRo
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(3)
+    expect(wrapper.querySelectorAll('.round-title').length).toBe(3)
 })
 
 test(`increases the "breadth" of a tree when skippedLastRoundsCount is specified as non-0`, () => {
@@ -67,6 +70,7 @@ test(`trims the number of round elements inferred from 1st round matches`, () =>
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(5)
+    expect(wrapper.querySelectorAll('.round-title').length).toBe(5)
 })
 
 
@@ -95,6 +99,7 @@ test(`renders a number of rounds inferred from matches minus skippedLastRoundsCo
     }
     const { wrapper } = init(data)
     expect(wrapper.querySelectorAll('.round-wrapper').length).toBe(4)
+    expect(wrapper.querySelectorAll('.round-title').length).toBe(4)
 })
 
 test(`When n last rounds gets dropped, navigation on click is limited accordingly`, () => {
