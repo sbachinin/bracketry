@@ -49,7 +49,7 @@ test(`renders empty shell if "rounds" is an empty array`, () => {
 
     expect(wrapper.querySelector('.matches-positioner')).not.toBe(null)
     expect(wrapper.querySelector('.matches-positioner').innerHTML).toBe('')
-    expect(consoleWarn.mock.calls[0][0]).toMatch(`At least one round should be provided`)
+    expect(consoleWarn.mock.calls[0][0]).toMatch(`At least one round or one match must be provided`)
 })
 
 
