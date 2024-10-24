@@ -22,3 +22,10 @@
 ### Changed
 
 - Expose maxBaseRoundIndex and visibleRoundsCount from getNavigationState
+
+## [1.1.3] - 2024-10-24
+
+### Changed
+
+- Add skippedLastRoundsCount option to render tournaments with missing last rounds
+
